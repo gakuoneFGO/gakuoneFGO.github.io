@@ -2,12 +2,12 @@ import { PowerMod } from "./Damage";
 
 class Servant {
     constructor(
-        public data: ServantData,
-        public npLevel: number,
-        public level: number,
-        public attackFou: number,
-        public appendMod: PowerMod,
-        public isNpUpgraded: boolean) {}
+        readonly data: ServantData,
+        readonly npLevel: number,
+        readonly level: number,
+        readonly attackFou: number,
+        readonly appendMod: PowerMod,
+        readonly isNpUpgraded: boolean) {}
 
     getAttackStat(): number {
         return this.data.growthCurve.getAttackStat(this.level) + this.attackFou;

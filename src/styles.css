@@ -1,3 +1,6 @@
 body {
     /*background-color: grey !important;*/
 }
+
+tr { display: block !important; float: left !important; }
+th, td { display: block !important; }

@@ -1,8 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import NumberFormat from "react-number-format";
-import { TextField } from "@material-ui/core";
+import { Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
+import update from "immutability-helper";
+import { Spec } from "immutability-helper";
 
 import { Template, BuffMatrix } from "./Strat";
 import { BuffSet, PowerMod } from "./Damage";
@@ -17,12 +19,12 @@ class TemplateBuilder extends React.Component<any, Template, any> {
 
     render() {
         return (
-            <div className="container-fluid bd-content">
+            <div>
                 {this.state.party.map((servant, index) =>(
                     <ServantSelector key={index}
-                        name={servant.data.name}
+                        servant={servant}
                         label={"Servant " + (index + 1)}
-                        onChange={(v: string) => { console.log("my onChange - " + v); this.state.party[index] = getServantDefaults(v); }} />
+                        onChange={(s: Servant) => this.setState(update(this.state, { party: { [index]: { $set: s } } }))} />
                 ))}
                 <BuffMatrixBuilder buffMatrix={this.state.buffs}></BuffMatrixBuilder>
             </div>
@@ -30,15 +32,26 @@ class TemplateBuilder extends React.Component<any, Template, any> {
     }
 }
 
-class ServantSelector extends React.Component<any, any, any> {
+class ServantSelector extends React.Component<any, Servant, any> {
+    constructor(props: any) {
+        super(props);
+        this.state = props.servant;
+        this.handleNameChanged = this.handleNameChanged.bind(this);
+    }
+
     render() {
         return (
             <Autocomplete
                 options={Array.from(allData.servants.keys())}
-                value={this.props.name}
+                value={this.state.data.name}
                 renderInput={params => <TextField {...params} label={this.props.label} variant="outlined" />}
-                onChange={(e, v) => this.props.onChange(v)} />
+                onChange={(e, v) => { if (v) this.handleNameChanged(v) }} />
         );
+    }
+
+    handleNameChanged(name: string) {
+        this.setState(getServantDefaults(name));
+        if (this.props.onChange) this.props.onChange(this.state);
     }
 }
 
@@ -50,39 +63,87 @@ class BuffMatrixBuilder extends React.Component<any, BuffMatrix, any> {
 
     render() {
         return (
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Attack Up</th>
-                        <th>Card Effectiveness Up</th>
-                        <th>NP Damage Up</th>
-                        <th>Power Mod 1</th>
-                        <th>Trigger 1</th>
-                        <th>Power Mod 2</th>
-                        <th>Trigger 2</th>
-                        <th>Power Mod 3</th>
-                        <th>Trigger 3</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.state.buffs.map((buffSet: BuffSet, index: number) => (
-                        <tr key={index}>
-                            <td><strong>T{index + 1}</strong></td>
-                            <td><NumberFormat suffix={"%"} decimalScale={1} value={buffSet.attackUp * 100} onValueChange={e => { if (e.floatValue) buffSet.attackUp = e.floatValue } }></NumberFormat></td>
-                            <td><NumberFormat suffix={"%"} decimalScale={1} value={buffSet.effUp * 100} onValueChange={e => { if (e.floatValue) buffSet.effUp = e.floatValue } }></NumberFormat></td>
-                            <td><NumberFormat suffix={"%"} decimalScale={1} value={buffSet.npUp * 100} onValueChange={e => { if (e.floatValue) buffSet.npUp = e.floatValue } }></NumberFormat></td>
-                            <td><NumberFormat suffix={"%"} decimalScale={1} value={buffSet.powerMods[0].modifier * 100} onValueChange={e => { if (e.floatValue) buffSet.powerMods[0].modifier = e.floatValue } }></NumberFormat></td>
-                            <td><input type="text" value={buffSet.powerMods[0].trigger} onChange={e => buffSet.powerMods[0].trigger = e.target.value as Trigger}></input></td>
-                            <td><NumberFormat suffix={"%"} decimalScale={1} value={buffSet.powerMods[1].modifier * 100} onValueChange={e => { if (e.floatValue) buffSet.powerMods[1].modifier = e.floatValue } }></NumberFormat></td>
-                            <td><input type="text" value={buffSet.powerMods[0].trigger} onChange={e => buffSet.powerMods[0].trigger = e.target.value as Trigger}></input></td>
-                            <td><NumberFormat suffix={"%"} decimalScale={1} value={buffSet.powerMods[2].modifier * 100} onValueChange={e => { if (e.floatValue) buffSet.powerMods[2].modifier = e.floatValue } }></NumberFormat></td>
-                            <td><input type="text" value={buffSet.powerMods[0].trigger} onChange={e => buffSet.powerMods[0].trigger = e.target.value as Trigger}></input></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <TableContainer>
+                <Table>
+                    {/* <TableHead> */}
+                        <TableRow>
+                            <TableCell></TableCell>
+                            <TableCell>Attack Up</TableCell>
+                            <TableCell>Card Effectiveness Up</TableCell>
+                            <TableCell>NP Damage Up</TableCell>
+                            <TableCell>2x NP Dmg Up</TableCell>
+                            <TableCell>Power Mod 1</TableCell>
+                            <TableCell>Trigger 1</TableCell>
+                            <TableCell>Power Mod 2</TableCell>
+                            <TableCell>Trigger 2</TableCell>
+                            <TableCell>Power Mod 3</TableCell>
+                            <TableCell>Trigger 3</TableCell>
+                        </TableRow>
+                    {/* </TableHead>
+                    <TableBody> */}
+                        {this.state.buffs.map((buffSet: BuffSet, index: number) => (
+                            <BuffSetBuilder buffSet={buffSet} key={index} rowLabel={"T" + (index + 1)} onChange={(v: BuffSet) => this.handleChange(v, index)} />
+                        ))}
+                    {/* </TableBody> */}
+                </Table>
+            </TableContainer>
         )
+    }
+
+    handleChange(buffSet: BuffSet, index: number) {
+        this.setState(update(this.state, { buffs: { [index]: { $set: buffSet } } }));
+    }
+}
+
+class BuffSetBuilder extends React.Component<any, BuffSet, any> {
+    constructor(props: any) {
+        super(props);
+        this.state = props.buffSet;
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    render() {
+        return (
+            <TableRow>
+                <TableCell><strong>{this.props.rowLabel}</strong></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.attackUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ attackUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.effUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ effUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.npUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ npUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
+                <TableCell><Checkbox value={this.state.isDoubleNpUp} onChange={(e, v) => this.handleChange({ isDoubleNpUp: {$set: v } }) } /></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.powerMods[0].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100} }, 0); }}></NumberFormat></TableCell>
+                <TableCell><Autocomplete
+                    options={Object.values(Trigger)}
+                    value={this.state.powerMods[0].trigger}
+                    renderInput={params => <TextField {...params} variant="outlined" />}
+                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 0)}
+                    disableClearable={true} /></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.powerMods[1].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 1); }}></NumberFormat></TableCell>
+                <TableCell><Autocomplete
+                    options={Object.values(Trigger)}
+                    value={this.state.powerMods[1].trigger}
+                    renderInput={params => <TextField {...params} variant="outlined" />}
+                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 1)} 
+                    disableClearable={true} /></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.powerMods[2].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 2); }}></NumberFormat></TableCell>
+                <TableCell><Autocomplete
+                    options={Object.values(Trigger)}
+                    value={this.state.powerMods[2].trigger}
+                    renderInput={params => <TextField {...params} variant="outlined" />}
+                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 2)} 
+                    disableClearable={true} /></TableCell>
+            </TableRow>
+        );
+    }
+
+    handleChange(spec: Spec<Readonly<BuffSet>, never>) {
+        console.log(spec);
+        this.setState(update(this.state, spec));
+        if (this.props.onChange) this.props.onChange(this.state);
+    }
+
+    handlePowerModChange(spec: Spec<PowerMod, never>, index: number) {
+        this.setState(update(this.state, { powerMods: { [index]: spec } }));
+        if (this.props.onChange) this.props.onChange(this.state);
     }
 }
 

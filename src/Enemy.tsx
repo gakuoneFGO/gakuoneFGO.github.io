@@ -1,9 +1,9 @@
 class Enemy {
     constructor(
-        public eClass: EnemyClass,
-        public attribute: EnemyAttribute,
-        public traits: Trait[],
-        public hitPoints: number) {}
+        readonly eClass: EnemyClass,
+        readonly attribute: EnemyAttribute,
+        readonly traits: Trait[],
+        readonly hitPoints: number) {}
 }
 
 enum EnemyClass {

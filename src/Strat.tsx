@@ -3,17 +3,17 @@ import { Servant } from "./Servant";
 import { Enemy } from "./Enemy";
 
 class BuffMatrix {
-    constructor(public buffs: BuffSet[]) {}
+    constructor(readonly buffs: BuffSet[]) {}
 }
 
 class Template {
     constructor(
-        public name: string,
-        public buffs: BuffMatrix,
-        public party: Servant[],
-        public clearers: number[],
-        public description: string,
-        public instructions: string[]) {}
+        readonly name: string,
+        readonly buffs: BuffMatrix,
+        readonly party: Servant[],
+        readonly clearers: number[],
+        readonly description: string,
+        readonly instructions: string[]) {}
 }
 
 class Wave {
@@ -39,11 +39,11 @@ class NodeDamage {
 
 class Strat {
     constructor(
-        public servant: Servant,
-        public template: Template,
-        public servantBuffs: BuffMatrix,
-        public servantCe: CraftEssence,
-        public supportCe: CraftEssence) {}
+        readonly servant: Servant,
+        readonly template: Template,
+        readonly servantBuffs: BuffMatrix,
+        readonly servantCe: CraftEssence,
+        readonly supportCe: CraftEssence) {}
 
     run(node: Node): NodeDamage {
         let result = new NodeDamage();

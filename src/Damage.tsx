@@ -3,18 +3,18 @@ import { Enemy, EnemyClass, EnemyAttribute } from "./Enemy";
 
 class PowerMod {
     constructor(
-        public trigger: Trigger,
-        public modifier: number) {}
+        readonly trigger: Trigger,
+        readonly modifier: number) {}
 }
 
 class BuffSet {
     constructor(
-        public attackUp: number, //includes def down
-        public effUp: number, //includes resistance down
-        public npUp: number,
-        public isDoubleNpUp: boolean,
-        public powerMods: PowerMod[],
-        public overcharge: number) {}
+        readonly attackUp: number, //includes def down
+        readonly effUp: number, //includes resistance down
+        readonly npUp: number,
+        readonly isDoubleNpUp: boolean,
+        readonly powerMods: PowerMod[],
+        readonly overcharge: number) {}
 
     static combine(buffs: BuffSet[], appendMod: PowerMod): BuffSet {
         return new BuffSet (
@@ -92,9 +92,9 @@ function isTriggerActive(enemy: Enemy, trigger: Trigger): boolean {
 
 class CraftEssence {
     constructor(
-        public name: string,
-        public attackStat: number,
-        public buffs: BuffSet) {}
+        readonly name: string,
+        readonly attackStat: number,
+        readonly buffs: BuffSet) {}
 }
 
 
