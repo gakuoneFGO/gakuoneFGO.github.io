@@ -4,10 +4,10 @@ import NumberFormat from "react-number-format";
 import { TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 
-import { Template, BuffMatrix } from "./Strat.js";
-import { BuffSet, PowerMod } from "./Damage.js";
-import { Servant, ServantData, Trigger, CardType, ServantClass, GrowthCurve, ServantAttribute } from "./Servant.js";
-import { allData } from "./Data.js";
+import { Template, BuffMatrix } from "./Strat";
+import { BuffSet, PowerMod } from "./Damage";
+import { Servant, ServantData, Trigger, CardType, ServantClass, GrowthCurve, ServantAttribute } from "./Servant";
+import { allData } from "./Data";
 
 class TemplateBuilder extends React.Component<any, Template, any> {
     constructor(props: any) {
@@ -22,7 +22,7 @@ class TemplateBuilder extends React.Component<any, Template, any> {
                     <ServantSelector key={index}
                         name={servant.data.name}
                         label={"Servant " + (index + 1)}
-                        onChange={(v: string) => this.state.party[index] = getServantDefaults(v)} />
+                        onChange={(v: string) => { console.log("my onChange - " + v); this.state.party[index] = getServantDefaults(v); }} />
                 ))}
                 <BuffMatrixBuilder buffMatrix={this.state.buffs}></BuffMatrixBuilder>
             </div>
@@ -36,8 +36,8 @@ class ServantSelector extends React.Component<any, any, any> {
             <Autocomplete
                 options={Array.from(allData.servants.keys())}
                 value={this.props.name}
-                renderInput={params => <TextField {...params} label={this.props.label} variant="outlined"
-                onChange={e => this.props.onChange(e.target.value)} />} />
+                renderInput={params => <TextField {...params} label={this.props.label} variant="outlined" />}
+                onChange={(e, v) => this.props.onChange(v)} />
         );
     }
 }

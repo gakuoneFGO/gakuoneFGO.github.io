@@ -1,4 +1,4 @@
-import { PowerMod } from "./Damage.js";
+import { PowerMod } from "./Damage";
 
 class Servant {
     constructor(

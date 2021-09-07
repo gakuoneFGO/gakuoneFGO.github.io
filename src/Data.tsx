@@ -1,5 +1,5 @@
-import { CardType, GrowthCurve, ServantAttribute, ServantClass, ServantData, Trigger } from "./Servant.js";
-import { Template, Strat } from "./Strat.js";
+import { CardType, GrowthCurve, ServantAttribute, ServantClass, ServantData, Trigger } from "./Servant";
+import { Template, Strat } from "./Strat";
 
 class Data {
     constructor(

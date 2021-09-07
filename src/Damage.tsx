@@ -1,5 +1,5 @@
-import { Servant, ServantClass, ServantAttribute, Trigger, CardType } from "./Servant.js";
-import { Enemy, EnemyClass, EnemyAttribute } from "./Enemy.js";
+import { Servant, ServantClass, ServantAttribute, Trigger, CardType } from "./Servant";
+import { Enemy, EnemyClass, EnemyAttribute } from "./Enemy";
 
 class PowerMod {
     constructor(

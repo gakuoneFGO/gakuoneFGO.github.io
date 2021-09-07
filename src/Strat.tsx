@@ -1,6 +1,6 @@
-import { BuffSet, Damage, Calculator, CraftEssence } from "./Damage.js";
-import { Servant } from "./Servant.js";
-import { Enemy } from "./Enemy.js";
+import { BuffSet, Damage, Calculator, CraftEssence } from "./Damage";
+import { Servant } from "./Servant";
+import { Enemy } from "./Enemy";
 
 class BuffMatrix {
     constructor(public buffs: BuffSet[]) {}
