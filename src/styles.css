@@ -2,5 +2,5 @@ body {
     /*background-color: grey !important;*/
 }
 
-tr { display: block !important; float: left !important; }
-th, td { display: block !important; }
+.transpose tr { display: block !important; float: left !important; }
+.transpose th, .transpose  td { display: block !important; }

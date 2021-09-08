@@ -1,28 +1,32 @@
 import { PowerMod } from "./Damage";
 
 class Servant {
+    constructor(readonly config: ServantConfig, readonly data: ServantData) {};
+
+    getAttackStat(): number {
+        return this.data.growthCurve.getAttackStat(this.config.level) + this.config.attackFou;
+    }
+
+    getNpMultiplier(overcharge: number): number {
+        let multiplier = this.data.npMultiplier[this.config.npLevel - 1] + (this.config.isNpUpgraded ? this.data.npUpgrade : 0.0);
+        if (this.data.name == "Arash") {
+            return multiplier + overcharge * (this.config.isNpUpgraded ?  2.0 : 1.0);
+        } else if (this.data.name == "Chen Gong") {
+            return multiplier + overcharge * 2.25;
+        } else {
+            return multiplier;
+        }
+    }
+}
+
+class ServantConfig {
     constructor(
-        readonly data: ServantData,
+        readonly name: string,
         readonly npLevel: number,
         readonly level: number,
         readonly attackFou: number,
         readonly appendMod: PowerMod,
         readonly isNpUpgraded: boolean) {}
-
-    getAttackStat(): number {
-        return this.data.growthCurve.getAttackStat(this.level) + this.attackFou;
-    }
-
-    getNpMultiplier(overcharge: number): number {
-        let multiplier = this.data.npMultiplier[this.npLevel] + (this.isNpUpgraded ? this.data.npUpgrade : 0.0);
-        if (this.data.name == "Arash") {
-            return multiplier + (overcharge - 1) * (this.isNpUpgraded ?  2.0 : 1.0);
-        } else if (this.data.name == "Chen Gong") {
-            return multiplier + (overcharge - 1) * 2.25;
-        } else {
-            return multiplier;
-        }
-    }
 }
 
 class ServantData {
@@ -110,4 +114,4 @@ enum Trigger {
     //TODO: add remaining triggers
 }
 
-export { Servant, ServantData, ServantClass, ServantAttribute, Trigger, CardType, GrowthCurve };
+export { Servant, ServantConfig, ServantData, ServantClass, ServantAttribute, Trigger, CardType, GrowthCurve };

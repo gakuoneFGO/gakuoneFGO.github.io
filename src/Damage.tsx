@@ -16,6 +16,12 @@ class BuffSet {
         readonly powerMods: PowerMod[],
         readonly overcharge: number) {}
 
+    static empty(): BuffSet {
+        let powerMod = new PowerMod(Trigger.Always, 0.0);
+        const emptySingleton = new BuffSet(0.0, 0.0, 0.0, false, [ powerMod, powerMod, powerMod ], 0);
+        return emptySingleton;
+    }
+
     static combine(buffs: BuffSet[], appendMod: PowerMod): BuffSet {
         return new BuffSet (
             buffs.map(buff => buff.attackUp).reduce((a, b) => a + b),
@@ -48,7 +54,7 @@ class Damage {
 
 class Calculator {
     calculateNpDamage(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[]): Damage {
-        let combinedBuffs = BuffSet.combine(buffs.concat([ ce.buffs ]), servant.appendMod);
+        let combinedBuffs = BuffSet.combine(buffs.concat([ ce.buffs ]), servant.config.appendMod);
         let baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(combinedBuffs.overcharge) * this.getCardMultiplier(servant.data.npType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
         let triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute);
         let extraDamage = isTriggerActive(enemy, servant.data.extraTrigger) ? servant.data.extraDamage[combinedBuffs.overcharge] : 1.0;
@@ -99,45 +105,24 @@ class CraftEssence {
 
 
 function getAttributeTriangleMultiplier(servantAttribute: ServantAttribute, enemyAttribute: EnemyAttribute): number {
-    return attributeTriangle.get([servantAttribute, enemyAttribute]) as number;
+    if (enemyAttribute == EnemyAttribute.Neutral) return 1.0;
+    let castEnemyAttribute = (enemyAttribute as string) as ServantAttribute;
+    if (isAdvantaged(servantAttribute, castEnemyAttribute, attributeTriangleAdvantages)) return 1.1;
+    if (isAdvantaged(castEnemyAttribute, servantAttribute, attributeTriangleAdvantages)) return 0.9;
+    return 1.0;
 }
 
-let attributeTriangle: Map<[ServantAttribute, EnemyAttribute], number> = new Map([
-    [[ServantAttribute.Man, EnemyAttribute.Man], 1.0],
-    [[ServantAttribute.Man, EnemyAttribute.Earth], 0.9],
-    [[ServantAttribute.Man, EnemyAttribute.Sky], 1.1],
-    [[ServantAttribute.Man, EnemyAttribute.Star], 1.0],
-    [[ServantAttribute.Man, EnemyAttribute.Beast], 1.0],
-    [[ServantAttribute.Man, EnemyAttribute.Neutral], 1.0],
-
-    [[ServantAttribute.Earth, EnemyAttribute.Man], 1.1],
-    [[ServantAttribute.Earth, EnemyAttribute.Earth], 1.0],
-    [[ServantAttribute.Earth, EnemyAttribute.Sky], 0.9],
-    [[ServantAttribute.Earth, EnemyAttribute.Star], 1.0],
-    [[ServantAttribute.Earth, EnemyAttribute.Beast], 1.0],
-    [[ServantAttribute.Earth, EnemyAttribute.Neutral], 1.0],
-    
-    [[ServantAttribute.Sky, EnemyAttribute.Man], 0.9],
-    [[ServantAttribute.Sky, EnemyAttribute.Earth], 1.1],
-    [[ServantAttribute.Sky, EnemyAttribute.Sky], 1.0],
-    [[ServantAttribute.Sky, EnemyAttribute.Star], 1.0],
-    [[ServantAttribute.Sky, EnemyAttribute.Beast], 1.0],
-    [[ServantAttribute.Sky, EnemyAttribute.Neutral], 1.0],
-    
-    [[ServantAttribute.Star, EnemyAttribute.Man], 1.0],
-    [[ServantAttribute.Star, EnemyAttribute.Earth], 1.0],
-    [[ServantAttribute.Star, EnemyAttribute.Sky], 1.0],
-    [[ServantAttribute.Star, EnemyAttribute.Star], 1.0],
-    [[ServantAttribute.Star, EnemyAttribute.Beast], 1.1],
-    [[ServantAttribute.Star, EnemyAttribute.Neutral], 1.0],
-    
-    [[ServantAttribute.Beast, EnemyAttribute.Man], 1.0],
-    [[ServantAttribute.Beast, EnemyAttribute.Earth], 1.0],
-    [[ServantAttribute.Beast, EnemyAttribute.Sky], 1.0],
-    [[ServantAttribute.Beast, EnemyAttribute.Star], 1.1],
-    [[ServantAttribute.Beast, EnemyAttribute.Beast], 1.0],
-    [[ServantAttribute.Beast, EnemyAttribute.Neutral], 1.0],
+let attributeTriangleAdvantages: Map<ServantAttribute, ServantAttribute> = new Map([
+    [ServantAttribute.Man, ServantAttribute.Sky],
+    [ServantAttribute.Earth, ServantAttribute.Man],
+    [ServantAttribute.Sky, ServantAttribute.Earth],
+    [ServantAttribute.Star, ServantAttribute.Beast],
+    [ServantAttribute.Beast, ServantAttribute.Star],
 ]);
+
+function isAdvantaged<T>(attacker: T, defender: T, advantages: Map<T, T>): boolean {
+    return advantages.get(attacker) == defender;
+}
 
 function getClassTriangleMultiplier(servantClass: ServantClass, enemyClass: EnemyClass): number {
     if (servantClass == ServantClass.Shielder || enemyClass == EnemyClass.Shielder) return 1.0;
@@ -149,8 +134,8 @@ function getClassTriangleMultiplier(servantClass: ServantClass, enemyClass: Enem
     if (servantClass == ServantClass.Pretender && isKnight(enemyClass)) return 1.5;
     if (enemyClass == EnemyClass.Knight || enemyClass == EnemyClass.Cavalry) return 1.0;
     let castEnemyClass = (enemyClass as string) as ServantClass;
-    if (classTriangleAdvantages.has([servantClass, castEnemyClass])) return 2.0;
-    if (classTriangleAdvantages.has([castEnemyClass, servantClass])) return 0.5;
+    if (isAdvantaged(servantClass, castEnemyClass, classTriangleAdvantages)) return 2.0;
+    if (isAdvantaged(castEnemyClass, servantClass, classTriangleAdvantages)) return 0.5;
     return 1.0
 }
 
@@ -192,21 +177,19 @@ function isKnight(enemyClass: EnemyClass): boolean {
     }
 }
 
-const tuple = <T extends [any] | any[]>(args: T): T => args;
-
-let classTriangleAdvantages: Set<[ServantClass, ServantClass]> = new Set([
-    tuple([ServantClass.Saber, ServantClass.Lancer]),
-    tuple([ServantClass.Archer, ServantClass.Saber]),
-    tuple([ServantClass.Lancer, ServantClass.Archer]),
-    tuple([ServantClass.Rider, ServantClass.Caster]),
-    tuple([ServantClass.Caster, ServantClass.Assassin]),
-    tuple([ServantClass.Assassin, ServantClass.Rider]),
-    tuple([ServantClass.Ruler, ServantClass.MoonCancer]),
-    tuple([ServantClass.Avenger, ServantClass.Ruler]),
-    tuple([ServantClass.MoonCancer, ServantClass.Avenger]),
-    tuple([ServantClass.AlterEgo, ServantClass.Foreigner]),
-    tuple([ServantClass.Foreigner, ServantClass.Pretender]),
-    tuple([ServantClass.Pretender, ServantClass.AlterEgo]),
+let classTriangleAdvantages: Map<ServantClass, ServantClass> = new Map([
+    [ServantClass.Saber, ServantClass.Lancer],
+    [ServantClass.Archer, ServantClass.Saber],
+    [ServantClass.Lancer, ServantClass.Archer],
+    [ServantClass.Rider, ServantClass.Caster],
+    [ServantClass.Caster, ServantClass.Assassin],
+    [ServantClass.Assassin, ServantClass.Rider],
+    [ServantClass.Ruler, ServantClass.MoonCancer],
+    [ServantClass.Avenger, ServantClass.Ruler],
+    [ServantClass.MoonCancer, ServantClass.Avenger],
+    [ServantClass.AlterEgo, ServantClass.Foreigner],
+    [ServantClass.Foreigner, ServantClass.Pretender],
+    [ServantClass.Pretender, ServantClass.AlterEgo],
 ]);
 
 export { PowerMod, BuffSet, Calculator, Damage, CraftEssence };

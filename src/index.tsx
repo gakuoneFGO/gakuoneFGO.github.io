@@ -1,20 +1,79 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import NumberFormat from "react-number-format";
-import { Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
 
-import { Template, BuffMatrix } from "./Strat";
-import { BuffSet, PowerMod } from "./Damage";
-import { Servant, ServantData, Trigger, CardType, ServantClass, GrowthCurve, ServantAttribute } from "./Servant";
+import { Template, BuffMatrix, Strat, EnemyNode, NodeDamage, Wave } from "./Strat";
+import { BuffSet, Calculator, CraftEssence, PowerMod } from "./Damage";
+import { Servant, ServantConfig, ServantData, Trigger, CardType, ServantClass, GrowthCurve, ServantAttribute } from "./Servant";
 import { allData } from "./Data";
+import { ExpandMore } from "@material-ui/icons";
+import { Enemy, EnemyAttribute, EnemyClass } from "./Enemy";
+
+class StratBuilder extends React.Component<any, Strat, any> {
+    constructor(props: any) {
+        super(props);
+        this.state = new Strat(
+            getServantDefaults("Ereshkigal"),
+            new Template("Test Template", BuffMatrix.create(3), emptyParty(), [1, 0, 0], "Test description", ["do this T1", "do this T2", "do this T3"]),
+            BuffMatrix.create(3),
+            new CraftEssence("<None>", 0, BuffSet.empty()),
+            new CraftEssence("<None>", 0, BuffSet.empty())
+        );
+        
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    render() {
+        return (
+            <Grid container>
+                <Grid item md={8}>
+                    <Accordion>
+                        <AccordionSummary expandIcon={<ExpandMore />}>
+                            3-Turn Template
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <TemplateBuilder template={this.state.template} />
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary expandIcon={<ExpandMore />}>
+                            Servant Details
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <div>
+                                <ServantSelector servant={this.state.servant} onChange={(servant: Servant) => this.handleChange({ servant: { $set: servant } })} />
+                                <BuffMatrixBuilder buffMatrix={this.state.servantBuffs} onChange={(buffs: BuffMatrix) => this.handleChange({ servantBuffs: { $set: buffs } })} />
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
+                </Grid>
+                <OutputPanel strat={this.state} node={this.getNode()} />
+            </Grid>
+        );
+    }
+
+    handleChange(spec: Spec<Readonly<Strat>, never>) {
+        console.log("StratBuilder.setState");
+        this.setState(update(this.state, spec));
+        if (this.props.onChange) this.props.onChange(this.state);
+    }
+
+    getNode(): EnemyNode {
+        let enemy = new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0);
+        let waves = new Array<Wave>(3);
+        waves.fill(new Wave([ enemy ]));
+        return new EnemyNode(waves);
+    }
+}
 
 class TemplateBuilder extends React.Component<any, Template, any> {
     constructor(props: any) {
         super(props);
-        this.state = new Template("Test Template", emptyBuffMatrix(), emptyParty(), [1, 0, 0], "Test description", ["do this T1", "do this T2", "do this T3"]);
+        this.state = props.template;
     }
 
     render() {
@@ -26,9 +85,15 @@ class TemplateBuilder extends React.Component<any, Template, any> {
                         label={"Servant " + (index + 1)}
                         onChange={(s: Servant) => this.setState(update(this.state, { party: { [index]: { $set: s } } }))} />
                 ))}
-                <BuffMatrixBuilder buffMatrix={this.state.buffs}></BuffMatrixBuilder>
+                <BuffMatrixBuilder buffMatrix={this.state.buffs} onChange={(buffs: BuffMatrix) => this.handleChange({ buffs: { $set: buffs } })} />
             </div>
         );
+    }
+
+    handleChange(spec: Spec<Readonly<Template>, never>) {
+        console.log("TemplateBuilder.setState");
+        this.setState(update(this.state, spec));
+        if (this.props.onChange) this.props.onChange(this.state);
     }
 }
 
@@ -45,7 +110,8 @@ class ServantSelector extends React.Component<any, Servant, any> {
                 options={Array.from(allData.servants.keys())}
                 value={this.state.data.name}
                 renderInput={params => <TextField {...params} label={this.props.label} variant="outlined" />}
-                onChange={(e, v) => { if (v) this.handleNameChanged(v) }} />
+                onChange={(e, v) => { if (v) this.handleNameChanged(v) }}
+                disableClearable={true} />
         );
     }
 
@@ -63,13 +129,13 @@ class BuffMatrixBuilder extends React.Component<any, BuffMatrix, any> {
 
     render() {
         return (
-            <TableContainer>
+            <TableContainer className="transpose">
                 <Table>
                     {/* <TableHead> */}
                         <TableRow>
                             <TableCell></TableCell>
                             <TableCell>Attack Up</TableCell>
-                            <TableCell>Card Effectiveness Up</TableCell>
+                            <TableCell>Card Type Up</TableCell>
                             <TableCell>NP Damage Up</TableCell>
                             <TableCell>2x NP Dmg Up</TableCell>
                             <TableCell>Power Mod 1</TableCell>
@@ -92,6 +158,7 @@ class BuffMatrixBuilder extends React.Component<any, BuffMatrix, any> {
 
     handleChange(buffSet: BuffSet, index: number) {
         this.setState(update(this.state, { buffs: { [index]: { $set: buffSet } } }));
+        if (this.props.onChange) this.props.onChange(this.state);
     }
 }
 
@@ -136,7 +203,6 @@ class BuffSetBuilder extends React.Component<any, BuffSet, any> {
     }
 
     handleChange(spec: Spec<Readonly<BuffSet>, never>) {
-        console.log(spec);
         this.setState(update(this.state, spec));
         if (this.props.onChange) this.props.onChange(this.state);
     }
@@ -147,16 +213,60 @@ class BuffSetBuilder extends React.Component<any, BuffSet, any> {
     }
 }
 
-function emptyBuffMatrix(): BuffMatrix {
-    return new BuffMatrix([emptyBuffSet(), emptyBuffSet(), emptyBuffSet()]);
+class ArrayWrapper<T> {
+    constructor(readonly array: T[]) {}
 }
 
-function emptyBuffSet(): BuffSet {
-    return new BuffSet(0.0, 0.0, 0.0, false, [emptyPowerMod(), emptyPowerMod(), emptyPowerMod()], 0);
-}
+class OutputPanel extends React.Component<any, ArrayWrapper<NodeDamage>, any> {
+    constructor(props: any) {
+        super(props);
+        this.state = new ArrayWrapper<NodeDamage>([]); //fixes a react warning
+    }
 
-function emptyPowerMod(): PowerMod {
-    return new PowerMod(Trigger.Always, 0.0);
+    static getDerivedStateFromProps(props: any, state: ArrayWrapper<NodeDamage>): ArrayWrapper<NodeDamage> {
+        console.log(props);
+        let strat: Strat = props.strat;
+        let node: EnemyNode = props.node;
+        let output = [ 1, 2, 3, 4, 5 ].map(npLevel => {
+            var tempStrat = update(strat, { servant: { config: { npLevel: { $set: npLevel } } } });
+            //could use reduce instead
+            strat.template.clearers.forEach(clearerIndex => {
+                if (strat.template.party[clearerIndex].data.name != "<Placeholder>") {
+                    tempStrat = update(tempStrat, { template: { party: { [clearerIndex]: { config: { npLevel: { $set: npLevel } } } } } });
+                }
+            });
+            return tempStrat.run(node);
+        });
+        console.log(output);
+        return new ArrayWrapper(output);
+    }
+
+    render() {
+        return (
+            <Grid item md={4}>
+                <TableContainer>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                {this.state.array.map((_, index) =>
+                                    <TableCell key={index}>NP{index + 1}</TableCell>
+                                )}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {this.state.array[0].damagePerWave.map((_, waveIndex) =>
+                                <TableRow key={waveIndex}>
+                                    {this.state.array.map((nodeDamage, npIndex) =>
+                                        <TableCell key={npIndex}>{nodeDamage.damagePerWave[waveIndex].damagePerEnemy[0].low}</TableCell>
+                                    )}
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Grid>
+        );
+    }
 }
 
 function emptyParty(): Servant[] {
@@ -167,7 +277,8 @@ function emptyParty(): Servant[] {
 
 function getServantDefaults(name: string): Servant {
     let data = lookupServantData(name);
-    return new Servant(data, Math.max(data.f2pCopies, 1), 90, 1000, new PowerMod((data.appendTarget as string) as Trigger, 0.3), data.npUpgrade > 0.0)
+    let config = new ServantConfig(data.name, Math.max(data.f2pCopies, 1), 90, 1000, new PowerMod((data.appendTarget as string) as Trigger, 0.3), data.npUpgrade > 0.0);
+    return new Servant(config, data);
 }
 
 function lookupServantData(name: string): ServantData {
@@ -175,6 +286,6 @@ function lookupServantData(name: string): ServantData {
 }
 
 ReactDOM.render(
-    <TemplateBuilder />,
-    document.getElementById("template-builder")
+    <StratBuilder />,
+    document.getElementById("main")
 );

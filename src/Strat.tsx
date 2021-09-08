@@ -4,6 +4,12 @@ import { Enemy } from "./Enemy";
 
 class BuffMatrix {
     constructor(readonly buffs: BuffSet[]) {}
+
+    static create(size: number): BuffMatrix {
+        let buffs = new Array<BuffSet>(size);
+        buffs.fill(BuffSet.empty());
+        return new BuffMatrix(buffs);
+    }
 }
 
 class Template {
@@ -20,7 +26,7 @@ class Wave {
     constructor(readonly enemies: Enemy[]) {}
 }
 
-class Node {
+class EnemyNode {
     constructor(readonly waves: Wave[]) {}
 }
 
@@ -45,7 +51,8 @@ class Strat {
         readonly servantCe: CraftEssence,
         readonly supportCe: CraftEssence) {}
 
-    run(node: Node): NodeDamage {
+    run(node: EnemyNode): NodeDamage {
+        const calculator: Calculator = new Calculator();
         let result = new NodeDamage();
         result.damagePerWave = node.waves.map((wave, wIndex) => {
             let waveResult = new WaveDamage();
@@ -70,6 +77,4 @@ class Strat {
     }
 }
 
-let calculator: Calculator = new Calculator();
-
-export { Strat, Template, BuffMatrix, NodeDamage, WaveDamage };
+export { Strat, Template, BuffMatrix, NodeDamage, WaveDamage, EnemyNode, Wave };
