@@ -13,18 +13,42 @@ import { allData } from "./Data";
 import { ExpandMore } from "@material-ui/icons";
 import { Enemy, EnemyAttribute, EnemyClass } from "./Enemy";
 
-class StratBuilder extends React.Component<any, Strat, any> {
-    constructor(props: any) {
+class StateWrapper<S> {
+    constructor(readonly _: S) {}
+}
+
+class BaseProps<S> {
+    public onChange: (state: S) => void = function(s) {};
+}
+
+class BaseComponent<P extends BaseProps<S>, S, SS> extends React.Component<P, StateWrapper<S>, SS> {
+    constructor(props: P, state: S) {
         super(props);
-        this.state = new Strat(
+        this.state = this.wrap(state);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    wrap(state: S) {
+        return new StateWrapper(state);
+    }
+
+    handleChange(spec: Spec<Readonly<S>, never>) {
+        console.log("StratBuilder.setState");
+        this.setState(update(this.state, { _: spec }));
+        if (this.props.onChange) this.props.onChange(this.state._);
+    }
+}
+
+class StratBuilder extends BaseComponent<any, Strat, any> {
+    constructor(props: any) {
+        let state = new Strat(
             getServantDefaults("Ereshkigal"),
             new Template("Test Template", BuffMatrix.create(3), emptyParty(), [1, 0, 0], "Test description", ["do this T1", "do this T2", "do this T3"]),
             BuffMatrix.create(3),
             new CraftEssence("<None>", 0, BuffSet.empty()),
             new CraftEssence("<None>", 0, BuffSet.empty())
         );
-        
-        this.handleChange = this.handleChange.bind(this);
+        super(props, state);
     }
 
     render() {
@@ -36,7 +60,7 @@ class StratBuilder extends React.Component<any, Strat, any> {
                             3-Turn Template
                         </AccordionSummary>
                         <AccordionDetails>
-                            <TemplateBuilder template={this.state.template} />
+                            <TemplateBuilder template={this.state._.template} />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -45,23 +69,18 @@ class StratBuilder extends React.Component<any, Strat, any> {
                         </AccordionSummary>
                         <AccordionDetails>
                             <div>
-                                <ServantSelector servant={this.state.servant} onChange={(servant: Servant) => this.handleChange({ servant: { $set: servant } })} />
-                                <BuffMatrixBuilder buffMatrix={this.state.servantBuffs} onChange={(buffs: BuffMatrix) => this.handleChange({ servantBuffs: { $set: buffs } })} />
+                                <ServantSelector servant={this.state._.servant} onChange={(servant: Servant) => this.handleChange({ servant: { $set: servant } })} />
+                                <BuffMatrixBuilder buffMatrix={this.state._.servantBuffs} onChange={(buffs: BuffMatrix) => this.handleChange({ servantBuffs: { $set: buffs } })} />
                             </div>
                         </AccordionDetails>
                     </Accordion>
                 </Grid>
-                <OutputPanel strat={this.state} node={this.getNode()} />
+                <OutputPanel strat={this.state._} node={this.getNode()} />
             </Grid>
         );
     }
 
-    handleChange(spec: Spec<Readonly<Strat>, never>) {
-        console.log("StratBuilder.setState");
-        this.setState(update(this.state, spec));
-        if (this.props.onChange) this.props.onChange(this.state);
-    }
-
+    //TODO
     getNode(): EnemyNode {
         let enemy = new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0);
         let waves = new Array<Wave>(3);
@@ -70,61 +89,46 @@ class StratBuilder extends React.Component<any, Strat, any> {
     }
 }
 
-class TemplateBuilder extends React.Component<any, Template, any> {
+class TemplateBuilder extends BaseComponent<any, Template, any> {
     constructor(props: any) {
-        super(props);
-        this.state = props.template;
+        super(props, props.template);
     }
 
     render() {
         return (
             <div>
-                {this.state.party.map((servant, index) =>(
+                {this.state._.party.map((servant, index) =>(
                     <ServantSelector key={index}
                         servant={servant}
                         label={"Servant " + (index + 1)}
-                        onChange={(s: Servant) => this.setState(update(this.state, { party: { [index]: { $set: s } } }))} />
+                        onChange={(s: Servant) => this.handleChange({ party: { [index]: { $set: s } } })} />
                 ))}
-                <BuffMatrixBuilder buffMatrix={this.state.buffs} onChange={(buffs: BuffMatrix) => this.handleChange({ buffs: { $set: buffs } })} />
+                <BuffMatrixBuilder buffMatrix={this.state._.buffs} onChange={(buffs: BuffMatrix) => this.handleChange({ buffs: { $set: buffs } })} />
             </div>
         );
     }
-
-    handleChange(spec: Spec<Readonly<Template>, never>) {
-        console.log("TemplateBuilder.setState");
-        this.setState(update(this.state, spec));
-        if (this.props.onChange) this.props.onChange(this.state);
-    }
 }
 
-class ServantSelector extends React.Component<any, Servant, any> {
+class ServantSelector extends BaseComponent<any, Servant, any> {
     constructor(props: any) {
-        super(props);
-        this.state = props.servant;
-        this.handleNameChanged = this.handleNameChanged.bind(this);
+        super(props, props.servant);
     }
 
     render() {
         return (
             <Autocomplete
                 options={Array.from(allData.servants.keys())}
-                value={this.state.data.name}
+                value={this.state._.data.name}
                 renderInput={params => <TextField {...params} label={this.props.label} variant="outlined" />}
-                onChange={(e, v) => { if (v) this.handleNameChanged(v) }}
+                onChange={(e, v) => { if (v) this.handleChange({ $set: getServantDefaults(v) }) }}
                 disableClearable={true} />
         );
     }
-
-    handleNameChanged(name: string) {
-        this.setState(getServantDefaults(name));
-        if (this.props.onChange) this.props.onChange(this.state);
-    }
 }
 
-class BuffMatrixBuilder extends React.Component<any, BuffMatrix, any> {
+class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
     constructor(props: any) {
-        super(props);
-        this.state = props.buffMatrix;
+        super(props, props.buffMatrix);
     }
 
     render() {
@@ -147,54 +151,47 @@ class BuffMatrixBuilder extends React.Component<any, BuffMatrix, any> {
                         </TableRow>
                     {/* </TableHead>
                     <TableBody> */}
-                        {this.state.buffs.map((buffSet: BuffSet, index: number) => (
-                            <BuffSetBuilder buffSet={buffSet} key={index} rowLabel={"T" + (index + 1)} onChange={(v: BuffSet) => this.handleChange(v, index)} />
+                        {this.state._.buffs.map((buffSet: BuffSet, index: number) => (
+                            <BuffSetBuilder buffSet={buffSet} key={index} rowLabel={"T" + (index + 1)} onChange={(v: BuffSet) => this.handleChange({ buffs: { [index]: { $set: v } } })} />
                         ))}
                     {/* </TableBody> */}
                 </Table>
             </TableContainer>
         )
     }
-
-    handleChange(buffSet: BuffSet, index: number) {
-        this.setState(update(this.state, { buffs: { [index]: { $set: buffSet } } }));
-        if (this.props.onChange) this.props.onChange(this.state);
-    }
 }
 
-class BuffSetBuilder extends React.Component<any, BuffSet, any> {
+class BuffSetBuilder extends BaseComponent<any, BuffSet, any> {
     constructor(props: any) {
-        super(props);
-        this.state = props.buffSet;
-        this.handleChange = this.handleChange.bind(this);
+        super(props, props.buffSet);
     }
 
     render() {
         return (
             <TableRow>
                 <TableCell><strong>{this.props.rowLabel}</strong></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.attackUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ attackUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.effUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ effUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.npUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ npUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
-                <TableCell><Checkbox value={this.state.isDoubleNpUp} onChange={(e, v) => this.handleChange({ isDoubleNpUp: {$set: v } }) } /></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.powerMods[0].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100} }, 0); }}></NumberFormat></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.attackUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ attackUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.effUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ effUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.npUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ npUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
+                <TableCell><Checkbox value={this.state._.isDoubleNpUp} onChange={(e, v) => this.handleChange({ isDoubleNpUp: {$set: v } }) } /></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.powerMods[0].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100} }, 0); }}></NumberFormat></TableCell>
                 <TableCell><Autocomplete
                     options={Object.values(Trigger)}
-                    value={this.state.powerMods[0].trigger}
+                    value={this.state._.powerMods[0].trigger}
                     renderInput={params => <TextField {...params} variant="outlined" />}
                     onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 0)}
                     disableClearable={true} /></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.powerMods[1].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 1); }}></NumberFormat></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.powerMods[1].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 1); }}></NumberFormat></TableCell>
                 <TableCell><Autocomplete
                     options={Object.values(Trigger)}
-                    value={this.state.powerMods[1].trigger}
+                    value={this.state._.powerMods[1].trigger}
                     renderInput={params => <TextField {...params} variant="outlined" />}
                     onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 1)} 
                     disableClearable={true} /></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state.powerMods[2].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 2); }}></NumberFormat></TableCell>
+                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.powerMods[2].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 2); }}></NumberFormat></TableCell>
                 <TableCell><Autocomplete
                     options={Object.values(Trigger)}
-                    value={this.state.powerMods[2].trigger}
+                    value={this.state._.powerMods[2].trigger}
                     renderInput={params => <TextField {...params} variant="outlined" />}
                     onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 2)} 
                     disableClearable={true} /></TableCell>
@@ -202,28 +199,17 @@ class BuffSetBuilder extends React.Component<any, BuffSet, any> {
         );
     }
 
-    handleChange(spec: Spec<Readonly<BuffSet>, never>) {
-        this.setState(update(this.state, spec));
-        if (this.props.onChange) this.props.onChange(this.state);
-    }
-
     handlePowerModChange(spec: Spec<PowerMod, never>, index: number) {
-        this.setState(update(this.state, { powerMods: { [index]: spec } }));
-        if (this.props.onChange) this.props.onChange(this.state);
+        this.handleChange({ powerMods: { [index]: spec } });
     }
 }
 
-class ArrayWrapper<T> {
-    constructor(readonly array: T[]) {}
-}
-
-class OutputPanel extends React.Component<any, ArrayWrapper<NodeDamage>, any> {
+class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
     constructor(props: any) {
-        super(props);
-        this.state = new ArrayWrapper<NodeDamage>([]); //fixes a react warning
+        super(props, []);
     }
 
-    static getDerivedStateFromProps(props: any, state: ArrayWrapper<NodeDamage>): ArrayWrapper<NodeDamage> {
+    static getDerivedStateFromProps(props: any, state: StateWrapper<NodeDamage[]>): StateWrapper<NodeDamage[]> {
         console.log(props);
         let strat: Strat = props.strat;
         let node: EnemyNode = props.node;
@@ -238,7 +224,7 @@ class OutputPanel extends React.Component<any, ArrayWrapper<NodeDamage>, any> {
             return tempStrat.run(node);
         });
         console.log(output);
-        return new ArrayWrapper(output);
+        return new StateWrapper(output);
     }
 
     render() {
@@ -248,15 +234,15 @@ class OutputPanel extends React.Component<any, ArrayWrapper<NodeDamage>, any> {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                {this.state.array.map((_, index) =>
+                                {this.state._.map((_, index) =>
                                     <TableCell key={index}>NP{index + 1}</TableCell>
                                 )}
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.array[0].damagePerWave.map((_, waveIndex) =>
+                            {this.state._[0].damagePerWave.map((_, waveIndex) =>
                                 <TableRow key={waveIndex}>
-                                    {this.state.array.map((nodeDamage, npIndex) =>
+                                    {this.state._.map((nodeDamage, npIndex) =>
                                         <TableCell key={npIndex}>{nodeDamage.damagePerWave[waveIndex].damagePerEnemy[0].low}</TableCell>
                                     )}
                                 </TableRow>
