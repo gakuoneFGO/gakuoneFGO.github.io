@@ -63,7 +63,7 @@ class Strat {
                 ce = this.servantCe;
             }
             waveResult.damagePerEnemy = wave.enemies.map(enemy => {
-                let damage = calculator.calculateNpDamage(clearer, ce, enemy, this.servantBuffs.buffs.concat(this.template.buffs.buffs));
+                let damage = calculator.calculateNpDamage(clearer, ce, enemy, [ this.servantBuffs.buffs[wIndex], this.template.buffs.buffs[wIndex] ]);
                 if (damage.low < enemy.hitPoints) {
                     waveResult.unclearedEnemies += 1;
                     waveResult.leftToFacecard += enemy.hitPoints - damage.low;

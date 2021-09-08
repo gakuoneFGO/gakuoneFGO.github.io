@@ -17,8 +17,8 @@ class StateWrapper<S> {
     constructor(readonly _: S) {}
 }
 
-class BaseProps<S> {
-    public onChange: (state: S) => void = function(s) {};
+interface BaseProps<S> {
+    onChange: (state: S) => void;
 }
 
 class BaseComponent<P extends BaseProps<S>, S, SS> extends React.Component<P, StateWrapper<S>, SS> {
@@ -33,9 +33,10 @@ class BaseComponent<P extends BaseProps<S>, S, SS> extends React.Component<P, St
     }
 
     handleChange(spec: Spec<Readonly<S>, never>) {
-        console.log("StratBuilder.setState");
-        this.setState(update(this.state, { _: spec }));
-        if (this.props.onChange) this.props.onChange(this.state._);
+        console.log(spec);
+        let state = update(this.state._, spec)
+        this.setState(this.wrap(state));
+        if (this.props.onChange) this.props.onChange(state);
     }
 }
 
@@ -60,7 +61,7 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
                             3-Turn Template
                         </AccordionSummary>
                         <AccordionDetails>
-                            <TemplateBuilder template={this.state._.template} />
+                            <TemplateBuilder template={this.state._.template} onChange={(template: Template) => this.handleChange({ template: { $set: template } })} />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -210,12 +211,11 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
     }
 
     static getDerivedStateFromProps(props: any, state: StateWrapper<NodeDamage[]>): StateWrapper<NodeDamage[]> {
-        console.log(props);
         let strat: Strat = props.strat;
         let node: EnemyNode = props.node;
         let output = [ 1, 2, 3, 4, 5 ].map(npLevel => {
             var tempStrat = update(strat, { servant: { config: { npLevel: { $set: npLevel } } } });
-            //could use reduce instead
+            //TODO: could use reduce instead. probably define a helper function then do that
             strat.template.clearers.forEach(clearerIndex => {
                 if (strat.template.party[clearerIndex].data.name != "<Placeholder>") {
                     tempStrat = update(tempStrat, { template: { party: { [clearerIndex]: { config: { npLevel: { $set: npLevel } } } } } });
@@ -223,7 +223,6 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
             });
             return tempStrat.run(node);
         });
-        console.log(output);
         return new StateWrapper(output);
     }
 
@@ -234,6 +233,7 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
                     <Table>
                         <TableHead>
                             <TableRow>
+                                <TableCell />
                                 {this.state._.map((_, index) =>
                                     <TableCell key={index}>NP{index + 1}</TableCell>
                                 )}
@@ -242,6 +242,7 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
                         <TableBody>
                             {this.state._[0].damagePerWave.map((_, waveIndex) =>
                                 <TableRow key={waveIndex}>
+                                    <TableCell><strong>T{waveIndex + 1}</strong></TableCell>
                                     {this.state._.map((nodeDamage, npIndex) =>
                                         <TableCell key={npIndex}>{nodeDamage.damagePerWave[waveIndex].damagePerEnemy[0].low}</TableCell>
                                     )}
