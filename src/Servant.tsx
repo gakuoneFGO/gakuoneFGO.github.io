@@ -1,3 +1,4 @@
+import { TransformPlainToClass, Type } from "class-transformer";
 import { PowerMod } from "./Damage";
 
 class Servant {
@@ -31,31 +32,67 @@ class ServantConfig {
 
 class ServantData {
     constructor(
-        readonly name: string,
-        readonly rarity: number,
-        readonly npType: CardType,
-        readonly npMultiplier: number[],
-        readonly npUpgrade: number,
-        readonly growthCurve: GrowthCurve,
-        readonly sClass: ServantClass,
-        readonly attribute: ServantAttribute,
-        readonly extraDamage: number[],
-        readonly extraTrigger: Trigger,
-        readonly f2pCopies: number,
-        readonly iconUrl: string,
-        readonly chargeProfile: string,
-        readonly appendTarget: ServantClass) {}
+        name: string,
+        rarity: number,
+        npType: CardType,
+        npMultiplier: number[],
+        npUpgrade: number,
+        growthCurve: GrowthCurve,
+        sClass: ServantClass,
+        attribute: ServantAttribute,
+        extraDamage: number[],
+        extraTrigger: Trigger,
+        f2pCopies: number,
+        iconUrl: string,
+        chargeProfile: string,
+        appendTarget: ServantClass) {
+            this.name = name;
+            this.rarity = rarity;
+            this.npType = npType;
+            this.npMultiplier = npMultiplier;
+            this.npUpgrade = npUpgrade;
+            this.growthCurve = growthCurve;
+            this.sClass = sClass;
+            this.attribute = attribute;
+            this.extraDamage = extraDamage;
+            this.extraTrigger = extraTrigger;
+            this.f2pCopies = f2pCopies;
+            this.iconUrl = iconUrl;
+            this.chargeProfile = chargeProfile;
+            this.appendTarget = appendTarget;
+        }
+
+        readonly name: string;
+        readonly rarity: number;
+        readonly npType: CardType;
+        readonly npMultiplier: number[];
+        readonly npUpgrade: number;
+        @Type(() => GrowthCurve)
+        readonly growthCurve: GrowthCurve;
+        readonly sClass: ServantClass;
+        readonly attribute: ServantAttribute;
+        readonly extraDamage: number[];
+        readonly extraTrigger: Trigger;
+        readonly f2pCopies: number;
+        readonly iconUrl: string;
+        readonly chargeProfile: string;
+        readonly appendTarget: ServantClass;
 }
 
 class GrowthCurve {
-    constructor(readonly stats: Map<number, number>) { }
+    constructor(stats: Map<string, number>) {
+        this.stats = stats;
+    }
+
+    @Type(() => Map)
+    readonly stats: Map<string, number>;
 
     getAttackStat(level: number): number {
-        if (!this.stats.has(level)) {
+        if (!this.stats.has(level.toString())) {
             throw new Error("Missing stats for servant at level " + level);
         }
 
-        return this.stats.get(level) as number;
+        return this.stats.get(level.toString()) as number;
     }
 }
 
