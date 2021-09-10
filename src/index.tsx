@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import NumberFormat from "react-number-format";
-import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
@@ -13,6 +13,7 @@ import { Servant, ServantConfig, ServantData, Trigger, CardType, ServantClass, G
 import { allData, Data } from "./Data";
 import { ExpandMore } from "@material-ui/icons";
 import { Enemy, EnemyAttribute, EnemyClass } from "./Enemy";
+import { TransposedTableBody } from "./TransposedTable";
 
 class StateWrapper<S> {
     constructor(readonly _: S) {}
@@ -24,6 +25,8 @@ interface BaseProps<S> {
 
 class BaseComponent<P extends BaseProps<S>, S, SS> extends React.Component<P, StateWrapper<S>, SS> {
     constructor(props: P, state?: S) {
+        //TODO: setting state in constructor means that you have issues later trying to override the data
+        //probable solution is to use keys to force a new instance to be constructed
         super(props);
         if (state) this.state = this.wrap(state);
         this.handleChange = this.handleChange.bind(this);
@@ -51,7 +54,7 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
         getServantDefaults("Ereshkigal").then(servant => emptyParty().then(party => {
             let state = new Strat(
                 servant,
-                new Template("Test Template", BuffMatrix.create(3), party, [0, 0, 0], "Test description", ["do this T1", "do this T2", "do this T3"]),
+                new Template("Test Template", BuffMatrix.create(3), party, [[0], [0], [0]], "Test description", ["do this T1", "do this T2", "do this T3"]),
                 BuffMatrix.create(3),
                 new CraftEssence("<None>", 0, BuffSet.empty()),
                 new CraftEssence("<None>", 0, BuffSet.empty())
@@ -108,15 +111,49 @@ class TemplateBuilder extends BaseComponent<any, Template, any> {
     render() {
         return (
             <div>
-                {this.state._.party.map((servant, index) =>(
-                    <ServantSelector key={index}
-                        servant={servant}
-                        label={"Servant " + (index + 1)}
-                        onChange={(s: Servant) => this.handleChange({ party: { [index]: { $set: s } } })} />
-                ))}
+                <Grid container>
+                    {this.state._.party.map((servant, index) =>(
+                        <Grid item md={6} key={index}>
+                            <ServantSelector
+                                servant={servant}
+                                label={"Servant " + (index + 1)}
+                                onChange={(s: Servant) => this.handleChange({ party: { [index]: { $set: s } } })} />
+                                {/* TODO: reset checkboxes when setting back to unspecified */}
+                            <Grid container justifyContent="space-evenly">
+                                <Grid item md={4}>
+                                    <InputLabel>NP T1</InputLabel>
+                                    <Checkbox checked={this.state._.clearers[0].includes(index)}
+                                        onChange={(_, v) => this.handleClearerChanged(v, 0, index)}
+                                        disabled={this.state._.party[index].data.name == "<Unspecified>"} />
+                                </Grid>
+                                <Grid item md={4}>
+                                    <InputLabel>NP T2</InputLabel>
+                                    <Checkbox checked={this.state._.clearers[1].includes(index)}
+                                        onChange={(_, v) => this.handleClearerChanged(v, 1, index)}
+                                        disabled={this.state._.party[index].data.name == "<Unspecified>"} />
+                                </Grid>
+                                <Grid item md={4}>
+                                    <InputLabel>NP T3</InputLabel>
+                                    <Checkbox checked={this.state._.clearers[2].includes(index)}
+                                        onChange={(_, v) => this.handleClearerChanged(v, 2, index)}
+                                        disabled={this.state._.party[index].data.name == "<Unspecified>"} />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    ))}
+                </Grid>
                 <BuffMatrixBuilder buffMatrix={this.state._.buffs} onChange={(buffs: BuffMatrix) => this.handleChange({ buffs: { $set: buffs } })} />
             </div>
         );
+    }
+
+    handleClearerChanged(value: boolean, turnIndex: number, clearerIndex: number) {
+        if (value) {
+            this.handleChange({ clearers: { [turnIndex]: { $splice: [[ 0, 0, clearerIndex ]] } } });
+        } else {
+            let index = this.state._.clearers[turnIndex].findIndex(i => i == clearerIndex);
+            this.handleChange({ clearers: { [turnIndex]: { $splice: [[ index, 1 ]] } } })
+        }
     }
 }
 
@@ -140,12 +177,51 @@ class ServantSelector extends BaseComponent<any, Servant, any> {
     render() {
         if (!this.servantList) return null;
         return (
-            <Autocomplete
-                options={this.servantList as string[]}
-                value={this.state._.data.name}
-                renderInput={params => <TextField {...params} label={this.props.label} variant="outlined" />}
-                onChange={(e, v) => { if (v) this.handleChange({ $set: getServantDefaultsFromData(v, this.data as Data) }) }}
-                disableClearable={true} />
+            <div>
+                <Autocomplete
+                    options={this.servantList as string[]}
+                    value={this.state._.data.name}
+                    renderInput={params => <TextField {...params} label={this.props.label} variant="outlined" />}
+                    onChange={(e, v) => { if (v) this.handleChange({ $set: getServantDefaultsFromData(v, this.data as Data) }) }}
+                    disableClearable={true} />
+                <Accordion variant="outlined">
+                    <AccordionSummary>
+                        Detailed Stats
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Grid container justifyContent="space-evenly">
+                            <Grid item>
+                                <Autocomplete
+                                    options={this.state._.data.growthCurve.getValidLevels()}
+                                    value={this.state._.config.level.toString()}
+                                    renderInput={params => <TextField {...params} label="Level" variant="outlined" />}
+                                    onChange={(e, v) => { if (v) this.handleChange({ config: { level: { $set: Number.parseInt(v) } } })}}
+                                    disableClearable={true} />
+                            </Grid>
+                            <Grid item>
+                                <Autocomplete
+                                    options={["1", "2", "3", "4", "5"]}
+                                    value={this.state._.config.npLevel.toString()}
+                                    renderInput={params => <TextField {...params} label="NP Level" variant="outlined" />}
+                                    onChange={(e, v) => { if (v) this.handleChange({ config: { npLevel: { $set: Number.parseInt(v) } } })}}
+                                    disableClearable={true} />
+                            </Grid>
+                            <Grid item>
+                                <TextField
+                                    style={{ width: 80 }}
+                                    type="number" variant="outlined"
+                                    label="Fous"
+                                    value={this.state._.config.attackFou.toString()}
+                                    onChange={(e) => { if (e.target.value) this.handleChange({ config: { attackFou: { $set: Number.parseInt(e.target.value) } } })}} />
+                            </Grid>
+                            <Grid item>
+                                <InputLabel>NP Upgrade</InputLabel>
+                                <Checkbox checked={this.state._.config.isNpUpgraded} onChange={(e, v) => this.handleChange({ config: { isNpUpgraded: {$set: v } } }) } />
+                            </Grid>
+                        </Grid>
+                    </AccordionDetails>
+                </Accordion>
+            </div>
         );
     }
 }
@@ -159,7 +235,7 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
         return (
             <TableContainer className="transpose">
                 <Table>
-                    {/* <TableHead> */}
+                    <TransposedTableBody>
                         <TableRow>
                             <TableCell></TableCell>
                             <TableCell>Attack Up</TableCell>
@@ -173,58 +249,44 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
                             <TableCell>Power Mod 3</TableCell>
                             <TableCell>Trigger 3</TableCell>
                         </TableRow>
-                    {/* </TableHead>
-                    <TableBody> */}
                         {this.state._.buffs.map((buffSet: BuffSet, index: number) => (
-                            <BuffSetBuilder buffSet={buffSet} key={index} rowLabel={"T" + (index + 1)} onChange={(v: BuffSet) => this.handleChange({ buffs: { [index]: { $set: v } } })} />
+                            <TableRow key={index}>
+                                <TableCell><strong>T{index + 1}</strong></TableCell>
+                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].attackUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ buffs : { [index]: { attackUp: {$set: e.floatValue / 100} } } }); }}></NumberFormat></TableCell>
+                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].effUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ buffs : { [index]: { effUp: {$set: e.floatValue / 100} } } }); } }></NumberFormat></TableCell>
+                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].npUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ buffs : { [index]: { npUp: {$set: e.floatValue / 100} } } }); }}></NumberFormat></TableCell>
+                                <TableCell><Checkbox checked={this.state._.buffs[index].isDoubleNpUp} onChange={(e, v) => this.handleChange({ buffs : { [index]: { isDoubleNpUp: {$set: v } } } }) } /></TableCell>
+                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].powerMods[0].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100} }, 0, index); }}></NumberFormat></TableCell>
+                                <TableCell><Autocomplete
+                                    options={Object.values(Trigger)}
+                                    value={this.state._.buffs[index].powerMods[0].trigger}
+                                    renderInput={params => <TextField {...params} variant="outlined" />}
+                                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 0, index)}
+                                    disableClearable={true} /></TableCell>
+                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].powerMods[1].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 1, index); }}></NumberFormat></TableCell>
+                                <TableCell><Autocomplete
+                                    options={Object.values(Trigger)}
+                                    value={this.state._.buffs[index].powerMods[1].trigger}
+                                    renderInput={params => <TextField {...params} variant="outlined" />}
+                                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 1, index)} 
+                                    disableClearable={true} /></TableCell>
+                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].powerMods[2].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 2, index); }}></NumberFormat></TableCell>
+                                <TableCell><Autocomplete
+                                    options={Object.values(Trigger)}
+                                    value={this.state._.buffs[index].powerMods[2].trigger}
+                                    renderInput={params => <TextField {...params} variant="outlined" />}
+                                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 2, index)} 
+                                    disableClearable={true} /></TableCell>
+                            </TableRow>
                         ))}
-                    {/* </TableBody> */}
+                    </TransposedTableBody>
                 </Table>
             </TableContainer>
         )
     }
-}
 
-class BuffSetBuilder extends BaseComponent<any, BuffSet, any> {
-    constructor(props: any) {
-        super(props, props.buffSet);
-    }
-
-    render() {
-        return (
-            <TableRow>
-                <TableCell><strong>{this.props.rowLabel}</strong></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.attackUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ attackUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.effUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ effUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.npUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ npUp: {$set: e.floatValue / 100} }); }}></NumberFormat></TableCell>
-                <TableCell><Checkbox value={this.state._.isDoubleNpUp} onChange={(e, v) => this.handleChange({ isDoubleNpUp: {$set: v } }) } /></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.powerMods[0].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100} }, 0); }}></NumberFormat></TableCell>
-                <TableCell><Autocomplete
-                    options={Object.values(Trigger)}
-                    value={this.state._.powerMods[0].trigger}
-                    renderInput={params => <TextField {...params} variant="outlined" />}
-                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 0)}
-                    disableClearable={true} /></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.powerMods[1].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 1); }}></NumberFormat></TableCell>
-                <TableCell><Autocomplete
-                    options={Object.values(Trigger)}
-                    value={this.state._.powerMods[1].trigger}
-                    renderInput={params => <TextField {...params} variant="outlined" />}
-                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 1)} 
-                    disableClearable={true} /></TableCell>
-                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.powerMods[2].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 2); }}></NumberFormat></TableCell>
-                <TableCell><Autocomplete
-                    options={Object.values(Trigger)}
-                    value={this.state._.powerMods[2].trigger}
-                    renderInput={params => <TextField {...params} variant="outlined" />}
-                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 2)} 
-                    disableClearable={true} /></TableCell>
-            </TableRow>
-        );
-    }
-
-    handlePowerModChange(spec: Spec<PowerMod, never>, index: number) {
-        this.handleChange({ powerMods: { [index]: spec } });
+    handlePowerModChange(spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) {
+        this.handleChange({ buffs : { [buffIndex]: { powerMods: { [modIndex]: spec } } } });
     }
 }
 
@@ -239,7 +301,7 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
         let output = [ 1, 2, 3, 4, 5 ].map(npLevel => {
             var tempStrat = update(strat, { servant: { config: { npLevel: { $set: npLevel } } } });
             //TODO: could use reduce instead. probably define a helper function then do that
-            strat.template.clearers.forEach(clearerIndex => {
+            strat.template.clearers.flatMap(c => c).forEach(clearerIndex => {
                 if (strat.template.party[clearerIndex].data.name != "<Placeholder>") {
                     tempStrat = update(tempStrat, { template: { party: { [clearerIndex]: { config: { npLevel: { $set: npLevel } } } } } });
                 }
@@ -267,7 +329,7 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
                                 <TableRow key={waveIndex}>
                                     <TableCell><strong>T{waveIndex + 1}</strong></TableCell>
                                     {this.state._.map((nodeDamage, npIndex) =>
-                                        <TableCell key={npIndex}>{nodeDamage.damagePerWave[waveIndex].damagePerEnemy[0].low}</TableCell>
+                                        <TableCell key={npIndex}><NumberFormat value={nodeDamage.damagePerWave[waveIndex].damagePerEnemy[0].low} displayType="text" thousandSeparator=","/></TableCell>
                                     )}
                                 </TableRow>
                             )}
@@ -280,14 +342,15 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
     }
 }
 
-function emptyParty(): Promise<Servant[]> {
-    let placeholder = getServantDefaults("<Placeholder>");
-    let unspecified = getServantDefaults("<Unspecified>");
-    return placeholder.then(placeholder => unspecified.then(unspecified => [ placeholder, unspecified, unspecified, unspecified, unspecified, unspecified ]));
+async function emptyParty(): Promise<Servant[]> {
+    const placeholder = await getServantDefaults("<Placeholder>");
+    const unspecified = await getServantDefaults("<Unspecified>");
+    return [placeholder, unspecified, unspecified, unspecified, unspecified, unspecified];
 }
 
-function getServantDefaults(name: string): Promise<Servant> {
-    return allData.then(data => getServantDefaultsFromData(name, data));
+async function getServantDefaults(name: string): Promise<Servant> {
+    const data = await allData;
+    return getServantDefaultsFromData(name, data);
 }
 
 function getServantDefaultsFromData(name: string, data: Data): Servant {
@@ -312,16 +375,16 @@ ReactDOM.render(
     document.getElementById("main")
 );
 
-function getGrowthCurve(row: string[]): any {
-    let curve: { [key: string]: any } = {};
-    for(var i = 11; i < row.length; i += 2) {
-        let level = row[i];
-        if (level == "") continue;
-        let attack = Number.parseInt(row[i + 1]);
-        curve[level] = attack;
-    }
-    return { stats: curve };
-}
+// function getGrowthCurve(row: string[]): any {
+//     let curve: { [key: string]: any } = {};
+//     for(var i = 11; i < row.length; i += 2) {
+//         let level = row[i];
+//         if (level == "") continue;
+//         let attack = Number.parseInt(row[i + 1]);
+//         curve[level] = attack;
+//     }
+//     return { stats: curve };
+// }
 
 // let servantData = [
 //     ['Abby (Summer)','Foreigner','Earth','0.00','0','1','0.30','Avenger','1.50','Never','TmpVitch40','90','11781','100','12986','120','15137','','','','',''],

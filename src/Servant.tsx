@@ -94,6 +94,10 @@ class GrowthCurve {
 
         return this.stats.get(level.toString()) as number;
     }
+
+    getValidLevels(): string[] {
+        return Array.from(this.stats.keys());
+    }
 }
 
 enum CardType {

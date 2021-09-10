@@ -12,10 +12,8 @@ class Data {
 
 
 let allData = fetch("servants.json").then(resp => resp.text()).then(text => {
-    console.log(text);
     var allData: Data = new Data(new Map(), new Map(), []);
     let servants = deserializeArray(ServantData, text);
-    console.log(servants);
     servants.forEach(servant => {
         allData.servants.set(servant.name, servant);
     });
