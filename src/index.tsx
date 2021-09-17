@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import NumberFormat from "react-number-format";
-import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputAdornment, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
@@ -329,6 +329,7 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
 
 interface PercentInputProps {
     value: number;
+    label?: string;
     onChange: (v: number) => void;
 }
 
@@ -339,11 +340,16 @@ class PercentInput extends React.Component<PercentInputProps, any, any> {
     
     render() {
         return (
-            <NumberFormat
-                suffix={"%"}
-                decimalScale={1}
+            <TextField
+                type="number" variant="outlined"
+                label={this.props.label}
                 value={this.props.value * 100}
-                onValueChange={e => { if (e.floatValue) this.props.onChange(e.floatValue / 100); }} />
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">%</InputAdornment>
+                    )
+                }}
+                onChange={(e) => { if (e.target.value) this.props.onChange(Number.parseFloat(e.target.value) / 100)}} />
         );
     }
 }
