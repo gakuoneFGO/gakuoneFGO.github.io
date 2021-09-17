@@ -289,25 +289,25 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
                         {this.state._.buffs.map((buffSet: BuffSet, index: number) => (
                             <TableRow key={index}>
                                 <TableCell><strong>T{index + 1}</strong></TableCell>
-                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].attackUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ buffs : { [index]: { attackUp: {$set: e.floatValue / 100} } } }); }}></NumberFormat></TableCell>
-                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].effUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ buffs : { [index]: { effUp: {$set: e.floatValue / 100} } } }); } }></NumberFormat></TableCell>
-                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].npUp * 100} onValueChange={e => { if (e.floatValue) this.handleChange({ buffs : { [index]: { npUp: {$set: e.floatValue / 100} } } }); }}></NumberFormat></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].effUp * 100} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v} } } }); } } /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].npUp * 100} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v} } } }); }} /></TableCell>
                                 <TableCell><Checkbox checked={this.state._.buffs[index].isDoubleNpUp} onChange={(e, v) => this.handleChange({ buffs : { [index]: { isDoubleNpUp: {$set: v } } } }) } /></TableCell>
-                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].powerMods[0].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100} }, 0, index); }}></NumberFormat></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[0].modifier * 100} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v} }, 0, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
                                     value={this.state._.buffs[index].powerMods[0].trigger}
                                     renderInput={params => <TextField {...params} variant="outlined" />}
                                     onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 0, index)}
                                     disableClearable={true} /></TableCell>
-                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].powerMods[1].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 1, index); }}></NumberFormat></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[1].modifier * 100} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v } }, 1, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
                                     value={this.state._.buffs[index].powerMods[1].trigger}
                                     renderInput={params => <TextField {...params} variant="outlined" />}
                                     onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 1, index)} 
                                     disableClearable={true} /></TableCell>
-                                <TableCell><NumberFormat suffix={"%"} decimalScale={1} value={this.state._.buffs[index].powerMods[2].modifier * 100} onValueChange={e => { if (e.floatValue) this.handlePowerModChange({ modifier: {$set: e.floatValue / 100 } }, 2, index); }}></NumberFormat></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[2].modifier * 100} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v } }, 2, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
                                     value={this.state._.buffs[index].powerMods[2].trigger}
@@ -324,6 +324,27 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
 
     handlePowerModChange(spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) {
         this.handleChange({ buffs : { [buffIndex]: { powerMods: { [modIndex]: spec } } } });
+    }
+}
+
+interface PercentInputProps {
+    value: number;
+    onChange: (v: number) => void;
+}
+
+class PercentInput extends React.Component<PercentInputProps, any, any> {
+    constructor(props: PercentInputProps) {
+        super(props);
+    }
+    
+    render() {
+        return (
+            <NumberFormat
+                suffix={"%"}
+                decimalScale={1}
+                value={this.props.value * 100}
+                onValueChange={e => { if (e.floatValue) this.props.onChange(e.floatValue / 100); }} />
+        );
     }
 }
 
