@@ -36,8 +36,40 @@ enum EnemyAttribute {
 }
 
 enum Trait {
+    Argo = "Argo",
+    Arthur = "Arthur",
+    BrynhildrsBeloved = "Brynhildr's Beloved",
+    Children = "Children",
+    CostumeOwning = "Costume-Owning",
+    Demonic = "Demonic",
+    Divine = "Divine",
+    DivineSpirit = "Divine Spirit",
+    Dragon = "Dragon",
+    Fae = "Fae",
+    Feminine = "Feminine",
+    Genji = "Genji",
+    Giant = "Giant",
+    GreekMythMales = "Greek Myth Males",
+    Humanoid = "Humanoid",
+    Illya = "Illya",
+    King = "King",
     Human = "Human",
-    //TODO
+    Mechanical = "Mechanical",
+    Nobunaga = "Nobunaga",
+    Oni = "Oni",
+    Pseudo = "Pseudo",
+    Demi = "Demi",
+    Riding = "Riding",
+    Roman = "Roman",
+    KoTR = "KoTR",
+    Saberface = "Saberface",
+    Servant = "Servant",
+    Shuten = "Shuten",
+    SuperLarge = "Super Large",
+    ThreatToHumanity = "Threat to Humanity",
+    Undead = "Undead",
+    WeakToEnumaElish = "Weak to Enuma Elish",
+    WildBeast = "Wild Beast",
 }
 
 export { Enemy, EnemyClass, EnemyAttribute };

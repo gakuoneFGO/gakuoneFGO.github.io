@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import NumberFormat from "react-number-format";
-import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputAdornment, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Checkbox, FormControlLabel, Grid, InputAdornment, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
@@ -51,16 +51,16 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
 
     componentDidMount() {
         let component = this;
-        getServantDefaults("Ereshkigal").then(servant => emptyParty().then(party => {
+        allData.then(data => {
             let state = new Strat(
-                servant,
-                new Template("Test Template", BuffMatrix.create(3), party, [[0], [0], [0]], "Test description", ["do this T1", "do this T2", "do this T3"]),
+                getServantDefaultsFromData("Iskandar", data),
+                data.templates.get("Double Oberon + Castoria (0%)") as Template,
                 BuffMatrix.create(3),
                 new CraftEssence("<None>", 0, BuffSet.empty()),
                 new CraftEssence("<None>", 0, BuffSet.empty())
             );
             component.setState(component.wrap(state));
-        }));
+        });
 
     }
 
@@ -153,22 +153,31 @@ class TemplateBuilder extends BaseComponent<any, Template, any> {
                                 {/* TODO: reset checkboxes when setting back to unspecified */}
                             <Grid container justifyContent="space-evenly">
                                 <Grid item md={4}>
-                                    <InputLabel>NP T1</InputLabel>
-                                    <Checkbox checked={this.state._.clearers[0].includes(index)}
-                                        onChange={(_, v) => this.handleClearerChanged(v, 0, index)}
-                                        disabled={this.state._.party[index].data.name == "<Unspecified>"} />
+                                    <FormControlLabel
+                                        label="NP T1"
+                                        control={
+                                            <Checkbox checked={this.state._.clearers[0].includes(index)}
+                                                onChange={(_, v) => this.handleClearerChanged(v, 0, index)}
+                                                disabled={this.state._.party[index].data.name == "<Unspecified>"} />
+                                        } />
                                 </Grid>
                                 <Grid item md={4}>
-                                    <InputLabel>NP T2</InputLabel>
-                                    <Checkbox checked={this.state._.clearers[1].includes(index)}
-                                        onChange={(_, v) => this.handleClearerChanged(v, 1, index)}
-                                        disabled={this.state._.party[index].data.name == "<Unspecified>"} />
+                                    <FormControlLabel
+                                        label="NP T2"
+                                        control={
+                                            <Checkbox checked={this.state._.clearers[1].includes(index)}
+                                                onChange={(_, v) => this.handleClearerChanged(v, 1, index)}
+                                                disabled={this.state._.party[index].data.name == "<Unspecified>"} />
+                                        } />
                                 </Grid>
                                 <Grid item md={4}>
-                                    <InputLabel>NP T3</InputLabel>
-                                    <Checkbox checked={this.state._.clearers[2].includes(index)}
-                                        onChange={(_, v) => this.handleClearerChanged(v, 2, index)}
-                                        disabled={this.state._.party[index].data.name == "<Unspecified>"} />
+                                    <FormControlLabel
+                                        label="NP T3"
+                                        control={
+                                            <Checkbox checked={this.state._.clearers[2].includes(index)}
+                                                onChange={(_, v) => this.handleClearerChanged(v, 2, index)}
+                                                disabled={this.state._.party[index].data.name == "<Unspecified>"} />
+                                        } />
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -191,6 +200,7 @@ class TemplateBuilder extends BaseComponent<any, Template, any> {
             let index = this.state._.clearers[turnIndex].findIndex(i => i == clearerIndex);
             this.handleChange({ clearers: { [turnIndex]: { $splice: [[ index, 1 ]] } } })
         }
+        console.log(JSON.stringify(this.state._.buffs));
     }
 }
 
@@ -290,24 +300,24 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
                             <TableRow key={index}>
                                 <TableCell><strong>T{index + 1}</strong></TableCell>
                                 <TableCell><PercentInput value={this.state._.buffs[index].attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }); }} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].effUp * 100} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v} } } }); } } /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].npUp * 100} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v} } } }); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].effUp} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v} } } }); } } /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v} } } }); }} /></TableCell>
                                 <TableCell><Checkbox checked={this.state._.buffs[index].isDoubleNpUp} onChange={(e, v) => this.handleChange({ buffs : { [index]: { isDoubleNpUp: {$set: v } } } }) } /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[0].modifier * 100} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v} }, 0, index); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[0].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v} }, 0, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
                                     value={this.state._.buffs[index].powerMods[0].trigger}
                                     renderInput={params => <TextField {...params} variant="outlined" />}
                                     onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 0, index)}
                                     disableClearable={true} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[1].modifier * 100} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v } }, 1, index); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[1].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v } }, 1, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
                                     value={this.state._.buffs[index].powerMods[1].trigger}
                                     renderInput={params => <TextField {...params} variant="outlined" />}
                                     onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 1, index)} 
                                     disableClearable={true} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[2].modifier * 100} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v } }, 2, index); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[2].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v } }, 2, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
                                     value={this.state._.buffs[index].powerMods[2].trigger}

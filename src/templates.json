@@ -1,13 +1,13 @@
 [
     {
-        "name": "TmpCastoria0",
+        "name": "Double Oberon + Castoria (0%)",
         "buffs": {
             "buffs": [
                 {
-                    "attackUp": 0,
-                    "effUp": 0,
-                    "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "attackUp": 0.2,
+                    "effUp": 0.5,
+                    "npUp": 0.3,
+                    "isDoubleNpUp": true,
                     "powerMods": [
                         {
                             "trigger": "Always",
@@ -25,14 +25,14 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.2,
                     "effUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.6,
                     "isDoubleNpUp": false,
                     "powerMods": [
                         {
-                            "trigger": "Always",
-                            "modifier": 0
+                            "trigger": "Threat to Humanity",
+                            "modifier": 0.5
                         },
                         {
                             "trigger": "Always",
@@ -46,14 +46,14 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "effUp": 0,
-                    "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "attackUp": 0.5,
+                    "effUp": 0.5,
+                    "npUp": 0.6,
+                    "isDoubleNpUp": true,
                     "powerMods": [
                         {
-                            "trigger": "Always",
-                            "modifier": 0
+                            "trigger": "Threat to Humanity",
+                            "modifier": 0.5
                         },
                         {
                             "trigger": "Always",
@@ -95,13 +95,34 @@
         ]
     },
     {
-        "name": "TmpReines10",
+        "name": "Double Oberon + Reines (10%)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
+                    "effUp": 0.5,
+                    "npUp": 0.3,
+                    "isDoubleNpUp": true,
+                    "powerMods": [
+                        {
+                            "trigger": "Always",
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": "Always",
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": "Always",
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0
+                },
+                {
+                    "attackUp": 0.4,
                     "effUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.6,
                     "isDoubleNpUp": false,
                     "powerMods": [
                         {
@@ -120,31 +141,10 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "effUp": 0,
-                    "npUp": 0,
-                    "isDoubleNpUp": false,
-                    "powerMods": [
-                        {
-                            "trigger": "Always",
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": "Always",
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": "Always",
-                            "modifier": 0
-                        }
-                    ],
-                    "overcharge": 0
-                },
-                {
-                    "attackUp": 0,
-                    "effUp": 0,
-                    "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "attackUp": 0.7,
+                    "effUp": 0.5,
+                    "npUp": 0.6,
+                    "isDoubleNpUp": true,
                     "powerMods": [
                         {
                             "trigger": "Always",
@@ -190,13 +190,34 @@
         ]
     },
     {
-        "name": "TmpWaver20",
+        "name": "Double Oberon + Waver (20%)",
         "buffs": {
             "buffs": [
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.3,
+                    "effUp": 0.5,
+                    "npUp": 0.3,
+                    "isDoubleNpUp": true,
+                    "powerMods": [
+                        {
+                            "trigger": "Always",
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": "Always",
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": "Always",
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0
+                },
+                {
+                    "attackUp": 0.3,
                     "effUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.6,
                     "isDoubleNpUp": false,
                     "powerMods": [
                         {
@@ -215,31 +236,10 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "effUp": 0,
-                    "npUp": 0,
-                    "isDoubleNpUp": false,
-                    "powerMods": [
-                        {
-                            "trigger": "Always",
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": "Always",
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": "Always",
-                            "modifier": 0
-                        }
-                    ],
-                    "overcharge": 0
-                },
-                {
-                    "attackUp": 0,
-                    "effUp": 0,
-                    "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "attackUp": 0.6,
+                    "effUp": 0.5,
+                    "npUp": 0.6,
+                    "isDoubleNpUp": true,
                     "powerMods": [
                         {
                             "trigger": "Always",
@@ -285,14 +285,14 @@
         ]
     },
     {
-        "name": "TmpVitch40",
+        "name": "Double Oberon + Vitch (40%)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
-                    "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "effUp": 0.5,
+                    "npUp": 0.6,
+                    "isDoubleNpUp": true,
                     "powerMods": [
                         {
                             "trigger": "Always",
@@ -311,17 +311,17 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
-                    "npUp": 0,
+                    "effUp": 0.5,
+                    "npUp": 0.6,
                     "isDoubleNpUp": false,
                     "powerMods": [
                         {
-                            "trigger": "Always",
-                            "modifier": 0
+                            "trigger": "Man",
+                            "modifier": 0.5
                         },
                         {
-                            "trigger": "Always",
-                            "modifier": 0
+                            "trigger": "Human",
+                            "modifier": 0.5
                         },
                         {
                             "trigger": "Always",
@@ -331,18 +331,18 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "effUp": 0,
-                    "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "attackUp": 0.3,
+                    "effUp": 1,
+                    "npUp": 0.6,
+                    "isDoubleNpUp": true,
                     "powerMods": [
                         {
-                            "trigger": "Always",
-                            "modifier": 0
+                            "trigger": "Man",
+                            "modifier": 0.5
                         },
                         {
-                            "trigger": "Always",
-                            "modifier": 0
+                            "trigger": "Human",
+                            "modifier": 0.5
                         },
                         {
                             "trigger": "Always",
