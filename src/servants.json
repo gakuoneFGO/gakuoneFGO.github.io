@@ -90,6 +90,78 @@
         "appendTarget": "Saber"
     },
     {
+        "name": "Miss Crane",
+        "rarity": 0,
+        "npType": "Buster",
+        "npMultiplier": [],
+        "npUpgrade": 0.0,
+        "growthCurve": {
+            "stats": {}
+        },
+        "sClass": "Saber",
+        "attribute": "Man",
+        "extraDamage": [],
+        "extraTrigger": "Never",
+        "f2pCopies": 0,
+        "iconUrl": "",
+        "chargeProfile": "",
+        "appendTarget": "Saber"
+    },
+    {
+        "name": "Reines",
+        "rarity": 0,
+        "npType": "Buster",
+        "npMultiplier": [],
+        "npUpgrade": 0.0,
+        "growthCurve": {
+            "stats": {}
+        },
+        "sClass": "Saber",
+        "attribute": "Man",
+        "extraDamage": [],
+        "extraTrigger": "Never",
+        "f2pCopies": 0,
+        "iconUrl": "",
+        "chargeProfile": "",
+        "appendTarget": "Saber"
+    },
+    {
+        "name": "Merlin",
+        "rarity": 0,
+        "npType": "Buster",
+        "npMultiplier": [],
+        "npUpgrade": 0.0,
+        "growthCurve": {
+            "stats": {}
+        },
+        "sClass": "Saber",
+        "attribute": "Man",
+        "extraDamage": [],
+        "extraTrigger": "Never",
+        "f2pCopies": 0,
+        "iconUrl": "",
+        "chargeProfile": "",
+        "appendTarget": "Saber"
+    },
+    {
+        "name": "Skadi",
+        "rarity": 0,
+        "npType": "Buster",
+        "npMultiplier": [],
+        "npUpgrade": 0.0,
+        "growthCurve": {
+            "stats": {}
+        },
+        "sClass": "Saber",
+        "attribute": "Man",
+        "extraDamage": [],
+        "extraTrigger": "Never",
+        "f2pCopies": 0,
+        "iconUrl": "",
+        "chargeProfile": "",
+        "appendTarget": "Saber"
+    },
+    {
         "name": "Arash",
         "rarity": 1,
         "npType": "Buster",

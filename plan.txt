@@ -1,0 +1,19 @@
+v1
+    manually entered buffs a la https://maketakunai.github.io/
+    all servants available but only busters + a few standout quick/arts get template by default
+    comparison table
+    diagram fed by comparison table
+    save custom servant configs (My Roster), templates, CEs
+    node builder
+    node database
+v2
+    refund (there are ways to chart refund that don't require any input besides the setup)
+    proper modeling of buffs per servant, debuffs, charge management, etc
+    skill database/skill-based input
+    export to fga
+    enemy database
+    CE database
+v3
+    "ai"-driven node solving (add your roster, click a button and see all teams that clear it. can constrain by MC, etc)
+        this can legitimately be trained using ai though? you have no problem generating enough data to train on
+        the issue is figuring out how people normally train computers to play games nowadays, which I'm sure I can figure out
