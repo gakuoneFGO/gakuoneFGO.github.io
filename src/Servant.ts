@@ -33,6 +33,7 @@ class ServantConfig {
 class ServantData {
     constructor(
         name: string,
+        id: number,
         rarity: number,
         npType: CardType,
         npMultiplier: number[],
@@ -44,9 +45,11 @@ class ServantData {
         extraTrigger: Trigger,
         f2pCopies: number,
         iconUrl: string,
+        cardArtUrl: string,
         chargeProfile: string,
-        appendTarget: ServantClass) {
+        appendTarget: Trigger) {
             this.name = name;
+            this.id = id;
             this.rarity = rarity;
             this.npType = npType;
             this.npMultiplier = npMultiplier;
@@ -58,11 +61,13 @@ class ServantData {
             this.extraTrigger = extraTrigger;
             this.f2pCopies = f2pCopies;
             this.iconUrl = iconUrl;
+            this.cardArtUrl = cardArtUrl;
             this.chargeProfile = chargeProfile;
             this.appendTarget = appendTarget;
         }
 
         readonly name: string;
+        id: number;
         readonly rarity: number;
         readonly npType: CardType;
         readonly npMultiplier: number[];
@@ -75,8 +80,9 @@ class ServantData {
         readonly extraTrigger: Trigger;
         readonly f2pCopies: number;
         readonly iconUrl: string;
+        readonly cardArtUrl: string;
         readonly chargeProfile: string;
-        readonly appendTarget: ServantClass;
+        readonly appendTarget: Trigger;
 }
 
 class GrowthCurve {
@@ -101,109 +107,111 @@ class GrowthCurve {
 }
 
 enum CardType {
-    Buster = "Buster", 
-    Arts = "Arts", 
-    Quick = "Quick", 
+    Buster = "buster", 
+    Arts = "arts", 
+    Quick = "quick", 
 }
 
 enum ServantClass {
-    Saber = "Saber",
-    Archer = "Archer",
-    Lancer = "Lancer",
-    Rider = "Rider",
-    Caster = "Caster",
-    Assassin = "Assassin",
-    Berserker = "Berserker",
-    Ruler = "Ruler",
-    Avenger = "Avenger",
-    MoonCancer = "MoonCancer",
-    AlterEgo = "AlterEgo",
-    Foreigner = "Foreigner",
-    Pretender = "Pretender",
-    Shielder = "Shielder",
+    Saber = "saber",
+    Archer = "archer",
+    Lancer = "lancer",
+    Rider = "rider",
+    Caster = "caster",
+    Assassin = "assassin",
+    Berserker = "berserker",
+    Ruler = "ruler",
+    Avenger = "avenger",
+    MoonCancer = "moonCancer",
+    AlterEgo = "alterEgo",
+    Foreigner = "foreigner",
+    Pretender = "pretender",
+    Shielder = "shielder",
 }
 
 enum ServantAttribute {
-    Man = "Man",
-    Earth = "Earth",
-    Sky = "Sky",
-    Star = "Star",
-    Beast = "Beast",
+    Man = "man",
+    Earth = "earth",
+    Sky = "sky",
+    Star = "star",
+    Beast = "beast",
 }
 
 enum Alignment {
-    Good = "Good",
-    Evil = "Evil",
-    Lawful = "Lawful",
-    Chaotic = "Chaotic",
-    Neutral = "Neutral",
-    Summer = "Summer",
+    Good = "good",
+    Evil = "evil",
+    Lawful = "lawful",
+    Chaotic = "chaotic",
+    Neutral = "neutral",
+    Summer = "summer",
+    Madness = "madness",
 }
 
 enum Trigger {
-    Saber = "Saber",
-    Archer = "Archer",
-    Lancer = "Lancer",
-    Rider = "Rider",
-    Caster = "Caster",
-    Assassin = "Assassin",
-    Berserker = "Berserker",
-    Ruler = "Ruler",
-    Avenger = "Avenger",
-    MoonCancer = "MoonCancer",
-    AlterEgo = "AlterEgo",
-    Foreigner = "Foreigner",
-    Pretender = "Pretender",
-    Man = "Man",
-    Earth = "Earth",
-    Sky = "Sky",
-    Star = "Star",
-    Beast = "Beast",
-    Always = "Always",
-    Never = "Never",
-    Argo = "Argo",
-    Arthur = "Arthur",
-    BrynhildrsBeloved = "Brynhildr's Beloved",
-    Children = "Children",
-    CostumeOwning = "Costume-Owning",
-    Demonic = "Demonic",
-    Divine = "Divine",
-    DivineSpirit = "Divine Spirit",
-    Dragon = "Dragon",
-    Fae = "Fae",
-    Feminine = "Feminine",
-    Genji = "Genji",
-    Giant = "Giant",
-    GreekMythMales = "Greek Myth Males",
-    Humanoid = "Humanoid",
-    Illya = "Illya",
-    King = "King",
-    Human = "Human",
-    Mechanical = "Mechanical",
-    Nobunaga = "Nobunaga",
-    Oni = "Oni",
-    Pseudo = "Pseudo",
-    Demi = "Demi",
-    Riding = "Riding",
-    Roman = "Roman",
-    KoTR = "KoTR",
-    Saberface = "Saberface",
-    Servant = "Servant",
-    Shuten = "Shuten",
-    SuperLarge = "Super Large",
-    ThreatToHumanity = "Threat to Humanity",
+    Shielder = "classShielder",
+    Saber = "classSaber",
+    Archer = "classArcher",
+    Lancer = "classLancer",
+    Rider = "classRider",
+    Caster = "classCaster",
+    Assassin = "classAssassin",
+    Berserker = "classBerserker",
+    Ruler = "classRuler",
+    Avenger = "classAvenger",
+    MoonCancer = "classMoonCancer",
+    AlterEgo = "classAlterEgo",
+    Foreigner = "classForeigner",
+    Pretender = "classPretender",
+    Man = "attributeHuman",
+    Earth = "attributeEarth",
+    Sky = "attributeSky",
+    Star = "attributeStar",
+    Beast = "attributeBeast",
+    Always = "always",
+    Never = "never",
+    Argo = "argonaut",
+    Arthur = "arthur",
+    BrynhildrsBeloved = "brynhildsBeloved",
+    Children = "childServant",
+    CostumeOwning = "hasCostume",
+    Demonic = "demonic",
+    Divine = "divine",
+    DivineSpirit = "divineSpirit",
+    Dragon = "dragon",
+    Fae = "fae",
+    Feminine = "feminineLookingServant",
+    Genji = "genji",
+    Giant = "giant",
+    GreekMythMales = "greekMythologyMales",
+    Humanoid = "humanoid",
+    Illya = "illya",
+    King = "king",
+    Human = "livingHuman",
+    Mechanical = "mechanical",
+    Nobunaga = "nobunaga",
+    Oni = "oni",
+    SkyOrEarthExceptPseudoAndDemi = "skyOrEarthExceptPseudoAndDemi",
+    Riding = "riding",
+    Roman = "roman",
+    KoTR = "knightsOfTheRound",
+    Saberface = "saberface",
+    Servant = "servant",
+    Shuten = "shuten",
+    SuperLarge = "superGiant",
+    ThreatToHumanity = "threatToHumanity",
     Undead = "Undead",
-    WeakToEnumaElish = "Weak to Enuma Elish",
-    WildBeast = "Wild Beast",
-    EarthOrSky = "Earth or Sky",
-    SaberServant = "Saber Servant",
+    WeakToEnumaElish = "weakToEnumaElish",
+    WildBeast = "wildbeast",
+    EarthOrSky = "skyOrEarth",
+    SaberServant = "saberClassServant",
     KotrOrFae = "KoTR or Fae",
-    Good = "Good",
-    Evil = "Evil",
-    Lawful = "Lawful",
-    Chaotic = "Chaotic",
-    Neutral = "Neutral",
-    Summer = "Summer",
+    Good = "alignmentGood",
+    Evil = "alignmentEvil",
+    Lawful = "alignmentLawful",
+    Chaotic = "alignmentChaotic",
+    Neutral = "alignmentNeutral",
+    Summer = "alignmentSummer",
+    Madness = "alignmentMadness",
     //TODO: add remaining triggers
 }
 

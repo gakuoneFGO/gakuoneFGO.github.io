@@ -209,27 +209,27 @@ class ServantSelector extends BaseComponent<any, Servant, any> {
         super(props, props.servant);
     }
 
-    private servantList?: string[];
-    private data?: Data;
+    private static servantList?: string[];
+    private static data?: Data;
 
     componentDidMount() {
-        if (!this.data)
+        if (!ServantSelector.data)
             allData.then(data => {
-                this.data = data;
-                this.servantList = Array.from(data.servants.keys());
+                ServantSelector.data = data;
+                ServantSelector.servantList = Array.from(ServantSelector.data.servants.keys()).sort();
                 this.forceUpdate();
             });
     }
 
     render() {
-        if (!this.servantList) return null;
+        if (!ServantSelector.servantList) return null;
         return (
             <React.Fragment>
                 <Autocomplete
-                    options={this.servantList as string[]}
+                    options={ServantSelector.servantList as string[]}
                     value={this.state._.data.name}
                     renderInput={params => <TextField {...params} label={this.props.label} variant="outlined" />}
-                    onChange={(e, v) => { if (v) this.handleChange({ $set: getServantDefaultsFromData(v, this.data as Data) }) }}
+                    onChange={(e, v) => { if (v) this.handleChange({ $set: getServantDefaultsFromData(v, ServantSelector.data as Data) }) }}
                     disableClearable={true} />
                 <Accordion variant="outlined">
                     <AccordionSummary>
@@ -429,7 +429,6 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                {/* {JSON.stringify(servantData)} */}
             </Grid>
         );
     }
@@ -467,136 +466,6 @@ ReactDOM.render(
     <StratBuilder />,
     document.getElementById("main")
 );
-
-// function getGrowthCurve(row: string[]): any {
-//     let curve: { [key: string]: any } = {};
-//     for(var i = 11; i < row.length; i += 2) {
-//         let level = row[i];
-//         if (level == "") continue;
-//         let attack = Number.parseInt(row[i + 1]);
-//         curve[level] = attack;
-//     }
-//     return { stats: curve };
-// }
-
-// let servantData = [
-//     ['Abby (Summer)','Foreigner','Earth','0.00','0','1','0.30','Avenger','1.50','Never','TmpVitch40','90','11781','100','12986','120','15137','','','','',''],
-//     ['Altera','Saber','Man','1.00','0','1','0.30','Foreigner','1.50','Never','TmpCastoria0','90','12343','100','13511','120','15859','','','','',''],
-//     ['Amakusa','Ruler','Man','1.00','0','1','0.30','Ruler','1.50','Never','TmpVitch40','90','10972','100','12011','120','14098','','','','',''],
-//     ['Arjuna','Archer','Sky','1.00','0','1','0.30','Berserker','1.50','Never','TmpWaver20Backloaded','90','12342','100','13510','120','15858','','','','',''],
-//     ['Arjuna (Alter)','Berserker','Sky','0.00','0','1','0.00','Saber','1.50','Never','TmpWaver20','90','11669','100','12773','120','14993','','','','',''],
-//     ['Arthur','Saber','Earth','0.00','0','1','0.30','Saber','1.50','Never','TmpWaver20','90','12465','100','13645','120','16016','','','','',''],
-//     ['Artoria','Saber','Earth','1.00','0','1','0.30','Rider','1.50','Never','TmpObeVitchVsKnights50','90','11221','100','12283','120','14418','','','','',''],
-//     ['Artoria (Alter)','Saber','Man','0.50','0','1','0.30','Rider','1.50','Never','TmpWaver20','80','10248','100','12408','120','14569','','','','',''],
-//     ['Artoria (Lancer Alter)','Lancer','Sky','1.00','0','1','0.30','Rider','1.50','Never','TmpWaver20','90','9968','100','12069','120','14171','','','','',''],
-//     ['Artoria (Lancer)','Lancer','Sky','0.00','0','1','0.30','Ruler','1.50','Never','TmpObeVitchVsKnights50','90','10995','100','12036','120','14127','','','','',''],
-//     ['Artoria (Lily)','Saber','Earth','1.00','0','5','0.30','Caster','1.50','Never','TmpWaver20','80','7726','100','9355','120','10984','','','','',''],
-//     ['Artoria (Ruler)','Ruler','Sky','0.00','0','1','0.30','Saber','1.50','Never','TmpVitch40','90','9593','100','10501','120','12326','','','','',''],
-//     ['Artoria (Santa Alter)','Rider','Earth','1.50','0','5','0.30','Saber','1.50','Never','TmpCastoria0','80','9258','100','11209','120','16083','','','','',''],
-//     ['Avicebron','Caster','Man','1.00','0','5','0.30','Berserker','1.50','Never','TmpVitch40','70','6376','100','8629','120','10135','','','','',''],
-//     ['Babbage','Caster','Man','1.00','0','5','0.30','Caster','1.50','Never','TmpCastoria0','70','5996','100','8115','120','9531','','','','',''],
-//     ['Barghest','Saber','Earth','0.00','0','1','0.30','AlterEgo','1.50','Never','TmpCastoria0','80','8721','100','10599','120','12398','','','','',''],
-//     ['BB (Summer)','MoonCancer','Earth','0.00','0','1','0.30','Foreigner','1.50','Never','TmpVitch40','90','11182','100','12240','120','14367','','','','',''],
-//     ['Blackbeard','Rider','Man','1.00','0','5','0.30','Rider','1.50','Never','TmpCastoria0','65','6188','100','8967','120','10561','','','','',''],
-//     ['Brynhild (Berserker)','Berserker','Sky','0.00','0','1','0.00','Saber','1.50','Never','TmpWaver20','80','10197','100','12346','120','14496','','','','',''],
-//     ['Bunyan','Berserker','Earth','0.00','0','5','0.00','Saber','1.50','Never','TmpCastoria0','60','6044','100','9391','120','11068','','','','',''],
-//     ['Caenis','Lancer','Earth','0.00','0','1','0.30','Ruler','1.50','Never','TmpWaver20','80','9896','100','11982','120','14068','','','','',''],
-//     ['Caren','Ruler','Sky','0.00','0','1','0.30','Archer','1.50','Never','TmpDoubleSkadi','90','11351','100','12425','120','14585','','','','',''],
-//     ['Chacha','Berserker','Man','0.00','0','5','0.00','Saber','1.50','Never','TmpReines10','80','8945','100','10831','120','12717','','','','',''],
-//     ['Cleopatra','Assassin','Man','1.00','0','1','0.30','Saber','1.50','Never','TmpReines10','90','11088','100','12138','120','14247','','','','',''],
-//     ['Columbus','Rider','Man','1.00','0','5','0.30','Rider','1.50','Never','TmpWaver20','70','6552','100','8867','120','10415','','','','',''],
-//     ['Cu (Caster)','Caster','Sky','1.00','0','5','0.30','Foreigner','1.50','Never','TmpCasCuMerlin','70','6580','100','8905','120','10459','','','','',''],
-//     ['Danzou','Assassin','Earth','1.00','0','1','0.30','AlterEgo','1.50','Demonic','TmpCastoria0','80','8935','100','10818','120','12702','','','','',''],
-//     ['Darius','Berserker','Man','1.00','0','5','0.00','Saber','1.50','Never','TmpCastoria0','70','7608','100','10297','120','12093','','','','',''],
-//     ['Drake','Rider','Star','1.00','0','1','0.30','Archer','1.50','Never','TmpVitch40','90','11326','100','12398','120','14553','','','','',''],
-//     ['Ereshkigal','Lancer','Earth','1.00','0','1','0.30','Assassin','1.50','Earth','TmpObeVitchVsKnights50Transposed','90','10343','100','11322','120','13290','','','','',''],
-//     ['Eric Bloodaxe','Berserker','Man','0.00','0','5','0.30','Saber','1.50','Never','TmpCastoria0','65','6290','100','9115','120','10734','','','','',''],
-//     ['Europa','Rider','Sky','0.00','0','1','0.30','Ruler','1.50','Never','TmpWaver20','90','11737','100','12848','120','15081','','','','',''],
-//     ['Fergus','Saber','Earth','1.00','0','5','0.30','Rider','1.50','Never','TmpCastoria0','70','7460','100','10086','120','11858','','','','',''],
-//     ['Gawain','Saber','Earth','0.00','0','1','0.30','Rider','1.50','Never','TmpWaver20','80','10173','100','12317','120','14462','','','','',''],
-//     ['Gilgamesh','Archer','Sky','1.00','0','1','0.30','Rider','1.50','Weak to Enuma Elish','TmpWaver20Backloaded','90','12280','100','13442','120','15779','','','','',''],
-//     ['Gilles (Caster)','Caster','Man','0.00','0','5','0.30','Foreigner','1.50','Never','TmpCastoria0','70','6514','100','8816','120','10354','','','','',''],
-//     ['Gorgon','Avenger','Earth','1.00','0','1','0.30','Rider','1.50','Never','TmpCastoria0','80','10706','100','12963','120','15220','','','','',''],
-//     ['Gray','Assassin','Man','0.00','0','5','0.30','Berserker','1.50','Never','TmpReines10','80','9456','100','11449','120','13443','','','','',''],
-//     ['Hektor','Lancer','Man','1.00','0','5','0.30','Rider','1.50','Never','TmpCastoria0','70','6928','100','9376','120','11012','','','','',''],
-//     ['Ibuki-Douji','Saber','Sky','0.00','0','1','0.30','Ruler','1.50','Never','TmpObeVitchVsKnights50','90','12709','100','13912','120','16330','','','','',''],
-//     ['Ishtar','Archer','Sky','1.00','0','1','0.30','Ruler','1.50','Never','TmpVitch40Backloaded','90','12252','100','13412','120','15742','','','','',''],
-//     ['Iskandar','Rider','Man','1.00','0','1','0.30','Lancer','1.50','Never','TmpCastoria0','90','11560','100','12654','120','14853','','','','',''],
-//     ['Ivan','Rider','Man','1.00','0','1','0.30','Avenger','1.50','Never','TmpCastoria0','90','11619','100','12719','120','14929','','','','',''],
-//     ['Jeanne (Santa Lily Alter)','Lancer','Man','0.00','0','5','0.30','Avenger','1.50','Never','TmpWaver20','80','9261','100','11213','120','13166','','','','',''],
-//     ['Karna','Lancer','Sky','1.00','0','1','0.30','Rider','1.50','Divine','TmpWaver20','90','11976','100','13110','120','15388','','','','',''],
-//     ['Kid Gil','Archer','Sky','1.00','0','5','0.30','Rider','1.50','Never','TmpCastoria0Backloaded','70','7696','100','10415','120','12233','','','','',''],
-//     ['Kingprotea','AlterEgo','Earth','0.00','0','1','0.30','Ruler','1.50','Never','TmpCastoria0','90','12835','100','14050','120','16492','','','','',''],
-//     ['Kiyohime','Berserker','Earth','0.00','0','5','0.00','Saber','1.50','Never','TmpCastoria0','70','6644','100','8992','120','10561','','','','',''],
-//     ['Koyanskaya','Assassin','Beast','0.00','0','1','0.30','Archer','1.50','Never','TmpVitchMerlinHack','90','11616','100','12715','120','14925','','','','',''],
-//     ['Liz','Lancer','Man','1.00','0','1','0.30','AlterEgo','1.50','Never','TmpCastoria0','80','9122','100','11045','120','12968','','','','',''],
-//     ['Liz (Halloween)','Caster','Man','0.00','0','5','0.30','Lancer','1.50','Never','TmpCastoria0','80','8616','100','10432','120','12249','','','','',''],
-//     ['Maou Nobu','Avenger','Earth','0.00','0','1','0.30','AlterEgo','1.50','Divine','TmpWaver20','90','12641','100','13838','120','16242','','','','',''],
-//     ['Martha','Rider','Man','1.00','0','1','0.30','Berserker','1.50','Never','TmpCastoria0','80','8014','100','9703','120','11393','','','','',''],
-//     ['Melusine','Lancer','Earth','0.00','0','1','0.30','Lancer','1.50','Never','TmpMelusine','90','12154','100','13304','120','15617','','','','',''],
-//     ['Mephistopheles','Caster','Earth','1.00','0','5','0.30','Berserker','1.50','Never','TmpCastoria0','70','6839','100','9255','120','10870','','','','',''],
-//     ['Mordred','Saber','Earth','1.00','0','1','0.30','Saber','1.80','Arthur','TmpObeVitchVsKnights50','90','11723','100','12833','120','15063','','','','',''],
-//     ['Morgan','Berserker','Earth','0.00','0','1','0.00','Saber','1.50','Man','TmpVitch40','90','12193','100','13347','120','15667','','','','',''],
-//     ['Napoleon','Archer','Star','1.00','0','1','0.30','Rider','1.50','Divine','TmpWaver20Backloaded','90','12033','100','13172','120','15461','','','','',''],
-//     ['Nero (Caster)','Caster','Man','0.00','0','1','0.30','Ruler','1.50','Never','TmpVitch40','90','10857','100','11885','120','13950','','','','',''],
-//     ['Nezha','Lancer','Sky','1.00','0','1','0.30','Caster','1.50','Never','TmpWaver20','80','9284','100','11241','120','13198','','','','',''],
-//     ['Nobunaga','Archer','Man','0.00','0','5','0.30','Rider','1.50','Riding','TmpCastoria0Backloaded','80','9494','100','11495','120','16583','','','','',''],
-//     ['Oberon','Pretender','Earth','0.00','0','1','0.30','Caster','1.50','Lawful','TmpOberonDPSWithDoubleVitch','90','11810','100','12928','120','15174','','','','',''],
-//     ['Okita (Alter)','AlterEgo','Man','0.00','0','1','0.30','Caster','1.50','Never','TmpWaver20','90','12465','100','13645','120','16016','','','','',''],
-//     ['Osakabehime (Archer)','Archer','Earth','0.00','0','1','0.30','Assassin','1.50','Never','TmpCastoria0Backloaded','80','8895','100','10770','120','12645','','','','',''],
-//     ['Ozymandias','Rider','Sky','2.00','1','1','0.30','Archer','1.50','Never','TmpObeOzy1-1-X','90','11971','100','13104','120','15381','','','','',''],
-//     ['Passionlip','AlterEgo','Earth','1.00','0','1','0.30','Assassin','1.50','Never','TmpCastoria0','80','10299','100','12470','120','14641','','','','',''],
-//     ['Quetz (Ruler)','Ruler','Sky','0.00','0','5','0.30','Ruler','1.50','Never','TmpCastoria0','80','11306','100','13708','120','16111','','','','',''],
-//     ['Raikou','Berserker','Sky','1.00','0','1','0.00','Saber','1.50','Never','TmpCastoria0','90','11556','100','12650','120','14848','','','','',''],
-//     ['Romulus','Lancer','Star','1.00','0','5','0.30','Berserker','1.50','Never','TmpWaver20','70','7239','100','9797','120','11506','','','','',''],
-//     ['Romulus (Grand)','Lancer','Sky','0.00','0','1','0.30','Ruler','1.20','Roman','TmpWaver20','90','12273','100','13435','120','15770','','','','',''],
-//     ['Semiramis','Assassin','Earth','1.00','0','1','0.30','Saber','1.50','Never','TmpReines10','90','11309','100','12379','120','14531','','','','',''],
-//     ['Shakespeare','Caster','Man','1.00','0','5','0.30','Caster','1.50','Never','TmpWaver20','65','5798','100','8402','120','9895','','','','',''],
-//     ['Siegfried','Saber','Earth','1.00','0','1','0.30','Saber','1.50','Dragon','TmpWaver20','80','8181','100','9905','120','11630','','','','',''],
-//     ['Space Ishtar','Avenger','Star','0.00','0','1','0.30','Archer','1.50','Never','TmpVitch40','90','12612','100','13806','120','16205','','','','',''],
-//     ['Spartacus','Berserker','Man','1.00','0','5','0.00','Saber','1.50','Never','TmpCraneBronze10','60','5073','100','7883','120','9290','','','','',''],
-//     ['Suzuka','Saber','Sky','1.00','0','1','0.30','Ruler','1.50','Never','TmpCastoria0','80','9544','100','11556','120','13568','','','','',''],
-//     ['Tesla','Archer','Star','1.00','0','1','0.30','Caster','1.50','Earth or Sky','TmpVitch40Backloaded','90','11781','100','12896','120','15137','','','','',''],
-//     ['Touta','Archer','Man','1.00','0','5','0.30','Berserker','1.50','Never','TmpCastoria0Backloaded','70','7032','100','9517','120','11177','','','','',''],
-//     ['Yu','Assassin','Earth','0.00','0','1','0.30','Ruler','1.50','Never','TmpReines10','80','7970','100','9650','120','11330','','','','',''],
-// ].map(row => {
-//     let result: any = {
-//         name: row[0],
-//         sClass: row[1],
-//         attribute: row[2],
-//         npUpgrade: Number.parseFloat(row[3]),
-//         npMultiplier: [ 3.0, 4.0, 4.5, 4.75, 5.0 ].map(m => m * (1+Number.parseFloat(row[4]))),
-//         appendTarget: row[7],
-//         extraDamage: [ Number.parseFloat(row[8]), Number.parseFloat(row[8]), Number.parseFloat(row[8]), Number.parseFloat(row[8]), Number.parseFloat(row[8]) ],
-//         extraTrigger: row[9],
-//         growthCurve: getGrowthCurve(row),
-//         chargeProfile: "",
-//         iconUrl: "",
-//         npType: "Buster",
-//     };
-//     switch (row[11]) {
-//         case "60": result.rarity = 1; break;
-//         case "65": result.rarity = 2; break;
-//         case "70": result.rarity = 3; break;
-//         case "80": result.rarity = 4; break;
-//         case "90": result.rarity = 5; break;
-//     }
-//     switch (result.rarity) {
-//         case 1:
-//         case 2:
-//         case 3:
-//             result.f2pCopies = 5; //not accurate but w/e
-//             break;
-//         case 5:
-//             result.f2pCopies = 0;
-//             break;
-//         case 4:
-//             if (row[5] == "1") result.f2pCopies = 0;
-//             else result.f2pCopies = 5;
-//             break;
-//     }
-//     return result;
-// });
 
 // var templateData: any;
 // allData.then(data => {

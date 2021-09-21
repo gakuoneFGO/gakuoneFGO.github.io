@@ -71,7 +71,7 @@
         "party": [
             "<Placeholder>",
             "Arash",
-            "Castoria",
+            "Altria Caster",
             "Oberon",
             "Oberon",
             "<Unspecified>"
@@ -166,7 +166,7 @@
         "party": [
             "<Placeholder>",
             "Arash",
-            "Reines",
+            "Sima Yi (Reines)",
             "Oberon",
             "Oberon",
             "<Unspecified>"
@@ -261,7 +261,7 @@
         "party": [
             "<Placeholder>",
             "Arash",
-            "Waver",
+            "Zhuge Liang (Lord El-Melloi II)",
             "Oberon",
             "Oberon",
             "<Unspecified>"
@@ -357,7 +357,7 @@
             "<Placeholder>",
             "Arash",
             "Oberon",
-            "Koyanskaya",
+            "Koyanskaya of Light",
             "Oberon",
             "<Unspecified>"
         ],
@@ -451,7 +451,7 @@
         "party": [
             "<Placeholder>",
             "Oberon",
-            "Koyanskaya",
+            "Koyanskaya of Light",
             "Oberon",
             "<Unspecified>",
             "<Unspecified>"
@@ -546,7 +546,7 @@
         "party": [
             "<Placeholder>",
             "Arash",
-            "Castoria",
+            "Altria Caster",
             "Oberon",
             "Oberon",
             "<Unspecified>"
@@ -641,7 +641,7 @@
         "party": [
             "<Placeholder>",
             "Arash",
-            "Reines",
+            "Sima Yi (Reines)",
             "Oberon",
             "Oberon",
             "<Unspecified>"
@@ -736,7 +736,7 @@
         "party": [
             "<Placeholder>",
             "Arash",
-            "Waver",
+            "Zhuge Liang (Lord El-Melloi II)",
             "Oberon",
             "Oberon",
             "<Unspecified>"
@@ -831,7 +831,7 @@
         "party": [
             "<Placeholder>",
             "Arash",
-            "Koyanskaya",
+            "Koyanskaya of Light",
             "Oberon",
             "Oberon",
             "<Unspecified>"
@@ -926,7 +926,7 @@
         "party": [
             "<Placeholder>",
             "Oberon",
-            "Koyanskaya",
+            "Koyanskaya of Light",
             "Oberon",
             "<Unspecified>",
             "<Unspecified>"
@@ -1115,8 +1115,8 @@
         },
         "party": [
             "<Placeholder>",
-            "Koyanskaya",
-            "Waver",
+            "Koyanskaya of Light",
+            "Zhuge Liang (Lord El-Melloi II)",
             "Oberon",
             "<Unspecified>",
             "<Unspecified>"
@@ -1210,8 +1210,8 @@
         },
         "party": [
             "<Placeholder>",
-            "Koyanskaya",
-            "Koyanskaya",
+            "Koyanskaya of Light",
+            "Koyanskaya of Light",
             "Oberon",
             "<Unspecified>",
             "<Unspecified>"
@@ -1305,8 +1305,8 @@
         },
         "party": [
             "<Placeholder>",
-            "Koyanskaya",
-            "Waver",
+            "Koyanskaya of Light",
+            "Zhuge Liang (Lord El-Melloi II)",
             "Oberon",
             "<Unspecified>",
             "<Unspecified>"
@@ -1400,9 +1400,9 @@
         },
         "party": [
             "<Placeholder>",
-            "Waver",
-            "Koyanskaya",
-            "Koyanskaya",
+            "Zhuge Liang (Lord El-Melloi II)",
+            "Koyanskaya of Light",
+            "Koyanskaya of Light",
             "<Unspecified>",
             "<Unspecified>"
         ],
@@ -1495,8 +1495,8 @@
         },
         "party": [
             "<Placeholder>",
-            "Koyanskaya",
-            "Koyanskaya",
+            "Koyanskaya of Light",
+            "Koyanskaya of Light",
             "Oberon",
             "<Unspecified>",
             "<Unspecified>"
@@ -1688,7 +1688,7 @@
             "Arash",
             "Oberon",
             "Oberon",
-            "Koyanskaya",
+            "Koyanskaya of Light",
             "Miss Crane"
         ],
         "clearers": [
@@ -1781,7 +1781,7 @@
         "party": [
             "<Placeholder>",
             "Oberon",
-            "Koyanskaya",
+            "Koyanskaya of Light",
             "Oberon",
             "<Unspecified>",
             "<Unspecified>"
@@ -1875,8 +1875,8 @@
         },
         "party": [
             "<Placeholder>",
-            "Castoria",
-            "Castoria",
+            "Altria Caster",
+            "Altria Caster",
             "Oberon",
             "<Unspecified>",
             "<Unspecified>"
@@ -1970,8 +1970,8 @@
         },
         "party": [
             "<Placeholder>",
-            "Skadi",
-            "Skadi",
+            "Scáthach-Skadi",
+            "Scáthach-Skadi",
             "Oberon",
             "<Unspecified>",
             "<Unspecified>"
@@ -2067,8 +2067,8 @@
             "<Placeholder>",
             "Arash",
             "Oberon",
-            "Koyanskaya",
-            "Koyanskaya",
+            "Koyanskaya of Light",
+            "Koyanskaya of Light",
             "<Unspecified>"
         ],
         "clearers": [
