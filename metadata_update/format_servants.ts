@@ -16,21 +16,22 @@ enumStream.on("end", () => {
             return;
         }
         //console.log(data.name);
-        let npFunc = data.noblePhantasms[0].functions.find(f => f.funcType.startsWith("damageNp"));
+        let npFuncFirst = data.noblePhantasms[0].functions.find(f => f.funcType.startsWith("damageNp"));
+        let npFuncLast = data.noblePhantasms[data.noblePhantasms.length - 1].functions.find(f => f.funcType.startsWith("damageNp"));
         let servant = new ServantData(
             data.name,
             data.collectionNo,
             data.rarity,
             data.noblePhantasms[0].card,
-            npFunc
-                ? npFunc.svals.map(v => v.Value / v.Rate) 
-                : [ 0.0, 0.0, 0.0, 0.0, 0.0 ],
-            data.noblePhantasms[0].card == "buster" ? data.noblePhantasms[0].strengthStatus : data.noblePhantasms[0].strengthStatus * 2.0,
+            npFuncFirst
+                ? npFuncFirst.svals.map(v => v.Value / v.Rate) 
+                : [ 0, 0, 0, 0, 0 ],
+                npFuncFirst && data.noblePhantasms[0].strengthStatus ? (npFuncLast.svals[0].Value / npFuncLast.svals[0].Rate - npFuncFirst.svals[0].Value / npFuncFirst.svals[0].Rate) : 0,
             new GrowthCurve(new Map(data.atkGrowth.map((atk: number, i: number) => [ (i + 1).toString(), atk ]))),
             data.className,
             data.attribute,
-            getExtraMultiplier(npFunc),
-            getExtraTrigger(npFunc),
+            getExtraMultiplier(npFuncLast),
+            getExtraTrigger(npFuncLast),
             0,//TODO: f2pCopies
             data.extraAssets.faces.ascension["1"],
             data.extraAssets.charaGraph.ascension["1"],

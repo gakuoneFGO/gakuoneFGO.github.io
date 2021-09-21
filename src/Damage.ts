@@ -90,10 +90,12 @@ class Calculator {
 
 function isTriggerActive(enemy: Enemy, trigger: Trigger): boolean {
     //TODO: oddball ones like tesla's
-    return (enemy.eClass as string) == (trigger as string) ||
-        (enemy.attribute as string) == (trigger as string) ||
-        enemy.traits.some(trait => (trait as string) == (trigger as string)) ||
-        trigger == Trigger.Always;
+    let strTrigger = trigger as string;
+    if (strTrigger.startsWith("class"))
+        return strTrigger.endsWith(enemy.eClass.substring(1));
+    if (strTrigger.startsWith("attribute"))
+        return strTrigger.endsWith(enemy.attribute.substring(1));
+    return trigger == Trigger.Always || enemy.traits.some(trait => (trait as string) == strTrigger);
 }
 
 class CraftEssence {

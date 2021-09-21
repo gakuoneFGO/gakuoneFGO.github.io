@@ -199,7 +199,7 @@ enum Trigger {
     Shuten = "shuten",
     SuperLarge = "superGiant",
     ThreatToHumanity = "threatToHumanity",
-    Undead = "Undead",
+    Undead = "undead",
     WeakToEnumaElish = "weakToEnumaElish",
     WildBeast = "wildbeast",
     EarthOrSky = "skyOrEarth",
