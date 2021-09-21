@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import NumberFormat from "react-number-format";
-import { Accordion, AccordionDetails, AccordionSummary, Checkbox, FormControlLabel, Grid, InputAdornment, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, Checkbox, FormControlLabel, Grid, ImageList, ImageListItem, InputAdornment, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
@@ -100,7 +100,10 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
                         </AccordionDetails>
                     </Accordion>
                 </Grid>
-                <OutputPanel strat={this.state._} node={this.getNode()} />
+                <Grid item md={4}>
+                    <PartyDisplay party={this.state._.template.party} servant={this.state._.servant} />
+                    <OutputPanel strat={this.state._} node={this.getNode()} />
+                </Grid>
             </Grid>
         );
     }
@@ -383,6 +386,28 @@ class CEBuilder extends BaseComponent<any, CraftEssence, any> {
     }
 }
 
+class PartyDisplay extends BaseComponent<any, Servant[], any> {
+    constructor(props: any) {
+        super(props, props.party);
+    }
+
+    static getDerivedStateFromProps(props: any, state: StateWrapper<Servant[]>): StateWrapper<Servant[]> {
+        return new StateWrapper(replacePlaceholder(props.party, props.servant));
+    }
+
+    render() {
+        return (
+            <ImageList cols={6}>
+                {this.state._.map((servant, index) =>
+                    <ImageListItem key={index} cols={1}>
+                        <img alt={servant.data.name} src={servant.data.cardArtUrl} />
+                    </ImageListItem>
+                )}
+            </ImageList>
+        );
+    }
+}
+
 class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
     constructor(props: any) {
         super(props, []);
@@ -406,30 +431,28 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
 
     render() {
         return (
-            <Grid item md={4}>
-                <TableContainer>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell />
-                                {this.state._.map((_, index) =>
-                                    <TableCell key={index}>NP{index + 1}</TableCell>
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell />
+                            {this.state._.map((_, index) =>
+                                <TableCell key={index}>NP{index + 1}</TableCell>
+                            )}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {this.state._[0].damagePerWave.map((_, waveIndex) =>
+                            <TableRow key={waveIndex}>
+                                <TableCell><strong>T{waveIndex + 1}</strong></TableCell>
+                                {this.state._.map((nodeDamage, npIndex) =>
+                                    <TableCell key={npIndex}><NumberFormat value={nodeDamage.damagePerWave[waveIndex].damagePerEnemy[0].low} displayType="text" thousandSeparator=","/></TableCell>
                                 )}
                             </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {this.state._[0].damagePerWave.map((_, waveIndex) =>
-                                <TableRow key={waveIndex}>
-                                    <TableCell><strong>T{waveIndex + 1}</strong></TableCell>
-                                    {this.state._.map((nodeDamage, npIndex) =>
-                                        <TableCell key={npIndex}><NumberFormat value={nodeDamage.damagePerWave[waveIndex].damagePerEnemy[0].low} displayType="text" thousandSeparator=","/></TableCell>
-                                    )}
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Grid>
+                        )}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         );
     }
 }
@@ -460,6 +483,10 @@ function getMaxLevel(rarity: number): number {
         case 5: return 90;
     }
     return 0;
+}
+
+function replacePlaceholder(party: Servant[], servant: Servant): Servant[] {
+    return party.reduce<Servant[]>((prev: Servant[], cur, i) => cur.data.name == "<Placeholder>" ? update(prev, { [i]: { $set: servant } }) : prev, party);
 }
 
 ReactDOM.render(
