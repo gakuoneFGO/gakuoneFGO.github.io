@@ -1,0 +1,2 @@
+call tsc metadata_update\format_servants.ts
+node metadata_update\format_servants.js

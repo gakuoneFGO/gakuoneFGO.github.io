@@ -37,7 +37,12 @@ let allData = Promise.all([
 
 function getServantDefaultsFromData(name: string, data: Data): Servant {
     let servantData = data.servants.get(name) as ServantData;
-    let config = new ServantConfig(servantData.name, Math.max(servantData.f2pCopies, 1), getMaxLevel(servantData.rarity), 1000, new PowerMod((servantData.appendTarget as string) as Trigger, 0.3), servantData.npUpgrade > 0.0);
+    let config = new ServantConfig(
+        servantData.name, Math.max(servantData.f2pCopies, 1),
+        getMaxLevel(servantData.rarity),
+        1000,
+        new PowerMod((servantData.appendTarget as string) as Trigger, 0.3),
+        servantData.np.multUpgrade > 0.0);
     return new Servant(config, servantData);
 }
 

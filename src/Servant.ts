@@ -1,5 +1,5 @@
 import { TransformPlainToClass, Type } from "class-transformer";
-import { PowerMod } from "./Damage";
+import { BuffSet, PowerMod } from "./Damage";
 
 class Servant {
     constructor(readonly config: ServantConfig, readonly data: ServantData) {};
@@ -9,7 +9,7 @@ class Servant {
     }
 
     getNpMultiplier(overcharge: number): number {
-        let multiplier = this.data.npMultiplier[this.config.npLevel - 1] + (this.config.isNpUpgraded ? this.data.npUpgrade : 0.0);
+        let multiplier = this.data.np.multiplier[this.config.npLevel - 1] + (this.config.isNpUpgraded ? this.data.np.multUpgrade : 0.0);
         if (this.data.name == "Arash") {
             return multiplier + overcharge * (this.config.isNpUpgraded ?  2.0 : 1.0);
         } else if (this.data.name == "Chen Gong") {
@@ -32,57 +32,34 @@ class ServantConfig {
 
 class ServantData {
     constructor(
-        name: string,
-        id: number,
-        rarity: number,
-        npType: CardType,
-        npMultiplier: number[],
-        npUpgrade: number,
+        readonly name: string,
+        readonly id: number,
+        readonly rarity: number,
         growthCurve: GrowthCurve,
-        sClass: ServantClass,
-        attribute: ServantAttribute,
-        extraDamage: number[],
-        extraTrigger: Trigger,
-        f2pCopies: number,
-        iconUrl: string,
-        cardArtUrl: string,
-        chargeProfile: string,
-        appendTarget: Trigger) {
-            this.name = name;
-            this.id = id;
-            this.rarity = rarity;
-            this.npType = npType;
-            this.npMultiplier = npMultiplier;
-            this.npUpgrade = npUpgrade;
+        readonly sClass: ServantClass,
+        readonly attribute: ServantAttribute,
+        readonly f2pCopies: number,
+        readonly iconUrl: string,
+        readonly cardArtUrl: string,
+        readonly chargeProfile: string,
+        readonly appendTarget: Trigger,
+        passives: Buff[],
+        skills: Skill[],
+        np: NoblePhantasm) {
             this.growthCurve = growthCurve;
-            this.sClass = sClass;
-            this.attribute = attribute;
-            this.extraDamage = extraDamage;
-            this.extraTrigger = extraTrigger;
-            this.f2pCopies = f2pCopies;
-            this.iconUrl = iconUrl;
-            this.cardArtUrl = cardArtUrl;
-            this.chargeProfile = chargeProfile;
-            this.appendTarget = appendTarget;
+            this.passives = passives;
+            this.skills = skills;
+            this.np = np;
         }
 
-        readonly name: string;
-        id: number;
-        readonly rarity: number;
-        readonly npType: CardType;
-        readonly npMultiplier: number[];
-        readonly npUpgrade: number;
         @Type(() => GrowthCurve)
         readonly growthCurve: GrowthCurve;
-        readonly sClass: ServantClass;
-        readonly attribute: ServantAttribute;
-        readonly extraDamage: number[];
-        readonly extraTrigger: Trigger;
-        readonly f2pCopies: number;
-        readonly iconUrl: string;
-        readonly cardArtUrl: string;
-        readonly chargeProfile: string;
-        readonly appendTarget: Trigger;
+        @Type(() => Buff)
+        readonly passives: Buff[];
+        @Type(() => Skill)
+        readonly skills: Skill[];
+        @Type(() => NoblePhantasm)
+        readonly np: NoblePhantasm;
 }
 
 class GrowthCurve {
@@ -105,6 +82,56 @@ class GrowthCurve {
         return Array.from(this.stats.keys());
     }
 }
+
+class Buff {
+    constructor(
+        readonly self: boolean,
+        readonly team: boolean,
+        readonly type: BuffType,
+        readonly val: number,
+        readonly turns: number,
+        readonly cardType?: CardType,
+        readonly trig?: Trigger) {}
+}
+
+enum BuffType {
+    AttackUp = "atk",
+    CardTypeUp = "eff",
+    NpDmgUp = "npDmg",
+    PowerMod = "pMod",
+    Overcharge = "oc",
+    NpBoost = "npBoost",
+}
+
+class Skill {
+    constructor(
+        readonly cooldown: number,
+        buffs: Buff[]) {
+        this.buffs = buffs;
+    }
+
+    @Type(() => Buff)
+    readonly buffs: Buff[];
+}
+
+class NoblePhantasm {
+    constructor(
+        readonly type: CardType,
+        readonly multiplier: number[],
+        readonly multUpgrade: number,
+        readonly extraDamage: number[],
+        readonly extraTrigger: Trigger,
+        preBuffs: Buff[],
+        postBuffs: Buff[]) {
+        this.preBuffs = preBuffs;
+        this.postBuffs = postBuffs;
+    }
+
+    @Type(() => Buff)
+    readonly preBuffs: Buff[];
+    @Type(() => Buff)
+    readonly postBuffs: Buff[];
+} 
 
 enum CardType {
     Buster = "buster", 
@@ -215,4 +242,4 @@ enum Trigger {
     //TODO: add remaining triggers
 }
 
-export { Servant, ServantConfig, ServantData, ServantClass, ServantAttribute, Trigger, CardType, GrowthCurve };
+export { Servant, ServantConfig, ServantData, Buff, BuffType, Skill, NoblePhantasm, ServantClass, ServantAttribute, Trigger, CardType, GrowthCurve, Alignment };
