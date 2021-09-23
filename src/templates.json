@@ -7,7 +7,7 @@
                     "attackUp": 0.2,
                     "effUp": 0.5,
                     "npUp": 0.3,
-                    "isDoubleNpUp": true,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -28,7 +28,7 @@
                     "attackUp": 0.2,
                     "effUp": 0,
                     "npUp": 0.6,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "threatToHumanity",
@@ -49,7 +49,7 @@
                     "attackUp": 0.5,
                     "effUp": 0.5,
                     "npUp": 0.6,
-                    "isDoubleNpUp": true,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": "threatToHumanity",
@@ -102,7 +102,7 @@
                     "attackUp": 0,
                     "effUp": 0.5,
                     "npUp": 0.3,
-                    "isDoubleNpUp": true,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -123,7 +123,7 @@
                     "attackUp": 0.4,
                     "effUp": 0,
                     "npUp": 0.6,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -144,7 +144,7 @@
                     "attackUp": 0.7,
                     "effUp": 0.5,
                     "npUp": 0.6,
-                    "isDoubleNpUp": true,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -197,7 +197,7 @@
                     "attackUp": 0.3,
                     "effUp": 0.5,
                     "npUp": 0.3,
-                    "isDoubleNpUp": true,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -218,7 +218,7 @@
                     "attackUp": 0.3,
                     "effUp": 0,
                     "npUp": 0.6,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -239,7 +239,7 @@
                     "attackUp": 0.6,
                     "effUp": 0.5,
                     "npUp": 0.6,
-                    "isDoubleNpUp": true,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -292,7 +292,7 @@
                     "attackUp": 0,
                     "effUp": 0.5,
                     "npUp": 0.6,
-                    "isDoubleNpUp": true,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -313,7 +313,7 @@
                     "attackUp": 0,
                     "effUp": 0.5,
                     "npUp": 0.6,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "attributeHuman",
@@ -334,7 +334,7 @@
                     "attackUp": 0.3,
                     "effUp": 1,
                     "npUp": 0.6,
-                    "isDoubleNpUp": true,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": "attributeHuman",
@@ -387,7 +387,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -408,7 +408,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -429,7 +429,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -482,7 +482,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -503,7 +503,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -524,7 +524,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -577,7 +577,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -598,7 +598,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -619,7 +619,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -672,7 +672,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -693,7 +693,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -714,7 +714,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -767,7 +767,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -788,7 +788,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -809,7 +809,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -862,7 +862,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -883,7 +883,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -904,7 +904,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -957,7 +957,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -978,7 +978,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -999,7 +999,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1052,7 +1052,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1073,7 +1073,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1094,7 +1094,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1147,7 +1147,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1168,7 +1168,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1189,7 +1189,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1242,7 +1242,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1263,7 +1263,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1284,7 +1284,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1337,7 +1337,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1358,7 +1358,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1379,7 +1379,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1432,7 +1432,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1453,7 +1453,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1474,7 +1474,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1527,7 +1527,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1548,7 +1548,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1569,7 +1569,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1622,7 +1622,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1643,7 +1643,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1664,7 +1664,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1717,7 +1717,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1738,7 +1738,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1759,7 +1759,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1812,7 +1812,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1833,7 +1833,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1854,7 +1854,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1907,7 +1907,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1928,7 +1928,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -1949,7 +1949,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -2002,7 +2002,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -2023,7 +2023,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",
@@ -2044,7 +2044,7 @@
                     "attackUp": 0,
                     "effUp": 0,
                     "npUp": 0,
-                    "isDoubleNpUp": false,
+                    "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": "always",

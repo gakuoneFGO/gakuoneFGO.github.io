@@ -12,13 +12,13 @@ class BuffSet {
         readonly attackUp: number, //includes def down
         readonly effUp: number, //includes resistance down
         readonly npUp: number,
-        readonly isDoubleNpUp: boolean,
+        readonly npBoost: number,
         readonly powerMods: PowerMod[],
         readonly overcharge: number) {}
 
     static empty(): BuffSet {
-        let powerMod = new PowerMod(Trigger.Always, 0.0);
-        const emptySingleton = new BuffSet(0.0, 0.0, 0.0, false, [ powerMod, powerMod, powerMod ], 0);
+        let powerMod = new PowerMod(Trigger.Always, 0);
+        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0);
         return emptySingleton;
     }
 
@@ -27,7 +27,7 @@ class BuffSet {
             buffs.map(buff => buff.attackUp).reduce((a, b) => a + b),
             buffs.map(buff => buff.effUp).reduce((a, b) => a + b),
             buffs.map(buff => buff.npUp).reduce((a, b) => a + b),
-            buffs.some(buff => buff.isDoubleNpUp),
+            buffs.reduce((prev, buff) => Math.max(prev, buff.npBoost), 0),
             buffs.flatMap(buff => buff.powerMods).concat(appendMod),
             buffs.map(buff => buff.overcharge).reduce((a, b) => a + b),
         );
@@ -35,8 +35,8 @@ class BuffSet {
 
     getMultiplier(enemy: Enemy) {
         let powerMod = this.powerMods.filter(pm => isTriggerActive(enemy, pm.trigger)).map(pm => pm.modifier).reduce((a, b) => a + b);
-        let npUp = this.isDoubleNpUp ? 2 * this.npUp : this.npUp;
-        return (1 + this.attackUp) * (1 + this.effUp) * (1 + powerMod + npUp);
+        let modAndNp = powerMod + this.npUp * (1 + this.npBoost);
+        return (1 + this.attackUp) * (1 + this.effUp) * (1 + modAndNp);
     }
 }
 

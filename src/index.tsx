@@ -291,7 +291,8 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
                             <TableCell>Attack Up</TableCell>
                             <TableCell>Card Type Up</TableCell>
                             <TableCell>NP Damage Up</TableCell>
-                            <TableCell>2x NP Dmg Up</TableCell>
+                            {/* TODO: hide this if no NP boosts in kit (this will be a pattern) */}
+                            <TableCell>NP Up Boost</TableCell>
                             <TableCell>Power Mod 1</TableCell>
                             <TableCell>Trigger 1</TableCell>
                             <TableCell>Power Mod 2</TableCell>
@@ -305,7 +306,7 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
                                 <TableCell><PercentInput value={this.state._.buffs[index].attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }); }} /></TableCell>
                                 <TableCell><PercentInput value={this.state._.buffs[index].effUp} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v} } } }); } } /></TableCell>
                                 <TableCell><PercentInput value={this.state._.buffs[index].npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v} } } }); }} /></TableCell>
-                                <TableCell><Checkbox checked={this.state._.buffs[index].isDoubleNpUp} onChange={(e, v) => this.handleChange({ buffs : { [index]: { isDoubleNpUp: {$set: v } } } }) } /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v} } } }); }} /></TableCell>
                                 <TableCell><PercentInput value={this.state._.buffs[index].powerMods[0].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v} }, 0, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
