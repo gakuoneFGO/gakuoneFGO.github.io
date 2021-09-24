@@ -82,11 +82,12 @@ class Calculator {
         return new Damage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage);
     }
 
-    getCardMultiplier(cardType:CardType):number {
+    getCardMultiplier(cardType:CardType): number {
         switch (cardType) {
             case CardType.Buster: return 1.5;
             case CardType.Arts: return 0.75;
             case CardType.Quick: return 0.8;
+            case CardType.Extra: return 1;//TODO
         }
     }
 

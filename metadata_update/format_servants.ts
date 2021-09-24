@@ -19,7 +19,8 @@ enumStream.on("end", () => {
         }
         //console.log(data.name);
         let npFuncFirst = data.noblePhantasms[0].functions.find(f => f.funcType.startsWith("damageNp"));
-        let npFuncLast = data.noblePhantasms[data.noblePhantasms.length - 1].functions.find(f => f.funcType.startsWith("damageNp"));
+        let npFuncLastIndex = data.noblePhantasms[data.noblePhantasms.length - 1].functions.findIndex(f => f.funcType.startsWith("damageNp"));
+        let npFuncLast = data.noblePhantasms[data.noblePhantasms.length - 1].functions[npFuncLastIndex];
         let servant = new ServantData(
             data.name,
             data.collectionNo,
@@ -42,8 +43,10 @@ enumStream.on("end", () => {
                     npFuncFirst && data.noblePhantasms[0].strengthStatus ? (npFuncLast.svals[0].Value * U_RATIO - npFuncFirst.svals[0].Value * U_RATIO) : 0,
                     getExtraMultiplier(npFuncLast),
                     getExtraTrigger(npFuncLast),
-                    [],
-                    []
+                    data.noblePhantasms[data.noblePhantasms.length - 1].functions.filter((_, i) => i < npFuncLastIndex).flatMap(toBuff),
+                    data.noblePhantasms[data.noblePhantasms.length - 1].functions.filter((_, i) => i > npFuncLastIndex).flatMap(toBuff)
+                        .map((b: Buff) => update(b, { turns: { $set: b.turns - 1 } }))
+                        .filter(b => b.turns > 0)
             )
         );
         //console.log(servant);
@@ -216,6 +219,7 @@ function toBuff(func: any): Buff[] {
             return [ new Buff(self, team, BuffType.Overcharge, getBuffValue(func), getBuffTurns(func)) ];
         case "overwriteClassRelation":
             //TODO: I had no idea kiara had this, wtf. well we needed to do this for kama anyway
+        case "upCommandatk": //TODO: handle this if it comes up for any new servants
         case "avoidState":
         case "regainStar":
         case "upStarweight":
@@ -232,6 +236,7 @@ function toBuff(func: any): Buff[] {
         case "upDefencecommandall":
         case "avoidance":
         case "invincible":
+        case "specialInvincible":
         case "guts":
         case "gutsRatio":
         case "gutsFunction":
@@ -279,6 +284,7 @@ function toBuff(func: any): Buff[] {
         case "deadFunction":
         case "addIndividuality"://TODO: what is this
         case "fieldIndividuality"://TODO: do you want to go so far as to know who can change field type to proc their own buffs?
+        case "reflectionFunction":
             return [];
         default:
             console.log("Unknown buff type", func.buffs[0]);
@@ -299,16 +305,20 @@ function debuffToBuff(func: any): Buff[] {
         case "donotSkill":
         case "donotNoble":
         case "avoidState":
+        case "invincible":
         case "reduceHp"://TODO: curse/poison/burn
+        case "addSelfdamage":
         case "upFuncHpReduce":
         case "downGainHp":
         case "downCriticalpoint":
         case "downCriticalrate":
+        case "downCriticaldamage":
         case "upNonresistInstantdeath":
         case "downAtk":
         case "upAtk":
         case "downNpdamage":
         case "downTolerance":
+        case "upTolerance":
         case "downDropnp":
         case "upHate":
         case "delayFunction":

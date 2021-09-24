@@ -517,16 +517,21 @@ function defaultBuffsetHeuristic(servant: ServantData, party: Servant[], clearer
         let anySelfBuff = skill.buffs.findIndex(b => b.self) >= 0;
         let turnsToApplyTo = clearers.flatMap((isMain, index) => isMain == anySelfBuff ? [index] : []);
         if (turnsToApplyTo.length == 0) {
-            return { skill: skill, turn: 0 };
+            return { buffs: skill.buffs, turn: 0 };
         }
-        return { skill: skill, turn: turnsToApplyTo.reverse()[0] - Math.min(...skill.buffs.map(b => b.turns)) + 1 };
-    });
+        return { buffs: skill.buffs, turn: turnsToApplyTo.reverse()[0] - Math.min(...skill.buffs.map(b => b.turns)) + 1 };
+    }).concat(clearers.map((isMain, turn) => {
+        return { buffs: isMain ? servant.np.preBuffs : [], turn: turn };
+    })).concat(clearers.map((isMain, turn) => {
+        return { buffs: isMain ? servant.np.postBuffs : [], turn: turn + 1 };
+    }));
+    
     return new BuffMatrix(clearers.map((isMain, turn) => {
         return BuffSet.fromBuffs(skillOrder.flatMap(order => {
             return order.turn <= turn
-                ? order.skill.buffs.filter(b => (isMain && b.self) || (!isMain && b.team)).filter(b => order.turn + b.turns > turn)
+                ? order.buffs.filter(b => (isMain && b.self) || (!isMain && b.team)).filter(b => order.turn + b.turns > turn)
                 : []
-        }).concat(servant.passives.filter(b => (isMain && b.self) || (!isMain && b.team))), servant.np.type);//TODO
+        }).concat(servant.passives.filter(b => (isMain && b.self) || (!isMain && b.team))), servant.np.type)//TODO
     }));
 }
 

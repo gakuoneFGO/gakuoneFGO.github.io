@@ -134,9 +134,10 @@ class NoblePhantasm {
 } 
 
 enum CardType {
-    Buster = "buster", 
-    Arts = "arts", 
-    Quick = "quick", 
+    Buster = "buster",
+    Arts = "arts",
+    Quick = "quick",
+    Extra = "extra",
 }
 
 enum ServantClass {

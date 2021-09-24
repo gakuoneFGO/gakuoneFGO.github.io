@@ -860,7 +860,32 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "quick"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "arts"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -2023,7 +2048,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -3394,7 +3427,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.3,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -3595,7 +3637,43 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0,
+                    "turns": 1
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0,
+                    "turns": 1
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0,
+                    "turns": 1
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0,
+                    "turns": 1
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -3965,7 +4043,15 @@
                 1
             ],
             "extraTrigger": "genderMale",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -4717,7 +4803,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.3,
+                    "turns": 1,
+                    "cardType": "arts"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -4889,7 +4984,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.1,
+                    "turns": 3
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -5070,7 +5173,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 1,
+                    "turns": 1
+                }
+            ]
         }
     },
     {
@@ -6412,7 +6523,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.1,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -8355,7 +8474,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.3,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -8551,7 +8678,24 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.4,
+                    "turns": 1,
+                    "trig": "alignmentChaotic"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.4,
+                    "turns": 1,
+                    "trig": "alignmentEvil"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -8731,7 +8875,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 3,
+                    "cardType": "arts"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -9101,7 +9254,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -9488,7 +9649,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 3,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -10066,7 +10236,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "arts"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -10247,7 +10426,24 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "arts"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -10831,7 +11027,16 @@
                 2
             ],
             "extraTrigger": "oni",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.2,
+                    "turns": 1,
+                    "trig": "demonic"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -11012,7 +11217,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -11210,7 +11424,23 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 3,
+                    "cardType": "arts"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.1,
+                    "turns": 3
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -11416,7 +11646,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -11604,7 +11843,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -12191,7 +12439,15 @@
                 2
             ],
             "extraTrigger": "weakToEnumaElish",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -14212,7 +14468,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 3,
+                    "trig": "demonic"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -14961,7 +15226,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -15159,7 +15433,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -15559,7 +15842,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -18576,7 +18867,16 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 2,
+                    "cardType": "buster"
+                }
+            ]
         }
     },
     {
@@ -18760,7 +19060,24 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.3,
+                    "turns": 2,
+                    "cardType": "quick"
+                },
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.3,
+                    "turns": 2,
+                    "cardType": "buster"
+                }
+            ]
         }
     },
     {
@@ -18948,7 +19265,23 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.1,
+                    "turns": 1
+                },
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 1,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -19138,7 +19471,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.5,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -19514,7 +19855,32 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 1,
+                    "trig": "attributeHuman"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 1,
+                    "trig": "alignmentNeutral"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 1,
+                    "trig": "shadowServant"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -19694,7 +20060,32 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 1,
+                    "trig": "attributeHuman"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 1,
+                    "trig": "alignmentLawful"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 1,
+                    "trig": "shadowServant"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -19876,7 +20267,24 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": false,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 2,
+                    "cardType": "buster"
+                },
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 2,
+                    "cardType": "buster"
+                }
+            ]
         }
     },
     {
@@ -20064,7 +20472,32 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 1,
+                    "cardType": "quick"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 1,
+                    "cardType": "arts"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -20249,8 +20682,25 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
-            "postBuffs": []
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": -0.1,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -20628,7 +21078,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "arts"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -21000,7 +21459,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 3,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -21949,7 +22417,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -22134,7 +22611,15 @@
                 2
             ],
             "extraTrigger": "threatToHumanity",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -22505,7 +22990,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.1,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -23095,7 +23588,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -23668,7 +24170,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.5,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -24249,7 +24759,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -26592,7 +27110,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -26773,8 +27299,25 @@
                 1.5
             ],
             "extraTrigger": "attributeEarth",
-            "preBuffs": [],
-            "postBuffs": []
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -27547,7 +28090,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.5,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -27727,7 +28278,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -28655,7 +29214,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.1,
+                    "turns": 3
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -28844,7 +29411,22 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 3
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -29043,7 +29625,15 @@
             ],
             "extraTrigger": "genderMale",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.1,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -29597,7 +30187,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.5,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -29983,7 +30582,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -30184,7 +30791,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 3,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -31168,7 +31784,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -32732,7 +33356,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -32921,7 +33554,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -33283,7 +33924,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 1,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -33849,7 +34499,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -34039,7 +34697,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -35020,7 +35687,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "arts"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -35214,7 +35890,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -35410,8 +36094,24 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
-            "postBuffs": []
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -35779,7 +36479,15 @@
             ],
             "extraTrigger": "genderFemale",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -35989,7 +36697,22 @@
                 1.5
             ],
             "extraTrigger": "superGiant",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.1,
+                    "turns": 1
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -36187,7 +36910,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -36384,7 +37115,32 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "quick"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "arts"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -36573,7 +37329,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -37148,7 +37913,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -37696,7 +38469,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -40761,7 +41542,15 @@
                 3
             ],
             "extraTrigger": "king",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -41526,7 +42315,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -41725,7 +42522,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -43060,7 +43865,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.5,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -43241,7 +44054,18 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "type": "atk",
+                    "val": 0.4,
+                    "turns": 2
+                },
+                {
+                    "type": "npDmg",
+                    "val": 0.3,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -43814,7 +44638,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 3,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -43990,7 +44823,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 3
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -44343,7 +45184,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 1,
+                    "trig": "genderFemale"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -44702,7 +45552,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.3,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -47392,7 +48251,16 @@
             ],
             "extraTrigger": "demonic",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 2,
+                    "cardType": "buster"
+                }
+            ]
         }
     },
     {
@@ -47572,7 +48440,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.1,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -47769,7 +48645,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 3,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -48344,7 +49229,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 1,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -48550,7 +49444,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -50483,7 +51385,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -50852,7 +51762,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -51049,7 +51967,16 @@
                 2
             ],
             "extraTrigger": "saberClassServant",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 1,
+                    "trig": "alignmentGood"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -52599,7 +53526,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -52796,7 +53731,16 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -53362,7 +54306,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 3
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -53543,7 +54495,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 3
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -53739,7 +54699,16 @@
                 2
             ],
             "extraTrigger": "attributeHuman",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "pMod",
+                    "val": 0.5,
+                    "turns": 1,
+                    "trig": "knightsOfTheRound"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -54501,7 +55470,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.5,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -55085,7 +56062,16 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "eff",
+                    "val": 0.5,
+                    "turns": 2,
+                    "cardType": "buster"
+                }
+            ]
         }
     },
     {
@@ -55281,7 +56267,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.1,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -55679,7 +56673,16 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.1,
+                    "turns": 2,
+                    "cardType": "quick"
+                }
+            ]
         }
     },
     {
@@ -56838,7 +57841,24 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                },
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "buster"
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -58350,7 +59370,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 3
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -59096,7 +60124,15 @@
                 1
             ],
             "extraTrigger": "never",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.3,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -59494,7 +60530,15 @@
                 2
             ],
             "extraTrigger": "saberClassServant",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "atk",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -59867,7 +60911,15 @@
                 1.5
             ],
             "extraTrigger": "attributeSky",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "npDmg",
+                    "val": 0.2,
+                    "turns": 1
+                }
+            ],
             "postBuffs": []
         }
     },
@@ -60064,7 +61116,15 @@
             ],
             "extraTrigger": "never",
             "preBuffs": [],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "atk",
+                    "val": 0.3,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -60467,7 +61527,16 @@
                 1.5
             ],
             "extraTrigger": "alignmentEvil",
-            "preBuffs": [],
+            "preBuffs": [
+                {
+                    "self": true,
+                    "team": false,
+                    "type": "eff",
+                    "val": 0.2,
+                    "turns": 1,
+                    "cardType": "quick"
+                }
+            ],
             "postBuffs": []
         }
     },
