@@ -47,21 +47,23 @@ class BaseComponent<P extends BaseProps<S>, S, SS> extends React.Component<P, St
 class StratBuilder extends BaseComponent<any, Strat, any> {
     constructor(props: any) {
         super(props);
+        this.onServantChanged = this.onServantChanged.bind(this);
     }
 
     componentDidMount() {
         let component = this;
         allData.then(data => {
+            let servant = getServantDefaultsFromData("Iskandar", data);
+            let template = data.templates.get("Double Oberon + Castoria (0%)") as Template;
             let state = new Strat(
-                getServantDefaultsFromData("Iskandar", data),
-                data.templates.get("Double Oberon + Castoria (0%)") as Template,
-                BuffMatrix.create(3),
+                servant,
+                template,
+                defaultBuffsetHeuristic(servant.data, template.party, template.clearers.map(clearers => clearers.includes(0))),
                 new CraftEssence("<None>", 0, BuffSet.empty()),
                 new CraftEssence("<None>", 0, BuffSet.empty())
             );
             component.setState(component.wrap(state));
         });
-
     }
 
     render() {
@@ -83,7 +85,7 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
                         </AccordionSummary>
                         <AccordionDetails>
                             <div>
-                                <ServantSelector servant={this.state._.servant} onChange={(servant: Servant) => this.handleChange({ servant: { $set: servant } })} />
+                                <ServantSelector servant={this.state._.servant} onChange={(servant: Servant) => this.onServantChanged(servant)} />
                                 <BuffMatrixBuilder buffMatrix={this.state._.servantBuffs} onChange={(buffs: BuffMatrix) => this.handleChange({ servantBuffs: { $set: buffs } })} />
                             </div>
                         </AccordionDetails>
@@ -106,6 +108,17 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
                 </Grid>
             </Grid>
         );
+    }
+
+    onServantChanged(servant: Servant) {
+        if (servant.data.name != this.state._.servant.data.name) {
+            this.handleChange({
+                servant: { $set: servant },
+                servantBuffs: { $set: defaultBuffsetHeuristic(servant.data, this.state._.template.party, this.state._.template.clearers.map(clearers => clearers.includes(0))) }
+            });
+        } else {
+            this.handleChange({ servant: { $set: servant } });
+        }
     }
 
     //TODO
@@ -279,6 +292,10 @@ class ServantSelector extends BaseComponent<any, Servant, any> {
 class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
     constructor(props: any) {
         super(props, props.buffMatrix);
+    }
+
+    static getDerivedStateFromProps(props: any, state: StateWrapper<BuffMatrix>): StateWrapper<Servant[]> {
+        return new StateWrapper(props.buffMatrix);
     }
 
     render() {
@@ -493,6 +510,24 @@ function getMaxLevel(rarity: number): number {
 
 function replacePlaceholder(party: Servant[], servant: Servant): Servant[] {
     return party.reduce<Servant[]>((prev: Servant[], cur, i) => cur.data.name == "<Placeholder>" ? update(prev, { [i]: { $set: servant } }) : prev, party);
+}
+
+function defaultBuffsetHeuristic(servant: ServantData, party: Servant[], clearers: boolean[]): BuffMatrix {
+    let skillOrder = servant.skills.map(skill => {
+        let anySelfBuff = skill.buffs.findIndex(b => b.self) >= 0;
+        let turnsToApplyTo = clearers.flatMap((isMain, index) => isMain == anySelfBuff ? [index] : []);
+        if (turnsToApplyTo.length == 0) {
+            return { skill: skill, turn: 0 };
+        }
+        return { skill: skill, turn: turnsToApplyTo.reverse()[0] - Math.min(...skill.buffs.map(b => b.turns)) + 1 };
+    });
+    return new BuffMatrix(clearers.map((isMain, turn) => {
+        return BuffSet.fromBuffs(skillOrder.flatMap(order => {
+            return order.turn <= turn
+                ? order.skill.buffs.filter(b => (isMain && b.self) || (!isMain && b.team)).filter(b => order.turn + b.turns > turn)
+                : []
+        }).concat(servant.passives.filter(b => (isMain && b.self) || (!isMain && b.team))), servant.np.type);//TODO
+    }));
 }
 
 ReactDOM.render(

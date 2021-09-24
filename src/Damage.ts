@@ -1,4 +1,4 @@
-import { Servant, ServantClass, ServantAttribute, Trigger, CardType } from "./Servant";
+import { Servant, ServantClass, ServantAttribute, Trigger, CardType, Buff, BuffType } from "./Servant";
 import { Enemy, EnemyClass, EnemyAttribute } from "./Enemy";
 
 class PowerMod {
@@ -27,9 +27,30 @@ class BuffSet {
             buffs.map(buff => buff.attackUp).reduce((a, b) => a + b),
             buffs.map(buff => buff.effUp).reduce((a, b) => a + b),
             buffs.map(buff => buff.npUp).reduce((a, b) => a + b),
-            buffs.reduce((prev, buff) => Math.max(prev, buff.npBoost), 0),
+            Math.max(...buffs.map(buff => buff.npBoost)),
             buffs.flatMap(buff => buff.powerMods).concat(appendMod),
             buffs.map(buff => buff.overcharge).reduce((a, b) => a + b),
+        );
+    }
+
+    static fromBuffs(buffs: Buff[], npType: CardType): BuffSet {
+        let powerMod = new PowerMod(Trigger.Always, 0);
+        return new BuffSet(
+            buffs.filter(b => b.type == BuffType.AttackUp).reduce((v, b) => v + b.val, 0),
+            buffs.filter(b => b.type == BuffType.CardTypeUp && b.cardType == npType).reduce((v, b) => v + b.val, 0),
+            buffs.filter(b => b.type == BuffType.NpDmgUp).reduce((v, b) => v + b.val, 0),
+            Math.max(0, ...buffs.filter(b => b.type == BuffType.NpBoost).map(b => b.val)),
+            //TODO: just make a groupBy method, geez
+            Array.from(buffs.filter(b => b.type == BuffType.PowerMod)
+                .reduce((map, buff) => {
+                    if (!map.has(buff.trig as Trigger))
+                        map.set(buff.trig as Trigger, buff.val);
+                    else
+                        map.set(buff.trig as Trigger, buff.val + (map.get(buff.trig as Trigger) as number));
+                    return map;
+                }, new Map<Trigger, number>())
+                .entries()).map(entry => new PowerMod(entry[0], entry[1])).concat([ powerMod, powerMod, powerMod ]),
+                buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0)
         );
     }
 

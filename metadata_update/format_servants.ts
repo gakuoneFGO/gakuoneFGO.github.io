@@ -292,9 +292,9 @@ function debuffToBuff(func: any): Buff[] {
     //TODO: need to fix this sooner rather than later so that it shows up correctly when looking at specific nodes
     switch (func.buffs[0].type) {
         case "downDefence":
-            return [ new Buff(true, true, BuffType.AttackUp, getBuffValue(func), getBuffTurns(func)) ];
+            return [ new Buff(true, true, BuffType.AttackUp, getBuffValue(func), 1) ];
         case "downDefencecommandall":
-            return [ new Buff(true, true, BuffType.CardTypeUp, getBuffValue(func), getBuffTurns(func), getCardType(func.buffs[0].ckOpIndv[0].name)) ];
+            return [ new Buff(true, true, BuffType.CardTypeUp, getBuffValue(func), 1, getCardType(func.buffs[0].ckOpIndv[0].name)) ];
         case "donotAct":
         case "donotSkill":
         case "donotNoble":

@@ -4138,7 +4138,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -5230,7 +5230,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "arts"
                     },
                     {
@@ -5238,7 +5238,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "buster"
                     }
                 ]
@@ -7545,7 +7545,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "arts"
                     }
                 ]
@@ -8516,7 +8516,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -17813,7 +17813,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -19843,7 +19843,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.3,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "buster"
                     }
                 ]
@@ -21537,7 +21537,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -23644,7 +23644,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -24410,7 +24410,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -24827,7 +24827,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -25012,7 +25012,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.24,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -25402,7 +25402,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "quick"
                     }
                 ]
@@ -32705,7 +32705,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -35559,7 +35559,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.5,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -35575,7 +35575,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -35751,7 +35751,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -36550,7 +36550,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -36722,7 +36722,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -36920,7 +36920,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     },
                     {
                         "self": true,
@@ -39215,7 +39215,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "arts"
                     }
                 ]
@@ -40914,7 +40914,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -41887,7 +41887,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -42260,7 +42260,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -45795,7 +45795,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -45807,7 +45807,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -46194,7 +46194,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -46402,7 +46402,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -46970,7 +46970,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -47006,7 +47006,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -47548,7 +47548,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.5,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "buster"
                     }
                 ]
@@ -50073,7 +50073,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "buster"
                     }
                 ]
@@ -50440,7 +50440,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.15,
-                        "turns": 2
+                        "turns": 1
                     }
                 ]
             },
@@ -50460,7 +50460,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 2
+                        "turns": 1
                     }
                 ]
             }
@@ -51408,7 +51408,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.1,
-                        "turns": 5
+                        "turns": 1
                     }
                 ]
             }
@@ -51812,7 +51812,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -53708,7 +53708,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -54072,7 +54072,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 5,
+                        "turns": 1,
                         "cardType": "buster"
                     }
                 ]
@@ -54288,7 +54288,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "arts"
                     }
                 ]
@@ -54461,7 +54461,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -55245,7 +55245,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -55831,7 +55831,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -55860,7 +55860,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -56064,14 +56064,14 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     },
                     {
                         "self": true,
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "arts"
                     }
                 ]
@@ -56987,7 +56987,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -57927,7 +57927,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -57939,7 +57939,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.3,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             }
@@ -59266,7 +59266,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -59647,7 +59647,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -59839,7 +59839,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "quick"
                     }
                 ]
@@ -60020,14 +60020,14 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     },
                     {
                         "self": true,
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "quick"
                     }
                 ]
@@ -60233,7 +60233,7 @@
                         "team": true,
                         "type": "atk",
                         "val": 0.2,
-                        "turns": 3
+                        "turns": 1
                     }
                 ]
             },
@@ -60245,7 +60245,7 @@
                         "team": true,
                         "type": "eff",
                         "val": 0.3,
-                        "turns": 3,
+                        "turns": 1,
                         "cardType": "buster"
                     }
                 ]
