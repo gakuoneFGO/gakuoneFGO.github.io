@@ -71,6 +71,13 @@ enum Trait {
     WildBeast = "wildbeast",
     EarthOrSky = "skyOrEarth",
     SaberServant = "saberClassServant",
+    Good = "alignmentGood",
+    Evil = "alignmentEvil",
+    Lawful = "alignmentLawful",
+    Chaotic = "alignmentChaotic",
+    Neutral = "alignmentNeutral",
+    Summer = "alignmentSummer",
+    Madness = "alignmentMadness",
 }
 
-export { Enemy, EnemyClass, EnemyAttribute };
+export { Enemy, EnemyClass, EnemyAttribute, Trait };

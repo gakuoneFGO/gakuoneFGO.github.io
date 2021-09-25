@@ -28,6 +28,12 @@ class Wave {
 
 class EnemyNode {
     constructor(readonly waves: Wave[]) {}
+
+    static uniform(enemy: Enemy): EnemyNode {
+        let waves = new Array<Wave>(3);
+        waves.fill(new Wave([ enemy ]));
+        return new EnemyNode(waves);
+    }
 }
 
 class WaveDamage {
@@ -49,13 +55,14 @@ class Strat {
         readonly template: Template,
         readonly servantBuffs: BuffMatrix,
         readonly servantCe: CraftEssence,
-        readonly supportCe: CraftEssence) {}
+        readonly supportCe: CraftEssence,
+        readonly node: EnemyNode) {}
 
     //TODO: fix this garbage
-    run(node: EnemyNode): NodeDamage {
+    run(): NodeDamage {
         const calculator: Calculator = new Calculator();
         let result = new NodeDamage();
-        result.damagePerWave = node.waves.map((wave, wIndex) => {
+        result.damagePerWave = this.node.waves.map((wave, wIndex) => {
             let waveResult = new WaveDamage();
             this.template.clearers[wIndex].forEach(cIndex => {
                 var clearer = this.template.party[cIndex];

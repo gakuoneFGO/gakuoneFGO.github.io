@@ -8,11 +8,11 @@ import { Spec } from "immutability-helper";
 import "reflect-metadata";
 
 import { Template, BuffMatrix, Strat, EnemyNode, NodeDamage, Wave } from "./Strat";
-import { BuffSet, Calculator, CraftEssence, PowerMod } from "./Damage";
-import { Servant, ServantConfig, ServantData, Trigger, CardType, ServantClass, GrowthCurve, ServantAttribute } from "./Servant";
+import { BuffSet, Calculator, CraftEssence, getLikelyClassMatchup, PowerMod } from "./Damage";
+import { Servant, ServantConfig, ServantData, Trigger, CardType, ServantClass, ServantAttribute } from "./Servant";
 import { allData, Data } from "./Data";
 import { ExpandMore } from "@material-ui/icons";
-import { Enemy, EnemyAttribute, EnemyClass } from "./Enemy";
+import { Enemy, EnemyAttribute, EnemyClass, Trait } from "./Enemy";
 import { TransposedTableBody } from "./TransposedTable";
 
 class StateWrapper<S> {
@@ -27,6 +27,7 @@ class BaseComponent<P extends BaseProps<S>, S, SS> extends React.Component<P, St
     constructor(props: P, state?: S) {
         //TODO: setting state in constructor means that you have issues later trying to override the data
         //probable solution is to use keys to force a new instance to be constructed
+        //tbh most of the "state" should probably just be on the props, no state needed except to hold data not passed upward
         super(props);
         if (state) this.state = this.wrap(state);
         this.handleChange = this.handleChange.bind(this);
@@ -60,7 +61,8 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
                 template,
                 defaultBuffsetHeuristic(servant.data, template.party, template.clearers.map(clearers => clearers.includes(0))),
                 new CraftEssence("<None>", 0, BuffSet.empty()),
-                new CraftEssence("<None>", 0, BuffSet.empty())
+                new CraftEssence("<None>", 0, BuffSet.empty()),
+                EnemyNode.uniform(new Enemy(getLikelyClassMatchup(servant.data.sClass), EnemyAttribute.Neutral, [], 0.0))
             );
             component.setState(component.wrap(state));
         });
@@ -104,7 +106,8 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
                 </Grid>
                 <Grid item md={4}>
                     <PartyDisplay party={this.state._.template.party} servant={this.state._.servant} />
-                    <OutputPanel strat={this.state._} node={this.getNode()} />
+                    <OutputPanel strat={this.state._} />
+                    <EnemyBuilder enemy={this.state._.node.waves[0].enemies[0]} onChange={(enemy: Enemy) => this.handleChange({ node: { $set: EnemyNode.uniform(enemy) } })} />
                 </Grid>
             </Grid>
         );
@@ -114,19 +117,12 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
         if (servant.data.name != this.state._.servant.data.name) {
             this.handleChange({
                 servant: { $set: servant },
-                servantBuffs: { $set: defaultBuffsetHeuristic(servant.data, this.state._.template.party, this.state._.template.clearers.map(clearers => clearers.includes(0))) }
+                servantBuffs: { $set: defaultBuffsetHeuristic(servant.data, this.state._.template.party, this.state._.template.clearers.map(clearers => clearers.includes(0))) },
+                node: { $set: EnemyNode.uniform(update(this.state._.node.waves[0].enemies[0], { eClass: { $set: getLikelyClassMatchup(servant.data.sClass) } })) }
             });
         } else {
             this.handleChange({ servant: { $set: servant } });
         }
-    }
-
-    //TODO
-    getNode(): EnemyNode {
-        let enemy = new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0);
-        let waves = new Array<Wave>(3);
-        waves.fill(new Wave([ enemy ]));
-        return new EnemyNode(waves);
     }
 }
 
@@ -300,7 +296,7 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
 
     render() {
         return (
-            <TableContainer className="transpose">
+            <TableContainer>
                 <Table>
                     <TransposedTableBody>
                         <TableRow>
@@ -311,8 +307,8 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
                             {/* TODO: hide this if no NP boosts in kit (this will be a pattern) */}
                             <TableCell>NP Up Boost</TableCell>
                             {Array.from(new Array(this.props.maxPowerMods)).flatMap((_, pIndex) => [
-                                <TableCell>Power Mod{ this.props.maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>,
-                                <TableCell>Trigger{ this.props.maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>
+                                <TableCell key={pIndex * 2}>Power Mod{ this.props.maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>,
+                                <TableCell key={pIndex * 2 + 1}>Trigger{ this.props.maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>
                             ])}
                         </TableRow>
                         {this.state._.buffs.map((buffSet: BuffSet, index: number) => (
@@ -418,6 +414,41 @@ class CEBuilder extends BaseComponent<any, CraftEssence, any> {
     }
 }
 
+class EnemyBuilder extends BaseComponent<any, Enemy, any> {
+    constructor(props: any) {
+        super(props, props.enemy);
+    }
+
+    static getDerivedStateFromProps(props: any, state: StateWrapper<Enemy>): StateWrapper<Enemy> {
+        return new StateWrapper(props.enemy);
+    }
+
+    render() {
+        return (
+            <div>
+                <Autocomplete
+                    options={Object.values(EnemyClass)}
+                    value={this.state._.eClass}
+                    renderInput={params => <TextField {...params} label="Enemy Class" variant="outlined" />}
+                    onChange={(e, v) => { if (v) this.handleChange({ eClass: { $set: v as EnemyClass } }) }}
+                    disableClearable={true} />
+                <Autocomplete
+                    options={Object.values(EnemyAttribute)}
+                    value={this.state._.attribute}
+                    renderInput={params => <TextField {...params} label="Enemy Attribute" variant="outlined" />}
+                    onChange={(e, v) => { if (v) this.handleChange({ attribute: { $set: v as EnemyAttribute } }) }}
+                    disableClearable={true} />
+                    <Autocomplete multiple
+                        options={Object.values(Trait)}
+                        value={this.state._.traits}
+                        renderInput={params => <TextField {...params} label="Enemy Traits" variant="outlined" />}
+                        onChange={(e, v) => { if (v) this.handleChange({ traits: { $set: v as Trait[] } }) }}
+                        disableClearable={true} />
+            </div>
+        );
+    }
+}
+
 class PartyDisplay extends BaseComponent<any, Servant[], any> {
     constructor(props: any) {
         super(props, props.party);
@@ -456,7 +487,7 @@ class OutputPanel extends BaseComponent<any, NodeDamage[], any> {
                     tempStrat = update(tempStrat, { template: { party: { [clearerIndex]: { config: { npLevel: { $set: npLevel } } } } } });
                 }
             });
-            return tempStrat.run(node);
+            return tempStrat.run();
         });
         return new StateWrapper(output);
     }

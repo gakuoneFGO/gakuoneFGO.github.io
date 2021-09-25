@@ -158,7 +158,7 @@ enum ServantClass {
 }
 
 enum ServantAttribute {
-    Man = "man",
+    Man = "human",
     Earth = "earth",
     Sky = "sky",
     Star = "star",

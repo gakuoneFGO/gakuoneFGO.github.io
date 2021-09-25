@@ -127,13 +127,25 @@ class CraftEssence {
         readonly buffs: BuffSet) {}
 }
 
-
 function getAttributeTriangleMultiplier(servantAttribute: ServantAttribute, enemyAttribute: EnemyAttribute): number {
     if (enemyAttribute == EnemyAttribute.Neutral) return 1.0;
     let castEnemyAttribute = (enemyAttribute as string) as ServantAttribute;
     if (isAdvantaged(servantAttribute, castEnemyAttribute, attributeTriangleAdvantages)) return 1.1;
     if (isAdvantaged(castEnemyAttribute, servantAttribute, attributeTriangleAdvantages)) return 0.9;
     return 1.0;
+}
+
+function getLikelyClassMatchup(servantClass: ServantClass): EnemyClass {
+    switch(servantClass) {
+        case ServantClass.Berserker:
+            return EnemyClass.Neutral;
+        case ServantClass.AlterEgo:
+            return EnemyClass.Cavalry;
+        case ServantClass.Pretender:
+            return EnemyClass.Knight;
+        default:
+            return isExtra(servantClass) ? EnemyClass.Neutral : classTriangleAdvantages.get(servantClass) as string as EnemyClass;
+    }
 }
 
 let attributeTriangleAdvantages: Map<ServantAttribute, ServantAttribute> = new Map([
@@ -186,7 +198,7 @@ function isCavalry(enemyClass: EnemyClass): boolean {
         case EnemyClass.Berserker:
             return true;
         default:
-            return true;
+            return false;
     }
 }
 
@@ -197,7 +209,7 @@ function isKnight(enemyClass: EnemyClass): boolean {
         case EnemyClass.Lancer:
             return true;
         default:
-            return true;
+            return false;
     }
 }
 
@@ -216,4 +228,4 @@ let classTriangleAdvantages: Map<ServantClass, ServantClass> = new Map([
     [ServantClass.Pretender, ServantClass.AlterEgo],
 ]);
 
-export { PowerMod, BuffSet, Calculator, Damage, CraftEssence };
+export { PowerMod, BuffSet, Calculator, Damage, CraftEssence, getLikelyClassMatchup };
