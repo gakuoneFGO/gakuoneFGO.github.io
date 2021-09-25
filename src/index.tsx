@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import NumberFormat from "react-number-format";
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Checkbox, FormControlLabel, Grid, ImageList, ImageListItem, InputAdornment, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, Box, Checkbox, FormControlLabel, Grid, ImageList, ImageListItem, InputAdornment, InputLabel, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tabs, TextField } from "@material-ui/core";
+import { Autocomplete, TabContext, TabList, TabPanel } from "@material-ui/lab";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
 import "reflect-metadata";
@@ -45,7 +45,12 @@ class BaseComponent<P extends BaseProps<S>, S, SS> extends React.Component<P, St
     }
 }
 
-class StratBuilder extends BaseComponent<any, Strat, any> {
+interface StratBuilderState {
+    readonly strat: Strat;
+    readonly selectedTab: string;
+}
+
+class StratBuilder extends BaseComponent<any, StratBuilderState, any> {
     constructor(props: any) {
         super(props);
         this.onServantChanged = this.onServantChanged.bind(this);
@@ -56,7 +61,7 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
         allData.then(data => {
             let servant = getServantDefaultsFromData("Iskandar", data);
             let template = data.templates.get("Double Oberon + Castoria (0%)") as Template;
-            let state = new Strat(
+            let strat = new Strat(
                 servant,
                 template,
                 defaultBuffsetHeuristic(servant.data, template.party, template.clearers.map(clearers => clearers.includes(0))),
@@ -64,64 +69,64 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
                 new CraftEssence("<None>", 0, BuffSet.empty()),
                 EnemyNode.uniform(new Enemy(getLikelyClassMatchup(servant.data.sClass), EnemyAttribute.Neutral, [], 0.0))
             );
-            component.setState(component.wrap(state));
+            component.setState(component.wrap({ strat: strat, selectedTab: "servant" }));
         });
     }
 
     render() {
         if (!this.state) return null;
         return (
-            <Grid container>
-                <Grid item md={8}>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMore />}>
-                            3-Turn Template
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <TemplateBuilder key={this.state._.template.name} template={this.state._.template} onChange={(template: Template) => this.handleChange({ template: { $set: template } })} />
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMore />}>
-                            Servant Details
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <div>
-                                <ServantSelector servant={this.state._.servant} onChange={(servant: Servant) => this.onServantChanged(servant)} />
-                                <BuffMatrixBuilder buffMatrix={this.state._.servantBuffs} maxPowerMods={2} onChange={(buffs: BuffMatrix) => this.handleChange({ servantBuffs: { $set: buffs } })} />
-                            </div>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMore />}>
-                            Craft Essence
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <div>
-                                <CEBuilder ce={this.state._.servantCe} onChange={(ce: CraftEssence) => this.handleChange({ servantCe: { $set: ce } })} />
-                                <CEBuilder ce={this.state._.supportCe} onChange={(ce: CraftEssence) => this.handleChange({ supportCe: { $set: ce } })} />
-                            </div>
-                        </AccordionDetails>
-                    </Accordion>
+            <Grid container direction="row-reverse">
+                <Grid item lg={4} md={5} sm={12}>
+                    <PartyDisplay party={this.state._.strat.template.party} servant={this.state._.strat.servant} />
+                    <OutputPanel strat={this.state._.strat} />
+                    <EnemyBuilder enemy={this.state._.strat.node.waves[0].enemies[0]} onChange={(enemy: Enemy) => this.handleChange({ strat: { node: { $set: EnemyNode.uniform(enemy) } } })} />
                 </Grid>
-                <Grid item md={4}>
-                    <PartyDisplay party={this.state._.template.party} servant={this.state._.servant} />
-                    <OutputPanel strat={this.state._} />
-                    <EnemyBuilder enemy={this.state._.node.waves[0].enemies[0]} onChange={(enemy: Enemy) => this.handleChange({ node: { $set: EnemyNode.uniform(enemy) } })} />
+                <Grid item lg={8} md={7} sm={12}>
+                    <TabContext value={this.state._.selectedTab}>
+                        <Box>
+                            <TabList onChange={(_, v) => this.handleChange({ selectedTab: { $set: v } })}>
+                                <Tab label="Servant" value="servant" />
+                                <Tab label="Party" value="template" />
+                                <Tab label="Craft Essence" value="ce" />
+                            </TabList>
+                        </Box>
+                        <TabPanel value="servant">
+                            <div>
+                                <ServantSelector servant={this.state._.strat.servant} onChange={(servant: Servant) => this.onServantChanged(servant)} />
+                                <BuffMatrixBuilder buffMatrix={this.state._.strat.servantBuffs}
+                                    maxPowerMods={2}
+                                    onChange={(buffs: BuffMatrix) => this.handleChange({ strat: { servantBuffs: { $set: buffs } } })} />
+                            </div>
+                        </TabPanel>
+                        <TabPanel value="template">
+                            <TemplateBuilder key={this.state._.strat.template.name}
+                                template={this.state._.strat.template}
+                                onChange={(template: Template) => this.handleChange({ strat: { template: { $set: template } } })} />
+                        </TabPanel>
+                        <TabPanel value="ce">
+                            <div>
+                                <CEBuilder ce={this.state._.strat.servantCe}
+                                    onChange={(ce: CraftEssence) => this.handleChange({ strat: { servantCe: { $set: ce } } })} />
+                                <CEBuilder ce={this.state._.strat.supportCe}
+                                    onChange={(ce: CraftEssence) => this.handleChange({ strat: { supportCe: { $set: ce } } })} />
+                            </div>
+                        </TabPanel>
+                    </TabContext>
                 </Grid>
             </Grid>
         );
     }
 
     onServantChanged(servant: Servant) {
-        if (servant.data.name != this.state._.servant.data.name) {
-            this.handleChange({
-                servant: { $set: servant },
-                servantBuffs: { $set: defaultBuffsetHeuristic(servant.data, this.state._.template.party, this.state._.template.clearers.map(clearers => clearers.includes(0))) },
-                node: { $set: EnemyNode.uniform(update(this.state._.node.waves[0].enemies[0], { eClass: { $set: getLikelyClassMatchup(servant.data.sClass) } })) }
-            });
+        if (servant.data.name != this.state._.strat.servant.data.name) {
+            this.handleChange({ strat: {
+                    servant: { $set: servant },
+                    servantBuffs: { $set: defaultBuffsetHeuristic(servant.data, this.state._.strat.template.party, this.state._.strat.template.clearers.map(clearers => clearers.includes(0))) },
+                    node: { $set: EnemyNode.uniform(update(this.state._.strat.node.waves[0].enemies[0], { eClass: { $set: getLikelyClassMatchup(servant.data.sClass) } })) }
+            }});
         } else {
-            this.handleChange({ servant: { $set: servant } });
+            this.handleChange({ strat: { servant: { $set: servant } } });
         }
     }
 }
@@ -157,7 +162,7 @@ class TemplateBuilder extends BaseComponent<any, Template, any> {
                     disableClearable={true} />
                 <Grid container>
                     {this.state._.party.map((servant, index) =>(
-                        <Grid item md={6} key={index}>
+                        <Grid item lg={4} md={6} sm={12} key={index}>
                             <ServantSelector
                                 servant={servant}
                                 label={"Servant " + (index + 1)}
@@ -438,12 +443,11 @@ class EnemyBuilder extends BaseComponent<any, Enemy, any> {
                     renderInput={params => <TextField {...params} label="Enemy Attribute" variant="outlined" />}
                     onChange={(e, v) => { if (v) this.handleChange({ attribute: { $set: v as EnemyAttribute } }) }}
                     disableClearable={true} />
-                    <Autocomplete multiple
-                        options={Object.values(Trait)}
-                        value={this.state._.traits}
-                        renderInput={params => <TextField {...params} label="Enemy Traits" variant="outlined" />}
-                        onChange={(e, v) => { if (v) this.handleChange({ traits: { $set: v as Trait[] } }) }}
-                        disableClearable={true} />
+                <Autocomplete multiple
+                    options={Object.values(Trait).sort()}
+                    value={this.state._.traits}
+                    renderInput={params => <TextField {...params} label="Enemy Traits" variant="outlined" />}
+                    onChange={(e, v) => { if (v) this.handleChange({ traits: { $set: v as Trait[] } }) }} />
             </div>
         );
     }
