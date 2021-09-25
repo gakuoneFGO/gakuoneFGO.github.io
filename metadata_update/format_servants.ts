@@ -140,7 +140,7 @@ EXCEPTIONS
 
 function getSkills(data: any, npType: CardType): Skill[] {
     console.log(data.name);
-    return data.skills.filter((s, _, arr) => arr.findIndex(o => o.num == s.num && o.strengthStatus > s.strengthStatus))
+    return data.skills.filter((s, _, arr) => arr.findIndex(o => o.num == s.num && o.strengthStatus > s.strengthStatus) < 0)
         .map(s => new Skill(s.coolDown[s.coolDown.length - 1], s.functions.flatMap(toBuff).filter(buff => isUseful(buff, npType))));
 }
 

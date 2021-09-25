@@ -210,23 +210,6 @@
                         "val": 0.5,
                         "turns": 1,
                         "cardType": "buster"
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.5,
-                        "turns": 1,
-                        "cardType": "buster"
                     },
                     {
                         "self": true,
@@ -604,19 +587,6 @@
                 "buffs": [
                     {
                         "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.5,
-                        "turns": 1,
-                        "cardType": "buster"
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
                         "team": true,
                         "type": "atk",
                         "val": 0.18,
@@ -817,10 +787,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -1041,10 +1007,6 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -1219,19 +1181,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.55,
-                        "turns": 1,
-                        "cardType": "buster"
-                    }
-                ]
-            },
             {
                 "cooldown": 5,
                 "buffs": []
@@ -1451,10 +1400,6 @@
                 ]
             },
             {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
                 "cooldown": 3,
                 "buffs": [
                     {
@@ -1631,10 +1576,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": [
@@ -1816,10 +1757,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": []
@@ -2198,10 +2135,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": [
                     {
@@ -2212,10 +2145,6 @@
                         "turns": 3
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             },
             {
                 "cooldown": 7,
@@ -2415,18 +2344,6 @@
                 ]
             },
             {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.12,
-                        "turns": 3
-                    }
-                ]
-            },
-            {
                 "cooldown": 6,
                 "buffs": []
             },
@@ -2609,19 +2526,6 @@
             {
                 "cooldown": 5,
                 "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "pMod",
-                        "val": 0.8,
-                        "turns": 3,
-                        "trig": "dragon"
-                    }
-                ]
             },
             {
                 "cooldown": 5,
@@ -2816,10 +2720,6 @@
                         "cardType": "buster"
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             },
             {
                 "cooldown": 6,
@@ -3377,18 +3277,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "npDmg",
-                        "val": 0.16,
-                        "turns": 1
-                    }
-                ]
-            },
-            {
                 "cooldown": 6,
                 "buffs": []
             },
@@ -3609,10 +3497,6 @@
                         "turns": 3
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             },
             {
                 "cooldown": 5,
@@ -4388,22 +4272,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "npDmg",
-                        "val": 0.18,
-                        "turns": 1
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": [
@@ -5326,10 +5194,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
                 "cooldown": 8,
                 "buffs": []
             },
@@ -5695,19 +5559,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.5,
-                        "turns": 1,
-                        "cardType": "quick"
-                    }
-                ]
-            },
             {
                 "cooldown": 5,
                 "buffs": []
@@ -6463,23 +6314,6 @@
                     {
                         "self": true,
                         "team": false,
-                        "type": "eff",
-                        "val": 0.5,
-                        "turns": 1,
-                        "cardType": "buster"
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
                         "type": "pMod",
                         "val": 1,
                         "turns": 1,
@@ -6672,19 +6506,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.4,
-                        "turns": 1,
-                        "cardType": "buster"
-                    }
-                ]
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -7075,18 +6896,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 6,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.2,
-                        "turns": 1
-                    }
-                ]
-            },
-            {
                 "cooldown": 5,
                 "buffs": [
                     {
@@ -7280,18 +7089,6 @@
                         "val": 0.5,
                         "turns": 1,
                         "cardType": "arts"
-                    }
-                ]
-            },
-            {
-                "cooldown": 6,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "atk",
-                        "val": 0.2,
-                        "turns": 1
                     }
                 ]
             },
@@ -7841,26 +7638,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.18,
-                        "turns": 3
-                    }
-                ]
-            },
-            {
-                "cooldown": 7,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -9432,10 +9209,6 @@
             {
                 "cooldown": 6,
                 "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
             }
         ],
         "np": {
@@ -9606,10 +9379,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -9819,10 +9588,6 @@
                         "turns": 1
                     }
                 ]
-            },
-            {
-                "cooldown": 8,
-                "buffs": []
             },
             {
                 "cooldown": 8,
@@ -12007,10 +11772,6 @@
                 ]
             },
             {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": [
                     {
@@ -12204,27 +11965,6 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.4,
-                        "turns": 1,
-                        "cardType": "buster"
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -12410,10 +12150,6 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": []
             },
             {
@@ -12959,19 +12695,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "eff",
-                        "val": 0.36,
-                        "turns": 1,
-                        "cardType": "quick"
-                    }
-                ]
-            },
-            {
                 "cooldown": 4,
                 "buffs": []
             },
@@ -13332,10 +13055,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -13887,14 +13606,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -14619,14 +14330,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 10,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": [
                     {
@@ -15014,10 +14717,6 @@
                         "turns": 3
                     }
                 ]
-            },
-            {
-                "cooldown": 7,
-                "buffs": []
             },
             {
                 "cooldown": 6,
@@ -15772,22 +15471,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "npDmg",
-                        "val": 0.2,
-                        "turns": 3
-                    }
-                ]
-            },
             {
                 "cooldown": 5,
                 "buffs": [
@@ -16558,10 +16241,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": []
             },
@@ -16756,10 +16435,6 @@
                         "cardType": "arts"
                     }
                 ]
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
             },
             {
                 "cooldown": 6,
@@ -17117,10 +16792,6 @@
         "skills": [
             {
                 "cooldown": 7,
-                "buffs": []
-            },
-            {
-                "cooldown": 8,
                 "buffs": []
             },
             {
@@ -18082,10 +17753,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": []
             },
@@ -19016,10 +18683,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": []
@@ -20658,10 +20321,6 @@
             {
                 "cooldown": 6,
                 "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
             }
         ],
         "np": {
@@ -21229,10 +20888,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": []
             },
@@ -21412,14 +21067,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": []
@@ -21992,18 +21639,6 @@
                         "self": true,
                         "team": true,
                         "type": "atk",
-                        "val": 0.16,
-                        "turns": 3
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
                         "val": 0.2,
                         "turns": 1
                     }
@@ -22379,19 +22014,6 @@
                         "self": true,
                         "team": false,
                         "type": "pMod",
-                        "val": 0.6,
-                        "turns": 3,
-                        "trig": "wildbeast"
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "pMod",
                         "val": 1,
                         "turns": 3,
                         "trig": "wildbeast"
@@ -22581,10 +22203,6 @@
                 ]
             },
             {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
                 "cooldown": 10,
                 "buffs": []
             },
@@ -22765,10 +22383,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": [
                     {
@@ -22945,10 +22559,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": []
@@ -23138,14 +22748,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 10,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": [
@@ -23346,14 +22948,6 @@
                         "turns": 1
                     }
                 ]
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             },
             {
                 "cooldown": 6,
@@ -23741,19 +23335,6 @@
             {
                 "cooldown": 5,
                 "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.5,
-                        "turns": 1,
-                        "cardType": "quick"
-                    }
-                ]
             },
             {
                 "cooldown": 5,
@@ -24320,18 +23901,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "npDmg",
-                        "val": 0.17,
-                        "turns": 1
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
                 "buffs": []
             },
             {
@@ -24517,19 +24086,6 @@
             {
                 "cooldown": 6,
                 "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.5,
-                        "turns": 1,
-                        "cardType": "arts"
-                    }
-                ]
             },
             {
                 "cooldown": 5,
@@ -25111,23 +24667,6 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.5,
-                        "turns": 3,
-                        "cardType": "arts"
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": false,
@@ -25520,10 +25059,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -25892,10 +25427,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 7,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": [
@@ -26679,10 +26210,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": [
@@ -27875,10 +27402,6 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -28798,10 +28321,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": []
             },
@@ -29182,10 +28701,6 @@
                         "turns": 2
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             },
             {
                 "cooldown": 6,
@@ -30149,10 +29664,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": []
             },
@@ -30954,18 +30465,6 @@
                 ]
             },
             {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "npDmg",
-                        "val": 0.18,
-                        "turns": 1
-                    }
-                ]
-            },
-            {
                 "cooldown": 6,
                 "buffs": [
                     {
@@ -31168,10 +30667,6 @@
                         "turns": 1
                     }
                 ]
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
             },
             {
                 "cooldown": 6,
@@ -31722,23 +31217,6 @@
                 "buffs": [
                     {
                         "self": true,
-                        "team": false,
-                        "type": "pMod",
-                        "val": 0.6,
-                        "turns": 3,
-                        "trig": "roman"
-                    }
-                ]
-            },
-            {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
                         "team": true,
                         "type": "eff",
                         "val": 0.2,
@@ -31934,18 +31412,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.18,
-                        "turns": 3
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
                 "buffs": []
             },
             {
@@ -32133,22 +31599,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.17,
-                        "turns": 3
-                    }
-                ]
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -32550,10 +32000,6 @@
                 ]
             },
             {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": [
                     {
@@ -32739,10 +32185,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 7,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -33113,18 +32555,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.21,
-                        "turns": 3
-                    }
-                ]
-            },
-            {
                 "cooldown": 7,
                 "buffs": [
                     {
@@ -33315,10 +32745,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 6,
                 "buffs": []
             },
             {
@@ -35262,10 +34688,6 @@
             {
                 "cooldown": 6,
                 "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
             }
         ],
         "np": {
@@ -35848,10 +35270,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 6,
                 "buffs": []
             },
             {
@@ -38444,10 +37862,6 @@
             {
                 "cooldown": 5,
                 "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             }
         ],
         "np": {
@@ -39016,10 +38430,6 @@
             {
                 "cooldown": 8,
                 "buffs": []
-            },
-            {
-                "cooldown": 8,
-                "buffs": []
             }
         ],
         "np": {
@@ -39184,30 +38594,6 @@
             {
                 "cooldown": 6,
                 "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "atk",
-                        "val": 0.25,
-                        "turns": 1
-                    }
-                ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "npDmg",
-                        "val": 0.25,
-                        "turns": 1
-                    }
-                ]
             },
             {
                 "cooldown": 5,
@@ -39402,10 +38788,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 7,
                 "buffs": []
@@ -39779,10 +39161,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": []
             },
@@ -39979,10 +39357,6 @@
                         "cardType": "arts"
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             },
             {
                 "cooldown": 6,
@@ -40362,14 +39736,6 @@
         "skills": [
             {
                 "cooldown": 7,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 8,
                 "buffs": []
             },
             {
@@ -40923,10 +40289,6 @@
                 ]
             },
             {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": []
             },
@@ -41111,10 +40473,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 10,
                 "buffs": []
@@ -41485,23 +40843,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 6,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "eff",
-                        "val": 0.3,
-                        "turns": 1,
-                        "cardType": "arts"
-                    }
-                ]
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -43091,10 +42432,6 @@
             {
                 "cooldown": 7,
                 "buffs": []
-            },
-            {
-                "cooldown": 7,
-                "buffs": []
             }
         ],
         "np": {
@@ -44610,14 +43947,6 @@
             {
                 "cooldown": 5,
                 "buffs": []
-            },
-            {
-                "cooldown": 4,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             }
         ],
         "np": {
@@ -44788,10 +44117,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 4,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": []
@@ -45712,14 +45037,6 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 4,
-                "buffs": []
-            },
-            {
-                "cooldown": 6,
                 "buffs": [
                     {
                         "self": true,
@@ -46084,10 +45401,6 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -46287,10 +45600,6 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -46471,10 +45780,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": []
             },
@@ -46642,10 +45947,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": [
@@ -47025,27 +46326,6 @@
         ],
         "skills": [
             {
-                "cooldown": 8,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "pMod",
-                        "val": 0.5,
-                        "turns": 3,
-                        "trig": "classSaber"
-                    }
-                ]
-            },
-            {
                 "cooldown": 7,
                 "buffs": [
                     {
@@ -47251,10 +46531,6 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -47425,10 +46701,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 7,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": [
@@ -47641,10 +46913,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": []
             },
@@ -47821,18 +47089,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.2,
-                        "turns": 1
-                    }
-                ]
-            },
             {
                 "cooldown": 5,
                 "buffs": []
@@ -49621,10 +48877,6 @@
             {
                 "cooldown": 7,
                 "buffs": []
-            },
-            {
-                "cooldown": 7,
-                "buffs": []
             }
         ],
         "np": {
@@ -49997,10 +49249,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": [
                     {
@@ -50179,14 +49427,6 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 7,
                 "buffs": []
             },
             {
@@ -50392,14 +49632,6 @@
                         "turns": 1
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 7,
-                "buffs": []
             },
             {
                 "cooldown": 5,
@@ -50964,10 +50196,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": [
                     {
@@ -51140,10 +50368,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": [
@@ -51334,18 +50558,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.15,
-                        "turns": 1
-                    }
-                ]
-            },
             {
                 "cooldown": 7,
                 "buffs": []
@@ -51545,14 +50757,6 @@
                         "turns": 2
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             },
             {
                 "cooldown": 5,
@@ -51913,14 +51117,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -52138,10 +51334,6 @@
                         "cardType": "buster"
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             },
             {
                 "cooldown": 5,
@@ -52905,10 +52097,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -53482,10 +52670,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": [
@@ -54810,10 +53994,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 5,
-                "buffs": []
-            },
-            {
                 "cooldown": 7,
                 "buffs": []
             },
@@ -54839,14 +54019,6 @@
             },
             {
                 "cooldown": 7,
-                "buffs": []
-            },
-            {
-                "cooldown": 4,
-                "buffs": []
-            },
-            {
-                "cooldown": 4,
                 "buffs": []
             },
             {
@@ -55017,18 +54189,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 10,
-                "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -55228,10 +54388,6 @@
             }
         ],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": []
-            },
             {
                 "cooldown": 5,
                 "buffs": []
@@ -56421,10 +55577,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 4,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": [
                     {
@@ -56627,22 +55779,6 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "atk",
-                        "val": 0.3,
-                        "turns": 3
-                    }
-                ]
-            },
-            {
-                "cooldown": 6,
                 "buffs": [
                     {
                         "self": true,
@@ -56822,22 +55958,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 7,
-                "buffs": []
-            },
-            {
-                "cooldown": 7,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.3,
-                        "turns": 1
-                    }
-                ]
-            },
             {
                 "cooldown": 6,
                 "buffs": []
@@ -57799,10 +56919,6 @@
         ],
         "skills": [
             {
-                "cooldown": 10,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": []
             },
@@ -58203,10 +57319,6 @@
                 "buffs": []
             },
             {
-                "cooldown": 8,
-                "buffs": []
-            },
-            {
                 "cooldown": 7,
                 "buffs": []
             }
@@ -58550,18 +57662,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "atk",
-                        "val": 0.5,
-                        "turns": 1
-                    }
-                ]
-            },
             {
                 "cooldown": 7,
                 "buffs": []
@@ -58950,18 +58050,6 @@
                         "turns": 1
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "atk",
-                        "val": 0.3,
-                        "turns": 1
-                    }
-                ]
             }
         ],
         "np": {
@@ -59134,10 +58222,6 @@
                         "turns": 3
                     }
                 ]
-            },
-            {
-                "cooldown": 6,
-                "buffs": []
             },
             {
                 "cooldown": 5,
@@ -60288,18 +59372,6 @@
                     {
                         "self": true,
                         "team": true,
-                        "type": "npDmg",
-                        "val": 0.3,
-                        "turns": 3
-                    }
-                ]
-            },
-            {
-                "cooldown": 7,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
                         "type": "atk",
                         "val": 0.2,
                         "turns": 1
@@ -60679,10 +59751,6 @@
         },
         "passives": [],
         "skills": [
-            {
-                "cooldown": 6,
-                "buffs": []
-            },
             {
                 "cooldown": 7,
                 "buffs": [
