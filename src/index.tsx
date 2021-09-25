@@ -294,7 +294,7 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
         super(props, props.buffMatrix);
     }
 
-    static getDerivedStateFromProps(props: any, state: StateWrapper<BuffMatrix>): StateWrapper<Servant[]> {
+    static getDerivedStateFromProps(props: any, state: StateWrapper<BuffMatrix>): StateWrapper<BuffMatrix> {
         return new StateWrapper(props.buffMatrix);
     }
 
@@ -320,25 +320,25 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
                         {this.state._.buffs.map((buffSet: BuffSet, index: number) => (
                             <TableRow key={index}>
                                 <TableCell><strong>T{index + 1}</strong></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }); }} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].effUp} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v} } } }); } } /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v} } } }); }} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v} } } }); }} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[0].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v} }, 0, index); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v.value } } } }); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].effUp} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v.value} } } }); } } /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v.value} } } }); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v.value} } } }); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[0].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v.value} }, 0, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
                                     value={this.state._.buffs[index].powerMods[0].trigger}
                                     renderInput={params => <TextField {...params} variant="outlined" />}
                                     onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 0, index)}
                                     disableClearable={true} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[1].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v } }, 1, index); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[1].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v.value } }, 1, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
                                     value={this.state._.buffs[index].powerMods[1].trigger}
                                     renderInput={params => <TextField {...params} variant="outlined" />}
                                     onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 1, index)} 
                                     disableClearable={true} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[2].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v } }, 2, index); }} /></TableCell>
+                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[2].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v.value } }, 2, index); }} /></TableCell>
                                 <TableCell><Autocomplete
                                     options={Object.values(Trigger)}
                                     value={this.state._.buffs[index].powerMods[2].trigger}
@@ -358,15 +358,28 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
     }
 }
 
-interface PercentInputProps {
+interface PercentInputProps extends BaseProps<PercentInputState> {
     value: number;
     label?: string;
-    onChange: (v: number) => void;
+    onChange: (v: PercentInputState) => void;
 }
 
-class PercentInput extends React.Component<PercentInputProps, any, any> {
+interface PercentInputState {
+    value: number;
+    displayValue: string;
+}
+
+class PercentInput extends BaseComponent<PercentInputProps, PercentInputState, any> {
     constructor(props: PercentInputProps) {
-        super(props);
+        super(props, PercentInput.getDisplayValue(props.value));
+    }
+
+    static getDerivedStateFromProps(props: any, state: StateWrapper<PercentInputState>): StateWrapper<PercentInputState> {
+        //if not match, format and assign
+        //else return existing state
+        //match: 0 matches empty. otherwise check tolerance
+        if (Math.abs(state._.value - props.value) < 0.00005) return state;
+        return new StateWrapper(PercentInput.getDisplayValue(props.value));
     }
     
     render() {
@@ -374,14 +387,27 @@ class PercentInput extends React.Component<PercentInputProps, any, any> {
             <TextField
                 type="number" variant="outlined"
                 label={this.props.label}
-                value={this.props.value * 100}
+                value={this.state._.displayValue}
+                placeholder="0"
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">%</InputAdornment>
                     )
                 }}
-                onChange={(e) => { if (e.target.value) this.props.onChange(Number.parseFloat(e.target.value) / 100)}} />
+                onChange={e => { this.onChange(e.target.value) }} />
         );
+    }
+
+    static getDisplayValue(value: number): PercentInputState {
+        if (value == 0) return { value: value, displayValue: "" };
+        let displayValue = (value * 100).toFixed(2).replace(/(0|\.00)$/, "");
+        return { value: value, displayValue: displayValue };
+    }
+
+    onChange(stringValue: string) {
+        //TODO: validate input (mostly just prevent excess precision)
+        let value = stringValue == "" ? 0 : Number.parseFloat(stringValue) / 100;
+        this.handleChange({ value: { $set: value }, displayValue: { $set: stringValue } });
     }
 }
 
@@ -525,7 +551,7 @@ function defaultBuffsetHeuristic(servant: ServantData, party: Servant[], clearer
     })).concat(clearers.map((isMain, turn) => {
         return { buffs: isMain ? servant.np.postBuffs : [], turn: turn + 1 };
     }));
-    
+
     return new BuffMatrix(clearers.map((isMain, turn) => {
         return BuffSet.fromBuffs(skillOrder.flatMap(order => {
             return order.turn <= turn

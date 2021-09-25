@@ -148,7 +148,7 @@ function getPassives(data: any, npType: CardType): Buff[] {
     //console.log(data.name);
     return data.classPassive.flatMap(p => p.functions)
         .flatMap(toBuff)
-        .filter(buff => isUseful(buff, npType));
+        .filter(buff => buff.type != BuffType.CardTypeUp || isUseful(buff, npType));
 }
 
 function toBuff(func: any): Buff[] {
