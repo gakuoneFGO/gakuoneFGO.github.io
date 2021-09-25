@@ -86,7 +86,7 @@ class StratBuilder extends BaseComponent<any, Strat, any> {
                         <AccordionDetails>
                             <div>
                                 <ServantSelector servant={this.state._.servant} onChange={(servant: Servant) => this.onServantChanged(servant)} />
-                                <BuffMatrixBuilder buffMatrix={this.state._.servantBuffs} onChange={(buffs: BuffMatrix) => this.handleChange({ servantBuffs: { $set: buffs } })} />
+                                <BuffMatrixBuilder buffMatrix={this.state._.servantBuffs} maxPowerMods={2} onChange={(buffs: BuffMatrix) => this.handleChange({ servantBuffs: { $set: buffs } })} />
                             </div>
                         </AccordionDetails>
                     </Accordion>
@@ -199,7 +199,7 @@ class TemplateBuilder extends BaseComponent<any, Template, any> {
                         </Grid>
                     ))}
                 </Grid>
-                <BuffMatrixBuilder buffMatrix={this.state._.buffs} onChange={(buffs: BuffMatrix) => this.handleChange({ buffs: { $set: buffs } })} />
+                <BuffMatrixBuilder buffMatrix={this.state._.buffs} maxPowerMods={3} onChange={(buffs: BuffMatrix) => this.handleChange({ buffs: { $set: buffs } })} />
             </div>
         );
     }
@@ -310,41 +310,29 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
                             <TableCell>NP Damage Up</TableCell>
                             {/* TODO: hide this if no NP boosts in kit (this will be a pattern) */}
                             <TableCell>NP Up Boost</TableCell>
-                            <TableCell>Power Mod 1</TableCell>
-                            <TableCell>Trigger 1</TableCell>
-                            <TableCell>Power Mod 2</TableCell>
-                            <TableCell>Trigger 2</TableCell>
-                            <TableCell>Power Mod 3</TableCell>
-                            <TableCell>Trigger 3</TableCell>
+                            {Array.from(new Array(this.props.maxPowerMods)).flatMap((_, pIndex) => [
+                                <TableCell>Power Mod{ this.props.maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>,
+                                <TableCell>Trigger{ this.props.maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>
+                            ])}
                         </TableRow>
                         {this.state._.buffs.map((buffSet: BuffSet, index: number) => (
                             <TableRow key={index}>
                                 <TableCell><strong>T{index + 1}</strong></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v.value } } } }); }} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].effUp} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v.value} } } }); } } /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v.value} } } }); }} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v.value} } } }); }} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[0].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v.value} }, 0, index); }} /></TableCell>
-                                <TableCell><Autocomplete
-                                    options={Object.values(Trigger)}
-                                    value={this.state._.buffs[index].powerMods[0].trigger}
-                                    renderInput={params => <TextField {...params} variant="outlined" />}
-                                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 0, index)}
-                                    disableClearable={true} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[1].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v.value } }, 1, index); }} /></TableCell>
-                                <TableCell><Autocomplete
-                                    options={Object.values(Trigger)}
-                                    value={this.state._.buffs[index].powerMods[1].trigger}
-                                    renderInput={params => <TextField {...params} variant="outlined" />}
-                                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 1, index)} 
-                                    disableClearable={true} /></TableCell>
-                                <TableCell><PercentInput value={this.state._.buffs[index].powerMods[2].modifier} onChange={ v => { this.handlePowerModChange({ modifier: {$set: v.value } }, 2, index); }} /></TableCell>
-                                <TableCell><Autocomplete
-                                    options={Object.values(Trigger)}
-                                    value={this.state._.buffs[index].powerMods[2].trigger}
-                                    renderInput={params => <TextField {...params} variant="outlined" />}
-                                    onChange={(e, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, 2, index)} 
-                                    disableClearable={true} /></TableCell>
+                                <TableCell><PercentInput value={buffSet.attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v.value } } } }); }} /></TableCell>
+                                <TableCell><PercentInput value={buffSet.effUp} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v.value} } } }); } } /></TableCell>
+                                <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v.value} } } }); }} /></TableCell>
+                                <TableCell><PercentInput value={buffSet.npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v.value} } } }); }} /></TableCell>
+                                {Array.from(new Array(this.props.maxPowerMods)).flatMap((_, pIndex) => [
+                                        <TableCell key={pIndex * 2}><PercentInput
+                                            value={buffSet.powerMods[pIndex].modifier}
+                                            onChange={ v => { this.handlePowerModChange({ modifier: {$set: v.value} }, pIndex, index); }} /></TableCell>,
+                                        <TableCell key={pIndex * 2 + 1}><Autocomplete
+                                            options={Object.values(Trigger)}
+                                            value={buffSet.powerMods[pIndex].trigger}
+                                            renderInput={params => <TextField {...params} variant="outlined" />}
+                                            onChange={(_, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, pIndex, index)}
+                                            disableClearable={true} /></TableCell>
+                                ])}
                             </TableRow>
                         ))}
                     </TransposedTableBody>
