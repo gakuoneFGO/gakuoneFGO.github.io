@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import NumberFormat from "react-number-format";
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Box, Checkbox, FormControlLabel, Grid, ImageList, ImageListItem, InputAdornment, InputLabel, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tabs, TextField } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, Box, Card, CardContent, CardHeader, Checkbox, FormControlLabel, Grid, IconButton, ImageList, ImageListItem, InputAdornment, InputLabel, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tabs, TextField } from "@material-ui/core";
 import { Autocomplete, TabContext, TabList, TabPanel } from "@material-ui/lab";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
@@ -9,9 +9,9 @@ import "reflect-metadata";
 
 import { Template, BuffMatrix, Strat, EnemyNode, NodeDamage, Wave } from "./Strat";
 import { BuffSet, Calculator, CraftEssence, getLikelyClassMatchup, PowerMod } from "./Damage";
-import { Servant, ServantConfig, ServantData, Trigger, CardType, ServantClass, ServantAttribute } from "./Servant";
+import { Servant, ServantConfig, ServantData, Trigger, CardType, ServantClass, ServantAttribute, Buff, BuffType } from "./Servant";
 import { allData, Data } from "./Data";
-import { ExpandMore } from "@material-ui/icons";
+import { Add, ExpandMore, Remove } from "@material-ui/icons";
 import { Enemy, EnemyAttribute, EnemyClass, Trait } from "./Enemy";
 import { TransposedTableBody } from "./TransposedTable";
 
@@ -65,8 +65,8 @@ class StratBuilder extends BaseComponent<any, StratBuilderState, any> {
                 servant,
                 template,
                 defaultBuffsetHeuristic(servant.data, template.party, template.clearers.map(clearers => clearers.includes(0))),
-                new CraftEssence("<None>", 0, BuffSet.empty()),
-                new CraftEssence("<None>", 0, BuffSet.empty()),
+                new CraftEssence("<None>", 0, []),
+                new CraftEssence("<None>", 0, []),
                 EnemyNode.uniform(new Enemy(getLikelyClassMatchup(servant.data.sClass), EnemyAttribute.Neutral, [], 0.0))
             );
             component.setState(component.wrap({ strat: strat, selectedTab: "servant" }));
@@ -93,7 +93,7 @@ class StratBuilder extends BaseComponent<any, StratBuilderState, any> {
                         </Box>
                         <TabPanel value="servant">
                             <div>
-                                <ServantSelector servant={this.state._.strat.servant} onChange={(servant: Servant) => this.onServantChanged(servant)} />
+                                <ServantSelector servant={this.state._.strat.servant} label="Servant" onChange={(servant: Servant) => this.onServantChanged(servant)} />
                                 <BuffMatrixBuilder buffMatrix={this.state._.strat.servantBuffs}
                                     maxPowerMods={2}
                                     onChange={(buffs: BuffMatrix) => this.handleChange({ strat: { servantBuffs: { $set: buffs } } })} />
@@ -105,12 +105,16 @@ class StratBuilder extends BaseComponent<any, StratBuilderState, any> {
                                 onChange={(template: Template) => this.handleChange({ strat: { template: { $set: template } } })} />
                         </TabPanel>
                         <TabPanel value="ce">
-                            <div>
-                                <CEBuilder ce={this.state._.strat.servantCe}
-                                    onChange={(ce: CraftEssence) => this.handleChange({ strat: { servantCe: { $set: ce } } })} />
-                                <CEBuilder ce={this.state._.strat.supportCe}
-                                    onChange={(ce: CraftEssence) => this.handleChange({ strat: { supportCe: { $set: ce } } })} />
-                            </div>
+                            <Grid container>
+                                <Grid item md={6} sm={12}>
+                                    <CEBuilder ce={this.state._.strat.servantCe}
+                                        onChange={(ce: CraftEssence) => this.handleChange({ strat: { servantCe: { $set: ce } } })} />
+                                </Grid>
+                                <Grid item md={6} sm={12}>
+                                    <CEBuilder ce={this.state._.strat.supportCe}
+                                        onChange={(ce: CraftEssence) => this.handleChange({ strat: { supportCe: { $set: ce } } })} />
+                                </Grid>
+                            </Grid>
                         </TabPanel>
                     </TabContext>
                 </Grid>
@@ -324,15 +328,19 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
                                 <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v.value} } } }); }} /></TableCell>
                                 <TableCell><PercentInput value={buffSet.npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v.value} } } }); }} /></TableCell>
                                 {Array.from(new Array(this.props.maxPowerMods)).flatMap((_, pIndex) => [
-                                        <TableCell key={pIndex * 2}><PercentInput
+                                    <TableCell key={pIndex * 2}>
+                                        <PercentInput
                                             value={buffSet.powerMods[pIndex].modifier}
-                                            onChange={ v => { this.handlePowerModChange({ modifier: {$set: v.value} }, pIndex, index); }} /></TableCell>,
-                                        <TableCell key={pIndex * 2 + 1}><Autocomplete
+                                            onChange={ v => { this.handlePowerModChange({ modifier: {$set: v.value} }, pIndex, index); }} />
+                                    </TableCell>,
+                                    <TableCell key={pIndex * 2 + 1}>
+                                        <Autocomplete
                                             options={Object.values(Trigger)}
                                             value={buffSet.powerMods[pIndex].trigger}
                                             renderInput={params => <TextField {...params} variant="outlined" />}
                                             onChange={(_, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, pIndex, index)}
-                                            disableClearable={true} /></TableCell>
+                                            disableClearable={true} />
+                                    </TableCell>
                                 ])}
                             </TableRow>
                         ))}
@@ -344,6 +352,29 @@ class BuffMatrixBuilder extends BaseComponent<any, BuffMatrix, any> {
 
     handlePowerModChange(spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) {
         this.handleChange({ buffs : { [buffIndex]: { powerMods: { [modIndex]: spec } } } });
+    }
+}
+
+class BuffSelector extends BaseComponent<any, Buff, any> {
+    constructor(props: any) {
+        super(props, props.value);
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <Autocomplete
+                    options={Object.values(BuffType)}
+                    value={this.state._.type}
+                    renderInput={params => <TextField label="Buff Type" {...params} variant="outlined" />}
+                    onChange={(_, v) => this.handleChange({ type: {$set: v as BuffType} })}
+                    disableClearable={true} />
+                <PercentInput
+                    value={this.state._.val}
+                    onChange={ v => { this.handleChange({ val: { $set: v.value } }); }}
+                    label="Buff Value" />
+            </React.Fragment>
+        );
     }
 }
 
@@ -364,9 +395,6 @@ class PercentInput extends BaseComponent<PercentInputProps, PercentInputState, a
     }
 
     static getDerivedStateFromProps(props: any, state: StateWrapper<PercentInputState>): StateWrapper<PercentInputState> {
-        //if not match, format and assign
-        //else return existing state
-        //match: 0 matches empty. otherwise check tolerance
         if (Math.abs(state._.value - props.value) < 0.00005) return state;
         return new StateWrapper(PercentInput.getDisplayValue(props.value));
     }
@@ -414,6 +442,17 @@ class CEBuilder extends BaseComponent<any, CraftEssence, any> {
                     label="Attack"
                     value={this.state._.attackStat.toString()}
                     onChange={(e) => { if (e.target.value) this.handleChange({ attackStat: { $set: Number.parseInt(e.target.value) } })}} />
+                {this.state._.buffs.map((buff, index) =>
+                    <Card key={JSON.stringify([ index, buff ])}>
+                        <CardHeader action={<IconButton onClick={_ => this.handleChange({ buffs: { $splice: [[ index, 1 ]] } })}><Remove /></IconButton>} />
+                        <CardContent>
+                            <BuffSelector value={buff} onChange={(buff: Buff) => this.handleChange({ buffs: { $splice: [[ index, 1, buff ]] } })} />
+                        </CardContent>
+                    </Card>
+                )}
+                <Card>
+                    <CardHeader action={<IconButton onClick={e => this.handleChange({ buffs: { $push: [ new Buff(true, false, BuffType.NpDmgUp, 0, -1) ] } })}><Add /></IconButton>} />
+                </Card>
             </div>
         );
     }

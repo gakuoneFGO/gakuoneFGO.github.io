@@ -75,7 +75,7 @@ class Damage {
 
 class Calculator {
     calculateNpDamage(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[]): Damage {
-        let combinedBuffs = BuffSet.combine(buffs.concat([ ce.buffs ]), servant.config.appendMod);
+        let combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, servant.data.np.type) ]), servant.config.appendMod);
         let baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(combinedBuffs.overcharge) * this.getCardMultiplier(servant.data.np.type) * this.getClassMultiplier(servant.data.sClass) * 0.23;
         let triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute);
         let extraDamage = isTriggerActive(enemy, servant.data.np.extraTrigger) ? servant.data.np.extraDamage[combinedBuffs.overcharge] : 1.0;
@@ -124,7 +124,7 @@ class CraftEssence {
     constructor(
         readonly name: string,
         readonly attackStat: number,
-        readonly buffs: BuffSet) {}
+        readonly buffs: Buff[]) {}
 }
 
 function getAttributeTriangleMultiplier(servantAttribute: ServantAttribute, enemyAttribute: EnemyAttribute): number {

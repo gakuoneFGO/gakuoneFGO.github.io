@@ -96,7 +96,7 @@ class Buff {
 
 enum BuffType {
     AttackUp = "atk",
-    CardTypeUp = "eff",
+    CardTypeUp = "card",
     NpDmgUp = "npDmg",
     PowerMod = "pMod",
     Overcharge = "oc",
