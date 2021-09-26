@@ -31,6 +31,38 @@ class StateWrapper<S> {
     constructor(readonly _: S) {}
 }
 
+/**
+ * Tracks keys for objects in an array which have a "stable identity" from a usage perspective but not in the data model.
+ * API is currently limited to what I actually need.
+ */
+class KeyTracker<T> {
+    constructor(
+        readonly keys: number[],
+        readonly nextKey: number) {}
+
+    static fromSource<T>(source: T[], initKey?: number): KeyTracker<T> {
+        let init = initKey ? initKey : 0;
+        return new KeyTracker<T>(source.map((_, i) => init + i), init + source.length);
+    }
+
+    reconcile(source: T[]): KeyTracker<T> {
+        if (source.length == this.keys.length) return this;
+        return KeyTracker.fromSource<T>(source, this.nextKey);
+    }
+
+    onPush(): KeyTracker<T> {
+        return update(this as KeyTracker<T>, { keys: { $push: [ this.nextKey ] }, nextKey: { $set: this.nextKey + 1 } });
+    }
+
+    onRemove(index: number) {
+        return update(this as KeyTracker<T>, { keys: { $splice: [[ index, 1 ]] } });
+    }
+
+    getKey(index: number): number {
+        return this.keys[index];
+    }
+}
+
 interface PercentInputProps extends BaseProps<number> {
     label?: string;
 }
@@ -80,5 +112,5 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
     }
 }
 
-export { BaseComponent, PercentInput, StateWrapper };
+export { BaseComponent, PercentInput, StateWrapper, KeyTracker };
 export type { BaseProps };
