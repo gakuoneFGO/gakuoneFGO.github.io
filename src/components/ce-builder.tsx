@@ -119,7 +119,8 @@ class CEBuilder extends BaseComponent<CraftEssence, CEBuilderProps, StateWrapper
 
 let ceList = [
     new CraftEssence("<None>", 0, []),
-    new CraftEssence("Event Damage (MLB +200%)", 980, [ new Buff(true, false, BuffType.PowerMod, 2, -1, undefined, Trigger.Always) ]),
+    new CraftEssence("Event Damage (+100%)", 0, [ new Buff(true, false, BuffType.PowerMod, 1, -1, undefined, Trigger.Always) ]),
+    new CraftEssence("Event Damage (MLB +200%)", 0, [ new Buff(true, false, BuffType.PowerMod, 2, -1, undefined, Trigger.Always) ]),
     new CraftEssence("The Black Grail (Lvl 100)", 2400, [ new Buff(true, false, BuffType.NpDmgUp, .8, -1) ]),
     new CraftEssence("The Black Grail (Lvl 20)", 980, [ new Buff(true, false, BuffType.NpDmgUp, .6, -1) ]),
 ];

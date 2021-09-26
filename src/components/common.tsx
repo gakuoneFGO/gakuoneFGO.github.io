@@ -111,6 +111,7 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
     onChange(stringValue: string) {
         //TODO: validate input (mostly just prevent excess precision)
         let value = stringValue == "" ? 0 : Number.parseFloat(stringValue) / 100;
+        this.setState({ value: value, displayValue: stringValue });
         this.handleChange({ $set: value });
     }
 }
