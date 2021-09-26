@@ -7,7 +7,7 @@
         "attribute": "beast",
         "f2pCopies": 0,
         "iconUrl": "",
-        "cardArtUrl": "",
+        "cardArtUrl": "images/select.png",
         "chargeProfile": "",
         "appendTarget": "classShielder",
         "growthCurve": {
@@ -33,7 +33,7 @@
         "attribute": "beast",
         "f2pCopies": 0,
         "iconUrl": "",
-        "cardArtUrl": "",
+        "cardArtUrl": "images/select.png",
         "chargeProfile": "",
         "appendTarget": "classShielder",
         "growthCurve": {
@@ -35085,7 +35085,7 @@
                         "self": true,
                         "team": true,
                         "type": "oc",
-                        "val": 0.001,
+                        "val": 1,
                         "turns": 1
                     }
                 ]
@@ -35488,7 +35488,7 @@
                         "self": true,
                         "team": true,
                         "type": "oc",
-                        "val": 0.001,
+                        "val": 1,
                         "turns": 1
                     }
                 ]
@@ -40484,7 +40484,7 @@
                         "self": true,
                         "team": false,
                         "type": "oc",
-                        "val": 0.002,
+                        "val": 2,
                         "turns": 1
                     }
                 ]
@@ -47861,8 +47861,8 @@
                         "self": true,
                         "team": false,
                         "type": "oc",
-                        "val": 0.001,
-                        "turns": 1
+                        "val": 1,
+                        "turns": 3
                     }
                 ]
             },
@@ -53462,8 +53462,8 @@
                         "self": true,
                         "team": false,
                         "type": "oc",
-                        "val": 0.001,
-                        "turns": 1
+                        "val": 1,
+                        "turns": 3
                     }
                 ]
             },
@@ -53893,7 +53893,15 @@
                     "trig": "knightsOfTheRound"
                 }
             ],
-            "postBuffs": []
+            "postBuffs": [
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "oc",
+                    "val": 1,
+                    "turns": 2
+                }
+            ]
         }
     },
     {
@@ -55226,6 +55234,13 @@
                     "val": 0.5,
                     "turns": 2,
                     "cardType": "buster"
+                },
+                {
+                    "self": true,
+                    "team": true,
+                    "type": "oc",
+                    "val": 2,
+                    "turns": 2
                 }
             ]
         }

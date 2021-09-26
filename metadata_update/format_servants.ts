@@ -98,7 +98,7 @@ function getDummyServant(name: string): ServantData {
         ServantAttribute.Beast,
         0,
         "",//TODO: find good icons
-        "",//TODO: find good cards
+        "images/select.png",//TODO: find good cards
         "",
         Trait.Shielder,
         [],
@@ -217,7 +217,7 @@ function toBuff(func: any): Buff[] {
             //console.log("UpBuffRateBuffIndiv", func.buffs[0].script.UpBuffRateBuffIndiv);
             return [ new Buff(self, team, BuffType.NpBoost, getBuffValue(func), getBuffTurns(func)) ];
         case "upChagetd":
-            return [ new Buff(self, team, BuffType.Overcharge, getBuffValue(func), getBuffTurns(func)) ];
+            return [ new Buff(self, team, BuffType.Overcharge, getBuffValue(func, 1), getBuffTurns(func, true)) ];
         case "overwriteClassRelation":
             //TODO: I had no idea kiara had this, wtf. well we needed to do this for kama anyway
         case "upCommandatk": //TODO: handle this if it comes up for any new servants
@@ -332,15 +332,15 @@ function debuffToBuff(func: any): Buff[] {
     }
 }
 
-function getBuffValue(func: any): number {
-    return func.svals[func.svals.length - 1].Rate * U_RATIO >= 1 ? func.svals[func.svals.length - 1].Value * U_RATIO : 0;
+function getBuffValue(func: any, buffRatio?: number): number {
+    return func.svals[func.svals.length - 1].Rate * U_RATIO >= 1 ? func.svals[func.svals.length - 1].Value * (buffRatio ?? U_RATIO) : 0;
 }
 
-function getBuffTurns(func: any): number {
+function getBuffTurns(func: any, useTurns?: true | undefined): number {
     let turns = func.svals[func.svals.length - 1].Turn;
     let count = func.svals[func.svals.length - 1].Count;
     if (turns < 0) return count;
-    if (count < 0) return turns;
+    if (useTurns || count < 0) return turns;
     return Math.min(turns, count);//TODO: edge case of 1 time, 3 turns. only affects team buffs (morgan) and NP buffs after damage (morgan)
 }
 

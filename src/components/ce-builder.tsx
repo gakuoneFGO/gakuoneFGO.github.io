@@ -4,7 +4,7 @@ import { Autocomplete } from "@material-ui/lab";
 import React from "react";
 import { CraftEssence } from "../Damage";
 import { Buff, BuffType, CardType } from "../Servant";
-import { BaseComponent, BaseProps, PercentInput, StateWrapper, KeyTracker } from "./common";
+import { BaseComponent, BaseProps, PercentInput, StateWrapper, KeyTracker, showIf } from "./common";
 import update from "immutability-helper";
 import { Trait } from "../Enemy";
 
@@ -26,22 +26,22 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
                     value={this.props.value.val}
                     onChange={ v => { this.handleChange({ val: { $set: v } }); }}
                     label="Buff Value" />
-                <Box display={ this.props.value.type == BuffType.CardTypeUp ? undefined : "none" }>
-                    <Autocomplete
+                {showIf(this.props.value.type == BuffType.CardTypeUp,
+                    <Autocomplete key={0}
                         options={Object.values(CardType)}
                         value={this.props.value.cardType ?? CardType.Extra}
                         renderInput={params => <TextField label="Card Type" {...params} variant="outlined" />}
                         onChange={(_, v) => this.handleChange({ cardType: {$set: v } })}
                         disableClearable={true} />
-                </Box>
-                <Box display={this.props.value.type == BuffType.PowerMod ? undefined : "none" }>
-                    <Autocomplete
+                )}
+                {showIf(this.props.value.type == BuffType.PowerMod,
+                    <Autocomplete key={0}
                         options={Object.values(Trait)}
                         value={this.props.value.trig ?? Trait.Never}
                         renderInput={params => <TextField label="Trigger" {...params} variant="outlined" />}
                         onChange={(_, v) => this.handleChange({ trig: {$set: v } })}
                         disableClearable={true} />
-                </Box>
+                )}
             </React.Fragment>
         );
     }

@@ -68,6 +68,7 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                                 <BuffMatrixBuilder value={this.state.strat.servantBuffs}
                                     maxPowerMods={2}
                                     onChange={buffs => this.handleChange({ strat: { servantBuffs: { $set: buffs } } })}
+                                    servants={[this.state.strat.servant]}
                                     warningTurns={this.state.strat.template.clearers.flatMap((c, index) => c.includes(0) ? [] : [index])} />
                             </Box>
                         </TabPanel>

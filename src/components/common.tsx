@@ -120,5 +120,9 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
     }
 }
 
-export { BaseComponent, PercentInput, StateWrapper, KeyTracker };
+function showIf<T>(condition: boolean, ...element: T[]): T[] {
+    return condition ? element : [];
+}
+
+export { BaseComponent, PercentInput, StateWrapper, KeyTracker,showIf };
 export type { BaseProps };
