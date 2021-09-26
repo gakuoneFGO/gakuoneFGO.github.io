@@ -95,6 +95,9 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
                         <InputAdornment position="end">%</InputAdornment>
                     )
                 }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
                 onChange={e => { this.onChange(e.target.value) }} />
         );
     }

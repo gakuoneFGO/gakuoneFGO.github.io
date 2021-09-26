@@ -1,9 +1,9 @@
-import { Card, CardContent, CardHeader, IconButton, TextField } from "@material-ui/core";
+import { Box, Card, CardContent, CardHeader, IconButton, TextField } from "@material-ui/core";
 import { Add, Remove } from "@material-ui/icons";
 import { Autocomplete } from "@material-ui/lab";
 import React from "react";
 import { CraftEssence } from "../Damage";
-import { Buff, BuffType } from "../Servant";
+import { Buff, BuffType, CardType, Trigger } from "../Servant";
 import { BaseComponent, BaseProps, PercentInput, StateWrapper, KeyTracker } from "./common";
 import update from "immutability-helper";
 
@@ -19,19 +19,49 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
                     options={Object.values(BuffType)}
                     value={this.props.value.type}
                     renderInput={params => <TextField label="Buff Type" {...params} variant="outlined" />}
-                    onChange={(_, v) => this.handleChange({ type: {$set: v as BuffType} })}
+                    onChange={(_, v) => this.handleBuffTypeChanged(v)}
                     disableClearable={true} />
                 <PercentInput
                     value={this.props.value.val}
                     onChange={ v => { this.handleChange({ val: { $set: v } }); }}
                     label="Buff Value" />
+                <Box display={ this.props.value.type == BuffType.CardTypeUp ? undefined : "none" }>
+                    <Autocomplete
+                        options={Object.values(CardType)}
+                        value={this.props.value.cardType ?? CardType.Extra}
+                        renderInput={params => <TextField label="Card Type" {...params} variant="outlined" />}
+                        onChange={(_, v) => this.handleChange({ cardType: {$set: v } })}
+                        disableClearable={true} />
+                </Box>
+                <Box display={this.props.value.type == BuffType.PowerMod ? undefined : "none" }>
+                    <Autocomplete
+                        options={Object.values(Trigger)}
+                        value={this.props.value.trig ?? Trigger.Never}
+                        renderInput={params => <TextField label="Trigger" {...params} variant="outlined" />}
+                        onChange={(_, v) => this.handleChange({ trig: {$set: v } })}
+                        disableClearable={true} />
+                </Box>
             </React.Fragment>
         );
+    }
+
+    handleBuffTypeChanged(type: BuffType) {
+        var cardType: CardType | undefined = undefined;
+        var trig: Trigger | undefined = undefined;
+        switch (type) {
+            case BuffType.CardTypeUp:
+                cardType = CardType.Buster;//TODO
+                break;
+            case BuffType.PowerMod:
+                trig = Trigger.Always;
+                break;
+        }
+        this.handleChange({ type: {$set: type }, cardType: { $set: cardType }, trig: { $set: trig } });
     }
 }
 
 interface CEBuilderProps extends BaseProps<CraftEssence> {
-    
+    label?: string;
 }
 
 class CEBuilder extends BaseComponent<CraftEssence, CEBuilderProps, StateWrapper<KeyTracker<Buff>>, any> {
@@ -49,10 +79,16 @@ class CEBuilder extends BaseComponent<CraftEssence, CEBuilderProps, StateWrapper
     render() {
         return (
             <div>
+                <Autocomplete
+                    options={ceNames}
+                    value={this.props.value.name}
+                    renderInput={params => <TextField {...params} label={this.props.label} variant="outlined" />}
+                    onChange={(e, v) => { if (v) this.handleChange({ $set: ceMap.get(v) as CraftEssence }) }}
+                    disableClearable={true} />
                 <TextField
                     style={{ width: 80 }}
                     type="number" variant="outlined"
-                    label="Attack"
+                    label="Attack Stat"
                     value={this.props.value.attackStat.toString()}
                     onChange={(e) => { if (e.target.value) this.handleChange({ attackStat: { $set: Number.parseInt(e.target.value) } })}} />
                 {this.props.value.buffs.map((buff, index) =>
@@ -80,5 +116,15 @@ class CEBuilder extends BaseComponent<CraftEssence, CEBuilderProps, StateWrapper
         this.handleChange({ buffs: { $splice: [[ index, 1 ]] } })
     }
 }
+
+let ceList = [
+    new CraftEssence("<None>", 0, []),
+    new CraftEssence("Event Damage (MLB +200%)", 980, [ new Buff(true, false, BuffType.PowerMod, 2, -1, undefined, Trigger.Always) ]),
+    new CraftEssence("The Black Grail (Lvl 100)", 2400, [ new Buff(true, false, BuffType.NpDmgUp, .8, -1) ]),
+    new CraftEssence("The Black Grail (Lvl 20)", 980, [ new Buff(true, false, BuffType.NpDmgUp, .6, -1) ]),
+];
+
+let ceNames = ceList.map(ce => ce.name).sort();
+let ceMap = new Map<string, CraftEssence>(ceList.map(ce => [ ce.name, ce ]));
 
 export { CEBuilder, BuffSelector }

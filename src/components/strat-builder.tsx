@@ -78,11 +78,13 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                         <TabPanel value="ce">
                             <Grid container>
                                 <Grid item md={6} sm={12}>
-                                    <CEBuilder value={this.state.strat.servantCe}
+                                    <CEBuilder label="Servant CE"
+                                        value={this.state.strat.servantCe}
                                         onChange={(ce: CraftEssence) => this.handleChange({ strat: { servantCe: { $set: ce } } })} />
                                 </Grid>
                                 <Grid item md={6} sm={12}>
-                                    <CEBuilder value={this.state.strat.supportCe}
+                                    <CEBuilder label="Support CE"
+                                        value={this.state.strat.supportCe}
                                         onChange={(ce: CraftEssence) => this.handleChange({ strat: { supportCe: { $set: ce } } })} />
                                 </Grid>
                             </Grid>
