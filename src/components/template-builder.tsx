@@ -80,7 +80,7 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                         </Grid>
                     ))}
                 </Grid>
-                <BuffMatrixBuilder value={this.props.value.buffs} maxPowerMods={3} onChange={buffs => this.handleChange({ buffs: { $set: buffs } })} />
+                <BuffMatrixBuilder value={this.props.value.buffs} onChange={buffs => this.handleChange({ buffs: { $set: buffs } })} />
             </div>
         );
     }

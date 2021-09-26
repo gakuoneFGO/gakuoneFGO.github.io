@@ -1,4 +1,5 @@
-import { Table, TableCell, TableContainer, TableRow, TextField } from "@material-ui/core";
+import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box } from "@material-ui/core";
+import { Warning } from "@material-ui/icons";
 import { Autocomplete } from "@material-ui/lab";
 import { Spec } from "immutability-helper";
 import { BuffSet, PowerMod } from "../Damage";
@@ -7,15 +8,9 @@ import { BuffMatrix } from "../Strat";
 import { BaseComponent, BaseProps, PercentInput } from "./common";
 import { TransposedTableBody } from "./transposed-table"
 
-class BuffMatrixBuilderProps implements BaseProps<BuffMatrix> {
-    constructor(
-        readonly value: BuffMatrix,
-        readonly onChange: (state: BuffMatrix) => void,
-        maxPowerMods?: number) {
-        this.maxPowerMods = maxPowerMods ? maxPowerMods : 3;
-    }
-
-    readonly maxPowerMods: number;
+interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
+        readonly maxPowerMods?: number;
+        readonly warningTurns?: number[];
 }
 
 class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps, any, any> {
@@ -31,19 +26,27 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                             <TableCell>NP Damage Up</TableCell>
                             {/* TODO: hide this if no NP boosts in kit (this will be a pattern) */}
                             <TableCell>NP Up Boost</TableCell>
-                            {Array.from(new Array(this.props.maxPowerMods)).flatMap((_, pIndex) => [
-                                <TableCell key={pIndex * 2}>Power Mod{ this.props.maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>,
-                                <TableCell key={pIndex * 2 + 1}>Trigger{ this.props.maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>
+                            {Array.from(new Array(this.props.maxPowerMods ?? 3)).flatMap((_, pIndex) => [
+                                <TableCell key={pIndex * 2}>Power Mod{ this.props.maxPowerMods ?? 3 > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>,
+                                <TableCell key={pIndex * 2 + 1}>Trigger{ this.props.maxPowerMods ?? 3 > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>
                             ])}
                         </TableRow>
                         {this.props.value.buffs.map((buffSet: BuffSet, index: number) => (
                             <TableRow key={index}>
-                                <TableCell><strong>T{index + 1}</strong></TableCell>
+                                <TableCell>
+                                    <strong>T{index + 1}</strong>
+                                    <Box display={ this.props.warningTurns && this.props.warningTurns.some(t => t == index) ? "inline" : "none" }>
+                                        &nbsp;
+                                        <Tooltip title="Wave is cleared by support servant. Only put team buffs provided by this servant in this column!">
+                                            <Warning />
+                                        </Tooltip>
+                                    </Box>
+                                </TableCell>
                                 <TableCell><PercentInput value={buffSet.attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }); }} /></TableCell>
                                 <TableCell><PercentInput value={buffSet.effUp} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v} } } }); } } /></TableCell>
                                 <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v} } } }); }} /></TableCell>
                                 <TableCell><PercentInput value={buffSet.npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v} } } }); }} /></TableCell>
-                                {Array.from(new Array(this.props.maxPowerMods)).flatMap((_, pIndex) => [
+                                {Array.from(new Array(this.props.maxPowerMods ?? 3)).flatMap((_, pIndex) => [
                                     <TableCell key={pIndex * 2}>
                                         <PercentInput
                                             value={buffSet.powerMods[pIndex].modifier}
