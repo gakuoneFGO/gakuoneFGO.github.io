@@ -1,8 +1,7 @@
-import { TextField } from "@material-ui/core";
+import { Box, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { BaseComponent, BaseProps } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass, Trait } from "../Enemy";
-import { Spec } from "immutability-helper";
 
 interface EnemyBuilderProps extends BaseProps<Enemy> {
     
@@ -12,7 +11,7 @@ class EnemyBuilder extends BaseComponent<Enemy, EnemyBuilderProps, any, any> {
 
     render() {
         return (
-            <div>
+            <Box>
                 <Autocomplete
                     options={Object.values(EnemyClass)}
                     value={this.props.value.eClass}
@@ -30,7 +29,7 @@ class EnemyBuilder extends BaseComponent<Enemy, EnemyBuilderProps, any, any> {
                     value={this.props.value.traits}
                     renderInput={params => <TextField {...params} label="Enemy Traits" variant="outlined" />}
                     onChange={(e, v) => { if (v) this.handleChange({ traits: { $set: v as Trait[] } }); }} />
-            </div>
+            </Box>
         );
     }
 }

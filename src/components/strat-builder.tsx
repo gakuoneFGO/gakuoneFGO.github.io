@@ -63,12 +63,12 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                             </TabList>
                         </Box>
                         <TabPanel value="servant">
-                            <div>
+                            <Box>
                                 <ServantSelector value={this.state.strat.servant} label="Servant" onChange={(servant: Servant) => this.onServantChanged(servant)} />
                                 <BuffMatrixBuilder value={this.state.strat.servantBuffs}
                                     maxPowerMods={2}
                                     onChange={buffs => this.handleChange({ strat: { servantBuffs: { $set: buffs } } })} />
-                            </div>
+                            </Box>
                         </TabPanel>
                         <TabPanel value="template">
                             <TemplateBuilder key={this.state.strat.template.name}
@@ -76,7 +76,7 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                                 onChange={(template: Template) => this.handleChange({ strat: { template: { $set: template } } })} />
                         </TabPanel>
                         <TabPanel value="ce">
-                            <Grid container>
+                            <Grid container spacing={4}>
                                 <Grid item md={6} sm={12}>
                                     <CEBuilder label="Servant CE"
                                         value={this.state.strat.servantCe}

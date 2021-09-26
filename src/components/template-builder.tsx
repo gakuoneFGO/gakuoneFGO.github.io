@@ -40,7 +40,7 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                     renderInput={params => <TextField {...params} label="Select Template" variant="outlined" />}
                     onChange={(e, v) => { if (v) this.loadTemplate(v)}}
                     disableClearable={true} />
-                <Grid container>
+                <Grid container spacing={4}>
                     {this.props.value.party.map((servant, index) =>(
                         <Grid item lg={4} md={6} sm={12} key={index}>
                             <ServantSelector

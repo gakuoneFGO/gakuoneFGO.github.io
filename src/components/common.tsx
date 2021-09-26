@@ -10,7 +10,7 @@ interface BaseProps<V> {
 }
 
 /**
- * Base class for components which provide an interface for updating data owned by a parent component.
+ * Base class for components which provide a user interface for updating data owned by a parent component.
  */
 class BaseComponent<V, P extends BaseProps<V>, S, SS> extends React.Component<P, S, SS> {
     constructor(props: P) {
@@ -27,6 +27,11 @@ class BaseComponent<V, P extends BaseProps<V>, S, SS> extends React.Component<P,
     }
 }
 
+/**
+ * Wrapping state in a POJO fixes two problems with React state objects:
+ * 1. State is not allowed to be an array.
+ * 2. State objects may not maintain the inheritance hierarchy (prototype can be "reassigned", causing methods to be missing at runtime).
+ */
 class StateWrapper<S> {
     constructor(readonly _: S) {}
 }
@@ -34,6 +39,7 @@ class StateWrapper<S> {
 /**
  * Tracks keys for objects in an array which have a "stable identity" from a usage perspective but not in the data model.
  * API is currently limited to what I actually need.
+ * TODO: revisit whether this does anything at all since the original bug (deleting buffs on CE tab when key is just the index deletes the wrong buff) doesn't seem to be an issue anymore
  */
 class KeyTracker<T> {
     constructor(
@@ -95,9 +101,7 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
                         <InputAdornment position="end">%</InputAdornment>
                     )
                 }}
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                InputLabelProps={{ shrink: true }}
                 onChange={e => { this.onChange(e.target.value) }} />
         );
     }

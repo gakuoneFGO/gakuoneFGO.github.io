@@ -68,7 +68,7 @@ interface CEBuilderProps extends BaseProps<CraftEssence> {
 class CEBuilder extends BaseComponent<CraftEssence, CEBuilderProps, StateWrapper<KeyTracker<Buff>>, any> {
     constructor(props: CEBuilderProps) {
         super(props);
-        this.state = new StateWrapper(KeyTracker.fromSource<Buff>(props.value.buffs));
+        this.state = new StateWrapper(KeyTracker.fromSource(props.value.buffs));
         this.addBuff = this.addBuff.bind(this);
         this.removeBuff = this.removeBuff.bind(this);
     }
