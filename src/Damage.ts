@@ -1,9 +1,9 @@
-import { Servant, ServantClass, ServantAttribute, Trigger, CardType, Buff, BuffType } from "./Servant";
-import { Enemy, EnemyClass, EnemyAttribute } from "./Enemy";
+import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType } from "./Servant";
+import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./Enemy";
 
 class PowerMod {
     constructor(
-        readonly trigger: Trigger,
+        readonly trigger: Trait,
         readonly modifier: number) {}
 }
 
@@ -17,7 +17,7 @@ class BuffSet {
         readonly overcharge: number) {}
 
     static empty(): BuffSet {
-        let powerMod = new PowerMod(Trigger.Always, 0);
+        let powerMod = new PowerMod(Trait.Always, 0);
         const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0);
         return emptySingleton;
     }
@@ -34,7 +34,7 @@ class BuffSet {
     }
 
     static fromBuffs(buffs: Buff[], npType: CardType): BuffSet {
-        let powerMod = new PowerMod(Trigger.Always, 0);
+        let powerMod = new PowerMod(Trait.Always, 0);
         return new BuffSet(
             buffs.filter(b => b.type == BuffType.AttackUp).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.CardTypeUp && b.cardType == npType).reduce((v, b) => v + b.val, 0),
@@ -43,12 +43,12 @@ class BuffSet {
             //TODO: just make a groupBy method, geez
             Array.from(buffs.filter(b => b.type == BuffType.PowerMod)
                 .reduce((map, buff) => {
-                    if (!map.has(buff.trig as Trigger))
-                        map.set(buff.trig as Trigger, buff.val);
+                    if (!map.has(buff.trig as Trait))
+                        map.set(buff.trig as Trait, buff.val);
                     else
-                        map.set(buff.trig as Trigger, buff.val + (map.get(buff.trig as Trigger) as number));
+                        map.set(buff.trig as Trait, buff.val + (map.get(buff.trig as Trait) as number));
                     return map;
-                }, new Map<Trigger, number>())
+                }, new Map<Trait, number>())
                 .entries()).map(entry => new PowerMod(entry[0], entry[1])).concat([ powerMod, powerMod, powerMod ]),
                 buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0)
         );
@@ -110,14 +110,8 @@ class Calculator {
     }
 }
 
-function isTriggerActive(enemy: Enemy, trigger: Trigger): boolean {
-    //TODO: oddball ones like tesla's
-    let strTrigger = trigger as string;
-    if (strTrigger.startsWith("class"))
-        return strTrigger.endsWith(enemy.eClass.substring(1));
-    if (strTrigger.startsWith("attribute"))
-        return strTrigger.endsWith(enemy.attribute.substring(1));
-    return trigger == Trigger.Always || enemy.traits.some(trait => (trait as string) == strTrigger);
+function isTriggerActive(enemy: Enemy, trigger: Trait): boolean {
+    return trigger == Trait.Always || enemy.traits.some(trait => trait == trigger);
 }
 
 class CraftEssence {

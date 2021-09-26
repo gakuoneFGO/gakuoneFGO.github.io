@@ -1,7 +1,8 @@
-import { CardType, GrowthCurve, ServantConfig, Servant, ServantData, Trigger } from "./Servant";
+import { CardType, GrowthCurve, ServantConfig, Servant, ServantData } from "./Servant";
 import { Template, Strat, BuffMatrix } from "./Strat";
 import { deserializeArray } from 'class-transformer';
 import { PowerMod } from "./Damage";
+import { Trait } from "./Enemy";
 
 class Data {
     constructor(
@@ -15,7 +16,7 @@ class Data {
             servantData.name, Math.max(servantData.f2pCopies, 1),
             getMaxLevel(servantData.rarity),
             1000,
-            new PowerMod((servantData.appendTarget as string) as Trigger, 0.3),
+            new PowerMod(servantData.appendTarget, 0.3),
             servantData.np.multUpgrade > 0.0);
         return new Servant(config, servantData);
     }

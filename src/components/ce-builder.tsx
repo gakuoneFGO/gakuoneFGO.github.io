@@ -3,9 +3,10 @@ import { Add, Remove } from "@material-ui/icons";
 import { Autocomplete } from "@material-ui/lab";
 import React from "react";
 import { CraftEssence } from "../Damage";
-import { Buff, BuffType, CardType, Trigger } from "../Servant";
+import { Buff, BuffType, CardType } from "../Servant";
 import { BaseComponent, BaseProps, PercentInput, StateWrapper, KeyTracker } from "./common";
 import update from "immutability-helper";
+import { Trait } from "../Enemy";
 
 interface BuffSelectorProps extends BaseProps<Buff> {
     
@@ -35,8 +36,8 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
                 </Box>
                 <Box display={this.props.value.type == BuffType.PowerMod ? undefined : "none" }>
                     <Autocomplete
-                        options={Object.values(Trigger)}
-                        value={this.props.value.trig ?? Trigger.Never}
+                        options={Object.values(Trait)}
+                        value={this.props.value.trig ?? Trait.Never}
                         renderInput={params => <TextField label="Trigger" {...params} variant="outlined" />}
                         onChange={(_, v) => this.handleChange({ trig: {$set: v } })}
                         disableClearable={true} />
@@ -47,13 +48,13 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
 
     handleBuffTypeChanged(type: BuffType) {
         var cardType: CardType | undefined = undefined;
-        var trig: Trigger | undefined = undefined;
+        var trig: Trait | undefined = undefined;
         switch (type) {
             case BuffType.CardTypeUp:
                 cardType = CardType.Buster;//TODO
                 break;
             case BuffType.PowerMod:
-                trig = Trigger.Always;
+                trig = Trait.Always;
                 break;
         }
         this.handleChange({ type: {$set: type }, cardType: { $set: cardType }, trig: { $set: trig } });
@@ -119,8 +120,8 @@ class CEBuilder extends BaseComponent<CraftEssence, CEBuilderProps, StateWrapper
 
 let ceList = [
     new CraftEssence("<None>", 0, []),
-    new CraftEssence("Event Damage (+100%)", 0, [ new Buff(true, false, BuffType.PowerMod, 1, -1, undefined, Trigger.Always) ]),
-    new CraftEssence("Event Damage (MLB +200%)", 0, [ new Buff(true, false, BuffType.PowerMod, 2, -1, undefined, Trigger.Always) ]),
+    new CraftEssence("Event Damage (+100%)", 0, [ new Buff(true, false, BuffType.PowerMod, 1, -1, undefined, Trait.Always) ]),
+    new CraftEssence("Event Damage (MLB +200%)", 0, [ new Buff(true, false, BuffType.PowerMod, 2, -1, undefined, Trait.Always) ]),
     new CraftEssence("The Black Grail (Lvl 100)", 2400, [ new Buff(true, false, BuffType.NpDmgUp, .8, -1) ]),
     new CraftEssence("The Black Grail (Lvl 20)", 980, [ new Buff(true, false, BuffType.NpDmgUp, .6, -1) ]),
 ];

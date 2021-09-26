@@ -1,5 +1,6 @@
 import { TransformPlainToClass, Type } from "class-transformer";
 import { BuffSet, PowerMod } from "./Damage";
+import { Trait } from "./Enemy";
 
 class Servant {
     constructor(readonly config: ServantConfig, readonly data: ServantData) {};
@@ -42,7 +43,7 @@ class ServantData {
         readonly iconUrl: string,
         readonly cardArtUrl: string,
         readonly chargeProfile: string,
-        readonly appendTarget: Trigger,
+        readonly appendTarget: Trait,
         passives: Buff[],
         skills: Skill[],
         np: NoblePhantasm) {
@@ -91,7 +92,7 @@ class Buff {
         readonly val: number,
         readonly turns: number,
         readonly cardType?: CardType,
-        readonly trig?: Trigger) {}
+        readonly trig?: Trait) {}
 }
 
 enum BuffType {
@@ -120,7 +121,7 @@ class NoblePhantasm {
         readonly multiplier: number[],
         readonly multUpgrade: number,
         readonly extraDamage: number[],
-        readonly extraTrigger: Trigger,
+        readonly extraTrigger: Trait,
         preBuffs: Buff[],
         postBuffs: Buff[]) {
         this.preBuffs = preBuffs;
@@ -175,72 +176,4 @@ enum Alignment {
     Madness = "madness",
 }
 
-enum Trigger {
-    Shielder = "classShielder",
-    Saber = "classSaber",
-    Archer = "classArcher",
-    Lancer = "classLancer",
-    Rider = "classRider",
-    Caster = "classCaster",
-    Assassin = "classAssassin",
-    Berserker = "classBerserker",
-    Ruler = "classRuler",
-    Avenger = "classAvenger",
-    MoonCancer = "classMoonCancer",
-    AlterEgo = "classAlterEgo",
-    Foreigner = "classForeigner",
-    Pretender = "classPretender",
-    Man = "attributeHuman",
-    Earth = "attributeEarth",
-    Sky = "attributeSky",
-    Star = "attributeStar",
-    Beast = "attributeBeast",
-    Always = "always",
-    Never = "never",
-    Argo = "argonaut",
-    Arthur = "arthur",
-    BrynhildrsBeloved = "brynhildsBeloved",
-    Children = "childServant",
-    CostumeOwning = "hasCostume",
-    Demonic = "demonic",
-    Divine = "divine",
-    DivineSpirit = "divineSpirit",
-    Dragon = "dragon",
-    Fae = "fae",
-    Feminine = "feminineLookingServant",
-    Genji = "genji",
-    Giant = "giant",
-    GreekMythMales = "greekMythologyMales",
-    Humanoid = "humanoid",
-    Illya = "illya",
-    King = "king",
-    Human = "livingHuman",
-    Mechanical = "mechanical",
-    Nobunaga = "nobunaga",
-    Oni = "oni",
-    SkyOrEarthExceptPseudoAndDemi = "skyOrEarthExceptPseudoAndDemi",
-    Riding = "riding",
-    Roman = "roman",
-    KoTR = "knightsOfTheRound",
-    Saberface = "saberface",
-    Servant = "servant",
-    Shuten = "shuten",
-    SuperLarge = "superGiant",
-    ThreatToHumanity = "threatToHumanity",
-    Undead = "undead",
-    WeakToEnumaElish = "weakToEnumaElish",
-    WildBeast = "wildbeast",
-    EarthOrSky = "skyOrEarth",
-    SaberServant = "saberClassServant",
-    KotrOrFae = "KoTR or Fae",
-    Good = "alignmentGood",
-    Evil = "alignmentEvil",
-    Lawful = "alignmentLawful",
-    Chaotic = "alignmentChaotic",
-    Neutral = "alignmentNeutral",
-    Summer = "alignmentSummer",
-    Madness = "alignmentMadness",
-    //TODO: add remaining triggers
-}
-
-export { Servant, ServantConfig, ServantData, Buff, BuffType, Skill, NoblePhantasm, ServantClass, ServantAttribute, Trigger, CardType, GrowthCurve, Alignment };
+export { Servant, ServantConfig, ServantData, Buff, BuffType, Skill, NoblePhantasm, ServantClass, ServantAttribute, CardType, GrowthCurve, Alignment };

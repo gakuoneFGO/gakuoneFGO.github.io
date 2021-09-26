@@ -3,7 +3,7 @@ import { TabContext, TabList, TabPanel } from "@material-ui/lab";
 import React from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
 import { allData } from "../Data";
-import { Enemy, EnemyAttribute } from "../Enemy";
+import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
 import { EnemyBuilder } from "./enemy-builder";
 import { OutputPanel } from "./output-panel";
 import { BuffMatrix, EnemyNode, Strat, Template } from "../Strat";
@@ -38,7 +38,7 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                 defaultBuffsetHeuristic(servant.data, template.party, template.clearers.map(clearers => clearers.includes(0))),
                 new CraftEssence("<None>", 0, []),
                 new CraftEssence("<None>", 0, []),
-                EnemyNode.uniform(new Enemy(getLikelyClassMatchup(servant.data.sClass), EnemyAttribute.Neutral, [], 0.0))
+                EnemyNode.uniform(new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass)))
             );
             component.setState({ strat: strat, selectedTab: "servant" });
         });
@@ -106,7 +106,7 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
             this.handleChange({ strat: {
                     servant: { $set: servant },
                     servantBuffs: { $set: defaultBuffsetHeuristic(servant.data, this.state.strat.template.party, this.state.strat.template.clearers.map(clearers => clearers.includes(0))) },
-                    node: { $set: EnemyNode.uniform(update(this.state.strat.node.waves[0].enemies[0], { eClass: { $set: getLikelyClassMatchup(servant.data.sClass) } })) }
+                    node: { $set: EnemyNode.uniform(this.state.strat.node.waves[0].enemies[0].changeClass(getLikelyClassMatchup(servant.data.sClass))) }
             }});
         } else {
             this.handleChange({ strat: { servant: { $set: servant } } });

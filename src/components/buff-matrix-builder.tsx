@@ -2,7 +2,7 @@ import { Table, TableCell, TableContainer, TableRow, TextField } from "@material
 import { Autocomplete } from "@material-ui/lab";
 import { Spec } from "immutability-helper";
 import { BuffSet, PowerMod } from "../Damage";
-import { Trigger } from "../Servant";
+import { Trait } from "../Enemy";
 import { BuffMatrix } from "../Strat";
 import { BaseComponent, BaseProps, PercentInput } from "./common";
 import { TransposedTableBody } from "./transposed-table"
@@ -51,10 +51,10 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                                     </TableCell>,
                                     <TableCell key={pIndex * 2 + 1}>
                                         <Autocomplete
-                                            options={Object.values(Trigger)}
+                                            options={Object.values(Trait)}
                                             value={buffSet.powerMods[pIndex].trigger}
                                             renderInput={params => <TextField {...params} variant="outlined" />}
-                                            onChange={(_, v) => this.handlePowerModChange({ trigger: {$set: v as Trigger} }, pIndex, index)}
+                                            onChange={(_, v) => this.handlePowerModChange({ trigger: {$set: v } }, pIndex, index)}
                                             disableClearable={true} />
                                     </TableCell>
                                 ])}

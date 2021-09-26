@@ -1,8 +1,9 @@
 import * as JSONStream from "JSONStream";
 import * as fs from "fs";
 import "reflect-metadata";
-import { ServantData, GrowthCurve, Trigger, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType } from "../src/Servant"
+import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType } from "../src/Servant"
 import update from "immutability-helper";
+import { Trait } from "../src/Enemy";
 
 const U_RATIO = 0.001;
 
@@ -78,9 +79,9 @@ function getExtraMultiplier(npFunc: any): number[] {
         .map(svals => svals[0].Correction * U_RATIO);
 }
 
-function getExtraTrigger(npFunc: any): Trigger {
-    if (!npFunc || !npFunc.svals[0].Target) return Trigger.Never;
-    return enums.Trait[npFunc.svals[0].Target] as Trigger;
+function getExtraTrigger(npFunc: any): Trait {
+    if (!npFunc || !npFunc.svals[0].Target) return Trait.Never;
+    return enums.Trait[npFunc.svals[0].Target] as Trait;
 }
 
 function toNiceClassName(className: string): string {
@@ -99,10 +100,10 @@ function getDummyServant(name: string): ServantData {
         "",//TODO: find good icons
         "",//TODO: find good cards
         "",
-        Trigger.Shielder,
+        Trait.Shielder,
         [],
         [],
-        new NoblePhantasm(CardType.Buster, [], 0, [], Trigger.Never, [], [])
+        new NoblePhantasm(CardType.Buster, [], 0, [], Trait.Never, [], [])
     );
 }
 
@@ -140,7 +141,7 @@ EXCEPTIONS
 
 function getSkills(data: any, npType: CardType): Skill[] {
     console.log(data.name);
-    return data.skills.filter((s, _, arr) => arr.findIndex(o => o.num == s.num && o.strengthStatus > s.strengthStatus) < 0)
+    return data.skills.filter((s, _, arr) => !arr.some(o => o.num == s.num && o.strengthStatus > s.strengthStatus))
         .map(s => new Skill(s.coolDown[s.coolDown.length - 1], s.functions.flatMap(toBuff).filter(buff => isUseful(buff, npType))));
 }
 
@@ -205,12 +206,12 @@ function toBuff(func: any): Buff[] {
         case "upDamage":
             if (func.buffs[0].tvals.length == 0) {
                 console.log("Missing power mod trigger", func.buffs[0]);
-                return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, Trigger.Never) ];
+                return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, Trait.Never) ];
             }
             return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, func.buffs[0].tvals[0].name) ];
         case "upDamageIndividualityActiveonly":
             //hack
-            return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, Trigger.Always) ];
+            return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, Trait.Always) ];
         case "buffRate":
             //TODO: this is coded as "increase effects of this specific buff type" rather than against NP damage specifically
             //console.log("UpBuffRateBuffIndiv", func.buffs[0].script.UpBuffRateBuffIndiv);
