@@ -8,6 +8,17 @@ class Data {
         public servants: Map<string, ServantData>,
         public templates: Map<string, Template>,
         public setups: [ Strat, Node ][]) {}
+
+    getServantDefaults(name: string): Servant {
+        let servantData = this.servants.get(name) as ServantData;
+        let config = new ServantConfig(
+            servantData.name, Math.max(servantData.f2pCopies, 1),
+            getMaxLevel(servantData.rarity),
+            1000,
+            new PowerMod((servantData.appendTarget as string) as Trigger, 0.3),
+            servantData.np.multUpgrade > 0.0);
+        return new Servant(config, servantData);
+    }
 }
 
 let allData = Promise.all([
@@ -25,7 +36,7 @@ let allData = Promise.all([
         allData.templates.set(template.name, new Template(
             template.name,
             template.buffs,
-            template.party.map(name => getServantDefaultsFromData(name, allData)),
+            template.party.map(name => allData.getServantDefaults(name)),
             template.clearers,
             template.description,
             template.instructions
@@ -34,17 +45,6 @@ let allData = Promise.all([
     console.log(allData);
     return allData;
 });
-
-function getServantDefaultsFromData(name: string, data: Data): Servant {
-    let servantData = data.servants.get(name) as ServantData;
-    let config = new ServantConfig(
-        servantData.name, Math.max(servantData.f2pCopies, 1),
-        getMaxLevel(servantData.rarity),
-        1000,
-        new PowerMod((servantData.appendTarget as string) as Trigger, 0.3),
-        servantData.np.multUpgrade > 0.0);
-    return new Servant(config, servantData);
-}
 
 function getMaxLevel(rarity: number): number {
     switch (rarity) {
