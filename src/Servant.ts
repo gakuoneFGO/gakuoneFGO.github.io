@@ -1,5 +1,5 @@
-import { TransformPlainToClass, Type } from "class-transformer";
-import { BuffSet, PowerMod } from "./Damage";
+import { Type } from "class-transformer";
+import { PowerMod } from "./Damage";
 import { Trait } from "./Enemy";
 
 class Servant {

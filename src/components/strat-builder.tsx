@@ -32,15 +32,15 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
         allData.then(data => {
             let servant = data.getServantDefaults("Iskandar");
             let template = data.templates.get("Double Oberon + Castoria (0%)") as Template;
-            let strat = new Strat(
+            var strat = new Strat(
                 servant,
                 template,
-                defaultBuffsetHeuristic(servant, template.party, template.clearers),
+                template.buffs,
                 new CraftEssence("<None>", 0, []),
                 new CraftEssence("<None>", 0, []),
                 EnemyNode.uniform(new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass)))
             );
-            component.setState({ strat: strat, selectedTab: "servant" });
+            component.setState({ strat: defaultBuffsetHeuristic(strat, 0), selectedTab: "servant" });
         });
     }
 
@@ -49,7 +49,7 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
         return (
             <Grid container direction="row-reverse">
                 <Grid item lg={4} md={5} sm={12}>
-                    <PartyDisplay party={replacePlaceholder(this.state.strat.template.party, this.state.strat.servant)} />
+                    <PartyDisplay party={this.state.strat.getRealParty().map(s => s[0])} />
                     <OutputPanel strat={this.state.strat} />
                     <EnemyBuilder value={this.state.strat.node.waves[0].enemies[0]} onChange={enemy => this.handleChange({ strat: { node: { $set: EnemyNode.uniform(enemy) } } })} />
                 </Grid>
@@ -67,16 +67,16 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                                 <ServantSelector value={this.state.strat.servant} label="Servant" onChange={(servant: Servant) => this.onServantChanged(servant)} />
                                 <BuffMatrixBuilder value={this.state.strat.servantBuffs}
                                     maxPowerMods={2}
-                                    onChange={buffs => this.handleChange({ strat: { servantBuffs: { $set: buffs } } })}
+                                    onChange={buffs => this.handleChange({ strat: { servantBuffs: { $set: buffs }, template: { buffs: { $set: this.state.strat.template.buffs.syncNpCard(buffs) } } } })}
                                     servants={[this.state.strat.servant]}
                                     warnOtherNp
-                                    selfTurns={this.state.strat.template.clearers.flatMap((c, index) => c.includes(0) ? [index] : [])} />
+                                    clearers={this.state.strat.getRealClearers().map(c => c[0])} />
                             </Box>
                         </TabPanel>
                         <TabPanel value="template">
                             <TemplateBuilder key={this.state.strat.template.name}
                                 value={this.state.strat.template}
-                                onChange={(template: Template) => this.handleChange({ strat: { template: { $set: template } } })} />
+                                onChange={(template: Template) => this.handleChange({ strat: { template: { $set: template }, servantBuffs: { $set: this.state.strat.servantBuffs.syncNpCard(template.buffs) } } })} />
                         </TabPanel>
                         <TabPanel value="ce">
                             <Grid container spacing={4}>
@@ -106,28 +106,29 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
 
     onServantChanged(servant: Servant) {
         if (servant.data.name != this.state.strat.servant.data.name) {
-            this.handleChange({ strat: {
-                    servant: { $set: servant },
-                    servantBuffs: { $set: defaultBuffsetHeuristic(servant, this.state.strat.template.party, this.state.strat.template.clearers) },
-                    node: { $set: EnemyNode.uniform(this.state.strat.node.waves[0].enemies[0].changeClass(getLikelyClassMatchup(servant.data.sClass))) }
-            }});
+            let strat = update(this.state.strat, {
+                servant: { $set: servant },
+                node: { $set: EnemyNode.uniform(this.state.strat.node.waves[0].enemies[0].changeClass(getLikelyClassMatchup(servant.data.sClass))) }
+            });
+            this.handleChange({ strat: { $set: defaultBuffsetHeuristic(strat, strat.template.party.findIndex(s => s.data.name == "<Placeholder>")) } });
         } else {
             this.handleChange({ strat: { servant: { $set: servant } } });
         }
     }
 }
 
-function defaultBuffsetHeuristic(servant: Servant, party: Servant[], clearers: number[][]): BuffMatrix {
-    party = replacePlaceholder(party, servant);
-    //let np = servant.nps[0];//TODO: depends on turn
+function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
+    let clearers = strat.getRealClearers().map(clearer => clearer[0]);
+
+    let isClearerMain = strat.template.clearers.map(c => c == clearerIndex);
+
     let getNP = function(turn: number): NoblePhantasm {
-        let clearer = party[clearers[turn][0] ?? 0];
-        return clearer.data.getNP();
+        return isClearerMain ?
+            clearers[turn].data.getNP() :
+            clearers[turn].data.getNP(strat.template.buffs.buffs[turn].npCard);
     }
 
-    let isClearerMain = clearers.map(c => c.includes(0));
-
-    let skillOrder = servant.data.skills.map(skill => {
+    let skillOrder = strat.servant.data.skills.map(skill => {
         let anySelfBuff = skill.buffs.findIndex(b => b.self) >= 0;
         let turnsToApplyTo = isClearerMain.flatMap((isMain, index) => isMain == anySelfBuff ? [index] : []);
         if (turnsToApplyTo.length == 0) {
@@ -140,18 +141,19 @@ function defaultBuffsetHeuristic(servant: Servant, party: Servant[], clearers: n
         return { buffs: isMain ? getNP(turn).postBuffs : [], turn: turn + 1 };
     }));
 
-    return new BuffMatrix(clearers.map((isMain, turn) => {
+    let servantBuffs = new BuffMatrix(clearers.map((isMain, turn) => {
         return BuffSet.fromBuffs(skillOrder.flatMap(order => {
             return order.turn <= turn
                 ? order.buffs.filter(b => (isMain && b.self) || (!isMain && b.team)).filter(b => order.turn + b.turns > turn)
                 : []
-            }).concat(servant.data.passives.filter(b => (isMain && b.self) || (!isMain && b.team))),
+            }).concat(strat.servant.data.passives.filter(b => (isMain && b.self) || (!isMain && b.team))),
             getNP(turn).cardType)
     }));
-}
 
-function replacePlaceholder(party: Servant[], servant: Servant): Servant[] {
-    return party.reduce<Servant[]>((prev: Servant[], cur, i) => cur.data.name == "<Placeholder>" ? update(prev, { [i]: { $set: servant } }) : prev, party);
+    return update(strat, {
+        servantBuffs: { $set: servantBuffs },
+        template: { buffs: { $set: strat.template.buffs.syncNpCard(servantBuffs) } }
+    });
 }
 
 export { StratBuilder }

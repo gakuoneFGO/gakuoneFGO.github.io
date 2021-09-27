@@ -53,7 +53,7 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                                     <FormControlLabel
                                         label="NP T1"
                                         control={
-                                            <Checkbox checked={this.props.value.clearers[0].includes(index)}
+                                            <Checkbox checked={this.props.value.clearers[0] == index}
                                                 onChange={(_, v) => this.handleClearerChanged(v, 0, index)}
                                                 disabled={this.props.value.party[index].data.name == "<Unspecified>"} />
                                         } />
@@ -62,7 +62,7 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                                     <FormControlLabel
                                         label="NP T2"
                                         control={
-                                            <Checkbox checked={this.props.value.clearers[1].includes(index)}
+                                            <Checkbox checked={this.props.value.clearers[1] == index}
                                                 onChange={(_, v) => this.handleClearerChanged(v, 1, index)}
                                                 disabled={this.props.value.party[index].data.name == "<Unspecified>"} />
                                         } />
@@ -71,7 +71,7 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                                     <FormControlLabel
                                         label="NP T3"
                                         control={
-                                            <Checkbox checked={this.props.value.clearers[2].includes(index)}
+                                            <Checkbox checked={this.props.value.clearers[2] == index}
                                                 onChange={(_, v) => this.handleClearerChanged(v, 2, index)}
                                                 disabled={this.props.value.party[index].data.name == "<Unspecified>"} />
                                         } />
@@ -83,24 +83,18 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                 <BuffMatrixBuilder value={this.props.value.buffs}
                     servants={this.props.value.party}
                     onChange={buffs => this.handleChange({ buffs: { $set: buffs } })}
-                    selfTurns={this.props.value.clearers.flatMap((c, index) => c.includes(0) ? [] : [index])} />
+                    clearers={this.props.value.clearers.map(c => this.props.value.party[c])} />
             </div>
         );
     }
 
     loadTemplate(name: string) {
-        //this.setState(this.wrap(this.data?.templates.get(name) as Template));
         this.props.onChange(this.data?.templates.get(name) as Template);
     }
 
     handleClearerChanged(value: boolean, turnIndex: number, clearerIndex: number) {
-        if (value) {
-            this.handleChange({ clearers: { [turnIndex]: { $splice: [[ 0, 0, clearerIndex ]] } } });
-        } else {
-            let index = this.props.value.clearers[turnIndex].findIndex(i => i == clearerIndex);
-            this.handleChange({ clearers: { [turnIndex]: { $splice: [[ index, 1 ]] } } })
-        }
-        console.log(JSON.stringify(this.props.value.buffs));
+        if (!value) return;
+        this.handleChange({ clearers: { [turnIndex]: { $set: clearerIndex } } });
     }
 }
 

@@ -12,8 +12,8 @@ import { TransposedTableBody } from "./transposed-table"
 
 interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
         readonly servants: Servant[];
+        readonly clearers: Servant[];
         readonly maxPowerMods?: number;
-        readonly selfTurns: number[];
         readonly warnOtherNp?: true | undefined;
 }
 
@@ -25,7 +25,8 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
             .flatMap(s => s.data.skills.flatMap(s => s.buffs).concat(s.data.nps.flatMap(np => np.preBuffs)).concat(s.data.nps.flatMap(np => np.postBuffs)))
             .some(b => b.type == BuffType.Overcharge);
         let showCardType = this.props.servants.some(s => s.data.nps.length > 1);
-        let validCardTypes = this.props.servants.flatMap(s => s.data.nps).map(np => np.cardType);//TODO: valid card type varies by turn, man this sucks
+        let validCardTypes = this.props.clearers.map(s => s.data.nps.map(np => np.cardType));
+        console.log("clearers", this.props.clearers);
         //probably: fix template control to enforce one clearer at a time, then...something
         return (
             <TableContainer>
@@ -48,7 +49,7 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                             <TableRow key={index}>
                                 <TableCell>
                                     <strong>T{index + 1}</strong>
-                                    <Box display={ this.props.warnOtherNp && !this.props.selfTurns.includes(index) ? "inline" : "none" }>
+                                    <Box display={ this.props.warnOtherNp && !this.props.servants.includes(this.props.clearers[index]) ? "inline" : "none" }>
                                         &nbsp;
                                         <Tooltip title="Wave is cleared by support servant. Only put team buffs provided by this servant in this column!">
                                             <Warning />
@@ -59,19 +60,19 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                                     <TableCell key={0}>
                                         <ButtonGroup>
                                             <Button
-                                                disabled={!this.props.selfTurns.includes(index) || !validCardTypes.includes(CardType.Buster)}
+                                                disabled={buffSet.npCard != CardType.Buster && (!this.props.servants.includes(this.props.clearers[index]) || !validCardTypes[index].includes(CardType.Buster))}
                                                 variant={buffSet.npCard == CardType.Buster ? "contained" : "outlined"}
                                                 style={buffSet.npCard == CardType.Buster ? {backgroundColor: "red"} : {color: "red"}}
                                                 onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Buster } } } })}>Buster</Button>
                                             <Button
-                                                disabled={!this.props.selfTurns.includes(index) || !validCardTypes.includes(CardType.Arts)}
+                                                disabled={buffSet.npCard != CardType.Arts && (!this.props.servants.includes(this.props.clearers[index]) || !validCardTypes[index].includes(CardType.Arts))}
                                                 variant={buffSet.npCard == CardType.Arts ? "contained" : "outlined"}
                                                 style={buffSet.npCard == CardType.Arts ? {backgroundColor: "blue"} : {color: "blue"}}
                                                 onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Arts } } } })}>Arts</Button>
                                             <Button
-                                                disabled={!this.props.selfTurns.includes(index) || !validCardTypes.includes(CardType.Quick)}
+                                                disabled={buffSet.npCard != CardType.Quick && (!this.props.servants.includes(this.props.clearers[index]) || !validCardTypes[index].includes(CardType.Quick))}
                                                 variant={buffSet.npCard == CardType.Quick ? "contained" : "outlined"}
-                                                style={buffSet.npCard == CardType.Quick ? {backgroundColor: "green"} : {color: "green"}}
+                                                style={buffSet.npCard == CardType.Quick ? {backgroundColor: "green"} : {color: "green", outlineColor: "green"}}
                                                 onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Quick } } } })}>Quick</Button>
                                         </ButtonGroup>
                                     </TableCell>

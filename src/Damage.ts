@@ -15,11 +15,11 @@ class BuffSet {
         readonly npBoost: number,
         readonly powerMods: PowerMod[],
         readonly overcharge: number,
-        readonly npCard?: CardType) {}
+        readonly npCard: CardType) {}
 
-    static empty(): BuffSet {
+    static empty(npCard: CardType): BuffSet {
         let powerMod = new PowerMod(Trait.Always, 0);
-        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0);
+        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0, npCard);
         return emptySingleton;
     }
 
@@ -31,7 +31,7 @@ class BuffSet {
             Math.max(...buffs.map(buff => buff.npBoost)),
             buffs.flatMap(buff => buff.powerMods).concat(appendMod),
             buffs.map(buff => buff.overcharge).reduce((a, b) => a + b),
-            buffs.reduce((type, buff) => buff.npCard ?? type, undefined as CardType | undefined)
+            buffs[0].npCard
         );
     }
 

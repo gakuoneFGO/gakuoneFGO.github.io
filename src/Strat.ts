@@ -1,14 +1,32 @@
 import { BuffSet, Damage, Calculator, CraftEssence } from "./Damage";
-import { Servant } from "./Servant";
+import { CardType, Servant } from "./Servant";
 import { Enemy } from "./Enemy";
+import update, { Spec } from "immutability-helper";
+import { Type } from "class-transformer";
 
 class BuffMatrix {
-    constructor(readonly buffs: BuffSet[]) {}
+    constructor(buffs: BuffSet[]) {
+        this.buffs = buffs;
+    }
 
-    static create(size: number): BuffMatrix {
-        let buffs = new Array<BuffSet>(size);
-        buffs.fill(BuffSet.empty());
-        return new BuffMatrix(buffs);
+    @Type(() => BuffSet)
+    readonly buffs: BuffSet[];
+
+    // static create(size: number): BuffMatrix {
+    //     let buffs = new Array<BuffSet>(size);
+    //     buffs.fill(BuffSet.empty());
+    //     return new BuffMatrix(buffs);
+    // }
+
+    /**
+     * Keeps npCard in sync on all BuffMatrix objects so that display and calculations are consistent.
+     * (Ideally we would just track that on the Strat level but this simplifies coordination between components by avoiding the need to write extra update hooks.)
+     * TODO: no-op detection
+     * @param other BuffMatrix to take values from.
+     * @returns 
+     */
+    public syncNpCard(other: BuffMatrix): BuffMatrix {
+        return new BuffMatrix(this.buffs.map((buffSet, index) => update(buffSet, { npCard: { $set: other.buffs[index].npCard } })));
     }
 }
 
@@ -17,7 +35,7 @@ class Template {
         readonly name: string,
         readonly buffs: BuffMatrix,
         readonly party: Servant[],
-        readonly clearers: number[][],
+        readonly clearers: number[],
         readonly description: string,
         readonly instructions: string[]) {}
 }
@@ -58,29 +76,28 @@ class Strat {
         readonly supportCe: CraftEssence,
         readonly node: EnemyNode) {}
 
+    public getRealParty(): [Servant, CraftEssence][] {
+        let strat = this;
+        return this.template.party.map(s => s.data.name == "<Placeholder>" ? [strat.servant, strat.servantCe] : [s, strat.supportCe]);
+    } 
+
+    public getRealClearers(): [Servant, CraftEssence][] {
+        let party = this.getRealParty();
+        return this.template.clearers.map(cIndex => party[cIndex]);
+    }
+
     //TODO: fix this garbage
     run(): NodeDamage {
         const calculator: Calculator = new Calculator();
         let result = new NodeDamage();
+        let clearers = this.getRealClearers();
         result.damagePerWave = this.node.waves.map((wave, wIndex) => {
             let waveResult = new WaveDamage();
-            this.template.clearers[wIndex].forEach(cIndex => {
-                var clearer = this.template.party[cIndex];
-                var ce = this.supportCe;
-                if (clearer.data.name == "<Placeholder>") {
-                    clearer = this.servant;
-                    ce = this.servantCe;
-                }
-                let damagePerEnemy = wave.enemies.map(enemy => {
-                    let damage = calculator.calculateNpDamage(clearer, ce, enemy, [ this.servantBuffs.buffs[wIndex], this.template.buffs.buffs[wIndex] ]);
-                    return damage;
-                });
-                waveResult.damagePerEnemy = combineDamage(waveResult.damagePerEnemy, damagePerEnemy);
+            let [clearer, ce] = clearers[wIndex];
+            waveResult.damagePerEnemy = wave.enemies.map(enemy => {
+                let damage = calculator.calculateNpDamage(clearer, ce, enemy, [ this.servantBuffs.buffs[wIndex], this.template.buffs.buffs[wIndex] ]);
+                return damage;
             });
-            //handle no clearers
-            if (waveResult.damagePerEnemy.length == 0) {
-                waveResult.damagePerEnemy = wave.enemies.map(_ => new Damage(0));
-            }
             waveResult.damagePerEnemy.forEach((damage, eIndex) => {
                 let enemy = wave.enemies[eIndex];
                 if (damage.low < enemy.hitPoints) {
@@ -93,13 +110,6 @@ class Strat {
         });
         return result;
     }
-}
-
-
-function combineDamage(d1: Damage[], d2: Damage[]): Damage[] {
-    if (d1.length == 0) return d2;
-    if (d2.length == 0) return d1;
-    return d1.map((dmg, index) => new Damage(dmg.average + d2[index].average));
 }
 
 export { Strat, Template, BuffMatrix, NodeDamage, WaveDamage, EnemyNode, Wave };

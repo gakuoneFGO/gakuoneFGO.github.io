@@ -1,6 +1,6 @@
 import { CardType, GrowthCurve, ServantConfig, Servant, ServantData } from "./Servant";
 import { Template, Strat, BuffMatrix } from "./Strat";
-import { deserializeArray } from 'class-transformer';
+import { deserializeArray, Type } from 'class-transformer';
 import { PowerMod } from "./Damage";
 import { Trait } from "./Enemy";
 
@@ -61,11 +61,16 @@ function getMaxLevel(rarity: number): number {
 class TemplateData {
     constructor(
         readonly name: string,
-        readonly buffs: BuffMatrix,
+        buffs: BuffMatrix,
         readonly party: string[],
-        readonly clearers: number[][],
+        readonly clearers: number[],
         readonly description: string,
-        readonly instructions: string[]) {}
+        readonly instructions: string[]) {
+            this.buffs = buffs;
+        }
+    
+    @Type(() => BuffMatrix)
+    readonly buffs: BuffMatrix;
 }
 
 export { Data, allData }
