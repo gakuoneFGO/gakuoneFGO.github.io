@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { TableBody, TableRow } from "@material-ui/core";
+import { TableBody, TableRow } from "@mui/material";
 
 class TransposedTableBody extends React.Component<any, any, any> {
     render() {

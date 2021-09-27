@@ -1,5 +1,4 @@
-import { Box, TextField } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
+import { Box, TextField, Autocomplete } from "@mui/material";
 import { BaseComponent, BaseProps } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass, Trait } from "../Enemy";
 

@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { InputAdornment, TextField } from "@material-ui/core";
+import { InputAdornment, TextField } from "@mui/material";
 
 interface BaseProps<V> {
     value: V;

@@ -1,5 +1,4 @@
-import { Box, Grid, Tab } from "@material-ui/core";
-import { TabContext, TabList, TabPanel } from "@material-ui/lab";
+import { Box, Grid, Tab } from "@mui/material";
 import React from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
 import { allData } from "../Data";
@@ -15,6 +14,7 @@ import { TemplateBuilder } from "./template-builder";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
 import { NoblePhantasm, Servant, ServantData } from "../Servant";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 interface StratBuilderState {
     readonly strat: Strat;

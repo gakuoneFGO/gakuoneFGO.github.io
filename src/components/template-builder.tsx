@@ -1,8 +1,6 @@
-import { Checkbox, FormControlLabel, Grid, TextField } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
+import { Checkbox, FormControlLabel, Grid, TextField, Autocomplete } from "@mui/material";
 import { allData, Data } from "../Data";
-import { Servant } from "../Servant";
-import { BuffMatrix, Template } from "../Strat";
+import { Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
 import { BaseComponent, BaseProps } from "./common";
 import { ServantSelector } from "./servant-selector";

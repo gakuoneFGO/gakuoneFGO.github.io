@@ -1,6 +1,6 @@
-import { createTheme } from "@material-ui/core";
-import { blue, green, grey, purple, red, yellow } from "@material-ui/core/colors";
-declare module '@material-ui/core/styles/createPalette' {
+import { createTheme } from "@mui/material";
+import { blue, green, grey, orange, purple, red, yellow } from "@mui/material/colors";
+declare module '@mui/material/styles/createPalette' {
     interface PaletteOptions {
         buster?: PaletteColorOptions;
         arts?: PaletteColorOptions;
@@ -16,20 +16,7 @@ declare module '@material-ui/core/styles/createPalette' {
 
 const theme = createTheme({
     palette: {
-        primary: {
-            main: yellow[500],
-        },
-        secondary: {
-            main: purple[500],
-        },
-        background: {
-            default: "#000000",
-            paper: "#101010",
-        },
-        text: {
-            primary: grey[400],
-            secondary: grey[100],
-        },
+        mode: "dark",
         buster: {
             main: red[900],
         },

@@ -1,5 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputLabel, TextField } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
+import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputLabel, TextField, Autocomplete, Typography } from "@mui/material";
 import React from "react";
 import { allData, Data } from "../Data";
 import { Servant } from "../Servant";
@@ -34,7 +33,7 @@ class ServantSelector extends BaseComponent<Servant, ServantSelectorProps, any, 
                     disableClearable={true} />
                 <Accordion variant="outlined">
                     <AccordionSummary>
-                        Detailed Stats
+                        <Typography>Detailed Stats</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container justifyContent="space-evenly">

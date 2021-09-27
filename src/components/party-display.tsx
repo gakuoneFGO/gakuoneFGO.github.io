@@ -1,4 +1,4 @@
-import { ImageList, ImageListItem } from "@material-ui/core";
+import { ImageList, ImageListItem } from "@mui/material";
 import React from "react";
 import { Servant } from "../Servant";
 

@@ -1,8 +1,7 @@
-import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box, ButtonGroup, Button, Theme, createStyles, withStyles } from "@material-ui/core";
-import { Warning } from "@material-ui/icons";
-import { Autocomplete } from "@material-ui/lab";
+import { Warning } from "@mui/icons-material";
+import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box, ButtonGroup, Button, Typography } from "@mui/material";
+import { Autocomplete } from "@mui/material";
 import { Spec } from "immutability-helper";
-import { Props } from "react";
 import { BuffSet, PowerMod } from "../Damage";
 import { Trait } from "../Enemy";
 import { BuffType, CardType, Servant } from "../Servant";
@@ -32,10 +31,10 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                     <TransposedTableBody>
                         <TableRow>
                             <TableCell></TableCell>
-                            {showIf(showCardType, <TableCell key={0}>NP Type</TableCell>)}
-                            <TableCell>Attack Up</TableCell>
-                            <TableCell>Card Type Up</TableCell>
-                            <TableCell>NP Damage Up</TableCell>
+                            {showIf(showCardType, <TableCell key={0}><Typography>NP Type</Typography></TableCell>)}
+                            <TableCell><Typography>Attack Up</Typography></TableCell>
+                            <TableCell><Typography>Card Type Up</Typography></TableCell>
+                            <TableCell><Typography>NP Damage Up</Typography></TableCell>
                             {showIf(showNpBoost, <TableCell key={0}>NP Up Boost</TableCell>)}
                             {showIf(showOc, <TableCell key={0}>Overcharge</TableCell>)}
                             {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [
@@ -46,11 +45,11 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                         {this.props.value.buffs.map((buffSet: BuffSet, index: number) => (
                             <TableRow key={index}>
                                 <TableCell>
-                                    <strong>T{index + 1}</strong>
+                                    <Typography display="inline">T{index + 1}</Typography>
                                     <Box display={ this.props.warnOtherNp && !this.props.servants.includes(this.props.clearers[index]) ? "inline" : "none" }>
                                         &nbsp;
                                         <Tooltip title="Wave is cleared by support servant. Only put team buffs provided by this servant in this column!">
-                                            <Warning />
+                                            <Warning color="warning" />
                                         </Tooltip>
                                     </Box>
                                 </TableCell>
@@ -60,17 +59,17 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                                             <Button
                                                 disabled={buffSet.npCard != CardType.Buster && (!this.props.servants.includes(this.props.clearers[index]) || !validCardTypes[index].includes(CardType.Buster))}
                                                 variant={buffSet.npCard == CardType.Buster ? "contained" : "outlined"}
-                                                style={buffSet.npCard == CardType.Buster ? {backgroundColor: "red"} : {color: "red"}}
+                                                style={buffSet.npCard == CardType.Buster ? {backgroundColor: "red"} : {}}
                                                 onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Buster } } } })}>Buster</Button>
                                             <Button
                                                 disabled={buffSet.npCard != CardType.Arts && (!this.props.servants.includes(this.props.clearers[index]) || !validCardTypes[index].includes(CardType.Arts))}
                                                 variant={buffSet.npCard == CardType.Arts ? "contained" : "outlined"}
-                                                style={buffSet.npCard == CardType.Arts ? {backgroundColor: "blue"} : {color: "blue"}}
+                                                style={buffSet.npCard == CardType.Arts ? {backgroundColor: "blue"} : {}}
                                                 onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Arts } } } })}>Arts</Button>
                                             <Button
                                                 disabled={buffSet.npCard != CardType.Quick && (!this.props.servants.includes(this.props.clearers[index]) || !validCardTypes[index].includes(CardType.Quick))}
                                                 variant={buffSet.npCard == CardType.Quick ? "contained" : "outlined"}
-                                                style={buffSet.npCard == CardType.Quick ? {backgroundColor: "green"} : {color: "green", outlineColor: "green"}}
+                                                style={buffSet.npCard == CardType.Quick ? {backgroundColor: "green"} : {}}
                                                 onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Quick } } } })}>Quick</Button>
                                         </ButtonGroup>
                                     </TableCell>

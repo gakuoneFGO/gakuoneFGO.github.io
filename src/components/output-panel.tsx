@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { StateWrapper } from "./common";
 import { NodeDamage, Strat } from "../Strat";
 import update from "immutability-helper";

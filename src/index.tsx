@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider } from "@material-ui/core";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "reflect-metadata";

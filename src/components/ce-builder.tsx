@@ -1,11 +1,9 @@
-import { Box, Card, CardContent, CardHeader, IconButton, TextField } from "@material-ui/core";
-import { Add, Remove } from "@material-ui/icons";
-import { Autocomplete } from "@material-ui/lab";
+import { Box, Card, CardContent, CardHeader, IconButton, TextField, Autocomplete } from "@mui/material";
+import { Add, Remove } from "@mui/icons-material";
 import React from "react";
 import { CraftEssence } from "../Damage";
 import { Buff, BuffType, CardType } from "../Servant";
 import { BaseComponent, BaseProps, PercentInput, StateWrapper, KeyTracker, showIf } from "./common";
-import update from "immutability-helper";
 import { Trait } from "../Enemy";
 
 interface BuffSelectorProps extends BaseProps<Buff> {
