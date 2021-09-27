@@ -82,7 +82,8 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                 </Grid>
                 <BuffMatrixBuilder value={this.props.value.buffs}
                     servants={this.props.value.party}
-                    onChange={buffs => this.handleChange({ buffs: { $set: buffs } })} />
+                    onChange={buffs => this.handleChange({ buffs: { $set: buffs } })}
+                    selfTurns={this.props.value.clearers.flatMap((c, index) => c.includes(0) ? [] : [index])} />
             </div>
         );
     }

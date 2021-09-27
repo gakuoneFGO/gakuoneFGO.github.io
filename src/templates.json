@@ -5,7 +5,7 @@
             "buffs": [
                 {
                     "attackUp": 0.2,
-                    "effUp": 0.5,
+                    "cardUp": 0.5,
                     "npUp": 0.3,
                     "npBoost": 1,
                     "powerMods": [
@@ -26,7 +26,7 @@
                 },
                 {
                     "attackUp": 0.2,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
@@ -47,7 +47,7 @@
                 },
                 {
                     "attackUp": 0.5,
-                    "effUp": 0.5,
+                    "cardUp": 0.5,
                     "npUp": 0.6,
                     "npBoost": 1,
                     "powerMods": [
@@ -100,7 +100,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0.5,
+                    "cardUp": 0.5,
                     "npUp": 0.3,
                     "npBoost": 1,
                     "powerMods": [
@@ -121,7 +121,7 @@
                 },
                 {
                     "attackUp": 0.4,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
@@ -142,7 +142,7 @@
                 },
                 {
                     "attackUp": 0.7,
-                    "effUp": 0.5,
+                    "cardUp": 0.5,
                     "npUp": 0.6,
                     "npBoost": 1,
                     "powerMods": [
@@ -195,7 +195,7 @@
             "buffs": [
                 {
                     "attackUp": 0.3,
-                    "effUp": 0.5,
+                    "cardUp": 0.5,
                     "npUp": 0.3,
                     "npBoost": 1,
                     "powerMods": [
@@ -216,7 +216,7 @@
                 },
                 {
                     "attackUp": 0.3,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
@@ -237,7 +237,7 @@
                 },
                 {
                     "attackUp": 0.6,
-                    "effUp": 0.5,
+                    "cardUp": 0.5,
                     "npUp": 0.6,
                     "npBoost": 1,
                     "powerMods": [
@@ -290,7 +290,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0.5,
+                    "cardUp": 0.5,
                     "npUp": 0.6,
                     "npBoost": 1,
                     "powerMods": [
@@ -311,7 +311,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0.5,
+                    "cardUp": 0.5,
                     "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
@@ -332,7 +332,7 @@
                 },
                 {
                     "attackUp": 0.3,
-                    "effUp": 1,
+                    "cardUp": 1,
                     "npUp": 0.6,
                     "npBoost": 1,
                     "powerMods": [
@@ -385,7 +385,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -406,7 +406,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -427,7 +427,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -480,7 +480,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -501,7 +501,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -522,7 +522,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -575,7 +575,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -596,7 +596,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -617,7 +617,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -670,7 +670,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -691,7 +691,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -712,7 +712,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -765,7 +765,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -786,7 +786,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -807,7 +807,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -860,7 +860,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -881,7 +881,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -902,7 +902,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -955,7 +955,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -976,7 +976,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -997,7 +997,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1050,7 +1050,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1071,7 +1071,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1092,7 +1092,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1145,7 +1145,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1166,7 +1166,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1187,7 +1187,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1240,7 +1240,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1261,7 +1261,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1282,7 +1282,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1335,7 +1335,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1356,7 +1356,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1377,7 +1377,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1430,7 +1430,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1451,7 +1451,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1472,7 +1472,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1525,7 +1525,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1546,7 +1546,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1567,7 +1567,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1620,7 +1620,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1641,7 +1641,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1662,7 +1662,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1715,7 +1715,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1736,7 +1736,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1757,7 +1757,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1810,7 +1810,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1831,7 +1831,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1852,7 +1852,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1905,7 +1905,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1926,7 +1926,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -1947,7 +1947,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -2000,7 +2000,7 @@
             "buffs": [
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -2021,7 +2021,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -2042,7 +2042,7 @@
                 },
                 {
                     "attackUp": 0,
-                    "effUp": 0,
+                    "cardUp": 0,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [

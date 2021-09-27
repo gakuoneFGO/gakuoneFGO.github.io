@@ -19,9 +19,7 @@ enumStream.on("end", () => {
             return;
         }
         //console.log(data.name);
-        let npFuncFirst = data.noblePhantasms[0].functions.find(f => f.funcType.startsWith("damageNp"));
-        let npFuncLastIndex = data.noblePhantasms[data.noblePhantasms.length - 1].functions.findIndex(f => f.funcType.startsWith("damageNp"));
-        let npFuncLast = data.noblePhantasms[data.noblePhantasms.length - 1].functions[npFuncLastIndex];
+        let upgradedNps = getUpgraded(data.noblePhantasms, (np1, np2) => np1.card == np2.card);
         let servant = new ServantData(
             data.name,
             data.collectionNo,
@@ -36,19 +34,8 @@ enumStream.on("end", () => {
             data.appendPassive[2].skill.functions[0].buffs[0].tvals[0].name,
             getPassives(data, data.noblePhantasms[0].card),
             getSkills(data, data.noblePhantasms[0].card),
-            new NoblePhantasm(
-                data.noblePhantasms[0].card,
-                npFuncFirst
-                    ? npFuncFirst.svals.map(v => v.Value * U_RATIO) 
-                    : [ 0, 0, 0, 0, 0 ],
-                    npFuncFirst && data.noblePhantasms[0].strengthStatus ? (npFuncLast.svals[0].Value * U_RATIO - npFuncFirst.svals[0].Value * U_RATIO) : 0,
-                    getExtraMultiplier(npFuncLast),
-                    getExtraTrigger(npFuncLast),
-                    data.noblePhantasms[data.noblePhantasms.length - 1].functions.filter((_, i) => i < npFuncLastIndex).flatMap(toBuff),
-                    data.noblePhantasms[data.noblePhantasms.length - 1].functions.filter((_, i) => i > npFuncLastIndex).flatMap(toBuff)
-                        .map((b: Buff) => update(b, { turns: { $set: b.turns - 1 } }))
-                        .filter(b => b.turns > 0)
-            )
+            upgradedNps.map(np => mapNp(np, getUnupgraded(np, data.noblePhantasms, (np1, np2) => np1.card == np2.card)))
+            
         );
         //console.log(servant);
         if (!servants.has(servant.name))
@@ -72,6 +59,26 @@ enumStream.on("end", () => {
         fs.createWriteStream("src\\servants.json", { encoding: "utf-8" }).write(JSON.stringify(allServants, replaceMap, 4));
     });
 });
+
+function mapNp(np: any, unupgraded: any): NoblePhantasm {
+    let npFuncIndex = np.functions.findIndex(f => f.funcType.startsWith("damageNp"));
+    let npFunc = np.functions[npFuncIndex];
+    let npFuncUnupgraded = unupgraded.functions.find(f => f.funcType.startsWith("damageNp"));
+
+    return new NoblePhantasm(
+        np.card,
+        npFuncUnupgraded
+            ? npFuncUnupgraded.svals.map(v => v.Value * U_RATIO) 
+            : [ 0, 0, 0, 0, 0 ],
+            npFuncUnupgraded && unupgraded.strengthStatus ? (npFunc.svals[0].Value * U_RATIO - npFuncUnupgraded.svals[0].Value * U_RATIO) : 0,
+            getExtraMultiplier(npFunc),
+            getExtraTrigger(npFunc),
+            np.functions.filter((_, i) => i < npFuncIndex).flatMap(toBuff),
+            np.functions.filter((_, i) => i > npFuncIndex).flatMap(toBuff)
+                .map((b: Buff) => update(b, { turns: { $set: b.turns - 1 } }))
+                .filter(b => b.turns > 0)
+    );
+}
 
 function getExtraMultiplier(npFunc: any): number[] {
     if (!npFunc || !npFunc.svals[0].Correction) return [1.0, 1.0, 1.0, 1.0, 1.0 ];
@@ -103,7 +110,7 @@ function getDummyServant(name: string): ServantData {
         Trait.Shielder,
         [],
         [],
-        new NoblePhantasm(CardType.Buster, [], 0, [], Trait.Never, [], [])
+        []
     );
 }
 
@@ -141,8 +148,16 @@ EXCEPTIONS
 
 function getSkills(data: any, npType: CardType): Skill[] {
     console.log(data.name);
-    return data.skills.filter((s, _, arr) => !arr.some(o => o.num == s.num && o.strengthStatus > s.strengthStatus))
+    return getUpgraded(data.skills, (s1, s2) => s1.num == s2.num)
         .map(s => new Skill(s.coolDown[s.coolDown.length - 1], s.functions.flatMap(toBuff).filter(buff => isUseful(buff, npType))));
+}
+
+function getUpgraded(array: any[], areSame: (item1: any, item2:any) => boolean): any[] {
+    return array.filter(item => !array.some(other => areSame(item, other) && other.strengthStatus > item.strengthStatus));
+}
+
+function getUnupgraded(upgraded: any, array: any[], areSame: (item1: any, item2:any) => boolean): any {
+    return array.find(item => areSame(item, upgraded) && !array.some(other => areSame(item, other) && other.strengthStatus < item.strengthStatus));
 }
 
 function getPassives(data: any, npType: CardType): Buff[] {

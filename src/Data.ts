@@ -17,7 +17,7 @@ class Data {
             getMaxLevel(servantData.rarity),
             1000,
             new PowerMod(servantData.appendTarget, 0.3),
-            servantData.np.multUpgrade > 0.0);
+            servantData.nps.some(np => np.multUpgrade > 0.0));
         return new Servant(config, servantData);
     }
 }

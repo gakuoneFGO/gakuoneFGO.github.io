@@ -9,8 +9,8 @@ class Servant {
         return this.data.growthCurve.getAttackStat(this.config.level) + this.config.attackFou;
     }
 
-    getNpMultiplier(overcharge: number): number {
-        let multiplier = this.data.np.multiplier[this.config.npLevel - 1] + (this.config.isNpUpgraded ? this.data.np.multUpgrade : 0.0);
+    getNpMultiplier(np: NoblePhantasm, overcharge: number): number {
+        let multiplier = np.multiplier[this.config.npLevel - 1] + (this.config.isNpUpgraded ? np.multUpgrade : 0.0);
         if (this.data.name == "Arash") {
             return multiplier + overcharge * (this.config.isNpUpgraded ?  2.0 : 1.0);
         } else if (this.data.name == "Chen Gong") {
@@ -46,21 +46,25 @@ class ServantData {
         readonly appendTarget: Trait,
         passives: Buff[],
         skills: Skill[],
-        np: NoblePhantasm) {
+        nps: NoblePhantasm[]) {
             this.growthCurve = growthCurve;
             this.passives = passives;
             this.skills = skills;
-            this.np = np;
+            this.nps = nps;
         }
 
-        @Type(() => GrowthCurve)
-        readonly growthCurve: GrowthCurve;
-        @Type(() => Buff)
-        readonly passives: Buff[];
-        @Type(() => Skill)
-        readonly skills: Skill[];
-        @Type(() => NoblePhantasm)
-        readonly np: NoblePhantasm;
+    @Type(() => GrowthCurve)
+    readonly growthCurve: GrowthCurve;
+    @Type(() => Buff)
+    readonly passives: Buff[];
+    @Type(() => Skill)
+    readonly skills: Skill[];
+    @Type(() => NoblePhantasm)
+    readonly nps: NoblePhantasm[];
+
+    getNP(cardType?: CardType): NoblePhantasm {
+        return this.nps.find(np => !cardType || np.cardType == cardType) as NoblePhantasm;
+    }
 }
 
 class GrowthCurve {
@@ -117,7 +121,7 @@ class Skill {
 
 class NoblePhantasm {
     constructor(
-        readonly type: CardType,
+        readonly cardType: CardType,
         readonly multiplier: number[],
         readonly multUpgrade: number,
         readonly extraDamage: number[],

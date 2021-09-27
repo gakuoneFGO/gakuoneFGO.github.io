@@ -1,10 +1,11 @@
-import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box } from "@material-ui/core";
+import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box, ButtonGroup, Button, Theme, createStyles, withStyles } from "@material-ui/core";
 import { Warning } from "@material-ui/icons";
 import { Autocomplete } from "@material-ui/lab";
 import { Spec } from "immutability-helper";
+import { Props } from "react";
 import { BuffSet, PowerMod } from "../Damage";
 import { Trait } from "../Enemy";
-import { BuffType, Servant } from "../Servant";
+import { BuffType, CardType, Servant } from "../Servant";
 import { BuffMatrix } from "../Strat";
 import { BaseComponent, BaseProps, PercentInput, showIf } from "./common";
 import { TransposedTableBody } from "./transposed-table"
@@ -12,7 +13,8 @@ import { TransposedTableBody } from "./transposed-table"
 interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
         readonly servants: Servant[];
         readonly maxPowerMods?: number;
-        readonly warningTurns?: number[];
+        readonly selfTurns: number[];
+        readonly warnOtherNp?: true | undefined;
 }
 
 class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps, any, any> {
@@ -20,14 +22,18 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
         let maxPowerMods = this.props.maxPowerMods ?? 3;
         let showNpBoost = this.props.servants.flatMap(s => s.data.skills).flatMap(s => s.buffs).some(b => b.type == BuffType.NpBoost);
         let showOc = this.props.servants
-            .flatMap(s => s.data.skills.flatMap(s => s.buffs).concat(s.data.np.preBuffs).concat(s.data.np.postBuffs))
+            .flatMap(s => s.data.skills.flatMap(s => s.buffs).concat(s.data.nps.flatMap(np => np.preBuffs)).concat(s.data.nps.flatMap(np => np.postBuffs)))
             .some(b => b.type == BuffType.Overcharge);
+        let showCardType = this.props.servants.some(s => s.data.nps.length > 1);
+        let validCardTypes = this.props.servants.flatMap(s => s.data.nps).map(np => np.cardType);//TODO: valid card type varies by turn, man this sucks
+        //probably: fix template control to enforce one clearer at a time, then...something
         return (
             <TableContainer>
                 <Table>
                     <TransposedTableBody>
                         <TableRow>
                             <TableCell></TableCell>
+                            {showIf(showCardType, <TableCell key={0}>NP Type</TableCell>)}
                             <TableCell>Attack Up</TableCell>
                             <TableCell>Card Type Up</TableCell>
                             <TableCell>NP Damage Up</TableCell>
@@ -42,15 +48,36 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                             <TableRow key={index}>
                                 <TableCell>
                                     <strong>T{index + 1}</strong>
-                                    <Box display={ this.props.warningTurns && this.props.warningTurns.some(t => t == index) ? "inline" : "none" }>
+                                    <Box display={ this.props.warnOtherNp && !this.props.selfTurns.includes(index) ? "inline" : "none" }>
                                         &nbsp;
                                         <Tooltip title="Wave is cleared by support servant. Only put team buffs provided by this servant in this column!">
                                             <Warning />
                                         </Tooltip>
                                     </Box>
                                 </TableCell>
+                                {showIf(showCardType,
+                                    <TableCell key={0}>
+                                        <ButtonGroup>
+                                            <Button
+                                                disabled={!this.props.selfTurns.includes(index) || !validCardTypes.includes(CardType.Buster)}
+                                                variant={buffSet.npCard == CardType.Buster ? "contained" : "outlined"}
+                                                style={buffSet.npCard == CardType.Buster ? {backgroundColor: "red"} : {color: "red"}}
+                                                onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Buster } } } })}>Buster</Button>
+                                            <Button
+                                                disabled={!this.props.selfTurns.includes(index) || !validCardTypes.includes(CardType.Arts)}
+                                                variant={buffSet.npCard == CardType.Arts ? "contained" : "outlined"}
+                                                style={buffSet.npCard == CardType.Arts ? {backgroundColor: "blue"} : {color: "blue"}}
+                                                onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Arts } } } })}>Arts</Button>
+                                            <Button
+                                                disabled={!this.props.selfTurns.includes(index) || !validCardTypes.includes(CardType.Quick)}
+                                                variant={buffSet.npCard == CardType.Quick ? "contained" : "outlined"}
+                                                style={buffSet.npCard == CardType.Quick ? {backgroundColor: "green"} : {color: "green"}}
+                                                onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Quick } } } })}>Quick</Button>
+                                        </ButtonGroup>
+                                    </TableCell>
+                                )}
                                 <TableCell><PercentInput value={buffSet.attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }); }} /></TableCell>
-                                <TableCell><PercentInput value={buffSet.effUp} onChange={ v => { this.handleChange({ buffs : { [index]: { effUp: {$set: v} } } }); } } /></TableCell>
+                                <TableCell><PercentInput value={buffSet.cardUp} onChange={ v => { this.handleChange({ buffs : { [index]: { cardUp: {$set: v} } } }); } } /></TableCell>
                                 <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v} } } }); }} /></TableCell>
                                 {showIf(showNpBoost, <TableCell key={0}><PercentInput value={buffSet.npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v} } } }); }} /></TableCell>)}
                                 {showIf(showOc, <TableCell><PercentInput value={buffSet.overcharge} onChange={ v => { this.handleChange({ buffs : { [index]: { overcharge: {$set: v} } } }); }} /></TableCell>)}
