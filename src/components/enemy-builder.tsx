@@ -1,4 +1,4 @@
-import { Box, TextField, Autocomplete } from "@mui/material";
+import { Box, TextField, Autocomplete, Stack } from "@mui/material";
 import { BaseComponent, BaseProps } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass, Trait } from "../Enemy";
 
@@ -10,7 +10,7 @@ class EnemyBuilder extends BaseComponent<Enemy, EnemyBuilderProps, any, any> {
 
     render() {
         return (
-            <Box>
+            <Stack spacing={2}>
                 <Autocomplete
                     options={Object.values(EnemyClass)}
                     value={this.props.value.eClass}
@@ -28,7 +28,7 @@ class EnemyBuilder extends BaseComponent<Enemy, EnemyBuilderProps, any, any> {
                     value={this.props.value.traits}
                     renderInput={params => <TextField {...params} label="Enemy Traits" variant="outlined" />}
                     onChange={(e, v) => { if (v) this.handleChange({ traits: { $set: v as Trait[] } }); }} />
-            </Box>
+            </Stack>
         );
     }
 }

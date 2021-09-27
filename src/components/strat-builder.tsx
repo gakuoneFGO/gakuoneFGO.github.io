@@ -80,13 +80,13 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                                 onChange={this.onTemplateChanged} />
                         </TabPanel>
                         <TabPanel value="ce">
-                            <Grid container spacing={4}>
-                                <Grid item md={6} sm={12}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6} md={12} lg={6}>
                                     <CEBuilder label="Servant CE"
                                         value={this.state.strat.servantCe}
                                         onChange={(ce: CraftEssence) => this.handleChange({ strat: { servantCe: { $set: ce } } })} />
                                 </Grid>
-                                <Grid item md={6} sm={12}>
+                                <Grid item xs={12} sm={6} md={12} lg={6}>
                                     <CEBuilder label="Support CE"
                                         value={this.state.strat.supportCe}
                                         onChange={(ce: CraftEssence) => this.handleChange({ strat: { supportCe: { $set: ce } } })} />

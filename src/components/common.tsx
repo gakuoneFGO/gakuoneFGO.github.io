@@ -92,7 +92,7 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
     render() {
         return (
             <TextField
-                type="number" variant="outlined"
+                type="number" variant="outlined" fullWidth
                 label={this.props.label}
                 value={this.state.displayValue}
                 placeholder="0"
@@ -120,9 +120,5 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
     }
 }
 
-function showIf<T>(condition: boolean, ...element: T[]): T[] {
-    return condition ? element : [];
-}
-
-export { BaseComponent, PercentInput, StateWrapper, KeyTracker,showIf };
+export { BaseComponent, PercentInput, StateWrapper, KeyTracker };
 export type { BaseProps };

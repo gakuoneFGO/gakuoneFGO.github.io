@@ -37,31 +37,30 @@ class ServantSelector extends BaseComponent<Servant, ServantSelectorProps, any, 
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container justifyContent="space-evenly">
-                            <Grid item>
+                            <Grid item md={3}>
                                 <Autocomplete
                                     options={this.props.value.data.growthCurve.getValidLevels()}
                                     value={this.props.value.config.level.toString()}
-                                    renderInput={params => <TextField {...params} label="Level" variant="outlined" />}
+                                    renderInput={params => <TextField {...params} label="Level" variant="outlined" fullWidth />}
                                     onChange={(e, v) => { if (v) this.handleChange({ config: { level: { $set: Number.parseInt(v) } } })}}
                                     disableClearable={true} />
                             </Grid>
-                            <Grid item>
+                            <Grid item md={3}>
                                 <Autocomplete
                                     options={["1", "2", "3", "4", "5"]}
                                     value={this.props.value.config.npLevel.toString()}
-                                    renderInput={params => <TextField {...params} label="NP Level" variant="outlined" />}
+                                    renderInput={params => <TextField {...params} label="NP Level" variant="outlined" fullWidth />}
                                     onChange={(e, v) => { if (v) this.handleChange({ config: { npLevel: { $set: Number.parseInt(v) } } })}}
                                     disableClearable={true} />
                             </Grid>
-                            <Grid item>
+                            <Grid item md={3}>
                                 <TextField
-                                    style={{ width: 80 }}
-                                    type="number" variant="outlined"
+                                    type="number" variant="outlined" fullWidth
                                     label="Fous"
                                     value={this.props.value.config.attackFou.toString()}
                                     onChange={(e) => { if (e.target.value) this.handleChange({ config: { attackFou: { $set: Number.parseInt(e.target.value) } } })}} />
                             </Grid>
-                            <Grid item>
+                            <Grid item md={3}>
                                 <InputLabel>NP Upgrade</InputLabel>
                                 <Checkbox checked={this.props.value.config.isNpUpgraded} onChange={(e, v) => this.handleChange({ config: { isNpUpgraded: {$set: v } } }) } />
                             </Grid>

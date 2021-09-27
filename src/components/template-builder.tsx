@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, Grid, TextField, Autocomplete } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, TextField, Autocomplete, Stack, Card, CardContent } from "@mui/material";
 import { allData, Data } from "../Data";
 import { Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
@@ -38,43 +38,44 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                     renderInput={params => <TextField {...params} label="Select Template" variant="outlined" />}
                     onChange={(e, v) => { if (v) this.loadTemplate(v)}}
                     disableClearable={true} />
-                <Grid container spacing={4}>
+                <Grid container spacing={2}>
                     {this.props.value.party.map((servant, index) =>(
-                        <Grid item lg={4} md={6} sm={12} key={index}>
-                            <ServantSelector
-                                value={servant}
-                                label={"Servant " + (index + 1)}
-                                onChange={s => this.handleChange({ party: { [index]: { $set: s } } })} />
-                                {/* TODO: reset checkboxes when setting back to unspecified */}
-                            <Grid container justifyContent="space-evenly">
-                                <Grid item md={4}>
-                                    <FormControlLabel
-                                        label="NP T1"
-                                        control={
-                                            <Checkbox checked={this.props.value.clearers[0] == index}
-                                                onChange={(_, v) => this.handleClearerChanged(v, 0, index)}
-                                                disabled={this.props.value.party[index].data.name == "<Unspecified>"} />
-                                        } />
-                                </Grid>
-                                <Grid item md={4}>
-                                    <FormControlLabel
-                                        label="NP T2"
-                                        control={
-                                            <Checkbox checked={this.props.value.clearers[1] == index}
-                                                onChange={(_, v) => this.handleClearerChanged(v, 1, index)}
-                                                disabled={this.props.value.party[index].data.name == "<Unspecified>"} />
-                                        } />
-                                </Grid>
-                                <Grid item md={4}>
-                                    <FormControlLabel
-                                        label="NP T3"
-                                        control={
-                                            <Checkbox checked={this.props.value.clearers[2] == index}
-                                                onChange={(_, v) => this.handleClearerChanged(v, 2, index)}
-                                                disabled={this.props.value.party[index].data.name == "<Unspecified>"} />
-                                        } />
-                                </Grid>
-                            </Grid>
+                        <Grid item xs={12} sm={6} md={12} lg={6} xl={4} key={index}>
+                            <Card>
+                                <CardContent>
+                                    <ServantSelector
+                                        value={servant}
+                                        label={"Servant " + (index + 1)}
+                                        onChange={s => this.handleChange({ party: { [index]: { $set: s } } })} />
+                                        {/* TODO: reset checkboxes when setting back to unspecified */}
+                                    <Stack justifyContent="space-evenly" direction="row">
+                                        <FormControlLabel
+                                            label="NP T1"
+                                            labelPlacement="bottom"
+                                            control={
+                                                <Checkbox checked={this.props.value.clearers[0] == index}
+                                                    onChange={(_, v) => this.handleClearerChanged(v, 0, index)}
+                                                    disabled={this.props.value.party[index].data.name == "<Unspecified>"} />
+                                            } />
+                                        <FormControlLabel
+                                            label="NP T2"
+                                            labelPlacement="bottom"
+                                            control={
+                                                <Checkbox checked={this.props.value.clearers[1] == index}
+                                                    onChange={(_, v) => this.handleClearerChanged(v, 1, index)}
+                                                    disabled={this.props.value.party[index].data.name == "<Unspecified>"} />
+                                            } />
+                                        <FormControlLabel
+                                            label="NP T3"
+                                            labelPlacement="bottom"
+                                            control={
+                                                <Checkbox checked={this.props.value.clearers[2] == index}
+                                                    onChange={(_, v) => this.handleClearerChanged(v, 2, index)}
+                                                    disabled={this.props.value.party[index].data.name == "<Unspecified>"} />
+                                            } />
+                                    </Stack>
+                                </CardContent>
+                            </Card>
                         </Grid>
                     ))}
                 </Grid>

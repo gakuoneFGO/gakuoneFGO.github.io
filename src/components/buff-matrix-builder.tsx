@@ -6,7 +6,7 @@ import { BuffSet, PowerMod } from "../Damage";
 import { Trait } from "../Enemy";
 import { BuffType, CardType, Servant } from "../Servant";
 import { BuffMatrix } from "../Strat";
-import { BaseComponent, BaseProps, PercentInput, showIf } from "./common";
+import { BaseComponent, BaseProps, PercentInput } from "./common";
 import { TransposedTableBody } from "./transposed-table"
 
 interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
@@ -31,15 +31,15 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                     <TransposedTableBody>
                         <TableRow>
                             <TableCell></TableCell>
-                            {showIf(showCardType, <TableCell key={0}><Typography>NP Type</Typography></TableCell>)}
+                            {showCardType ? <TableCell><Typography>NP Type</Typography></TableCell> : null}
                             <TableCell><Typography>Attack Up</Typography></TableCell>
                             <TableCell><Typography>Card Type Up</Typography></TableCell>
                             <TableCell><Typography>NP Damage Up</Typography></TableCell>
-                            {showIf(showNpBoost, <TableCell key={0}>NP Up Boost</TableCell>)}
-                            {showIf(showOc, <TableCell key={0}>Overcharge</TableCell>)}
+                            {showNpBoost ? <TableCell><Typography>NP Up Boost</Typography></TableCell> : null}
+                            {showOc ? <TableCell><Typography>Overcharge</Typography></TableCell> : null}
                             {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [
-                                <TableCell key={pIndex * 2}>Power Mod{ maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>,
-                                <TableCell key={pIndex * 2 + 1}>Trigger{ maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</TableCell>
+                                <TableCell key={pIndex * 2}><Typography>Power Mod{ maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</Typography></TableCell>,
+                                <TableCell key={pIndex * 2 + 1}><Typography>Trigger{ maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</Typography></TableCell>
                             ])}
                         </TableRow>
                         {this.props.value.buffs.map((buffSet: BuffSet, index: number) => (
@@ -53,14 +53,14 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                                         </Tooltip>
                                     </Box>
                                 </TableCell>
-                                {showIf(showCardType,
-                                    <TableCell key={0}>
+                                {showCardType ?
+                                    <TableCell>
                                         <ButtonGroup>
                                             <Button
                                                 disabled={buffSet.npCard != CardType.Buster && (!this.props.servants.includes(this.props.clearers[index]) || !validCardTypes[index].includes(CardType.Buster))}
                                                 variant={buffSet.npCard == CardType.Buster ? "contained" : "outlined"}
                                                 style={buffSet.npCard == CardType.Buster ? {backgroundColor: "red"} : {}}
-                                                onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Buster } } } })}>Buster</Button>
+                                                onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Buster } } } })}><Typography variant="button">Buster</Typography></Button>
                                             <Button
                                                 disabled={buffSet.npCard != CardType.Arts && (!this.props.servants.includes(this.props.clearers[index]) || !validCardTypes[index].includes(CardType.Arts))}
                                                 variant={buffSet.npCard == CardType.Arts ? "contained" : "outlined"}
@@ -73,12 +73,12 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
                                                 onClick={_ => this.handleChange({ buffs: { [index]: { npCard: { $set: CardType.Quick } } } })}>Quick</Button>
                                         </ButtonGroup>
                                     </TableCell>
-                                )}
+                                : null}
                                 <TableCell><PercentInput value={buffSet.attackUp} onChange={v => { this.handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }); }} /></TableCell>
                                 <TableCell><PercentInput value={buffSet.cardUp} onChange={ v => { this.handleChange({ buffs : { [index]: { cardUp: {$set: v} } } }); } } /></TableCell>
                                 <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { this.handleChange({ buffs : { [index]: { npUp: {$set: v} } } }); }} /></TableCell>
-                                {showIf(showNpBoost, <TableCell key={0}><PercentInput value={buffSet.npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v} } } }); }} /></TableCell>)}
-                                {showIf(showOc, <TableCell><PercentInput value={buffSet.overcharge} onChange={ v => { this.handleChange({ buffs : { [index]: { overcharge: {$set: v} } } }); }} /></TableCell>)}
+                                {showNpBoost ? <TableCell><PercentInput value={buffSet.npBoost} onChange={ v => { this.handleChange({ buffs : { [index]: { npBoost: {$set: v} } } }); }} /></TableCell> : null}
+                                {showOc ? <TableCell><PercentInput value={buffSet.overcharge} onChange={ v => { this.handleChange({ buffs : { [index]: { overcharge: {$set: v} } } }); }} /></TableCell> : null}
                                 {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [
                                     <TableCell key={pIndex * 2}>
                                         <PercentInput

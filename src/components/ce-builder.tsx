@@ -1,9 +1,9 @@
-import { Box, Card, CardContent, CardHeader, IconButton, TextField, Autocomplete } from "@mui/material";
+import { Box, Card, CardContent, CardHeader, IconButton, TextField, Autocomplete, Grid, Typography, Stack, FormControl, FilledInput } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 import React from "react";
 import { CraftEssence } from "../Damage";
 import { Buff, BuffType, CardType } from "../Servant";
-import { BaseComponent, BaseProps, PercentInput, StateWrapper, KeyTracker, showIf } from "./common";
+import { BaseComponent, BaseProps, PercentInput, StateWrapper, KeyTracker } from "./common";
 import { Trait } from "../Enemy";
 
 interface BuffSelectorProps extends BaseProps<Buff> {
@@ -24,22 +24,22 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
                     value={this.props.value.val}
                     onChange={ v => { this.handleChange({ val: { $set: v } }); }}
                     label="Buff Value" />
-                {showIf(this.props.value.type == BuffType.CardTypeUp,
-                    <Autocomplete key={0}
+                {this.props.value.type == BuffType.CardTypeUp ?
+                    <Autocomplete
                         options={Object.values(CardType)}
                         value={this.props.value.cardType ?? CardType.Extra}
                         renderInput={params => <TextField label="Card Type" {...params} variant="outlined" />}
                         onChange={(_, v) => this.handleChange({ cardType: {$set: v } })}
                         disableClearable={true} />
-                )}
-                {showIf(this.props.value.type == BuffType.PowerMod,
-                    <Autocomplete key={0}
+                : null}
+                {this.props.value.type == BuffType.PowerMod ?
+                    <Autocomplete
                         options={Object.values(Trait)}
                         value={this.props.value.trig ?? Trait.Never}
                         renderInput={params => <TextField label="Trigger" {...params} variant="outlined" />}
                         onChange={(_, v) => this.handleChange({ trig: {$set: v } })}
                         disableClearable={true} />
-                )}
+                : null}
             </React.Fragment>
         );
     }
@@ -60,7 +60,7 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
 }
 
 interface CEBuilderProps extends BaseProps<CraftEssence> {
-    label?: string;
+    label: string;
 }
 
 class CEBuilder extends BaseComponent<CraftEssence, CEBuilderProps, StateWrapper<KeyTracker<Buff>>, any> {
@@ -77,31 +77,42 @@ class CEBuilder extends BaseComponent<CraftEssence, CEBuilderProps, StateWrapper
 
     render() {
         return (
-            <div>
-                <Autocomplete
-                    options={ceNames}
-                    value={this.props.value.name}
-                    renderInput={params => <TextField {...params} label={this.props.label} variant="outlined" />}
-                    onChange={(e, v) => { if (v) this.handleChange({ $set: ceMap.get(v) as CraftEssence }) }}
-                    disableClearable={true} />
-                <TextField
-                    style={{ width: 80 }}
-                    type="number" variant="outlined"
-                    label="Attack Stat"
-                    value={this.props.value.attackStat.toString()}
-                    onChange={(e) => { if (e.target.value) this.handleChange({ attackStat: { $set: Number.parseInt(e.target.value) } })}} />
+            <Stack spacing={2}>
+                <Card>
+                    <CardHeader title={<Typography variant="h6">{this.props.label}</Typography>} />
+                    <CardContent>
+                        <Grid container spacing={2}>
+                            <Grid item xs={9} sm={12} md={9}>
+                                <Autocomplete
+                                    options={ceNames}
+                                    value={this.props.value.name}
+                                    renderInput={params => <TextField {...params} label="Select" variant="outlined" />}
+                                    onChange={(e, v) => { if (v) this.handleChange({ $set: ceMap.get(v) as CraftEssence }) }}
+                                    disableClearable={true} />
+                            </Grid>
+                            <Grid item xs={3} sm={12} md={3}>
+                                <TextField
+                                    type="number" variant="outlined" fullWidth
+                                    label="Attack Stat" value={this.props.value.attackStat.toString()}
+                                    onChange={(e) => { if (e.target.value) this.handleChange({ attackStat: { $set: Number.parseInt(e.target.value) } })}} />
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </Card>
                 {this.props.value.buffs.map((buff, index) =>
                     <Card key={this.state._.getKey(index)}>
                         <CardHeader action={<IconButton onClick={_ => this.removeBuff(index)}><Remove /></IconButton>} />
                         <CardContent>
-                            <BuffSelector value={buff} onChange={(buff: Buff) => this.handleChange({ buffs: { $splice: [[ index, 1, buff ]] } })} />
+                            <Stack direction="column" spacing={2}>
+                                <BuffSelector value={buff} onChange={(buff: Buff) => this.handleChange({ buffs: { $splice: [[ index, 1, buff ]] } })} />
+                            </Stack>
                         </CardContent>
                     </Card>
                 )}
                 <Card>
-                    <CardHeader action={<IconButton onClick={this.addBuff}><Add /></IconButton>} />
+                    <CardHeader title={<Typography>Add Buff</Typography>} action={<IconButton onClick={this.addBuff}><Add /></IconButton>} />
                 </Card>
-            </div>
+            </Stack>
         );
     }
 
