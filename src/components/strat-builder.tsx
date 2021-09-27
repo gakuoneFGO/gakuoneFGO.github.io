@@ -25,6 +25,7 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
     constructor(props: any) {
         super(props);
         this.onServantChanged = this.onServantChanged.bind(this);
+        this.onTemplateChanged = this.onTemplateChanged.bind(this);
     }
 
     componentDidMount() {
@@ -76,7 +77,7 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                         <TabPanel value="template">
                             <TemplateBuilder key={this.state.strat.template.name}
                                 value={this.state.strat.template}
-                                onChange={(template: Template) => this.handleChange({ strat: { template: { $set: template }, servantBuffs: { $set: this.state.strat.servantBuffs.syncNpCard(template.buffs) } } })} />
+                                onChange={this.onTemplateChanged} />
                         </TabPanel>
                         <TabPanel value="ce">
                             <Grid container spacing={4}>
@@ -114,6 +115,18 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
         } else {
             this.handleChange({ strat: { servant: { $set: servant } } });
         }
+    }
+
+    onTemplateChanged(template: Template) {
+        var strat = update(this.state.strat, { template: { $set: template } });
+        let clearers = strat.getRealClearers();
+        template.buffs.buffs.forEach((buff, turn) => {
+            let clearerData = clearers[turn][0].data;
+            if (!clearerData.getNP(buff.npCard))
+                strat = update(strat, { template: { buffs: { buffs: { [turn]: { npCard: { $set: clearerData.getNP().cardType } } } } } });
+        });
+        strat = update(strat, { servantBuffs: { $set: this.state.strat.servantBuffs.syncNpCard(template.buffs) } });
+        this.handleChange({ strat: { $set: strat } });
     }
 }
 

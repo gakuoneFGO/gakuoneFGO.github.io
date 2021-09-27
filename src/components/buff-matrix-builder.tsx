@@ -26,8 +26,6 @@ class BuffMatrixBuilder extends BaseComponent<BuffMatrix, BuffMatrixBuilderProps
             .some(b => b.type == BuffType.Overcharge);
         let showCardType = this.props.servants.some(s => s.data.nps.length > 1);
         let validCardTypes = this.props.clearers.map(s => s.data.nps.map(np => np.cardType));
-        console.log("clearers", this.props.clearers);
-        //probably: fix template control to enforce one clearer at a time, then...something
         return (
             <TableContainer>
                 <Table>
