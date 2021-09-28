@@ -3,7 +3,7 @@ import React from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
 import { allData } from "../Data";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
-import { EnemyBuilder } from "./enemy-builder";
+import { EnemyBuilder, NodeBuilder } from "./enemy-builder";
 import { OutputPanel } from "./output-panel";
 import { BuffMatrix, EnemyNode, Strat, Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
@@ -18,6 +18,8 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 interface StratBuilderState {
     readonly strat: Strat;
+    readonly basicEnemy: Enemy;
+    readonly advancedNode: EnemyNode;
     readonly selectedTab: string;
 }
 
@@ -39,9 +41,13 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                 template.buffs,
                 new CraftEssence("<None>", 0, []),
                 new CraftEssence("<None>", 0, []),
-                EnemyNode.uniform(new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass)))
             );
-            component.setState({ strat: defaultBuffsetHeuristic(strat, 0), selectedTab: "servant" });
+            component.setState({
+                strat: defaultBuffsetHeuristic(strat, 0),
+                basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass)),
+                advancedNode: EnemyNode.uniform(new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass))),
+                selectedTab: "servant"
+            });
         });
     }
 
@@ -51,9 +57,9 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
             <Grid container direction="row-reverse">
                 <Grid item lg={4} md={5} sm={12}>
                     <Stack spacing={2}>
-                    <PartyDisplay party={this.state.strat.getRealParty().map(s => s[0])} />
-                    <OutputPanel strat={this.state.strat} />
-                    <EnemyBuilder value={this.state.strat.node.waves[0].enemies[0]} onChange={enemy => this.handleChange({ strat: { node: { $set: EnemyNode.uniform(enemy) } } })} />
+                        <PartyDisplay party={this.state.strat.getRealParty().map(s => s[0])} />
+                        <OutputPanel strat={this.state.strat} enemy={this.state.basicEnemy} />
+                        <EnemyBuilder value={this.state.basicEnemy} onChange={enemy => this.handleChange({ basicEnemy: { $set: enemy } } )} />
                     </Stack>
                 </Grid>
                 <Grid item lg={8} md={7} sm={12}>
@@ -63,6 +69,7 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                                 <Tab label="Servant" value="servant" />
                                 <Tab label="Party" value="template" />
                                 <Tab label="Craft Essence" value="ce" />
+                                <Tab label="Node" value="node" />
                             </TabList>
                         </Box>
                         <TabPanel value="servant">
@@ -95,6 +102,11 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                                 </Grid>
                             </Grid>
                         </TabPanel>
+                        <TabPanel value="node">
+                            <Box>
+                                <NodeBuilder value={this.state.advancedNode} onChange={node => this.handleChange({ advancedNode: { $set: node } })} />
+                            </Box>
+                        </TabPanel>
                     </TabContext>
                 </Grid>
             </Grid>
@@ -109,11 +121,11 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
 
     onServantChanged(servant: Servant) {
         if (servant.data.name != this.state.strat.servant.data.name) {
-            let strat = update(this.state.strat, {
-                servant: { $set: servant },
-                node: { $set: EnemyNode.uniform(this.state.strat.node.waves[0].enemies[0].changeClass(getLikelyClassMatchup(servant.data.sClass))) }
+            let strat = update(this.state.strat, { servant: { $set: servant } });
+            this.handleChange({
+                strat: { $set: defaultBuffsetHeuristic(strat, strat.template.party.findIndex(s => s.data.name == "<Placeholder>")) },
+                basicEnemy: { $set: this.state.basicEnemy.changeClass(getLikelyClassMatchup(servant.data.sClass)) }
             });
-            this.handleChange({ strat: { $set: defaultBuffsetHeuristic(strat, strat.template.party.findIndex(s => s.data.name == "<Placeholder>")) } });
         } else {
             this.handleChange({ strat: { servant: { $set: servant } } });
         }

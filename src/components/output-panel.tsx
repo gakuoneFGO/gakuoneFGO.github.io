@@ -1,12 +1,14 @@
 import React from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { StateWrapper } from "./common";
-import { NodeDamage, Strat } from "../Strat";
+import { EnemyNode, NodeDamage, Strat } from "../Strat";
 import update from "immutability-helper";
 import NumberFormat from "react-number-format";
+import { Enemy } from "../Enemy";
 
 interface OutputPanelProps {
     strat: Strat;
+    enemy: Enemy;
 }
 
 class OutputPanel extends React.Component<OutputPanelProps, StateWrapper<NodeDamage[]>, any> {
@@ -25,7 +27,7 @@ class OutputPanel extends React.Component<OutputPanelProps, StateWrapper<NodeDam
                     tempStrat = update(tempStrat, { template: { party: { [clearerIndex]: { config: { npLevel: { $set: npLevel } } } } } });
                 }
             });
-            return tempStrat.run();
+            return tempStrat.run(EnemyNode.uniform(props.enemy));
         });
         return new StateWrapper(output);
     }

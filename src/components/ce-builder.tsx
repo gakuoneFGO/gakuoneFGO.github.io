@@ -1,9 +1,8 @@
-import { Box, Card, CardContent, CardHeader, IconButton, TextField, Autocomplete, Grid, Typography, Stack, FormControl, FilledInput } from "@mui/material";
-import { Add, Remove } from "@mui/icons-material";
+import { Box, Card, CardContent, CardHeader, TextField, Autocomplete, Grid, Typography, Stack } from "@mui/material";
 import React from "react";
 import { CraftEssence } from "../Damage";
 import { Buff, BuffType, CardType } from "../Servant";
-import { BaseComponent, BaseProps, PercentInput, StateWrapper, KeyTracker } from "./common";
+import { BaseComponent, BaseProps, PercentInput, ArrayBuilder, handleChange } from "./common";
 import { Trait } from "../Enemy";
 
 interface BuffSelectorProps extends BaseProps<Buff> {
@@ -63,68 +62,41 @@ interface CEBuilderProps extends BaseProps<CraftEssence> {
     label: string;
 }
 
-class CEBuilder extends BaseComponent<CraftEssence, CEBuilderProps, StateWrapper<KeyTracker<Buff>>, any> {
-    constructor(props: CEBuilderProps) {
-        super(props);
-        this.state = new StateWrapper(KeyTracker.fromSource(props.value.buffs));
-        this.addBuff = this.addBuff.bind(this);
-        this.removeBuff = this.removeBuff.bind(this);
-    }
-
-    static getDerivedStateFromProps(props: CEBuilderProps, state: StateWrapper<KeyTracker<Buff>>): StateWrapper<KeyTracker<Buff>> {
-        return new StateWrapper(state._.reconcile(props.value.buffs));
-    }
-
-    render() {
-        return (
-            <Stack spacing={2}>
-                <Card>
-                    <CardHeader title={<Typography variant="h6">{this.props.label}</Typography>} />
-                    <CardContent>
-                        <Grid container spacing={2}>
-                            <Grid item xs={9} sm={12} md={9}>
-                                <Autocomplete
-                                    options={ceNames}
-                                    value={this.props.value.name}
-                                    renderInput={params => <TextField {...params} label="Select" variant="outlined" />}
-                                    onChange={(e, v) => { if (v) this.handleChange({ $set: ceMap.get(v) as CraftEssence }) }}
-                                    disableClearable={true} />
-                            </Grid>
-                            <Grid item xs={3} sm={12} md={3}>
-                                <TextField
-                                    type="number" variant="outlined" fullWidth
-                                    label="Attack Stat" value={this.props.value.attackStat.toString()}
-                                    onChange={(e) => { if (e.target.value) this.handleChange({ attackStat: { $set: Number.parseInt(e.target.value) } })}} />
-                            </Grid>
+function CEBuilder(props: CEBuilderProps) {
+    return (
+        <Stack spacing={2}>
+            <Card>
+                <CardHeader title={<Typography variant="h6">{props.label}</Typography>} />
+                <CardContent>
+                    <Grid container spacing={2}>
+                        <Grid item xs={9} sm={12} md={9}>
+                            <Autocomplete
+                                options={ceNames}
+                                value={props.value.name}
+                                renderInput={params => <TextField {...params} label="Select" variant="outlined" />}
+                                onChange={(e, v) => { if (v) handleChange({ $set: ceMap.get(v) as CraftEssence }, props) }}
+                                disableClearable={true} />
                         </Grid>
-                    </CardContent>
-                </Card>
-                {this.props.value.buffs.map((buff, index) =>
-                    <Card key={this.state._.getKey(index)}>
-                        <CardHeader action={<IconButton onClick={_ => this.removeBuff(index)}><Remove /></IconButton>} />
-                        <CardContent>
-                            <Stack direction="column" spacing={2}>
-                                <BuffSelector value={buff} onChange={(buff: Buff) => this.handleChange({ buffs: { $splice: [[ index, 1, buff ]] } })} />
-                            </Stack>
-                        </CardContent>
-                    </Card>
+                        <Grid item xs={3} sm={12} md={3}>
+                            <TextField
+                                type="number" variant="outlined" fullWidth
+                                label="Attack Stat" value={props.value.attackStat.toString()}
+                                onChange={(e) => { if (e.target.value) handleChange({ attackStat: { $set: Number.parseInt(e.target.value) } }, props)}} />
+                        </Grid>
+                    </Grid>
+                </CardContent>
+            </Card>
+            <ArrayBuilder value={props.value.buffs}
+                onChange={buffs => handleChange({ buffs: { $set: buffs } } , props)}
+                createOne={() => new Buff(true, false, BuffType.NpDmgUp, 0, -1)}
+                renderOne={(buff, props) => (
+                    <Stack direction="column" spacing={2}>
+                        <BuffSelector value={buff} {...props} />
+                    </Stack>
                 )}
-                <Card>
-                    <CardHeader title={<Typography>Add Buff</Typography>} action={<IconButton onClick={this.addBuff}><Add /></IconButton>} />
-                </Card>
-            </Stack>
-        );
-    }
-
-    addBuff() {
-        this.setState(new StateWrapper(this.state._.onPush()));
-        this.handleChange({ buffs: { $push: [ new Buff(true, false, BuffType.NpDmgUp, 0, -1) ] } });
-    }
-
-    removeBuff(index: number) {
-        this.setState(new StateWrapper(this.state._.onRemove(index)));
-        this.handleChange({ buffs: { $splice: [[ index, 1 ]] } })
-    }
+                addLabel={<Typography>Add Enemy</Typography>} />
+        </Stack>
+    );
 }
 
 let ceList = [

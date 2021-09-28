@@ -2,7 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { InputAdornment, TextField } from "@mui/material";
+import { Card, CardContent, CardHeader, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Add, Remove } from "@mui/icons-material";
+import { JsxElement } from "typescript";
 
 interface BaseProps<V> {
     value: V;
@@ -38,39 +40,6 @@ function handleChange<V>(spec: Spec<Readonly<V>, never>, props: BaseProps<V>) {
  */
 class StateWrapper<S> {
     constructor(readonly _: S) {}
-}
-
-/**
- * Tracks keys for objects in an array which have a "stable identity" from a usage perspective but not in the data model.
- * API is currently limited to what I actually need.
- * TODO: revisit whether this does anything at all since the original bug (deleting buffs on CE tab when key is just the index deletes the wrong buff) doesn't seem to be an issue anymore
- */
-class KeyTracker<T> {
-    constructor(
-        readonly keys: number[],
-        readonly nextKey: number) {}
-
-    static fromSource<T>(source: T[], initKey?: number): KeyTracker<T> {
-        let init = initKey ? initKey : 0;
-        return new KeyTracker<T>(source.map((_, i) => init + i), init + source.length);
-    }
-
-    reconcile(source: T[]): KeyTracker<T> {
-        if (source.length == this.keys.length) return this;
-        return KeyTracker.fromSource<T>(source, this.nextKey);
-    }
-
-    onPush(): KeyTracker<T> {
-        return update(this as KeyTracker<T>, { keys: { $push: [ this.nextKey ] }, nextKey: { $set: this.nextKey + 1 } });
-    }
-
-    onRemove(index: number) {
-        return update(this as KeyTracker<T>, { keys: { $splice: [[ index, 1 ]] } });
-    }
-
-    getKey(index: number): number {
-        return this.keys[index];
-    }
 }
 
 interface PercentInputProps extends BaseProps<number> {
@@ -124,5 +93,34 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
     }
 }
 
-export { BaseComponent, PercentInput, StateWrapper, KeyTracker, handleChange };
+interface ArrayBuilderProps<T> {
+    createOne: () => T;
+    renderOne: (item: T, props: ArrayBuilderRenderProps<T>, index: number) => any;
+    addLabel: React.ReactNode
+}
+
+interface ArrayBuilderRenderProps<T> {
+    onChange: (item: T) => void; 
+}
+
+function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
+    return (
+        <React.Fragment>
+            {props.value.map((item, index) =>
+                <Card key={index}>
+                    <CardHeader action={<IconButton onClick={_ => handleChange({ $splice: [[ index, 1 ]] }, props)}><Remove /></IconButton>} />
+                    <CardContent>
+                        {props.renderOne(item, { onChange: item => handleChange({ $splice: [[ index, 1, item ]] }, props) }, index)}
+                    </CardContent>
+                </Card>
+            )}
+            <Card>
+                <CardHeader title={props.addLabel}
+                    action={<IconButton onClick={_ => handleChange({ $push: [ props.createOne() ] }, props)}><Add /></IconButton>} />
+            </Card>
+        </React.Fragment>
+    );
+}
+
+export { BaseComponent, PercentInput, StateWrapper, handleChange, ArrayBuilder };
 export type { BaseProps };

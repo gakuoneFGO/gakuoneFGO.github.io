@@ -45,12 +45,12 @@ class Wave {
 }
 
 class EnemyNode {
-    constructor(readonly waves: Wave[]) {}
+    constructor(readonly name: string, readonly waves: Wave[]) {}
 
     static uniform(enemy: Enemy): EnemyNode {
         let waves = new Array<Wave>(3);
         waves.fill(new Wave([ enemy ]));
-        return new EnemyNode(waves);
+        return new EnemyNode("", waves);
     }
 }
 
@@ -73,8 +73,7 @@ class Strat {
         readonly template: Template,
         readonly servantBuffs: BuffMatrix,
         readonly servantCe: CraftEssence,
-        readonly supportCe: CraftEssence,
-        readonly node: EnemyNode) {}
+        readonly supportCe: CraftEssence) {}
 
     public getRealParty(): [Servant, CraftEssence][] {
         let strat = this;
@@ -87,11 +86,11 @@ class Strat {
     }
 
     //TODO: fix this garbage
-    run(): NodeDamage {
+    run(node: EnemyNode): NodeDamage {
         const calculator: Calculator = new Calculator();
         let result = new NodeDamage();
         let clearers = this.getRealClearers();
-        result.damagePerWave = this.node.waves.map((wave, wIndex) => {
+        result.damagePerWave = node.waves.map((wave, wIndex) => {
             let waveResult = new WaveDamage();
             let [clearer, ce] = clearers[wIndex];
             waveResult.damagePerEnemy = wave.enemies.map(enemy => {
