@@ -1,5 +1,5 @@
-import { Warning } from "@mui/icons-material";
-import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box, ButtonGroup, Button, Typography } from "@mui/material";
+import { Clear, Replay, Warning } from "@mui/icons-material";
+import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box, ButtonGroup, Button, Typography, IconButton, Stack } from "@mui/material";
 import { Autocomplete } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Spec } from "immutability-helper";
@@ -52,7 +52,12 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
             <Table>
                 <TransposedTableBody>
                     <TableRow>
-                        <TableCell></TableCell>
+                        <TableCell>
+                            <Stack direction="row" justifyContent="space-evenly">
+                                <IconButton title="Clear All"><Clear /></IconButton>
+                                <IconButton title="Reset"><Replay /></IconButton>
+                            </Stack>
+                        </TableCell>
                         {showCardType ? <TableCell><Typography>NP Type</Typography></TableCell> : null}
                         <TableCell><Typography>Attack Up</Typography></TableCell>
                         <TableCell><Typography>Card Type Up</Typography></TableCell>
@@ -70,7 +75,7 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                                 <Typography display="inline">T{index + 1}</Typography>
                                 <Box display={ props.warnOtherNp && !props.servants.includes(props.clearers[index]) ? "inline" : "none" }>
                                     &nbsp;
-                                    <Tooltip title="Wave is cleared by support servant. Only put team buffs provided by this servant in this column!">
+                                    <Tooltip title="Wave is cleared by another servant. Only put team buffs provided by this servant in this column!">
                                         <Warning color="warning" />
                                     </Tooltip>
                                 </Box>

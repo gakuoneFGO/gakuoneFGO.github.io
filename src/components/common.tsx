@@ -96,11 +96,12 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
 interface ArrayBuilderProps<T> {
     createOne: () => T;
     renderOne: (item: T, props: ArrayBuilderRenderProps<T>, index: number) => any;
-    addLabel: React.ReactNode
+    renderHeader?: (item: T, index: number) => any;
+    addLabel: React.ReactNode;
 }
 
 interface ArrayBuilderRenderProps<T> {
-    onChange: (item: T) => void; 
+    onChange: (item: T) => void;
 }
 
 function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
@@ -108,7 +109,7 @@ function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
         <React.Fragment>
             {props.value.map((item, index) =>
                 <Card key={index}>
-                    <CardHeader action={<IconButton onClick={_ => handleChange({ $splice: [[ index, 1 ]] }, props)}><Remove /></IconButton>} />
+                    <CardHeader title={props.renderHeader ? props.renderHeader(item, index) : undefined} action={<IconButton onClick={_ => handleChange({ $splice: [[ index, 1 ]] }, props)}><Remove /></IconButton>} />
                     <CardContent>
                         {props.renderOne(item, { onChange: item => handleChange({ $splice: [[ index, 1, item ]] }, props) }, index)}
                     </CardContent>

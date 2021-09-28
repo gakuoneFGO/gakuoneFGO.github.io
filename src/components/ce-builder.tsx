@@ -78,8 +78,7 @@ function CEBuilder(props: CEBuilderProps) {
                                 disableClearable={true} />
                         </Grid>
                         <Grid item xs={3} sm={12} md={3}>
-                            <TextField
-                                type="number" variant="outlined" fullWidth
+                            <TextField type="number" variant="outlined" fullWidth
                                 label="Attack Stat" value={props.value.attackStat.toString()}
                                 onChange={(e) => { if (e.target.value) handleChange({ attackStat: { $set: Number.parseInt(e.target.value) } }, props)}} />
                         </Grid>
@@ -94,7 +93,7 @@ function CEBuilder(props: CEBuilderProps) {
                         <BuffSelector value={buff} {...props} />
                     </Stack>
                 )}
-                addLabel={<Typography>Add Enemy</Typography>} />
+                addLabel={<Typography>Add Buff</Typography>} />
         </Stack>
     );
 }

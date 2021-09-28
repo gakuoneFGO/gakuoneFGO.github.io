@@ -3,8 +3,8 @@ import React from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
 import { allData } from "../Data";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
-import { EnemyBuilder, NodeBuilder } from "./enemy-builder";
-import { OutputPanel } from "./output-panel";
+import { EnemyBuilder, NodeBuilder, nodeMap } from "./enemy-builder";
+import { NodeOutputPanel, OutputPanel } from "./output-panel";
 import { BuffMatrix, EnemyNode, Strat, Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
 import { CEBuilder } from "./ce-builder";
@@ -21,6 +21,7 @@ interface StratBuilderState {
     readonly basicEnemy: Enemy;
     readonly advancedNode: EnemyNode;
     readonly selectedTab: string;
+    readonly selectedOutput: string;
 }
 
 class StratBuilder extends React.Component<any, StratBuilderState, any> {
@@ -45,8 +46,9 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
             component.setState({
                 strat: defaultBuffsetHeuristic(strat, 0),
                 basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass)),
-                advancedNode: EnemyNode.uniform(new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass))),
-                selectedTab: "servant"
+                advancedNode: nodeMap.get("[LANCERS] Nursemas Band-aid Farming") as EnemyNode,
+                selectedTab: "servant",
+                selectedOutput: "basic"
             });
         });
     }
@@ -56,11 +58,24 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
         return (
             <Grid container direction="row-reverse">
                 <Grid item lg={4} md={5} sm={12}>
-                    <Stack spacing={2}>
-                        <PartyDisplay party={this.state.strat.getRealParty().map(s => s[0])} />
-                        <OutputPanel strat={this.state.strat} enemy={this.state.basicEnemy} />
-                        <EnemyBuilder value={this.state.basicEnemy} onChange={enemy => this.handleChange({ basicEnemy: { $set: enemy } } )} />
-                    </Stack>
+                    <PartyDisplay party={this.state.strat.getRealParty().map(s => s[0])} />
+                    <TabContext value={this.state.selectedOutput}>
+                        <Box>
+                            <TabList onChange={(_, v) => this.handleChange({ selectedOutput: { $set: v } })}>
+                                <Tab label="Basic" value="basic" />
+                                <Tab label="Advanced" value="advanced" />
+                            </TabList>
+                        </Box>
+                        <TabPanel value="basic">
+                            <Stack spacing={2}>
+                                <OutputPanel strat={this.state.strat} enemy={this.state.basicEnemy} />
+                                <EnemyBuilder value={this.state.basicEnemy} onChange={enemy => this.handleChange({ basicEnemy: { $set: enemy } } )} />
+                            </Stack>
+                        </TabPanel>
+                        <TabPanel value="advanced">
+                            <NodeOutputPanel strat={this.state.strat} node={this.state.advancedNode} />
+                        </TabPanel>
+                    </TabContext>
                 </Grid>
                 <Grid item lg={8} md={7} sm={12}>
                     <TabContext value={this.state.selectedTab}>

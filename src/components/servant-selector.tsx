@@ -46,7 +46,7 @@ function ServantSelector(props: ServantSelectorProps) {
                 disableClearable={true}
                 forcePopupIcon={false} />
             <Popper placement="bottom-end" {...bindPopper(popupState)}>
-                <Card sx={{ border: 1, borderColor: theme.palette.text.disabled /* TODO: use same rule as input outlines */ }}>
+                <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
                     <CardContent>
                         <Stack justifyContent="space-evenly" spacing={2}>
                             <Autocomplete
