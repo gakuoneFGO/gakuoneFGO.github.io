@@ -1,0 +1,6 @@
+* {
+    /* for some reason people like to use z-index to solve their problems, causing stuff like https://github.com/mui-org/material-ui/issues/20856
+     * unsetting globally for now until the issue is fixed
+     */
+    z-index: unset !important;
+}

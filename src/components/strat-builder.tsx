@@ -122,10 +122,10 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
         let clearers = strat.getRealClearers();
         template.buffs.buffs.forEach((buff, turn) => {
             let clearerData = clearers[turn][0].data;
-            if (!clearerData.getNP(buff.npCard))
+            if (!buff.npCard || !clearerData.getNP(buff.npCard))
                 strat = update(strat, { template: { buffs: { buffs: { [turn]: { npCard: { $set: clearerData.getNP().cardType } } } } } });
         });
-        strat = update(strat, { servantBuffs: { $set: this.state.strat.servantBuffs.syncNpCard(template.buffs) } });
+        strat = update(strat, { servantBuffs: { $set: this.state.strat.servantBuffs.syncNpCard(strat.template.buffs) } });
         this.handleChange({ strat: { $set: strat } });
     }
 }

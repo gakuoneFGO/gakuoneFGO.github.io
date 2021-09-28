@@ -40,7 +40,7 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                     disableClearable={true} />
                 <Grid container spacing={2}>
                     {this.props.value.party.map((servant, index) =>(
-                        <Grid item xs={12} sm={6} md={12} lg={6} xl={4} key={index}>
+                        <Grid item xs={12} sm={6} md={12} lg={4} key={index}>
                             <Card>
                                 <CardContent>
                                     <ServantSelector

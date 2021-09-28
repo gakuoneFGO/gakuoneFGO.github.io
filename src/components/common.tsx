@@ -19,12 +19,16 @@ class BaseComponent<V, P extends BaseProps<V>, S, SS> extends React.Component<P,
     }
 
     handleChange(spec: Spec<Readonly<V>, never>) {
-        //console.log(spec);
-        if (this.props.onChange) {
-            let newValue = update(this.props.value, spec);
-            this.props.onChange(newValue);
-        };
+        handleChange(spec, this.props);
     }
+}
+
+function handleChange<V>(spec: Spec<Readonly<V>, never>, props: BaseProps<V>) {
+    //console.log(spec);
+    if (props.onChange) {
+        let newValue = update(props.value, spec);
+        props.onChange(newValue);
+    };
 }
 
 /**
@@ -120,5 +124,5 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
     }
 }
 
-export { BaseComponent, PercentInput, StateWrapper, KeyTracker };
+export { BaseComponent, PercentInput, StateWrapper, KeyTracker, handleChange };
 export type { BaseProps };
