@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, Grid, TextField, Autocomplete, Stack, Card, CardContent } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, TextField, Autocomplete, Stack, Card, CardContent, Box } from "@mui/material";
 import { allData, Data } from "../Data";
 import { Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
@@ -31,14 +31,17 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
     render() {
         if (!this.templateList) return null;
         return (
-            <div>
-                <Autocomplete
-                    options={this.templateList}
-                    value={this.props.value.name}
-                    renderInput={params => <TextField {...params} label="Select Template" variant="outlined" />}
-                    onChange={(e, v) => { if (v) this.loadTemplate(v)}}
-                    disableClearable={true} />
-                <Grid container spacing={2}>
+            //Stack shifts the servant cards to the right for some reason, hence using column grid
+            <Grid container spacing={2} direction="column">
+                <Grid item>
+                    <Autocomplete
+                        options={this.templateList}
+                        value={this.props.value.name}
+                        renderInput={params => <TextField {...params} label="Select Template" variant="outlined" />}
+                        onChange={(e, v) => { if (v) this.loadTemplate(v)}}
+                        disableClearable={true} />
+                </Grid>
+                <Grid item container spacing={2}>
                     {this.props.value.party.map((servant, index) =>(
                         <Grid item xs={12} sm={6} md={12} lg={4} key={index}>
                             <Card>
@@ -79,11 +82,13 @@ class TemplateBuilder extends BaseComponent<Template, TemplateBuilderProps, any,
                         </Grid>
                     ))}
                 </Grid>
-                <BuffMatrixBuilder value={this.props.value.buffs}
-                    servants={this.props.value.party}
-                    onChange={buffs => this.handleChange({ buffs: { $set: buffs } })}
-                    clearers={this.props.value.clearers.map(c => this.props.value.party[c])} />
-            </div>
+                <Grid item>
+                    <BuffMatrixBuilder value={this.props.value.buffs}
+                        servants={this.props.value.party}
+                        onChange={buffs => this.handleChange({ buffs: { $set: buffs } })}
+                        clearers={this.props.value.clearers.map(c => this.props.value.party[c])} />
+                </Grid>
+            </Grid>
         );
     }
 

@@ -1,4 +1,4 @@
-import { Box, Grid, Tab } from "@mui/material";
+import { Box, Grid, Stack, Tab } from "@mui/material";
 import React from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
 import { allData } from "../Data";
@@ -50,9 +50,11 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
         return (
             <Grid container direction="row-reverse">
                 <Grid item lg={4} md={5} sm={12}>
+                    <Stack spacing={2}>
                     <PartyDisplay party={this.state.strat.getRealParty().map(s => s[0])} />
                     <OutputPanel strat={this.state.strat} />
                     <EnemyBuilder value={this.state.strat.node.waves[0].enemies[0]} onChange={enemy => this.handleChange({ strat: { node: { $set: EnemyNode.uniform(enemy) } } })} />
+                    </Stack>
                 </Grid>
                 <Grid item lg={8} md={7} sm={12}>
                     <TabContext value={this.state.selectedTab}>
