@@ -64,7 +64,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
                                         data.nodes.put(node);
                                         props.onChange(node);
                                         popupState.setOpen(false);
-                                    }
+                                    } else console.log(JSON.stringify(props.value));
                                 }}>
                                 <Save />
                             </IconButton>

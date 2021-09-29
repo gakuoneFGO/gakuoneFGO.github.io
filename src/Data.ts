@@ -122,8 +122,9 @@ class Persistor<T extends { name: string }> {
             console.log("Invalid call to Persistor.put", item);
             throw new Error("Attempted to save state which was not intended to be saved.")
         }
-        this.items = this.items.concat(item).sort((a, b)=> a.name.localeCompare(b.name));//TODO: kinda inefficient, all we need to do is binary search then insert
+        
         this.map.set(item.name, item);
+        this.items = Array.from(this.map.values()).sort((a, b)=> a.name.localeCompare(b.name));//TODO: kinda inefficient, all we need to do is binary search then insert
         localStorage.setItem(this.storageKey, JSON.stringify(this.items.filter(this.isCustom, this)));
     }
 

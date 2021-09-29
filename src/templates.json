@@ -76,7 +76,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Any servant that doesn't kill themselves can do this. Needs 10% append and 20% on Arash.",
         "instructions": [
             "Castoria skills on DPS. Swap for Oberon and S1+S3. NP with Arash",
@@ -161,7 +165,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Servants which self charge 10% can use Reines. This is not usually recommended since her attack buff is targeted",
         "instructions": [
             "Reines provides 30% each to Arash and DPS. Swap for Oberon and S1+S3. NP with Arash",
@@ -246,7 +254,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Servants which provide 20-30% self gauge by T2 will usually prefer Waver over other options.",
         "instructions": [
             "Waver skills on Arash. Swap for Oberon and S1+S3. NP with Arash",
@@ -331,7 +343,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Servant provides 40% charge T2 or 50% charge T3.",
         "instructions": [
             "Oberon skills on Arash, then swap for Oberon and S1",
@@ -416,7 +432,11 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Oberon can clear wave 1 if the main servant can provide 50% gauge T3 (this includes refunders like Artoria).",
         "instructions": [
             "Vitch skills on DPS. Swap for Oberon. Use both Oberon S1s. One Oberon uses S2+S3 on self and NPs",
@@ -501,7 +521,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Any servant that doesn't kill themselves can do this. Needs 10% append and 20% on Arash. Uses Both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
         "instructions": [
             "Castoria skills on DPS. Swap for Oberon and S1. NP with Arash",
@@ -586,7 +610,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Servants which self charge 10% can use Reines. This is not usually recommended since her attack buff is targeted. Uses Both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
         "instructions": [
             "Reines provides 30% each to Arash and DPS. Swap for Oberon and S1+S3. NP with Arash",
@@ -671,7 +699,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Servants which provide 20-30% self gauge by T2 will usually prefer Waver over other options. Uses Both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
         "instructions": [
             "Waver skills on Arash. Swap for Oberon and S1. NP with Arash",
@@ -756,7 +788,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Servant provides 50% charge T3. Uses Both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
         "instructions": [
             "Vitch skills on DPS, then swap for Oberon and S1 + S2 Arash",
@@ -841,7 +877,11 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Transposed version of the other template (Oberon clears wave 2 instead of 1). Optimized for Eresh mainly, since her NP provides team attack up.",
         "instructions": [
             "Vitch skills on DPS. Swap for Oberon. Use both Oberon S1s. NP with DPS",
@@ -926,7 +966,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [0, 1, 0],
+        "clearers": [
+            0,
+            1,
+            0
+        ],
         "description": "Vitch can use Merlin as long as Arash can clear wave 2.",
         "instructions": [
             "Merlin applies buffs since Oberon is not on the field yet. Swap for Oberon, use his S1, use Vitch's skills on herself and NP with her.",
@@ -1011,7 +1055,11 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Can use double Vitch + Waver to simulate Merlin if Arash can't clear wave 2 or if your friend has a high NP level.",
         "instructions": [
             "Vitch #1 applies S3 (and optionally S2) to self. Waver applies all skills to Vitch #1. Swap in Oberon and S1 + S2 on Vitch #2, then NP with Vitch #2",
@@ -1096,7 +1144,11 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [0, 0, 0],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
         "description": "The infamous Melusine combo.",
         "instructions": [
             "Melusine S1 + S3 into NP",
@@ -1181,7 +1233,11 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [0, 0, 0],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
         "description": "The fact that Melusine's S3 gives 100% gauge instead of 50% means that you can sub in a 50% charger for one Vitch at the expense of some stats.",
         "instructions": [
             "Melusine S3 into NP",
@@ -1266,7 +1322,11 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [0, 0, 0],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
         "description": "Oberon can loop with double Vitch and a split charger.",
         "instructions": [
             "Use Vitch buffs, charge with Waver S3 and Oberon S1 + S2",
@@ -1351,7 +1411,11 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [0, 0, 0],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
         "description": "Cu can loop with double Vitch without Oberon, but we're swapping him in for damage anyway.",
         "instructions": [
             "Use Cu's S1 and S3, both Vitch buffs and one Vitch charge skill. Swap in Oberon and use S1",
@@ -1436,7 +1500,11 @@
             "Oberon",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "You can use Arash to sneak Merlin into a double Oberon team as long as the DPS gives 20% gauge T2 and 50% T3 (i.e. CasCu only).",
         "instructions": [
             "Merlin buffs Cu, swap for Oberon, Oberon buffs Arash",
@@ -1521,7 +1589,11 @@
             "Koyanskaya of Light",
             "Miss Crane"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "With a party cost limit of 114, you can squeeze Miss Crane in as long as your DPS is a 1-star unit with a 10% battery (i.e. Spartacus).",
         "instructions": [
             "Use Oberon's skills on Arash. Swap in Crane, charge her NP, then NP with Crane and Arash. (DPS must be in the front position.)",
@@ -1606,7 +1678,11 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [0, 0, 1],
+        "clearers": [
+            0,
+            0,
+            1
+        ],
         "description": "Ozy clears the first two waves in a 1-1-X node, then Oberon clears the last.",
         "instructions": [
             "Ozy uses all skills, Vitch charges Ozy and buffs Obe, Obe uses S1, Ozy NPs",
@@ -1615,18 +1691,18 @@
         ]
     },
     {
-        "name": "TmpDoubleCastoria",
+        "name": "[ARTS] Double Castoria + Oberon (Optimistic)",
         "buffs": {
             "buffs": [
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
+                    "attackUp": 0.9,
+                    "cardUp": 1,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
-                            "modifier": 0
+                            "trigger": "threatToHumanity",
+                            "modifier": 1
                         },
                         {
                             "trigger": "always",
@@ -1637,17 +1713,18 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "npCard": "buster"
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "attackUp": 1.2,
+                    "cardUp": 1,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
-                            "modifier": 0
+                            "trigger": "threatToHumanity",
+                            "modifier": 1
                         },
                         {
                             "trigger": "always",
@@ -1658,17 +1735,18 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "npCard": "buster"
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 1.5,
+                    "cardUp": 1,
+                    "npUp": 0.3,
+                    "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "always",
-                            "modifier": 0
+                            "trigger": "threatToHumanity",
+                            "modifier": 1
                         },
                         {
                             "trigger": "always",
@@ -1679,7 +1757,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "npCard": "buster"
                 }
             ]
         },
@@ -1691,8 +1770,12 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [0, 0, 0],
-        "description": "Best case double-Castoria setup (for comparison purposes). Space Ishtar can sometimes get enough refund on X-2-X here.",
+        "clearers": [
+            0,
+            0,
+            0
+        ],
+        "description": "Best case double-Castoria setup. Space Ishtar can sometimes get enough refund on X-2-X here.",
         "instructions": [
             "Apply Castoria S1s and S3s. Use one S2 on your whale friend's NP5 Castoria, then NP with her and the looper",
             "Apply the other Castoria S2 to the damage dealer. Swap in Oberon and S1. Refill gauge with the looper's skills if needed, then NP with Castoria and the looper",
@@ -1776,7 +1859,11 @@
             "<Unspecified>",
             "<Unspecified>"
         ],
-        "clearers": [0, 0, 0],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
         "description": "Dual Skadi for reference. Only Caren and maybe Voyager can realistically use this for 2-2-X. Instructions below for Caren.",
         "instructions": [
             "Use friend Skadi S1 + S3 and your own Skadi's S1. (If friend Skadi doesn't have the append skill, use S2 and swap for Oberon). Use Caren's S1 + S2 and NP",
@@ -1861,7 +1948,11 @@
             "Koyanskaya of Light",
             "<Unspecified>"
         ],
-        "clearers": [1, 0, 0],
+        "clearers": [
+            1,
+            0,
+            0
+        ],
         "description": "Servant provides 10% charge T1-T2 and then 50% on T3 (meaning the CD must be 6T at most). This usually just reduces T1 damage in favor of maybe increasing T2/T3 damage, depending on the servant's kit.",
         "instructions": [
             "Use any skills with 6T cooldowns. Oberon charges up Arash and Arash NPs. (Don't use Oberon's S3 unless it's not needod T3.)",
