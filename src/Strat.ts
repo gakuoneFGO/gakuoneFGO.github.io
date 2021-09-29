@@ -69,15 +69,14 @@ class NodeDamage {
 
 class Strat {
     constructor(
-        readonly servant: Servant,
+        readonly servants: (Servant | undefined)[],
         readonly template: Template,
         readonly servantBuffs: BuffMatrix,
         readonly servantCe: CraftEssence,
         readonly supportCe: CraftEssence) {}
 
     public getRealParty(): [Servant, CraftEssence][] {
-        let strat = this;
-        return this.template.party.map(s => s.data.name == "<Placeholder>" ? [strat.servant, strat.servantCe] : [s, strat.supportCe]);
+        return this.servants.map((servant, index) => servant ? [ servant, this.servantCe ] : [ this.template.party[index], this.supportCe ], this);
     } 
 
     public getRealClearers(): [Servant, CraftEssence][] {

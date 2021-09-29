@@ -24,6 +24,7 @@ interface StratBuilderState {
     readonly selectedOutput: string;
 }
 
+//TODO: decompose this
 function StratBuilder() {
     let [ data, promise ] = useData();
     let [ state, setState ] = useState({} as StratBuilderState);
@@ -35,7 +36,7 @@ function StratBuilder() {
             let servant = data.getServantDefaults("Iskandar");
             let template = data.getTemplate("[BUSTER] Double Oberon + Castoria (0%)");
             var strat = new Strat(
-                servant,
+                [ servant ].concat(new Array(5).fill(undefined)),
                 template,
                 template.buffs,
                 new CraftEssence("<None>", 0, []),
@@ -45,36 +46,55 @@ function StratBuilder() {
                 strat: defaultBuffsetHeuristic(strat, 0),
                 basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass)),
                 advancedNode: data.nodes.get("[LANCERS] Nursemas Band-aid Farming"),
-                selectedTab: "servant",
+                selectedTab: "servant0",
                 selectedOutput: "basic"
             });
         });
         return null;
     };
 
-    let handleChange = (spec: Spec<Readonly<StratBuilderState>, never>) => {
+    const handleChange = (spec: Spec<Readonly<StratBuilderState>, never>) => {
         //console.log(spec);
         let newState = update(state, spec);
         setState(newState);
     }
 
-    function onServantChanged(servant: Servant) {
-        if (servant.data.name != state.strat.servant.data.name) {
-            let strat = update(state.strat, { servant: { $set: servant } });
+    const onServantChanged = (servant: Servant, index: number) => {
+        if (servant.data.name != state.strat.servants[index]!.data.name) {
+            const strat = update(state.strat, { servants: { [index]: { $set: servant } } });
             handleChange({
-                strat: { $set: defaultBuffsetHeuristic(strat, strat.template.party.findIndex(s => s.data.name == "<Placeholder>")) },
+                strat: { $set: defaultBuffsetHeuristic(strat, index) },
                 basicEnemy: { $set: state.basicEnemy.changeClass(getLikelyClassMatchup(servant.data.sClass)) }
             });
         } else {
-            handleChange({ strat: { servant: { $set: servant } } });
+            handleChange({ strat: { servants: { [index]: { $set: servant } } } });
         }
     }
 
-    function onTemplateChanged(template: Template) {
-        var strat = update(state.strat, { template: { $set: template } });
-        let clearers = strat.getRealClearers();
+    //maybe pull from damaging NPs only? nah that's no fun
+    //TODO: this is cool but you technically should use the same servant that was selected in the template (including config). only <Unspecified> should trigger random
+    //the time for randomness is usually on page load anyway
+    const getRandomServant = () => {
+        const pool = data.servantData.getAll();
+        const rand = Math.floor(Math.random() * pool.length)
+        return data.getServantDefaults(pool[rand].name);
+    };
+
+    const onTemplateChanged = (template: Template) => {
+        const spliceArgses = template.party.flatMap((servant, index) => {
+            //temp var prevents need to cast later
+            let arg: [number, number, (Servant | undefined)][] = [];
+            if (servant.data.name == "<Placeholder>" && state.strat.servants[index] == undefined) {
+                arg = [[ index, 1, getRandomServant() ]];
+            } else if (servant.data.name != "<Placeholder>" && state.strat.servants[index] != undefined) {
+                arg = [[ index, 1, undefined ]]
+            }
+            return arg;
+        });
+        let strat = update(state.strat, { template: { $set: template }, servants: { $splice: spliceArgses } });
+        const clearers = strat.getRealClearers();
         template.buffs.buffs.forEach((buff, turn) => {
-            let clearerData = clearers[turn][0].data;
+            const clearerData = clearers[turn][0].data;
             if (!buff.npCard || !clearerData.getNP(buff.npCard))
                 strat = update(strat, { template: { buffs: { buffs: { [turn]: { npCard: { $set: clearerData.getNP().cardType } } } } } });
         });
@@ -83,8 +103,8 @@ function StratBuilder() {
     }
     
     return (
-        <Grid container direction="row-reverse">
-            <Grid item lg={4} md={5} sm={12}>
+        <Grid container direction="row-reverse" spacing={0}>
+            <Grid item lg={4} md={5} sm={12} xs={12}>
                 <PartyDisplay party={state.strat.getRealParty().map(s => s[0])} />
                 <TabContext value={state.selectedOutput}>
                     <Box>
@@ -104,27 +124,32 @@ function StratBuilder() {
                     </TabPanel>
                 </TabContext>
             </Grid>
-            <Grid item lg={8} md={7} sm={12}>
+            <Grid item lg={8} md={7} sm={12} xs={12}>
                 <TabContext value={state.selectedTab}>
                     <Box>
-                        <TabList onChange={(_, v) => handleChange({ selectedTab: { $set: v } })}>
-                            <Tab label="Servant" value="servant" />
+                        <TabList variant="scrollable" onChange={(_, v) => handleChange({ selectedTab: { $set: v } })}>
+                            {state.strat.servants.map((servant, index) => servant ?
+                                <Tab key={index} label={`Servant ${(index + 1)}`} value={`servant${index}`} />
+                            : null)}
                             <Tab label="Party" value="template" />
                             <Tab label="Craft Essence" value="ce" />
                             <Tab label="Enemies" value="node" />
                         </TabList>
                     </Box>
-                    <TabPanel value="servant">
-                        <Box>
-                            <ServantSelector value={state.strat.servant} label="Servant" onChange={(servant: Servant) => onServantChanged(servant)} />
-                            <BuffMatrixBuilder value={state.strat.servantBuffs}
-                                maxPowerMods={2}
-                                onChange={buffs => handleChange({ strat: { servantBuffs: { $set: buffs }, template: { buffs: { $set: state.strat.template.buffs.syncNpCard(buffs) } } } })}
-                                servants={[state.strat.servant]}
-                                warnOtherNp
-                                clearers={state.strat.getRealClearers().map(c => c[0])} />
-                        </Box>
-                    </TabPanel>
+                    {state.strat.servants.map((servant, index) => servant ?
+                        //seems like the TabContext needs to know about even the tabs that aren't selected since I get issues trying to return just the selected one
+                        <TabPanel key={index} value={`servant${index}`}>
+                            <Box>
+                                <ServantSelector value={servant} label="Servant" onChange={(servant: Servant) => onServantChanged(servant, index)} />
+                                <BuffMatrixBuilder value={state.strat.servantBuffs}
+                                    maxPowerMods={2}
+                                    onChange={buffs => handleChange({ strat: { servantBuffs: { $set: buffs }, template: { buffs: { $set: state.strat.template.buffs.syncNpCard(buffs) } } } })}
+                                    servants={[servant]}
+                                    warnOtherNp
+                                    clearers={state.strat.getRealClearers().map(c => c[0])} />
+                            </Box>
+                        </TabPanel>
+                    : null)}
                     <TabPanel value="template">
                         <TemplateBuilder key={state.strat.template.name}
                             value={state.strat.template}
@@ -156,9 +181,9 @@ function StratBuilder() {
 }
 
 function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
-    let clearers = strat.getRealClearers().map(clearer => clearer[0]);
-
-    let isClearerMain = strat.template.clearers.map(c => c == clearerIndex);
+    const clearers = strat.getRealClearers().map(clearer => clearer[0]);
+    const isClearerMain = strat.template.clearers.map(c => c == clearerIndex);
+    const servant = clearers[clearerIndex];
 
     let getNP = function(turn: number): NoblePhantasm {
         return isClearerMain ?
@@ -166,7 +191,7 @@ function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
             clearers[turn].data.getNP(strat.template.buffs.buffs[turn].npCard);
     }
 
-    let skillOrder = strat.servant.data.skills.map(skill => {
+    let skillOrder = servant.data.skills.map(skill => {
         let anySelfBuff = skill.buffs.findIndex(b => b.self) >= 0;
         let turnsToApplyTo = isClearerMain.flatMap((isMain, index) => isMain == anySelfBuff ? [index] : []);
         if (turnsToApplyTo.length == 0) {
@@ -184,7 +209,7 @@ function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
             return order.turn <= turn
                 ? order.buffs.filter(b => (isMain && b.self) || (!isMain && b.team)).filter(b => order.turn + b.turns > turn)
                 : []
-            }).concat(strat.servant.data.passives.filter(b => (isMain && b.self) || (!isMain && b.team))),
+            }).concat(servant.data.passives.filter(b => (isMain && b.self) || (!isMain && b.team))),
             getNP(turn).cardType)
     }));
 

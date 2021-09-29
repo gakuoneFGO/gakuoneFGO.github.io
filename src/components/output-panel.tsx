@@ -20,15 +20,14 @@ class OutputPanel extends React.Component<OutputPanelProps, StateWrapper<NodeDam
     }
 
     static getDerivedStateFromProps(props: OutputPanelProps): StateWrapper<NodeDamage[]> {
-        let strat: Strat = props.strat;
         let output = [ 1, 2, 3, 4, 5 ].map(npLevel => {
-            var tempStrat = update(strat, { servant: { config: { npLevel: { $set: npLevel } } } });
+            const clearers = props.strat.getRealClearers();
             //TODO: could use reduce instead. probably define a helper function then do that
-            strat.template.clearers.flatMap(c => c).forEach(clearerIndex => {
-                if (strat.template.party[clearerIndex].data.name != "<Placeholder>") {
-                    tempStrat = update(tempStrat, { template: { party: { [clearerIndex]: { config: { npLevel: { $set: npLevel } } } } } });
-                }
-            });
+            const tempStrat= props.strat.template.clearers.reduce((strat, clearerIndex, turn) => {
+                //TODO: fix hack (abusing inappropriate knowledge of getRealClearers implementation)
+                let clearer = update(clearers[turn][0], { config: { npLevel: { $set: npLevel } } });
+                return update(strat, { servants: { [clearerIndex]: { $set: clearer } } });
+            }, props.strat);
             return tempStrat.run(EnemyNode.uniform(props.enemy));
         });
         return new StateWrapper(output);

@@ -44,15 +44,17 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
     const [ state, setState ] = useState({ newName: "" });
     
     return (
-        <Stack spacing={2}>
-            <SmartSelect provider={data.nodes} {...props} label="Select Node"
-                endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton {...bindTrigger(popupState)}>
-                            <Save />
-                        </IconButton>
-                    </InputAdornment>
-                } />
+        <Grid container spacing={2}>
+            <Grid item xs={12} lg={12}>
+                <SmartSelect provider={data.nodes} {...props} label="Select Node"
+                    endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton {...bindTrigger(popupState)}>
+                                <Save />
+                            </IconButton>
+                        </InputAdornment>
+                    } />
+            </Grid>
             <Popover {...bindPopover(popupState)}>
                 <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
                     <CardContent>
@@ -72,9 +74,9 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
                     </CardContent>
                 </Card>
             </Popover>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} item xs={12} lg={12}>
                 {props.value.waves.map((wave, index) => (
-                    <Grid item xs={12} sm={4} md={12} lg={4}>
+                    <Grid key={index} item xs={12} sm={4} md={12} lg={4}>
                         <Stack direction="column" spacing={2}>
                             <ArrayBuilder value={wave.enemies}
                                 onChange={enemies => handleChange({ waves: { [index]: { enemies: { $set: enemies } } } }, props)}
@@ -90,7 +92,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
                     </Grid>
                 ))}
             </Grid>
-        </Stack>
+        </Grid>
     );
 }
 
