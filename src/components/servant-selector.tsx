@@ -1,4 +1,4 @@
-import { Settings } from "@mui/icons-material";
+import { Save, Settings } from "@mui/icons-material";
 import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputLabel, TextField, Autocomplete, Typography, InputAdornment, IconButton, Popper, FormControlLabel, Stack, Card, CardContent, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { bindToggle, bindPopper, usePopupState } from 'material-ui-popup-state/hooks';
@@ -14,7 +14,8 @@ function ServantSelector(props: ServantSelectorProps) {
     const [ data ] = useData();
     const [ , setState ] = useState({});
     const popupState = usePopupState({ variant: "popper", popupId: "ServantSelector" });
-    let theme = useTheme();
+    let boundToggle = bindToggle(popupState);
+    const theme = useTheme();
 
     return (
         <React.Fragment>
@@ -24,7 +25,7 @@ function ServantSelector(props: ServantSelectorProps) {
                 label="Select Servant"
                 endAdornment={
                     <InputAdornment position="end">
-                        <IconButton {...bindToggle(popupState)}>
+                        <IconButton {...boundToggle}>
                             <Settings />
                         </IconButton>
                     </InputAdornment>
@@ -50,13 +51,21 @@ function ServantSelector(props: ServantSelectorProps) {
                                 label="Fous"
                                 value={props.value.config.attackFou.toString()}
                                 onChange={(e) => { if (e.target.value) handleChange({ config: { attackFou: { $set: Number.parseInt(e.target.value) } } }, props)}} />
-                            <FormControlLabel
-                                label="NP Upgrade"
-                                labelPlacement="end"
-                                control={
-                                    <Checkbox checked={props.value.config.isNpUpgraded}
-                                    onChange={(e, v) => handleChange({ config: { isNpUpgraded: {$set: v } } }, props) } />
-                                } />
+                            <Stack direction="row" justifyContent="space-between">
+                                <FormControlLabel
+                                    label="NP Upgrade"
+                                    labelPlacement="end"
+                                    control={
+                                        <Checkbox checked={props.value.config.isNpUpgraded}
+                                        onChange={(e, v) => handleChange({ config: { isNpUpgraded: {$set: v } } }, props) } />
+                                    } />
+                                <IconButton onClick={(e) => {
+                                        data.setServantDefaults(props.value.config);
+                                        boundToggle.onClick(e);
+                                    }}>
+                                    <Save />
+                                </IconButton>
+                            </Stack>
                         </Stack>
                     </CardContent>
                 </Card>

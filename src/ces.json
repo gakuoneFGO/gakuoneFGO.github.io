@@ -1,0 +1,61 @@
+[
+    {
+        "name": "<None>",
+        "attackStat": 0,
+        "buffs": []
+    },
+    {
+        "name": "Event Damage (+100%)",
+        "attackStat": 0,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "pMod",
+                "val": 1,
+                "turns": -1,
+                "trig": "always"
+            }
+        ]
+    },
+    {
+        "name": "Event Damage (MLB +200%)",
+        "attackStat": 0,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "pMod",
+                "val": 2,
+                "turns": -1,
+                "trig": "always"
+            }
+        ]
+    },
+    {
+        "name": "The Black Grail (Lvl 100)",
+        "attackStat": 2400,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "npDmg",
+                "val": 0.8,
+                "turns": -1
+            }
+        ]
+    },
+    {
+        "name": "The Black Grail (Lvl 20)",
+        "attackStat": 980,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "npDmg",
+                "val": 0.6,
+                "turns": -1
+            }
+        ]
+    }
+]

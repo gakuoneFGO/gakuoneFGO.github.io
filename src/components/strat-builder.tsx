@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
 import { useData } from "../Data";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
-import { EnemyBuilder, NodeBuilder, nodeMap } from "./enemy-builder";
+import { EnemyBuilder, NodeBuilder } from "./enemy-builder";
 import { NodeOutputPanel, OutputPanel } from "./output-panel";
 import { BuffMatrix, EnemyNode, Strat, Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
@@ -33,7 +33,7 @@ function StratBuilder() {
     if (!data) {
         promise.then( data => {
             let servant = data.getServantDefaults("Iskandar");
-            let template = data.getTemplate("Double Oberon + Castoria (0%)");
+            let template = data.getTemplate("[BUSTER] Double Oberon + Castoria (0%)");
             var strat = new Strat(
                 servant,
                 template,
@@ -44,7 +44,7 @@ function StratBuilder() {
             setState({
                 strat: defaultBuffsetHeuristic(strat, 0),
                 basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass)),
-                advancedNode: nodeMap.get("[LANCERS] Nursemas Band-aid Farming") as EnemyNode,
+                advancedNode: data.nodes.get("[LANCERS] Nursemas Band-aid Farming"),
                 selectedTab: "servant",
                 selectedOutput: "basic"
             });

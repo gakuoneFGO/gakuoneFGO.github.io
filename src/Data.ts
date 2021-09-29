@@ -88,7 +88,7 @@ class DataProvider {
 
 class Persistor<T extends { name: string }> {
     constructor(type: ClassConstructor<T>, storageKey: string | undefined, staticItems: T[]) {
-        if (this.storageKey) {
+        if (storageKey) {
             this.storageKey = storageKey;
             let storedItems = deserializeArray(type, localStorage.getItem(storageKey!) ?? "[]");
             this.items = staticItems.concat(storedItems);
@@ -96,11 +96,13 @@ class Persistor<T extends { name: string }> {
 
         this.items = this.items.sort((a, b)=> a.name.localeCompare(b.name));
         this.map = new Map(this.items.map(item => [item.name, item]));
+        this.isAllCustom = staticItems.length == 0;
     }
 
     private storageKey?: string;
     private items: T[];
     private map: Map<string, T>;
+    private isAllCustom: boolean;
 
     get(name: string): T {
         return this.map.get(name) as T;
@@ -122,7 +124,11 @@ class Persistor<T extends { name: string }> {
         }
         this.items = this.items.concat(item).sort((a, b)=> a.name.localeCompare(b.name));//TODO: kinda inefficient, all we need to do is binary search then insert
         this.map.set(item.name, item);
-        localStorage.setItem(item.name, JSON.stringify(this.items));
+        localStorage.setItem(this.storageKey, JSON.stringify(this.items.filter(this.isCustom, this)));
+    }
+
+    isCustom(item: T) {
+        return this.isAllCustom || item.name.startsWith("*");
     }
 }
 
@@ -165,8 +171,8 @@ let promise = Promise.all([
     load({ type: ServantData, url: "servants.json" }),
     load({ type: ServantConfig, storageKey: "servants" }),
     load({ type: TemplateData, url: "templates.json", storageKey: "templates" }),
-    load({ type: CraftEssence, storageKey: "craftEssences" }),
-    load({ type: EnemyNode, storageKey: "enemyNodes" }),
+    load({ type: CraftEssence, url: "ces.json", storageKey: "craftEssences" }),
+    load({ type: EnemyNode, url: "nodes.json", storageKey: "enemyNodes" }),
 ]).then(responses => provider = new DataProvider(...responses));
 
 function useData(): [ DataProvider, Promise<DataProvider> ] {

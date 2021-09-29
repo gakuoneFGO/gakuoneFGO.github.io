@@ -1,9 +1,13 @@
-import { Box, Card, CardContent, CardHeader, TextField, Autocomplete, Grid, Typography, Stack } from "@mui/material";
-import React from "react";
+import { Box, Card, CardContent, CardHeader, TextField, Autocomplete, Grid, Typography, Stack, InputAdornment, IconButton, Popover, Paper, useTheme } from "@mui/material";
+import React, { useState } from "react";
 import { CraftEssence } from "../Damage";
 import { Buff, BuffType, CardType } from "../Servant";
-import { BaseComponent, BaseProps, PercentInput, ArrayBuilder, handleChange } from "./common";
+import { BaseComponent, BaseProps, PercentInput, ArrayBuilder, handleChange, SmartSelect } from "./common";
 import { Trait } from "../Enemy";
+import { useData } from "../Data";
+import { Save } from "@mui/icons-material";
+import { bindPopover, usePopupState, bindTrigger, bindToggle } from "material-ui-popup-state/hooks";
+import update from "immutability-helper";
 
 interface BuffSelectorProps extends BaseProps<Buff> {
     
@@ -63,6 +67,11 @@ interface CEBuilderProps extends BaseProps<CraftEssence> {
 }
 
 function CEBuilder(props: CEBuilderProps) {
+    const [ data ] = useData();
+    const popupState = usePopupState({ variant: "popover", popupId: "ServantSelector" });
+    const theme = useTheme();
+    const [ state, setState ] = useState({ newName: "" });
+
     return (
         <Stack spacing={2}>
             <Card>
@@ -70,12 +79,33 @@ function CEBuilder(props: CEBuilderProps) {
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={9} sm={12} md={9}>
-                            <Autocomplete
-                                options={ceNames}
-                                value={props.value.name}
-                                renderInput={params => <TextField {...params} label="Select" variant="outlined" />}
-                                onChange={(e, v) => { if (v) handleChange({ $set: ceMap.get(v) as CraftEssence }, props) }}
-                                disableClearable={true} />
+                            <SmartSelect provider={data.craftEssences} {...props} label="Select CE"
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton {...bindTrigger(popupState)}>
+                                            <Save />
+                                        </IconButton>
+                                    </InputAdornment>
+                                } />
+                            <Popover {...bindPopover(popupState)}>
+                                <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
+                                    <CardContent>
+                                        <Stack justifyContent="space-evenly" spacing={2} direction="row">
+                                            <TextField variant="outlined" fullWidth label="CE Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
+                                            <IconButton onClick={() => {
+                                                    if (state.newName){
+                                                        const ce = update(props.value, { name: { $set: "*" + state.newName } })
+                                                        data.craftEssences.put(ce);
+                                                        props.onChange(ce);
+                                                        popupState.setOpen(false);
+                                                    }
+                                                }}>
+                                                <Save />
+                                            </IconButton>
+                                        </Stack>
+                                    </CardContent>
+                                </Card>
+                            </Popover>
                         </Grid>
                         <Grid item xs={3} sm={12} md={3}>
                             <TextField type="number" variant="outlined" fullWidth
@@ -97,16 +127,5 @@ function CEBuilder(props: CEBuilderProps) {
         </Stack>
     );
 }
-
-let ceList = [
-    new CraftEssence("<None>", 0, []),
-    new CraftEssence("Event Damage (+100%)", 0, [ new Buff(true, false, BuffType.PowerMod, 1, -1, undefined, Trait.Always) ]),
-    new CraftEssence("Event Damage (MLB +200%)", 0, [ new Buff(true, false, BuffType.PowerMod, 2, -1, undefined, Trait.Always) ]),
-    new CraftEssence("The Black Grail (Lvl 100)", 2400, [ new Buff(true, false, BuffType.NpDmgUp, .8, -1) ]),
-    new CraftEssence("The Black Grail (Lvl 20)", 980, [ new Buff(true, false, BuffType.NpDmgUp, .6, -1) ]),
-];
-
-let ceNames = ceList.map(ce => ce.name).sort();
-let ceMap = new Map<string, CraftEssence>(ceList.map(ce => [ ce.name, ce ]));
 
 export { CEBuilder, BuffSelector }

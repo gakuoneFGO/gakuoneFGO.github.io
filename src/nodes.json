@@ -1,0 +1,153 @@
+[
+    {
+        "name": "[LANCERS] Nursemas Band-aid Farming",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [],
+                        "hitPoints": 24945
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [],
+                        "hitPoints": 33371
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [],
+                        "hitPoints": 24526
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [],
+                        "hitPoints": 92001
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [],
+                        "hitPoints": 34015
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [],
+                        "hitPoints": 27176
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [],
+                        "hitPoints": 31308
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [
+                            "divine",
+                            "divineSpirit",
+                            "genderFemale",
+                            "humanoid",
+                            "riding",
+                            "servant",
+                            "weakToEnumaElish"
+                        ],
+                        "hitPoints": 151215
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [],
+                        "hitPoints": 31869
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "[MIXED] Scatfest R1 90+",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "rider",
+                        "attribute": "earth",
+                        "traits": [
+                            "fae",
+                            "demonic",
+                            "humanoid",
+                            "genderMale"
+                        ],
+                        "hitPoints": 48936
+                    },
+                    {
+                        "eClass": "rider",
+                        "attribute": "sky",
+                        "traits": [
+                            "wildbeast"
+                        ],
+                        "hitPoints": 29402
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "rider",
+                        "attribute": "earth",
+                        "traits": [
+                            "wildbeast",
+                            "demonic",
+                            "superGiant"
+                        ],
+                        "hitPoints": 101895
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [
+                            "brynhildsBeloved",
+                            "divine",
+                            "humanoid",
+                            "genderMale",
+                            "servant",
+                            "weakToEnumaElish"
+                        ],
+                        "hitPoints": 201722
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [
+                            "hasCostume",
+                            "genderFemale",
+                            "humanoid",
+                            "king",
+                            "servant",
+                            "weakToEnumaElish"
+                        ],
+                        "hitPoints": 120082
+                    }
+                ]
+            }
+        ]
+    }
+]
