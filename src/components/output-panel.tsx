@@ -69,21 +69,22 @@ function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
     let theme = useTheme();
     const THRESHOLD = 25000;
     let result = props.strat.run(props.node);
-    let getEnemy = (wIndex: number, eIndex: number) => props.node.waves[wIndex].enemies[eIndex];
+
     let getColor = (enemy: Enemy, damage: Damage) => {
         let remaining = enemy.hitPoints - damage.low;
         if (remaining <= 0) return theme.palette.info;
         if (remaining <= THRESHOLD) return theme.palette.warning;
         return theme.palette.error;
     };
+    
     return (
         <Grid container direction="column" spacing={1}>
             {result.damagePerWave.map((wave, wIndex) => 
                 <Grid item container spacing={1} columns={wave.damagePerEnemy.length}>
                     {wave.damagePerEnemy.map((damage, eIndex) =>
-                        <Grid item md={1}>
+                        <Grid item xs={1} lg={1}>
                             {(() => {
-                                let enemy = getEnemy(wIndex, eIndex);
+                                let enemy = props.node.waves[wIndex].enemies[eIndex];
                                 let color = getColor(enemy, damage);
                                 return (
                                     <Paper sx={{ backgroundColor: color.main, color: color.contrastText}}>

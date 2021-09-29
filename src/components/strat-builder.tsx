@@ -1,7 +1,7 @@
 import { Box, Grid, Stack, Tab } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
-import { allData } from "../Data";
+import { useData } from "../Data";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
 import { EnemyBuilder, NodeBuilder, nodeMap } from "./enemy-builder";
 import { NodeOutputPanel, OutputPanel } from "./output-panel";
@@ -24,18 +24,16 @@ interface StratBuilderState {
     readonly selectedOutput: string;
 }
 
-class StratBuilder extends React.Component<any, StratBuilderState, any> {
-    constructor(props: any) {
-        super(props);
-        this.onServantChanged = this.onServantChanged.bind(this);
-        this.onTemplateChanged = this.onTemplateChanged.bind(this);
-    }
+function StratBuilder() {
+    let [ data, promise ] = useData();
+    let [ state, setState ] = useState({} as StratBuilderState);
 
-    componentDidMount() {
-        let component = this;
-        allData.then(data => {
+    //force all data loaded before loading root control
+    //this allows descendents to use data freely
+    if (!data) {
+        promise.then( data => {
             let servant = data.getServantDefaults("Iskandar");
-            let template = data.templates.get("Double Oberon + Castoria (0%)") as Template;
+            let template = data.getTemplate("Double Oberon + Castoria (0%)");
             var strat = new Strat(
                 servant,
                 template,
@@ -43,7 +41,7 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                 new CraftEssence("<None>", 0, []),
                 new CraftEssence("<None>", 0, []),
             );
-            component.setState({
+            setState({
                 strat: defaultBuffsetHeuristic(strat, 0),
                 basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass)),
                 advancedNode: nodeMap.get("[LANCERS] Nursemas Band-aid Farming") as EnemyNode,
@@ -51,112 +49,110 @@ class StratBuilder extends React.Component<any, StratBuilderState, any> {
                 selectedOutput: "basic"
             });
         });
-    }
+        return null;
+    };
 
-    render() {
-        if (!this.state) return null;
-        return (
-            <Grid container direction="row-reverse">
-                <Grid item lg={4} md={5} sm={12}>
-                    <PartyDisplay party={this.state.strat.getRealParty().map(s => s[0])} />
-                    <TabContext value={this.state.selectedOutput}>
-                        <Box>
-                            <TabList onChange={(_, v) => this.handleChange({ selectedOutput: { $set: v } })}>
-                                <Tab label="Basic" value="basic" />
-                                <Tab label="Advanced" value="advanced" />
-                            </TabList>
-                        </Box>
-                        <TabPanel value="basic">
-                            <Stack spacing={2}>
-                                <OutputPanel strat={this.state.strat} enemy={this.state.basicEnemy} />
-                                <EnemyBuilder value={this.state.basicEnemy} onChange={enemy => this.handleChange({ basicEnemy: { $set: enemy } } )} />
-                            </Stack>
-                        </TabPanel>
-                        <TabPanel value="advanced">
-                            <NodeOutputPanel strat={this.state.strat} node={this.state.advancedNode} />
-                        </TabPanel>
-                    </TabContext>
-                </Grid>
-                <Grid item lg={8} md={7} sm={12}>
-                    <TabContext value={this.state.selectedTab}>
-                        <Box>
-                            <TabList onChange={(_, v) => this.handleChange({ selectedTab: { $set: v } })}>
-                                <Tab label="Servant" value="servant" />
-                                <Tab label="Party" value="template" />
-                                <Tab label="Craft Essence" value="ce" />
-                                <Tab label="Node" value="node" />
-                            </TabList>
-                        </Box>
-                        <TabPanel value="servant">
-                            <Box>
-                                <ServantSelector value={this.state.strat.servant} label="Servant" onChange={(servant: Servant) => this.onServantChanged(servant)} />
-                                <BuffMatrixBuilder value={this.state.strat.servantBuffs}
-                                    maxPowerMods={2}
-                                    onChange={buffs => this.handleChange({ strat: { servantBuffs: { $set: buffs }, template: { buffs: { $set: this.state.strat.template.buffs.syncNpCard(buffs) } } } })}
-                                    servants={[this.state.strat.servant]}
-                                    warnOtherNp
-                                    clearers={this.state.strat.getRealClearers().map(c => c[0])} />
-                            </Box>
-                        </TabPanel>
-                        <TabPanel value="template">
-                            <TemplateBuilder key={this.state.strat.template.name}
-                                value={this.state.strat.template}
-                                onChange={this.onTemplateChanged} />
-                        </TabPanel>
-                        <TabPanel value="ce">
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6} md={12} lg={6}>
-                                    <CEBuilder label="Servant CE"
-                                        value={this.state.strat.servantCe}
-                                        onChange={(ce: CraftEssence) => this.handleChange({ strat: { servantCe: { $set: ce } } })} />
-                                </Grid>
-                                <Grid item xs={12} sm={6} md={12} lg={6}>
-                                    <CEBuilder label="Support CE"
-                                        value={this.state.strat.supportCe}
-                                        onChange={(ce: CraftEssence) => this.handleChange({ strat: { supportCe: { $set: ce } } })} />
-                                </Grid>
-                            </Grid>
-                        </TabPanel>
-                        <TabPanel value="node">
-                            <Box>
-                                <NodeBuilder value={this.state.advancedNode} onChange={node => this.handleChange({ advancedNode: { $set: node } })} />
-                            </Box>
-                        </TabPanel>
-                    </TabContext>
-                </Grid>
-            </Grid>
-        );
-    }
-
-    handleChange(spec: Spec<Readonly<StratBuilderState>, never>) {
+    let handleChange = (spec: Spec<Readonly<StratBuilderState>, never>) => {
         //console.log(spec);
-        let state = update(this.state, spec);
-        this.setState(state);
+        let newState = update(state, spec);
+        setState(newState);
     }
 
-    onServantChanged(servant: Servant) {
-        if (servant.data.name != this.state.strat.servant.data.name) {
-            let strat = update(this.state.strat, { servant: { $set: servant } });
-            this.handleChange({
+    function onServantChanged(servant: Servant) {
+        if (servant.data.name != state.strat.servant.data.name) {
+            let strat = update(state.strat, { servant: { $set: servant } });
+            handleChange({
                 strat: { $set: defaultBuffsetHeuristic(strat, strat.template.party.findIndex(s => s.data.name == "<Placeholder>")) },
-                basicEnemy: { $set: this.state.basicEnemy.changeClass(getLikelyClassMatchup(servant.data.sClass)) }
+                basicEnemy: { $set: state.basicEnemy.changeClass(getLikelyClassMatchup(servant.data.sClass)) }
             });
         } else {
-            this.handleChange({ strat: { servant: { $set: servant } } });
+            handleChange({ strat: { servant: { $set: servant } } });
         }
     }
 
-    onTemplateChanged(template: Template) {
-        var strat = update(this.state.strat, { template: { $set: template } });
+    function onTemplateChanged(template: Template) {
+        var strat = update(state.strat, { template: { $set: template } });
         let clearers = strat.getRealClearers();
         template.buffs.buffs.forEach((buff, turn) => {
             let clearerData = clearers[turn][0].data;
             if (!buff.npCard || !clearerData.getNP(buff.npCard))
                 strat = update(strat, { template: { buffs: { buffs: { [turn]: { npCard: { $set: clearerData.getNP().cardType } } } } } });
         });
-        strat = update(strat, { servantBuffs: { $set: this.state.strat.servantBuffs.syncNpCard(strat.template.buffs) } });
-        this.handleChange({ strat: { $set: strat } });
+        strat = update(strat, { servantBuffs: { $set: state.strat.servantBuffs.syncNpCard(strat.template.buffs) } });
+        handleChange({ strat: { $set: strat } });
     }
+    
+    return (
+        <Grid container direction="row-reverse">
+            <Grid item lg={4} md={5} sm={12}>
+                <PartyDisplay party={state.strat.getRealParty().map(s => s[0])} />
+                <TabContext value={state.selectedOutput}>
+                    <Box>
+                        <TabList onChange={(_, v) => handleChange({ selectedOutput: { $set: v } })}>
+                            <Tab label="Basic" value="basic" />
+                            <Tab label="Advanced" value="advanced" />
+                        </TabList>
+                    </Box>
+                    <TabPanel value="basic">
+                        <Stack spacing={2}>
+                            <OutputPanel strat={state.strat} enemy={state.basicEnemy} />
+                            <EnemyBuilder value={state.basicEnemy} onChange={enemy => handleChange({ basicEnemy: { $set: enemy } } )} />
+                        </Stack>
+                    </TabPanel>
+                    <TabPanel value="advanced">
+                        <NodeOutputPanel strat={state.strat} node={state.advancedNode} />
+                    </TabPanel>
+                </TabContext>
+            </Grid>
+            <Grid item lg={8} md={7} sm={12}>
+                <TabContext value={state.selectedTab}>
+                    <Box>
+                        <TabList onChange={(_, v) => handleChange({ selectedTab: { $set: v } })}>
+                            <Tab label="Servant" value="servant" />
+                            <Tab label="Party" value="template" />
+                            <Tab label="Craft Essence" value="ce" />
+                            <Tab label="Enemies" value="node" />
+                        </TabList>
+                    </Box>
+                    <TabPanel value="servant">
+                        <Box>
+                            <ServantSelector value={state.strat.servant} label="Servant" onChange={(servant: Servant) => onServantChanged(servant)} />
+                            <BuffMatrixBuilder value={state.strat.servantBuffs}
+                                maxPowerMods={2}
+                                onChange={buffs => handleChange({ strat: { servantBuffs: { $set: buffs }, template: { buffs: { $set: state.strat.template.buffs.syncNpCard(buffs) } } } })}
+                                servants={[state.strat.servant]}
+                                warnOtherNp
+                                clearers={state.strat.getRealClearers().map(c => c[0])} />
+                        </Box>
+                    </TabPanel>
+                    <TabPanel value="template">
+                        <TemplateBuilder key={state.strat.template.name}
+                            value={state.strat.template}
+                            onChange={onTemplateChanged} />
+                    </TabPanel>
+                    <TabPanel value="ce">
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6} md={12} lg={6}>
+                                <CEBuilder label="Servant CE"
+                                    value={state.strat.servantCe}
+                                    onChange={(ce: CraftEssence) => handleChange({ strat: { servantCe: { $set: ce } } })} />
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={12} lg={6}>
+                                <CEBuilder label="Support CE"
+                                    value={state.strat.supportCe}
+                                    onChange={(ce: CraftEssence) => handleChange({ strat: { supportCe: { $set: ce } } })} />
+                            </Grid>
+                        </Grid>
+                    </TabPanel>
+                    <TabPanel value="node">
+                        <Box>
+                            <NodeBuilder value={state.advancedNode} onChange={node => handleChange({ advancedNode: { $set: node } })} />
+                        </Box>
+                    </TabPanel>
+                </TabContext>
+            </Grid>
+        </Grid>
+    );
 }
 
 function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {

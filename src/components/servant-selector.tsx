@@ -2,49 +2,33 @@ import { Settings } from "@mui/icons-material";
 import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputLabel, TextField, Autocomplete, Typography, InputAdornment, IconButton, Popper, FormControlLabel, Stack, Card, CardContent, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { bindToggle, bindPopper, usePopupState } from 'material-ui-popup-state/hooks';
-import { allData, Data } from "../Data";
+import { useData } from "../Data";
 import { Servant } from "../Servant";
-import { BaseComponent, BaseProps, handleChange } from "./common";
+import { BaseComponent, BaseProps, handleChange, SmartSelect } from "./common";
 
 interface ServantSelectorProps extends BaseProps<Servant> {
     label?: string;
 }
 
-var servantList: string[] | undefined;
-var data: Data | undefined;
-
 function ServantSelector(props: ServantSelectorProps) {
+    const [ data ] = useData();
     const [ , setState ] = useState({});
     const popupState = usePopupState({ variant: "popper", popupId: "ServantSelector" });
     let theme = useTheme();
 
-    if (!data) {
-        allData.then(receivedData => {
-            data = receivedData;
-            servantList = Array.from(receivedData.servants.keys()).sort();
-            setState({}); //only need state to replace forceUpdate()
-        });
-        return null;
-    }
-
     return (
         <React.Fragment>
-            <Autocomplete
-                options={servantList as string[]}
-                value={props.value.data.name}
-                renderInput={params => <TextField {...params} label={props.label} variant="outlined" InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton {...bindToggle(popupState)}>
-                                <Settings />
-                            </IconButton>
-                        </InputAdornment>
-                    )
-                }} />}
-                onChange={(e, v) => { if (v) handleChange({ $set: (data as Data).getServantDefaults(v) }, props) }}
-                disableClearable={true}
-                forcePopupIcon={false} />
+            <SmartSelect provider={data.servantData}
+                value={props.value.data}
+                onChange={v => props.onChange(data.getServantDefaults(v.name))}
+                label="Select Servant"
+                endAdornment={
+                    <InputAdornment position="end">
+                        <IconButton {...bindToggle(popupState)}>
+                            <Settings />
+                        </IconButton>
+                    </InputAdornment>
+                } />
             <Popper placement="bottom-end" {...bindPopper(popupState)}>
                 <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
                     <CardContent>

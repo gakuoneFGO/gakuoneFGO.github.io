@@ -1,8 +1,7 @@
 import { CardType, GrowthCurve, ServantConfig, Servant, ServantData } from "./Servant";
-import { Template, Strat, BuffMatrix } from "./Strat";
-import { deserializeArray, Type } from 'class-transformer';
-import { PowerMod } from "./Damage";
-import { Trait } from "./Enemy";
+import { Template, Strat, BuffMatrix, EnemyNode } from "./Strat";
+import { ClassConstructor, deserializeArray, Type } from 'class-transformer';
+import { CraftEssence, PowerMod } from "./Damage";
 
 class Data {
     constructor(
@@ -22,30 +21,118 @@ class Data {
     }
 }
 
-let allData = Promise.all([
-    fetch("servants.json"),
-    fetch("templates.json"),
-].map(p => p.then(resp => resp.text())))
-.then(responses => {
-    var allData: Data = new Data(new Map(), new Map(), []);
-    let servants = deserializeArray(ServantData, responses[0]);
-    servants.forEach(servant => {
-        allData.servants.set(servant.name, servant);
-    });
-    let templates = deserializeArray(TemplateData, responses[1]);
-    templates.forEach(template => {
-        allData.templates.set(template.name, new Template(
+class DataProvider {
+    constructor(
+        public readonly servantData: Persistor<ServantData>,
+        public readonly servantConfig: Persistor<ServantConfig>,
+        public readonly templates: Persistor<TemplateData>,
+        public readonly craftEssences: Persistor<CraftEssence>,
+        public readonly nodes: Persistor<EnemyNode>) {
+        this.defaultServantCache = new Map<string, Servant>();
+    }
+
+    private readonly defaultServantCache: Map<string, Servant>;
+
+    getServantDefaults(name: string): Servant {
+        //I think caching these helps reduce the amount of pointless rerendering done on the template tab
+        if (this.defaultServantCache.has(name)) {
+            return this.defaultServantCache.get(name)!;
+        }
+
+        const data = this.servantData.get(name);
+        const config = this.servantConfig.has(name) ?
+            this.servantConfig.get(name) :
+            new ServantConfig(
+                data.name, Math.max(data.f2pCopies, 1),
+                getMaxLevel(data.rarity),
+                1000,
+                new PowerMod(data.appendTarget, 0.3),//TODO
+                data.nps.some(np => np.multUpgrade > 0.0));
+        const servant = new Servant(config, data);
+        this.defaultServantCache.set(name, servant);
+        return servant;
+    }
+
+    setServantDefaults(config: ServantConfig) {
+        this.servantConfig.put(config);
+        this.defaultServantCache.set(config.name, new Servant(
+            config,
+            this.servantData.get(config.name)
+        ));
+    }
+
+    getTemplate(name: string): Template {
+        let data = this.templates.get(name);
+        return new Template(
+            data.name,
+            data.buffs,
+            data.party.map(name => this.getServantDefaults(name), this),
+            data.clearers,
+            data.description,
+            data.instructions
+        );
+    }
+
+    setTemplate(template: Template) {
+        let data = new TemplateData(
             template.name,
             template.buffs,
-            template.party.map(name => allData.getServantDefaults(name)),
+            template.party.map(servant => servant.data.name),
             template.clearers,
             template.description,
             template.instructions
-        ));
-    });
-    console.log(allData);
-    return allData;
-});
+        );
+        this.templates.put(data);
+    }
+}
+
+class Persistor<T extends { name: string }> {
+    constructor(type: ClassConstructor<T>, storageKey: string | undefined, staticItems: T[]) {
+        if (this.storageKey) {
+            this.storageKey = storageKey;
+            let storedItems = deserializeArray(type, localStorage.getItem(storageKey!) ?? "[]");
+            this.items = staticItems.concat(storedItems);
+        } else this.items = staticItems;
+
+        this.items = this.items.sort((a, b)=> a.name.localeCompare(b.name));
+        this.map = new Map(this.items.map(item => [item.name, item]));
+    }
+
+    private storageKey?: string;
+    private items: T[];
+    private map: Map<string, T>;
+
+    get(name: string): T {
+        return this.map.get(name) as T;
+    }
+
+    has(name: string): boolean {
+        return this.map.has(name);
+    }
+
+    getAll(): T[] {
+        //assumes that caller will not modify
+        return this.items;
+    }
+
+    put(item: T) {
+        if (!this.storageKey) {
+            console.log("Invalid call to Persistor.put", item);
+            throw new Error("Attempted to save state which was not intended to be saved.")
+        }
+        this.items = this.items.concat(item).sort((a, b)=> a.name.localeCompare(b.name));//TODO: kinda inefficient, all we need to do is binary search then insert
+        this.map.set(item.name, item);
+        localStorage.setItem(item.name, JSON.stringify(this.items));
+    }
+}
+
+async function load<T extends { name: string }>(sources: { type: ClassConstructor<T>, url?: string, storageKey?: string }): Promise<Persistor<T>> {
+    let staticItems = sources.url ?
+        fetch(sources.url!).then(resp => resp.text()).then(resp => deserializeArray(sources.type, resp)) :
+        Promise.all([]);
+    const items = await staticItems;
+    return new Persistor(sources.type, sources.storageKey, items);
+}
 
 function getMaxLevel(rarity: number): number {
     switch (rarity) {
@@ -73,4 +160,17 @@ class TemplateData {
     readonly buffs: BuffMatrix;
 }
 
-export { Data, allData }
+var provider: DataProvider;
+let promise = Promise.all([
+    load({ type: ServantData, url: "servants.json" }),
+    load({ type: ServantConfig, storageKey: "servants" }),
+    load({ type: TemplateData, url: "templates.json", storageKey: "templates" }),
+    load({ type: CraftEssence, storageKey: "craftEssences" }),
+    load({ type: EnemyNode, storageKey: "enemyNodes" }),
+]).then(responses => provider = new DataProvider(...responses));
+
+function useData(): [ DataProvider, Promise<DataProvider> ] {
+    return [ provider, promise ];
+}
+
+export { useData, Persistor }

@@ -54,7 +54,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
                                         <EnemyBuilder value={enemy} showHealth {...props} />
                                     </Stack>
                                 }
-                                renderHeader={() => <Typography>Wave {index + 1} Enemy</Typography>}
+                                renderHeader={(_, eIndex) => <Typography>Wave {index + 1} Enemy {eIndex + 1}</Typography>}
                                 addLabel={<Typography>Add Wave {index + 1} Enemy</Typography>} />
                         </Stack>
                     </Grid>
@@ -85,7 +85,7 @@ let nodeList = [
             new Enemy(EnemyClass.Lancer, EnemyAttribute.Sky, [], 31869),
         ]),
     ]),
-    new EnemyNode("[MIXED] Scatfest Round 1", [
+    new EnemyNode("[MIXED] Scatfest R1 90+", [
         new Wave([
             new Enemy(EnemyClass.Rider, EnemyAttribute.Earth, [ Trait.Fae, Trait.Demonic, Trait.Humanoid, Trait.Male ], 48936),
             new Enemy(EnemyClass.Rider, EnemyAttribute.Sky, [ Trait.WildBeast ], 29402),

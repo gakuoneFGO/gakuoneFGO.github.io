@@ -2,9 +2,11 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { Card, CardContent, CardHeader, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Autocomplete, AutocompleteRenderInputParams, Card, CardContent, CardHeader, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 import { JsxElement } from "typescript";
+import { Persistor } from "../Data";
+import { CacheProvider } from "@emotion/react";
 
 interface BaseProps<V> {
     value: V;
@@ -123,5 +125,36 @@ function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
     );
 }
 
-export { BaseComponent, PercentInput, StateWrapper, handleChange, ArrayBuilder };
+interface SelectProps<T extends { name: string }> {
+    provider: Persistor<T>;
+    label: string;
+    endAdornment?: React.ReactNode;
+}
+
+//TODO: there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
+//TODO: template tab got a little laggy when I added this and caching getServantDefaults didn't completely fix it, so I think there's some issue with populating the autocomplete this way
+function SmartSelect<T extends { name: string }>(props: SelectProps<T> & BaseProps<T>) {
+    const renderInput = (params: AutocompleteRenderInputParams) => (props.endAdornment ?
+        <TextField {...params} label={props.label} variant="outlined" InputLabelProps={{ ...params.InputLabelProps, shrink: true}}
+            InputProps={{
+                ...params.InputProps,
+                endAdornment: props.endAdornment
+            }} /> :
+        <TextField {...params} label={props.label} variant="outlined" InputLabelProps={{ ...params.InputLabelProps, shrink: true}} />
+    );
+
+    return (
+        <Autocomplete
+            options={props.provider.getAll()}
+            value={props.value!}
+            isOptionEqualToValue={(a, b) => a.name == b.name}
+            getOptionLabel={v => v.name}
+            renderInput={renderInput}
+            onChange={(_, v) => { if (v) props.onChange(v as T) }}
+            disableClearable={true}
+            forcePopupIcon={!props.endAdornment} />
+    );
+}
+
+export { BaseComponent, PercentInput, StateWrapper, handleChange, ArrayBuilder, SmartSelect };
 export type { BaseProps };
