@@ -25,7 +25,7 @@ function ServantSelector(props: ServantSelectorProps) {
                 label="Select Servant"
                 endAdornment={
                     <InputAdornment position="end">
-                        <IconButton {...boundToggle}>
+                        <IconButton title="Stats" {...boundToggle}>
                             <Settings />
                         </IconButton>
                     </InputAdornment>
@@ -59,7 +59,8 @@ function ServantSelector(props: ServantSelectorProps) {
                                         <Checkbox checked={props.value.config.isNpUpgraded}
                                         onChange={(e, v) => handleChange({ config: { isNpUpgraded: {$set: v } } }, props) } />
                                     } />
-                                <IconButton onClick={(e) => {
+                                <IconButton title="Save as Default"
+                                    onClick={(e) => {
                                         data.setServantDefaults(props.value.config);
                                         boundToggle.onClick(e);
                                     }}>

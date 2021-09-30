@@ -31,7 +31,7 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                     label="Select Template"
                     endAdornment={
                         <InputAdornment position="end">
-                            <IconButton {...bindTrigger(popupState)}>
+                            <IconButton title="Save" {...bindTrigger(popupState)}>
                                 <Save />
                             </IconButton>
                         </InputAdornment>
@@ -43,9 +43,10 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                         <CardContent>
                             <Stack justifyContent="space-evenly" spacing={2} direction="row">
                                 <TextField autoFocus variant="outlined" fullWidth label="Template Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
-                                <IconButton onClick={() => {
+                                <IconButton title="Save"
+                                    onClick={() => {
                                         if (state.newName){
-                                            const item = update(props.value, { name: { $set: "*" + state.newName } })
+                                            const item = update(props.value, { name: { $set: "* " + state.newName } })
                                             data.setTemplate(item);
                                             props.onChange(item);
                                             popupState.setOpen(false);
@@ -104,7 +105,8 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                     servants={props.value.party}
                     onChange={buffs => handleChange({ buffs: { $set: buffs } }, props)}
                     clearers={props.value.clearers.map(c => props.value.party[c])}
-                    npCards={props.npCards} />
+                    npCards={props.npCards}
+                    doRefresh={() => handleChange({ buffs: { $set: data.getTemplate(props.value.name).buffs } }, props)} />
             </Grid>
         </Grid>
     );

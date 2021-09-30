@@ -82,7 +82,7 @@ function CEBuilder(props: CEBuilderProps) {
                             <SmartSelect provider={data.craftEssences} {...props} label="Select CE"
                                 endAdornment={
                                     <InputAdornment position="end">
-                                        <IconButton {...bindTrigger(popupState)}>
+                                        <IconButton title="Save" {...bindTrigger(popupState)}>
                                             <Save />
                                         </IconButton>
                                     </InputAdornment>
@@ -94,9 +94,10 @@ function CEBuilder(props: CEBuilderProps) {
                                     <CardContent>
                                         <Stack justifyContent="space-evenly" spacing={2} direction="row">
                                             <TextField autoFocus variant="outlined" fullWidth label="CE Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
-                                            <IconButton onClick={() => {
+                                            <IconButton title="Save"
+                                                onClick={() => {
                                                     if (state.newName){
-                                                        const ce = update(props.value, { name: { $set: "*" + state.newName } })
+                                                        const ce = update(props.value, { name: { $set: "* " + state.newName } })
                                                         data.craftEssences.put(ce);
                                                         props.onChange(ce);
                                                         popupState.setOpen(false);

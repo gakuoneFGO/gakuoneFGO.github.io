@@ -49,7 +49,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
                 <SmartSelect provider={data.nodes} {...props} label="Select Node"
                     endAdornment={
                         <InputAdornment position="end">
-                            <IconButton {...bindTrigger(popupState)}>
+                            <IconButton title="Save" {...bindTrigger(popupState)}>
                                 <Save />
                             </IconButton>
                         </InputAdornment>
@@ -65,7 +65,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
                             <IconButton title="Save"
                                 onClick={() => {
                                     if (state.newName){
-                                        const node = update(props.value, { name: { $set: "*" + state.newName } })
+                                        const node = update(props.value, { name: { $set: "* " + state.newName } })
                                         data.nodes.put(node);
                                         props.onChange(node);
                                         popupState.setOpen(false);

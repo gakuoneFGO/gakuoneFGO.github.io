@@ -1,8 +1,9 @@
-import { Clear, Replay, Warning } from "@mui/icons-material";
+import { Clear, Replay, Visibility, VisibilityOff, Warning } from "@mui/icons-material";
 import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box, ButtonGroup, Button, Typography, IconButton, Stack } from "@mui/material";
 import { Autocomplete } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Spec } from "immutability-helper";
+import { useState } from "react";
 import { BuffSet, PowerMod } from "../Damage";
 import { Trait } from "../Enemy";
 import { BuffType, CardType, Servant } from "../Servant";
@@ -14,27 +15,29 @@ interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
         readonly servants: Servant[];
         readonly clearers: Servant[];
         readonly npCards: BaseProps<CardType[]>;
+        readonly doRefresh: () => void;
         readonly maxPowerMods?: number;
         readonly warnOtherNp?: true | undefined;
 }
 
 function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
-    let theme = useTheme();
+    const theme = useTheme();
+    const [ state, setState ] = useState({ showAll: false });
 
-    let handlePowerModChange = (spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) => {
+    const handlePowerModChange = (spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) => {
         handleChange({ buffs : { [buffIndex]: { powerMods: { [modIndex]: spec } } } }, props);
     };
     
-    let maxPowerMods = props.maxPowerMods ?? 3;
-    let showNpBoost = props.servants.flatMap(s => s.data.skills).flatMap(s => s.buffs).some(b => b.type == BuffType.NpBoost);
-    let showOc = props.servants
+    const maxPowerMods = props.maxPowerMods ?? 3;
+    const showNpBoost = state.showAll || props.servants.flatMap(s => s.data.skills).flatMap(s => s.buffs).some(b => b.type == BuffType.NpBoost);
+    const showOc = state.showAll || props.servants
         .flatMap(s => s.data.skills.flatMap(s => s.buffs).concat(s.data.nps.flatMap(np => np.preBuffs)).concat(s.data.nps.flatMap(np => np.postBuffs)))
         .some(b => b.type == BuffType.Overcharge);
-    let showCardType = props.servants.some(s => s.data.nps.length > 1);
-    let validCardTypes = props.clearers.map(s => s.data.nps.map(np => np.cardType));
+    const showCardType = state.showAll || props.servants.some(s => s.data.nps.length > 1);
+    const validCardTypes = props.clearers.map(s => s.data.nps.map(np => np.cardType));
 
     //this is just a component without the nice syntax, but ButtonGroup doesn't work when I actually make it a component
-    let makeButton = (cardType: CardType, color: string, turn: number) => (
+    const makeButton = (cardType: CardType, color: string, turn: number) => (
         props.npCards.value[turn] == cardType ? 
         <Button variant={"contained"}
             style={{backgroundColor: color}}>
@@ -53,11 +56,16 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                 <TransposedTableBody>
                     <TableRow>
                         <TableCell>
-                            <Stack direction="row" justifyContent="space-evenly">
-                                <IconButton title="Clear All" onClick={() => props.onChange(new BuffMatrix(props.value.buffs.map(b => BuffSet.empty())))}>
+                            <Stack direction="row" justifyContent="space-between">
+                                <IconButton title={state.showAll ? "Hide Extra Buffs" : "Show All Buffs" } onClick={() => setState({ showAll: !state.showAll })}>
+                                    {state.showAll ? <VisibilityOff key={"0"} /> : < Visibility key={"0"} />}
+                                </IconButton>
+                                <IconButton title="Clear All" onClick={() => props.onChange(BuffMatrix.create(props.value.buffs.length))}>
                                     <Clear />
                                 </IconButton>
-                                <IconButton title="Reset"><Replay /></IconButton>
+                                <IconButton title="Reset" onClick={props.doRefresh}>
+                                    <Replay />
+                                </IconButton>
                             </Stack>
                         </TableCell>
                         {showCardType ? <TableCell><Typography>NP Type</Typography></TableCell> : null}

@@ -143,7 +143,8 @@ function StratBuilder() {
                                     servants={[servant.servant]}
                                     warnOtherNp
                                     clearers={state.strat.getRealClearers().map(c => c[0])}
-                                    npCards={{ value: state.strat.npCards, onChange: v => handleChange({ strat: { npCards: { $set: v } } }) }} />
+                                    npCards={{ value: state.strat.npCards, onChange: v => handleChange({ strat: { npCards: { $set: v } } }) }}
+                                    doRefresh={() => handleChange({ strat: { $set: defaultBuffsetHeuristic(state.strat, index) } })} />
                             </Box>
                         </TabPanel>
                     : null)}
