@@ -64,7 +64,7 @@ function StratBuilder() {
             let strat = update(state.strat, { servants: { [index]: { servant: { $set: servant } } } });
             strat = fixNpCards(strat);
             handleChange({
-                strat: { $set: defaultBuffsetHeuristic(state.strat, index) },
+                strat: { $set: defaultBuffsetHeuristic(strat, index) },
                 basicEnemy: { $set: state.basicEnemy.changeClass(getLikelyClassMatchup(servant.data.sClass)) }
             });
         } else {
