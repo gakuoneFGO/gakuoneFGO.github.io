@@ -37,17 +37,15 @@ function ServantSelector(props: ServantSelectorProps) {
                             <Autocomplete
                                 options={props.value.data.growthCurve.getValidLevels()}
                                 value={props.value.config.level.toString()}
-                                renderInput={params => <TextField {...params} label="Level" variant="outlined" fullWidth />}
-                                onChange={(e, v) => { if (v) handleChange({ config: { level: { $set: Number.parseInt(v) } } }, props)}}
-                                disableClearable={true} />
+                                renderInput={params => <TextField {...params} label="Level" />}
+                                onChange={(e, v) => { if (v) handleChange({ config: { level: { $set: Number.parseInt(v) } } }, props)}} />
                             <Autocomplete
                                 options={["1", "2", "3", "4", "5"]}
                                 value={props.value.config.npLevel.toString()}
-                                renderInput={params => <TextField {...params} label="NP Level" variant="outlined" fullWidth />}
-                                onChange={(e, v) => { if (v) handleChange({ config: { npLevel: { $set: Number.parseInt(v) } } }, props)}}
-                                disableClearable={true} />
+                                renderInput={params => <TextField {...params} label="NP Level" />}
+                                onChange={(e, v) => { if (v) handleChange({ config: { npLevel: { $set: Number.parseInt(v) } } }, props)}} />
                             <TextField
-                                type="number" variant="outlined" fullWidth
+                                type="number"
                                 label="Fous"
                                 value={props.value.config.attackFou.toString()}
                                 onChange={(e) => { if (e.target.value) handleChange({ config: { attackFou: { $set: Number.parseInt(e.target.value) } } }, props)}} />

@@ -1,5 +1,5 @@
 import { Clear, Replay, Visibility, VisibilityOff, Warning } from "@mui/icons-material";
-import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box, ButtonGroup, Button, Typography, IconButton, Stack } from "@mui/material";
+import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box, ButtonGroup, Button, Typography, IconButton, Stack, useMediaQuery, capitalize } from "@mui/material";
 import { Autocomplete } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Spec } from "immutability-helper";
@@ -22,6 +22,8 @@ interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
 
 function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     const theme = useTheme();
+    //can't short circuit with hooks
+    const compressed = [useMediaQuery(theme.breakpoints.only("xs")), useMediaQuery(theme.breakpoints.only("md"))].reduce((a, b) => a || b);
     const [ state, setState ] = useState({ showAll: false });
 
     const handlePowerModChange = (spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) => {
@@ -39,14 +41,14 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     //this is just a component without the nice syntax, but ButtonGroup doesn't work when I actually make it a component
     const makeButton = (cardType: CardType, color: string, turn: number) => (
         props.npCards.value[turn] == cardType ? 
-        <Button variant={"contained"}
+        <Button variant={"contained"} title={capitalize(cardType)}
             style={{backgroundColor: color}}>
-            <Typography variant="button">{cardType}</Typography>
+            <Typography variant="button">{cardType[0]}</Typography>
         </Button> :
-        <Button variant={"outlined"}
+        <Button variant={"outlined"} title={capitalize(cardType)}
             disabled={!props.servants.includes(props.clearers[turn]) || !validCardTypes[turn].includes(cardType)}
             onClick={_ => handleChange({ [turn]: { $set: cardType } }, props.npCards)}>
-            <Typography variant="button">{cardType}</Typography>
+            <Typography variant="button">{cardType[0]}</Typography>
         </Button>
     );
 
@@ -56,7 +58,7 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                 <TransposedTableBody>
                     <TableRow>
                         <TableCell>
-                            <Stack direction="row" justifyContent="space-between">
+                            <Stack direction={{ xs: "column", sm: "row", md: "column", lg: "row" }} justifyContent="space-between">
                                 <IconButton title={state.showAll ? "Hide Extra Buffs" : "Show All Buffs" } onClick={() => setState({ showAll: !state.showAll })}>
                                     {state.showAll ? <VisibilityOff key={"0"} /> : < Visibility key={"0"} />}
                                 </IconButton>
@@ -92,7 +94,7 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                             </TableCell>
                             {showCardType ?
                                 <TableCell>
-                                    <ButtonGroup>
+                                    <ButtonGroup orientation={compressed ? "vertical" : "horizontal"}>
                                         {makeButton(CardType.Buster, theme.palette.buster.main, index)}
                                         {makeButton(CardType.Arts, theme.palette.arts.main, index)}
                                         {makeButton(CardType.Quick, theme.palette.quick.main, index)}
@@ -114,9 +116,8 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                                     <Autocomplete
                                         options={Object.values(Trait)}
                                         value={buffSet.powerMods[pIndex].trigger}
-                                        renderInput={params => <TextField {...params} variant="outlined" />}
-                                        onChange={(_, v) => handlePowerModChange({ trigger: {$set: v } }, pIndex, index)}
-                                        disableClearable={true} />
+                                        onChange={(_, v) => handlePowerModChange({ trigger: {$set: v! } }, pIndex, index)}
+                                        renderInput={params => <TextField {...params} />} />
                                 </TableCell>
                             ])}
                         </TableRow>

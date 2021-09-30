@@ -22,9 +22,8 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
     }
 
     return (
-        //Stack shifts the servant cards to the right for some reason, hence using column grid
-        <Grid container spacing={2} direction="column">
-            <Grid item>
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
                 <SmartSelect provider={data.templates}
                     value={data.templates.get(props.value.name)}
                     onChange={v => props.onChange(data.getTemplate(v.name))}
@@ -42,7 +41,7 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                     <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
                         <CardContent>
                             <Stack justifyContent="space-evenly" spacing={2} direction="row">
-                                <TextField autoFocus variant="outlined" fullWidth label="Template Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
+                                <TextField autoFocus label="Template Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
                                 <IconButton title="Save"
                                     onClick={() => {
                                         if (state.newName){
@@ -59,48 +58,46 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                     </Card>
                 </Popover>
             </Grid>
-            <Grid item container spacing={2}>
-                {props.value.party.map((servant, index) =>(
-                    <Grid item xs={12} sm={6} md={12} lg={4} key={index}>
-                        <Card>
-                            <CardContent>
-                                <ServantSelector
-                                    value={servant}
-                                    label={"Servant " + (index + 1)}
-                                    onChange={s => handleChange({ party: { [index]: { $set: s } } }, props)} />
-                                    {/* TODO: reset checkboxes when setting back to unspecified */}
-                                <Stack justifyContent="space-evenly" direction="row">
-                                    <FormControlLabel
-                                        label="NP T1"
-                                        labelPlacement="bottom"
-                                        control={
-                                            <Checkbox checked={props.value.clearers[0] == index}
-                                                onChange={(_, v) => handleClearerChanged(v, 0, index)}
-                                                disabled={props.value.party[index].data.name == "<Unspecified>"} />
-                                        } />
-                                    <FormControlLabel
-                                        label="NP T2"
-                                        labelPlacement="bottom"
-                                        control={
-                                            <Checkbox checked={props.value.clearers[1] == index}
-                                                onChange={(_, v) => handleClearerChanged(v, 1, index)}
-                                                disabled={props.value.party[index].data.name == "<Unspecified>"} />
-                                        } />
-                                    <FormControlLabel
-                                        label="NP T3"
-                                        labelPlacement="bottom"
-                                        control={
-                                            <Checkbox checked={props.value.clearers[2] == index}
-                                                onChange={(_, v) => handleClearerChanged(v, 2, index)}
-                                                disabled={props.value.party[index].data.name == "<Unspecified>"} />
-                                        } />
-                                </Stack>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid>
-            <Grid item>
+            {props.value.party.map((servant, index) =>(
+                <Grid item xs={12} sm={6} md={12} lg={4} key={index}>
+                    <Card>
+                        <CardContent>
+                            <ServantSelector
+                                value={servant}
+                                label={"Servant " + (index + 1)}
+                                onChange={s => handleChange({ party: { [index]: { $set: s } } }, props)} />
+                                {/* TODO: reset checkboxes when setting back to unspecified */}
+                            <Stack justifyContent="space-evenly" direction="row">
+                                <FormControlLabel
+                                    label="NP T1"
+                                    labelPlacement="bottom"
+                                    control={
+                                        <Checkbox checked={props.value.clearers[0] == index}
+                                            onChange={(_, v) => handleClearerChanged(v, 0, index)}
+                                            disabled={props.value.party[index].data.name == "<Unspecified>"} />
+                                    } />
+                                <FormControlLabel
+                                    label="NP T2"
+                                    labelPlacement="bottom"
+                                    control={
+                                        <Checkbox checked={props.value.clearers[1] == index}
+                                            onChange={(_, v) => handleClearerChanged(v, 1, index)}
+                                            disabled={props.value.party[index].data.name == "<Unspecified>"} />
+                                    } />
+                                <FormControlLabel
+                                    label="NP T3"
+                                    labelPlacement="bottom"
+                                    control={
+                                        <Checkbox checked={props.value.clearers[2] == index}
+                                            onChange={(_, v) => handleClearerChanged(v, 2, index)}
+                                            disabled={props.value.party[index].data.name == "<Unspecified>"} />
+                                    } />
+                            </Stack>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            ))}
+            <Grid item xs={12}>
                 <BuffMatrixBuilder value={props.value.buffs}
                     servants={props.value.party}
                     onChange={buffs => handleChange({ buffs: { $set: buffs } }, props)}

@@ -30,6 +30,24 @@ const theme = createTheme({
             main: green[900],
         },
     },
+    components: {
+        MuiTextField: {
+            defaultProps: {
+                variant: "standard",
+                fullWidth: true,
+            }
+        },
+        MuiInputLabel: {
+            defaultProps: {
+                shrink: true,
+            }
+        },
+        MuiAutocomplete: {
+            defaultProps: {
+                disableClearable: true,
+            }
+        }
+    }
 });
 
 export { theme }

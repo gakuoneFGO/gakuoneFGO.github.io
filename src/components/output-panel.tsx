@@ -79,7 +79,7 @@ function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
     return (
         <Grid container direction="column" spacing={1}>
             {result.damagePerWave.map((wave, wIndex) => 
-                <Grid item container spacing={1} columns={wave.damagePerEnemy.length}>
+                <Grid key={wIndex} item container spacing={1} columns={wave.damagePerEnemy.length}>
                     {wave.damagePerEnemy.map((damage, eIndex) =>
                         <Grid key={eIndex} item xs={1} lg={1}>
                             {(() => {

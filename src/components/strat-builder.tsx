@@ -149,7 +149,7 @@ function StratBuilder() {
                         </TabPanel>
                     : null)}
                     <TabPanel value="template">
-                        <TemplateBuilder key={state.strat.template.name}
+                        <TemplateBuilder
                             value={state.strat.template}
                             onChange={onTemplateChanged}
                             npCards={{ value: state.strat.npCards, onChange: v => handleChange({ strat: { npCards: { $set: v } } }) }} />
@@ -185,9 +185,7 @@ function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
     const isClearerMain = strat.template.clearers.map(c => c == clearerIndex);
     const servant = strat.servants[clearerIndex]!.servant;
 
-    let getNP = function(turn: number): NoblePhantasm {
-        return clearers[turn].data.getNP(strat.npCards[turn]);
-    }
+    let getNP = (turn: number) => clearers[turn].data.getNP(strat.npCards[turn]);
 
     let skillOrder = servant.data.skills.map(skill => {
         let anySelfBuff = skill.buffs.findIndex(b => b.self) >= 0;
@@ -195,25 +193,26 @@ function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
         if (turnsToApplyTo.length == 0) {
             return { buffs: skill.buffs, turn: 0 };
         }
-        return { buffs: skill.buffs, turn: turnsToApplyTo.reverse()[0] - Math.min(...skill.buffs.map(b => b.turns)) + 1 };
+        const optimizedTurn = turnsToApplyTo.reverse()[0] - Math.min(...skill.buffs.map(b => b.turns)) + 1;
+        return { buffs: skill.buffs, turn: Math.max(optimizedTurn, 0) };
     }).concat(isClearerMain.map((isMain, turn) => {
         return { buffs: isMain ? getNP(turn).preBuffs : [], turn: turn };
     })).concat(isClearerMain.map((isMain, turn) => {
         return { buffs: isMain ? getNP(turn).postBuffs : [], turn: turn + 1 };
     }));
 
-    let servantBuffs = new BuffMatrix(clearers.map((isMain, turn) => {
+    let servantBuffs = new BuffMatrix(isClearerMain.map((isMain, turn) => {
         return BuffSet.fromBuffs(skillOrder.flatMap(order => {
             return order.turn <= turn
-                ? order.buffs.filter(b => (isMain && b.self) || (!isMain && b.team)).filter(b => order.turn + b.turns > turn)
+                ? order.buffs
+                    .filter(b => (isMain && b.self) || (!isMain && b.team))
+                    .filter(b => order.turn + b.turns > turn)
                 : []
             }).concat(servant.data.passives.filter(b => (isMain && b.self) || (!isMain && b.team))),
             getNP(turn).cardType)
     }));
 
-    return update(strat, {
-        servants: { [clearerIndex]: { buffs: { $set: servantBuffs } } }
-    });
+    return update(strat, { servants: { [clearerIndex]: { buffs: { $set: servantBuffs } } } });
 }
 
 type ServantUpdate = [ number | Servant, number | undefined ];

@@ -67,7 +67,7 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
     render() {
         return (
             <TextField
-                type="number" variant="outlined" fullWidth
+                type="number"
                 label={this.props.label}
                 value={this.state.displayValue}
                 placeholder="0"
@@ -76,7 +76,6 @@ class PercentInput extends BaseComponent<number, PercentInputProps, PercentInput
                         <InputAdornment position="end">%</InputAdornment>
                     )
                 }}
-                InputLabelProps={{ shrink: true }}
                 onChange={e => { this.onChange(e.target.value) }} />
         );
     }
@@ -128,30 +127,26 @@ function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
 interface SelectProps<T extends { name: string }> {
     provider: Persistor<T>;
     label: string;
-    endAdornment?: React.ReactNode;
+    endAdornment: React.ReactNode;
 }
 
 //TODO: there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
 //TODO: template tab got a little laggy when I added this and caching getServantDefaults didn't completely fix it, so I think there's some issue with populating the autocomplete this way
 function SmartSelect<T extends { name: string }>(props: SelectProps<T> & BaseProps<T>) {
-    const renderInput = (params: AutocompleteRenderInputParams) => (props.endAdornment ?
-        <TextField {...params} label={props.label} variant="outlined" InputLabelProps={{ ...params.InputLabelProps, shrink: true}}
-            InputProps={{
-                ...params.InputProps,
-                endAdornment: props.endAdornment
-            }} /> :
-        <TextField {...params} label={props.label} variant="outlined" InputLabelProps={{ ...params.InputLabelProps, shrink: true}} />
-    );
-
     return (
         <Autocomplete
             options={props.provider.getAll()}
             value={props.value!}
             isOptionEqualToValue={(a, b) => a.name == b.name}
             getOptionLabel={v => v.name}
-            renderInput={renderInput}
+            renderInput={params =>
+                <TextField {...params} label={props.label}
+                    InputProps={{
+                        ...params.InputProps,
+                        endAdornment: props.endAdornment
+                    }} />
+            }
             onChange={(_, v) => { if (v) props.onChange(v as T) }}
-            disableClearable={true}
             forcePopupIcon={!props.endAdornment} />
     );
 }

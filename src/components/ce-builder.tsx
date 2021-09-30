@@ -20,9 +20,8 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
                 <Autocomplete
                     options={Object.values(BuffType)}
                     value={this.props.value.type}
-                    renderInput={params => <TextField label="Buff Type" {...params} variant="outlined" />}
-                    onChange={(_, v) => this.handleBuffTypeChanged(v)}
-                    disableClearable={true} />
+                    renderInput={params => <TextField label="Buff Type" {...params} />}
+                    onChange={(_, v) => this.handleBuffTypeChanged(v!)} />
                 <PercentInput
                     value={this.props.value.val}
                     onChange={ v => { this.handleChange({ val: { $set: v } }); }}
@@ -31,17 +30,15 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
                     <Autocomplete
                         options={Object.values(CardType)}
                         value={this.props.value.cardType ?? CardType.Extra}
-                        renderInput={params => <TextField label="Card Type" {...params} variant="outlined" />}
-                        onChange={(_, v) => this.handleChange({ cardType: {$set: v } })}
-                        disableClearable={true} />
+                        renderInput={params => <TextField label="Card Type" {...params} />}
+                        onChange={(_, v) => this.handleChange({ cardType: {$set: v! } })} />
                 : null}
                 {this.props.value.type == BuffType.PowerMod ?
                     <Autocomplete
                         options={Object.values(Trait)}
                         value={this.props.value.trig ?? Trait.Never}
-                        renderInput={params => <TextField label="Trigger" {...params} variant="outlined" />}
-                        onChange={(_, v) => this.handleChange({ trig: {$set: v } })}
-                        disableClearable={true} />
+                        renderInput={params => <TextField label="Trigger" {...params} />}
+                        onChange={(_, v) => this.handleChange({ trig: {$set: v! } })} />
                 : null}
             </React.Fragment>
         );
@@ -93,7 +90,7 @@ function CEBuilder(props: CEBuilderProps) {
                                 <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
                                     <CardContent>
                                         <Stack justifyContent="space-evenly" spacing={2} direction="row">
-                                            <TextField autoFocus variant="outlined" fullWidth label="CE Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
+                                            <TextField autoFocus label="CE Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
                                             <IconButton title="Save"
                                                 onClick={() => {
                                                     if (state.newName){
@@ -111,7 +108,7 @@ function CEBuilder(props: CEBuilderProps) {
                             </Popover>
                         </Grid>
                         <Grid item xs={3} sm={12} md={3}>
-                            <TextField type="number" variant="outlined" fullWidth
+                            <TextField type="number"
                                 label="Attack Stat" value={props.value.attackStat.toString()}
                                 onChange={(e) => { if (e.target.value) handleChange({ attackStat: { $set: Number.parseInt(e.target.value) } }, props)}} />
                         </Grid>
