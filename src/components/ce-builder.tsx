@@ -87,11 +87,13 @@ function CEBuilder(props: CEBuilderProps) {
                                         </IconButton>
                                     </InputAdornment>
                                 } />
-                            <Popover {...bindPopover(popupState)}>
+                            <Popover {...bindPopover(popupState)}
+                                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                                transformOrigin={{ vertical: "top", horizontal: "center" }}>
                                 <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
                                     <CardContent>
                                         <Stack justifyContent="space-evenly" spacing={2} direction="row">
-                                            <TextField variant="outlined" fullWidth label="CE Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
+                                            <TextField autoFocus variant="outlined" fullWidth label="CE Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
                                             <IconButton onClick={() => {
                                                     if (state.newName){
                                                         const ce = update(props.value, { name: { $set: "*" + state.newName } })

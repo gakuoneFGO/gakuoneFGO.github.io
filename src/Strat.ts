@@ -12,22 +12,23 @@ class BuffMatrix {
     @Type(() => BuffSet)
     readonly buffs: BuffSet[];
 
-    // static create(size: number): BuffMatrix {
-    //     let buffs = new Array<BuffSet>(size);
-    //     buffs.fill(BuffSet.empty());
-    //     return new BuffMatrix(buffs);
-    // }
+    static create(size: number): BuffMatrix {
+        let buffs = new Array<BuffSet>(size);
+        buffs.fill(BuffSet.empty());
+        return new BuffMatrix(buffs);
+    }
 
     /**
      * Keeps npCard in sync on all BuffMatrix objects so that display and calculations are consistent.
      * (Ideally we would just track that on the Strat level but this simplifies coordination between components by avoiding the need to write extra update hooks.)
-     * TODO: no-op detection
      * @param other BuffMatrix to take values from.
      * @returns 
      */
-    public syncNpCard(other: BuffMatrix): BuffMatrix {
-        return new BuffMatrix(this.buffs.map((buffSet, index) => update(buffSet, { npCard: { $set: other.buffs[index].npCard } })));
-    }
+    // public syncNpCard(other: BuffMatrix): BuffMatrix {
+    //     return this.buffs.some((buffSet, index) => buffSet.npCard != other.buffs[index].npCard) ?
+    //         new BuffMatrix(this.buffs.map((buffSet, index) => update(buffSet, { npCard: { $set: other.buffs[index].npCard } }))) :
+    //         this;
+    // }
 }
 
 class Template {
@@ -67,19 +68,34 @@ class NodeDamage {
         public unclearedWaves: number = 0) {}
 }
 
+//need this class since the compiler sucks at recognizing tuples
+class MainServant {
+    constructor(servant: Servant, buffs: BuffMatrix) {
+        this.servant = servant;
+        this.buffs = buffs;
+    }
+
+    @Type(() => Servant)
+    public readonly servant: Servant;
+    @Type(() => BuffMatrix)
+    public readonly buffs: BuffMatrix;
+}
+
 class Strat {
     constructor(
-        readonly servants: (Servant | undefined)[],
+        readonly servants: (MainServant | undefined)[],
         readonly template: Template,
-        readonly servantBuffs: BuffMatrix,
         readonly servantCe: CraftEssence,
-        readonly supportCe: CraftEssence) {}
+        readonly supportCe: CraftEssence,
+        readonly npCards: CardType[]) {}
 
-    public getRealParty(): [Servant, CraftEssence][] {
-        return this.servants.map((servant, index) => servant ? [ servant, this.servantCe ] : [ this.template.party[index], this.supportCe ], this);
-    } 
+    public getRealParty(): [Servant, BuffMatrix | undefined, CraftEssence][] {
+        return this.servants.map((servant, index) => servant ?
+            [ servant.servant, servant.buffs, this.servantCe ] :
+            [ this.template.party[index], undefined, this.supportCe ], this);
+    }
 
-    public getRealClearers(): [Servant, CraftEssence][] {
+    public getRealClearers(): [Servant, BuffMatrix | undefined, CraftEssence][] {
         let party = this.getRealParty();
         return this.template.clearers.map(cIndex => party[cIndex]);
     }
@@ -91,9 +107,9 @@ class Strat {
         let clearers = this.getRealClearers();
         result.damagePerWave = node.waves.map((wave, wIndex) => {
             let waveResult = new WaveDamage();
-            let [clearer, ce] = clearers[wIndex];
+            let [clearer, _, ce] = clearers[wIndex];
             waveResult.damagePerEnemy = wave.enemies.map(enemy => {
-                let damage = calculator.calculateNpDamage(clearer, ce, enemy, [ this.servantBuffs.buffs[wIndex], this.template.buffs.buffs[wIndex] ]);
+                let damage = calculator.calculateNpDamage(clearer, ce, enemy, [ ...this.servants.filter(s => s).map(s => s!.buffs.buffs[wIndex]), this.template.buffs.buffs[wIndex] ], this.npCards[wIndex]);
                 return damage;
             });
             waveResult.damagePerEnemy.forEach((damage, eIndex) => {
@@ -110,4 +126,4 @@ class Strat {
     }
 }
 
-export { Strat, Template, BuffMatrix, NodeDamage, WaveDamage, EnemyNode, Wave };
+export { Strat, Template, BuffMatrix, NodeDamage, WaveDamage, EnemyNode, Wave, MainServant };

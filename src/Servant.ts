@@ -19,6 +19,14 @@ class Servant {
             return multiplier;
         }
     }
+
+    isPlaceholder(): boolean {
+        return this.data.name == "<Placeholder>";
+    }
+
+    isSpecified(): boolean {
+        return this.data.name != "<Unspecified>";
+    }
 }
 
 class ServantConfig {
@@ -64,6 +72,10 @@ class ServantData {
 
     getNP(cardType?: CardType): NoblePhantasm {
         return this.nps.find(np => !cardType || np.cardType == cardType) as NoblePhantasm;
+    }
+
+    hasNP(cardType: CardType): boolean {
+        return this.nps.some(np => np.cardType == cardType);
     }
 }
 

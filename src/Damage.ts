@@ -14,12 +14,11 @@ class BuffSet {
         readonly npUp: number,
         readonly npBoost: number,
         readonly powerMods: PowerMod[],
-        readonly overcharge: number,
-        readonly npCard: CardType) {}
+        readonly overcharge: number) {}
 
-    static empty(npCard: CardType): BuffSet {
+    static empty(): BuffSet {
         let powerMod = new PowerMod(Trait.Always, 0);
-        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0, npCard);
+        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0);
         return emptySingleton;
     }
 
@@ -30,8 +29,7 @@ class BuffSet {
             buffs.map(buff => buff.npUp).reduce((a, b) => a + b),
             Math.max(...buffs.map(buff => buff.npBoost)),
             buffs.flatMap(buff => buff.powerMods).concat(appendMod),
-            buffs.map(buff => buff.overcharge).reduce((a, b) => a + b),
-            buffs[0].npCard
+            buffs.map(buff => buff.overcharge).reduce((a, b) => a + b)
         );
     }
 
@@ -52,8 +50,7 @@ class BuffSet {
                     return map;
                 }, new Map<Trait, number>())
                 .entries()).map(entry => new PowerMod(entry[0], entry[1])).concat([ powerMod, powerMod, powerMod ]),
-                buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0),
-            npCard
+                buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0)
         );
     }
 
@@ -77,8 +74,8 @@ class Damage {
 }
 
 class Calculator {
-    calculateNpDamage(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[]): Damage {
-        let np = servant.data.getNP(buffs.reduce((type, buff) => buff.npCard ?? type, undefined as CardType | undefined));
+    calculateNpDamage(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[], npCard: CardType): Damage {
+        let np = servant.data.getNP(buffs.reduce((type, buff) => npCard ?? type, undefined as CardType | undefined));
         let combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.config.appendMod);
         let baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, combinedBuffs.overcharge) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
         let triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute);

@@ -1,12 +1,12 @@
 import React from "react";
 import { Grid, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, useTheme } from "@mui/material";
 import { StateWrapper } from "./common";
-import { EnemyNode, NodeDamage, Strat } from "../Strat";
+import { BuffMatrix, EnemyNode, MainServant, NodeDamage, Strat } from "../Strat";
 import update from "immutability-helper";
 import NumberFormat from "react-number-format";
 import { Enemy } from "../Enemy";
 import { Box } from "@mui/system";
-import { Damage } from "../Damage";
+import { BuffSet, Damage } from "../Damage";
 
 interface OutputPanelProps {
     strat: Strat;
@@ -22,11 +22,11 @@ class OutputPanel extends React.Component<OutputPanelProps, StateWrapper<NodeDam
     static getDerivedStateFromProps(props: OutputPanelProps): StateWrapper<NodeDamage[]> {
         let output = [ 1, 2, 3, 4, 5 ].map(npLevel => {
             const clearers = props.strat.getRealClearers();
-            //TODO: could use reduce instead. probably define a helper function then do that
             const tempStrat= props.strat.template.clearers.reduce((strat, clearerIndex, turn) => {
                 //TODO: fix hack (abusing inappropriate knowledge of getRealClearers implementation)
-                let clearer = update(clearers[turn][0], { config: { npLevel: { $set: npLevel } } });
-                return update(strat, { servants: { [clearerIndex]: { $set: clearer } } });
+                const clearer = update(clearers[turn][0], { config: { npLevel: { $set: npLevel } } });
+                const buffs = clearers[turn][1] ?? BuffMatrix.create(clearers.length);
+                return update(strat, { servants: { [clearerIndex]: { $set: new MainServant(clearer, buffs) } } });
             }, props.strat);
             return tempStrat.run(EnemyNode.uniform(props.enemy));
         });
@@ -81,12 +81,12 @@ function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
             {result.damagePerWave.map((wave, wIndex) => 
                 <Grid item container spacing={1} columns={wave.damagePerEnemy.length}>
                     {wave.damagePerEnemy.map((damage, eIndex) =>
-                        <Grid item xs={1} lg={1}>
+                        <Grid key={eIndex} item xs={1} lg={1}>
                             {(() => {
                                 let enemy = props.node.waves[wIndex].enemies[eIndex];
                                 let color = getColor(enemy, damage);
                                 return (
-                                    <Paper sx={{ backgroundColor: color.main, color: color.contrastText}}>
+                                    <Paper key="0" sx={{ backgroundColor: color.main, color: color.contrastText}}>
                                         <Typography textAlign="center">
                                             <NumberFormat displayType="text" thousandSeparator="," value={damage.low} />
                                             &nbsp;/&nbsp;

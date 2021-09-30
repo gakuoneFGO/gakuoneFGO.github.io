@@ -8,8 +8,9 @@ import { bindPopover, usePopupState, bindTrigger } from "material-ui-popup-state
 import { useState } from "react";
 import update from "immutability-helper";
 import { Save } from "@mui/icons-material";
+import { CardType } from "../Servant";
 
-function TemplateBuilder(props: BaseProps<Template>) {
+function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardType[]> }) {
     const [ data ] = useData();
     const popupState = usePopupState({ variant: "popover", popupId: "ServantSelector" });
     const theme = useTheme();
@@ -35,11 +36,13 @@ function TemplateBuilder(props: BaseProps<Template>) {
                             </IconButton>
                         </InputAdornment>
                     } />
-                <Popover {...bindPopover(popupState)}>
+                <Popover {...bindPopover(popupState)}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                    transformOrigin={{ vertical: "top", horizontal: "center" }}>
                     <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
                         <CardContent>
                             <Stack justifyContent="space-evenly" spacing={2} direction="row">
-                                <TextField variant="outlined" fullWidth label="Template Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
+                                <TextField autoFocus variant="outlined" fullWidth label="Template Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
                                 <IconButton onClick={() => {
                                         if (state.newName){
                                             const item = update(props.value, { name: { $set: "*" + state.newName } })
@@ -100,7 +103,8 @@ function TemplateBuilder(props: BaseProps<Template>) {
                 <BuffMatrixBuilder value={props.value.buffs}
                     servants={props.value.party}
                     onChange={buffs => handleChange({ buffs: { $set: buffs } }, props)}
-                    clearers={props.value.clearers.map(c => props.value.party[c])} />
+                    clearers={props.value.clearers.map(c => props.value.party[c])}
+                    npCards={props.npCards} />
             </Grid>
         </Grid>
     );

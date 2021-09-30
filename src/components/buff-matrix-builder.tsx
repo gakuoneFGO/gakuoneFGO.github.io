@@ -7,12 +7,13 @@ import { BuffSet, PowerMod } from "../Damage";
 import { Trait } from "../Enemy";
 import { BuffType, CardType, Servant } from "../Servant";
 import { BuffMatrix } from "../Strat";
-import { BaseProps, handleChange as commonHandleChange, PercentInput } from "./common";
+import { BaseProps, handleChange as commonHandleChange, handleChange, PercentInput } from "./common";
 import { TransposedTableBody } from "./transposed-table"
 
 interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
         readonly servants: Servant[];
         readonly clearers: Servant[];
+        readonly npCards: BaseProps<CardType[]>;
         readonly maxPowerMods?: number;
         readonly warnOtherNp?: true | undefined;
 }
@@ -20,10 +21,8 @@ interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
 function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     let theme = useTheme();
 
-    let handleChange = (spec: Spec<BuffMatrix, never>) => commonHandleChange(spec, props);
-
     let handlePowerModChange = (spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) => {
-        handleChange({ buffs : { [buffIndex]: { powerMods: { [modIndex]: spec } } } });
+        handleChange({ buffs : { [buffIndex]: { powerMods: { [modIndex]: spec } } } }, props);
     };
     
     let maxPowerMods = props.maxPowerMods ?? 3;
@@ -34,15 +33,16 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     let showCardType = props.servants.some(s => s.data.nps.length > 1);
     let validCardTypes = props.clearers.map(s => s.data.nps.map(np => np.cardType));
 
-    let makeButton = (cardType: CardType, color: string, buffSet: BuffSet, turn: number) => (
-        buffSet.npCard == cardType ? 
+    //this is just a component without the nice syntax, but ButtonGroup doesn't work when I actually make it a component
+    let makeButton = (cardType: CardType, color: string, turn: number) => (
+        props.npCards.value[turn] == cardType ? 
         <Button variant={"contained"}
             style={{backgroundColor: color}}>
             <Typography variant="button">{cardType}</Typography>
         </Button> :
         <Button variant={"outlined"}
             disabled={!props.servants.includes(props.clearers[turn]) || !validCardTypes[turn].includes(cardType)}
-            onClick={_ => handleChange({ buffs: { [turn]: { npCard: { $set: cardType } } } })}>
+            onClick={_ => handleChange({ [turn]: { $set: cardType } }, props.npCards)}>
             <Typography variant="button">{cardType}</Typography>
         </Button>
     );
@@ -54,7 +54,9 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                     <TableRow>
                         <TableCell>
                             <Stack direction="row" justifyContent="space-evenly">
-                                <IconButton title="Clear All"><Clear /></IconButton>
+                                <IconButton title="Clear All" onClick={() => props.onChange(new BuffMatrix(props.value.buffs.map(b => BuffSet.empty())))}>
+                                    <Clear />
+                                </IconButton>
                                 <IconButton title="Reset"><Replay /></IconButton>
                             </Stack>
                         </TableCell>
@@ -83,17 +85,17 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                             {showCardType ?
                                 <TableCell>
                                     <ButtonGroup>
-                                        {makeButton(CardType.Buster, theme.palette.buster.main, buffSet, index)}
-                                        {makeButton(CardType.Arts, theme.palette.arts.main, buffSet, index)}
-                                        {makeButton(CardType.Quick, theme.palette.quick.main, buffSet, index)}
+                                        {makeButton(CardType.Buster, theme.palette.buster.main, index)}
+                                        {makeButton(CardType.Arts, theme.palette.arts.main, index)}
+                                        {makeButton(CardType.Quick, theme.palette.quick.main, index)}
                                     </ButtonGroup>
                                 </TableCell>
                             : null}
-                            <TableCell><PercentInput value={buffSet.attackUp} onChange={v => { handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }); }} /></TableCell>
-                            <TableCell><PercentInput value={buffSet.cardUp} onChange={ v => { handleChange({ buffs : { [index]: { cardUp: {$set: v} } } }); } } /></TableCell>
-                            <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { handleChange({ buffs : { [index]: { npUp: {$set: v} } } }); }} /></TableCell>
-                            {showNpBoost ? <TableCell><PercentInput value={buffSet.npBoost} onChange={ v => { handleChange({ buffs : { [index]: { npBoost: {$set: v} } } }); }} /></TableCell> : null}
-                            {showOc ? <TableCell><PercentInput value={buffSet.overcharge} onChange={ v => { handleChange({ buffs : { [index]: { overcharge: {$set: v} } } }); }} /></TableCell> : null}
+                            <TableCell><PercentInput value={buffSet.attackUp} onChange={v => { handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }, props); }} /></TableCell>
+                            <TableCell><PercentInput value={buffSet.cardUp} onChange={ v => { handleChange({ buffs : { [index]: { cardUp: {$set: v} } } }, props); } } /></TableCell>
+                            <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { handleChange({ buffs : { [index]: { npUp: {$set: v} } } }, props); }} /></TableCell>
+                            {showNpBoost ? <TableCell><PercentInput value={buffSet.npBoost} onChange={ v => { handleChange({ buffs : { [index]: { npBoost: {$set: v} } } }, props); }} /></TableCell> : null}
+                            {showOc ? <TableCell><PercentInput value={buffSet.overcharge} onChange={ v => { handleChange({ buffs : { [index]: { overcharge: {$set: v} } } }, props); }} /></TableCell> : null}
                             {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [
                                 <TableCell key={pIndex * 2}>
                                     <PercentInput

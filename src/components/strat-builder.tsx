@@ -5,7 +5,7 @@ import { useData } from "../Data";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
 import { EnemyBuilder, NodeBuilder } from "./enemy-builder";
 import { NodeOutputPanel, OutputPanel } from "./output-panel";
-import { BuffMatrix, EnemyNode, Strat, Template } from "../Strat";
+import { BuffMatrix, EnemyNode, MainServant, Strat, Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
 import { CEBuilder } from "./ce-builder";
 import { PartyDisplay } from "./party-display";
@@ -13,7 +13,7 @@ import { ServantSelector } from "./servant-selector";
 import { TemplateBuilder } from "./template-builder";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { NoblePhantasm, Servant, ServantData } from "../Servant";
+import { CardType, NoblePhantasm, Servant, ServantData } from "../Servant";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 interface StratBuilderState {
@@ -36,11 +36,11 @@ function StratBuilder() {
             let servant = data.getServantDefaults("Iskandar");
             let template = data.getTemplate("[BUSTER] Double Oberon + Castoria (0%)");
             var strat = new Strat(
-                [ servant ].concat(new Array(5).fill(undefined)),
+                [new MainServant(servant, template.buffs), ...Array(5).fill(undefined)],
                 template,
-                template.buffs,
                 new CraftEssence("<None>", 0, []),
                 new CraftEssence("<None>", 0, []),
+                new Array(3).fill(CardType.Buster)
             );
             setState({
                 strat: defaultBuffsetHeuristic(strat, 0),
@@ -60,47 +60,43 @@ function StratBuilder() {
     }
 
     const onServantChanged = (servant: Servant, index: number) => {
-        if (servant.data.name != state.strat.servants[index]!.data.name) {
-            const strat = update(state.strat, { servants: { [index]: { $set: servant } } });
+        if (servant.data.name != state.strat.servants[index]!.servant.data.name) {
+            let strat = update(state.strat, { servants: { [index]: { servant: { $set: servant } } } });
+            strat = fixNpCards(strat);
             handleChange({
-                strat: { $set: defaultBuffsetHeuristic(strat, index) },
+                strat: { $set: defaultBuffsetHeuristic(state.strat, index) },
                 basicEnemy: { $set: state.basicEnemy.changeClass(getLikelyClassMatchup(servant.data.sClass)) }
             });
         } else {
-            handleChange({ strat: { servants: { [index]: { $set: servant } } } });
+            handleChange({ strat: { servants: { [index]: { servant: { $set: servant } } } } });
         }
     }
 
     //maybe pull from damaging NPs only? nah that's no fun
     //TODO: this is cool but you technically should use the same servant that was selected in the template (including config). only <Unspecified> should trigger random
     //the time for randomness is usually on page load anyway
-    const getRandomServant = () => {
+    const getRandomServant: () => Servant = () => {
         const pool = data.servantData.getAll();
         const rand = Math.floor(Math.random() * pool.length)
-        return data.getServantDefaults(pool[rand].name);
+        const result = data.getServantDefaults(pool[rand].name)
+        return !result.isPlaceholder() && result.isSpecified() ? result : getRandomServant();
     };
 
     const onTemplateChanged = (template: Template) => {
-        const spliceArgses = template.party.flatMap((servant, index) => {
-            //temp var prevents need to cast later
-            let arg: [number, number, (Servant | undefined)][] = [];
-            if (servant.data.name == "<Placeholder>" && state.strat.servants[index] == undefined) {
-                arg = [[ index, 1, getRandomServant() ]];
-            } else if (servant.data.name != "<Placeholder>" && state.strat.servants[index] != undefined) {
-                arg = [[ index, 1, undefined ]]
-            }
-            return arg;
-        });
-        let strat = update(state.strat, { template: { $set: template }, servants: { $splice: spliceArgses } });
-        const clearers = strat.getRealClearers();
-        template.buffs.buffs.forEach((buff, turn) => {
-            const clearerData = clearers[turn][0].data;
-            if (!buff.npCard || !clearerData.getNP(buff.npCard))
-                strat = update(strat, { template: { buffs: { buffs: { [turn]: { npCard: { $set: clearerData.getNP().cardType } } } } } });
-        });
-        strat = update(strat, { servantBuffs: { $set: state.strat.servantBuffs.syncNpCard(strat.template.buffs) } });
-        handleChange({ strat: { $set: strat } });
-    }
+        //decide servants
+        const updates = reconcilePlaceholders(state.strat, template, getRandomServant);
+        const servantsReconciled = applyUpdates(state.strat, updates);
+
+        //set template
+        const templateUpdated = update(servantsReconciled, { template: { $set: template } });
+
+        //decide which NP
+        const npCardsFixed = fixNpCards(templateUpdated);
+
+        //generate buffs
+        const buffsGenerated = updates.filter(upd => upd[0] instanceof Servant).reduce((strat, upd) => defaultBuffsetHeuristic(strat, upd[1] as number), npCardsFixed);
+        handleChange({ strat: { $set: buffsGenerated } });
+    };
     
     return (
         <Grid container direction="row-reverse" spacing={0}>
@@ -140,20 +136,22 @@ function StratBuilder() {
                         //seems like the TabContext needs to know about even the tabs that aren't selected since I get issues trying to return just the selected one
                         <TabPanel key={index} value={`servant${index}`}>
                             <Box>
-                                <ServantSelector value={servant} label="Servant" onChange={(servant: Servant) => onServantChanged(servant, index)} />
-                                <BuffMatrixBuilder value={state.strat.servantBuffs}
+                                <ServantSelector value={servant.servant} label="Servant" onChange={(servant: Servant) => onServantChanged(servant, index)} />
+                                <BuffMatrixBuilder value={servant.buffs}
                                     maxPowerMods={2}
-                                    onChange={buffs => handleChange({ strat: { servantBuffs: { $set: buffs }, template: { buffs: { $set: state.strat.template.buffs.syncNpCard(buffs) } } } })}
-                                    servants={[servant]}
+                                    onChange={buffs => handleChange({ strat: { servants: { [index]: { buffs: { $set: buffs } } } } })}
+                                    servants={[servant.servant]}
                                     warnOtherNp
-                                    clearers={state.strat.getRealClearers().map(c => c[0])} />
+                                    clearers={state.strat.getRealClearers().map(c => c[0])}
+                                    npCards={{ value: state.strat.npCards, onChange: v => handleChange({ strat: { npCards: { $set: v } } }) }} />
                             </Box>
                         </TabPanel>
                     : null)}
                     <TabPanel value="template">
                         <TemplateBuilder key={state.strat.template.name}
                             value={state.strat.template}
-                            onChange={onTemplateChanged} />
+                            onChange={onTemplateChanged}
+                            npCards={{ value: state.strat.npCards, onChange: v => handleChange({ strat: { npCards: { $set: v } } }) }} />
                     </TabPanel>
                     <TabPanel value="ce">
                         <Grid container spacing={2}>
@@ -180,15 +178,14 @@ function StratBuilder() {
     );
 }
 
+//TODO: seems to be messed up when servant doesn't NP (frontloads instead of backloading)
 function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
     const clearers = strat.getRealClearers().map(clearer => clearer[0]);
     const isClearerMain = strat.template.clearers.map(c => c == clearerIndex);
-    const servant = clearers[clearerIndex];
+    const servant = strat.servants[clearerIndex]!.servant;
 
     let getNP = function(turn: number): NoblePhantasm {
-        return isClearerMain ?
-            clearers[turn].data.getNP() :
-            clearers[turn].data.getNP(strat.template.buffs.buffs[turn].npCard);
+        return clearers[turn].data.getNP(strat.npCards[turn]);
     }
 
     let skillOrder = servant.data.skills.map(skill => {
@@ -214,9 +211,61 @@ function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
     }));
 
     return update(strat, {
-        servantBuffs: { $set: servantBuffs },
-        template: { buffs: { $set: strat.template.buffs.syncNpCard(servantBuffs) } }
+        servants: { [clearerIndex]: { buffs: { $set: servantBuffs } } }
     });
+}
+
+type ServantUpdate = [ number | Servant, number | undefined ];
+
+function fixNpCards(strat: Strat): Strat {
+    //assumes selected servants are up to date
+    const clearers = strat.getRealClearers();
+    if (!clearers.some((clearer, turn) => !clearer[0].data.hasNP(strat.npCards[turn]))) {
+        return strat;
+    }
+    let cards = clearers.map((clearer, turn) => clearer[0].data.hasNP(strat.npCards[turn]) ? strat.npCards[turn] : clearer[0].data.getNP().cardType);
+    return update(strat, { npCards: { $set: cards } });
+}
+
+function reconcilePlaceholders(strat: Strat, newTemplate: Template, genServant: () => Servant): ServantUpdate[] {
+    const oldPlaceholders = strat.template.party.flatMap((servant, slot) => servant.isPlaceholder() ? [slot] : []);
+    const newPlaceholders = newTemplate.party.flatMap((servant, slot) => servant.isPlaceholder() ? [slot] : []);
+    //main rule: if user changes a placeholder to a non-placeholder, keep all other placeholders as-is
+    const locked = oldPlaceholders.filter(slot => newPlaceholders.includes(slot));
+
+    //fill remaining slots in order
+    const needsHome = oldPlaceholders.filter(slot => !locked.includes(slot));
+    const openSlots = newPlaceholders.filter(slot => !locked.includes(slot));
+    //fill slots left to right and delete any servants there is no space for
+    const movesAndDeletes = needsHome.map((slot, index) => [slot, openSlots[index]]) as [number, number | undefined][];
+
+    const adds = openSlots.slice(needsHome.length).map(slot => [genServant(), slot]) as [Servant, number][];
+
+    return [...movesAndDeletes, ...adds];
+}
+
+function applyUpdates(strat: Strat, updates: ServantUpdate[]): Strat {
+    const newServants = updates.reduce((tmpServants, upd) => applyUpdate(strat.servants, tmpServants, upd, strat.template.buffs), strat.servants);
+    return update(strat, { servants: { $set: newServants } });
+}
+
+function applyUpdate(origServants: (MainServant | undefined)[], targetServants: (MainServant | undefined)[], upd: ServantUpdate, matrix: BuffMatrix): (MainServant | undefined)[] {
+    const [ source, target ] = upd;
+    if (target == undefined) {
+        if (source instanceof Servant) return targetServants;
+        //delete
+        return origServants[source] == targetServants[source] ?
+            update(targetServants, { [source]: { $set: undefined } }) :
+            targetServants;
+    } else if (source instanceof Servant) {
+        //add
+        return update(targetServants, { [target]: { $set: new MainServant(source, matrix) } });
+    } else {
+        //move
+        return origServants[source] == targetServants[source] ?
+            update(targetServants, { [target]: { $set: origServants[source] }, [source]: { $set: undefined } }) :
+            update(targetServants, { [target]: { $set: origServants[source] } });
+    }
 }
 
 export { StratBuilder }
