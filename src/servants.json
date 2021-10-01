@@ -6,8 +6,8 @@
         "sClass": "shielder",
         "attribute": "beast",
         "f2pCopies": 0,
-        "iconUrl": "",
-        "cardArtUrl": "images/select.png",
+        "iconUrl": "images/servants/select.png",
+        "cardArtUrl": "",
         "chargeProfile": "",
         "appendTarget": "classShielder",
         "growthCurve": {
@@ -24,8 +24,8 @@
         "sClass": "shielder",
         "attribute": "beast",
         "f2pCopies": 0,
-        "iconUrl": "",
-        "cardArtUrl": "images/select.png",
+        "iconUrl": "images/servants/select.png",
+        "cardArtUrl": "",
         "chargeProfile": "",
         "appendTarget": "classShielder",
         "growthCurve": {

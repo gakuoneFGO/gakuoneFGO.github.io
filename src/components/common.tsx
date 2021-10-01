@@ -6,7 +6,7 @@ import { Autocomplete, AutocompleteRenderInputParams, Card, CardContent, CardHea
 import { Add, Remove } from "@mui/icons-material";
 import { JsxElement } from "typescript";
 import { Persistor } from "../Data";
-import { CacheProvider } from "@emotion/react";
+import { useState } from "react";
 
 interface BaseProps<V> {
     value: V;
@@ -53,46 +53,40 @@ interface PercentInputState {
     displayValue: string;
 }
 
-class PercentInput extends BaseComponent<number, PercentInputProps, PercentInputState, any> {
-    constructor(props: PercentInputProps) {
-        super(props);
-        this.state = PercentInput.getDisplayValue(props.value);
-    }
-
-    static getDerivedStateFromProps(props: any, state: PercentInputState): PercentInputState {
-        if (Math.abs(state.value - props.value) < 0.00005) return state;
-        return PercentInput.getDisplayValue(props.value);
-    }
-    
-    render() {
-        return (
-            <TextField
-                type="number"
-                label={this.props.label}
-                value={this.state.displayValue}
-                placeholder="0"
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">%</InputAdornment>
-                    )
-                }}
-                onChange={e => { this.onChange(e.target.value) }} />
-        );
-    }
-
-    static getDisplayValue(value: number): PercentInputState {
+const PercentInput = React.memo((props: PercentInputProps) => {
+    const getDisplayValue = (value: number): PercentInputState => {
         if (value == 0) return { value: value, displayValue: "" };
         let displayValue = (value * 100).toFixed(2).replace(/(0|\.00)$/, "");
         return { value: value, displayValue: displayValue };
     }
 
-    onChange(stringValue: string) {
+    const [ state, setState ] = useState(getDisplayValue(props.value));
+
+    if (Math.abs(state.value - props.value) >= 0.00005) {
+        setState(getDisplayValue(props.value));
+    }
+
+    const onChange = (stringValue: string) => {
         //TODO: validate input (mostly just prevent excess precision)
         let value = stringValue == "" ? 0 : Number.parseFloat(stringValue) / 100;
-        this.setState({ value: value, displayValue: stringValue });
-        this.handleChange({ $set: value });
+        setState({ value: value, displayValue: stringValue });
+        handleChange({ $set: value }, props);
     }
-}
+
+    return (
+        <TextField
+            type="number"
+            label={props.label}
+            value={state.displayValue}
+            placeholder="0"
+            InputProps={{
+                endAdornment: (
+                    <InputAdornment position="end">%</InputAdornment>
+                )
+            }}
+            onChange={e => { onChange(e.target.value) }} />
+    );
+});
 
 interface ArrayBuilderProps<T> {
     createOne: () => T;
@@ -131,7 +125,6 @@ interface SelectProps<T extends { name: string }> {
 }
 
 //TODO: there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
-//TODO: template tab got a little laggy when I added this and caching getServantDefaults didn't completely fix it, so I think there's some issue with populating the autocomplete this way
 function SmartSelect<T extends { name: string }>(props: SelectProps<T> & BaseProps<T>) {
     return (
         <Autocomplete

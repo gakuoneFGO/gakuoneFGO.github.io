@@ -100,8 +100,29 @@ class Strat {
         return this.template.clearers.map(cIndex => party[cIndex]);
     }
 
+    public swap(slot1: number, slot2: number): Strat {
+        if (slot1 == slot2) return this;
+        const getNewClearer = (clearer: number) =>
+            clearer == slot1 ? slot2 :
+            clearer == slot2 ? slot1 :
+            clearer;
+        return update(this as Strat, {
+            servants: {
+                [slot1]: { $set: this.servants[slot2] },
+                [slot2]: { $set: this.servants[slot1] },
+            },
+            template: {
+                party: {
+                    [slot1]: { $set: this.template.party[slot2] },
+                    [slot2]: { $set: this.template.party[slot1] },
+                },
+                clearers: { $set: this.template.clearers.map(getNewClearer) }
+            }
+        });
+    }
+
     //TODO: fix this garbage
-    run(node: EnemyNode): NodeDamage {
+    public run(node: EnemyNode): NodeDamage {
         const calculator: Calculator = new Calculator();
         let result = new NodeDamage();
         let clearers = this.getRealClearers();
@@ -125,5 +146,7 @@ class Strat {
         return result;
     }
 }
+
+
 
 export { Strat, Template, BuffMatrix, NodeDamage, WaveDamage, EnemyNode, Wave, MainServant };

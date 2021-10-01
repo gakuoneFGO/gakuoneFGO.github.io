@@ -24,8 +24,10 @@ interface StratBuilderState {
     readonly selectedOutput: string;
 }
 
+type StateChange = (state: StratBuilderState) => Spec<Readonly<StratBuilderState>, never>;
+
 //TODO: decompose this
-function StratBuilder() {
+export function StratBuilder() {
     const [ data, promise ] = useData();
     const [ state, setState ] = useState({} as StratBuilderState);
     const theme = useTheme();
@@ -56,10 +58,15 @@ function StratBuilder() {
         return null;
     };
 
-    const handleChange = (spec: Spec<Readonly<StratBuilderState>, never>) => {
+    const handleChange = (change: Spec<Readonly<StratBuilderState>, never> | StateChange) => {
         //console.log(spec);
-        let newState = update(state, spec);
-        setState(newState);
+        if (change instanceof Function) {
+            //fixes stale closure issue on PartyDisplay swap feature. makes me wonder what else is broken this way
+            setState(currentState => update(currentState, (change as StateChange)(currentState)));
+        } else {
+            let newState = update(state, change);
+            setState(newState);
+        }
     }
 
     const onServantChanged = (servant: Servant, index: number) => {
@@ -100,11 +107,26 @@ function StratBuilder() {
         const buffsGenerated = updates.filter(upd => upd[0] instanceof Servant).reduce((strat, upd) => defaultBuffsetHeuristic(strat, upd[1] as number), npCardsFixed);
         handleChange({ strat: { $set: buffsGenerated } });
     };
+
+    const fixTabOnSwap = (slot1: string, slot2: string, currentTab: string) => {
+        return currentTab.endsWith(slot1) ?
+            currentTab.replace(slot1, slot2) :
+            currentTab.replace(slot2, slot1);
+    }
     
     return (
         <Box height={sm ? undefined : "98vh"} width="98vw" display="flex" flexDirection={sm ? "column" : "row-reverse"}>
             <Box display="flex" flexDirection="column" height="100%" width={lg ? "35%" : md ? "45%" : "100%"}>
-                <PartyDisplay party={state.strat.getRealParty().map(s => s[0])} />
+                <Box flexShrink={0}>
+                    <PartyDisplay party={state.strat.getRealParty().map(s => s[0])}
+                        onClick={(slot) => handleChange((state: StratBuilderState) => ({
+                            selectedTab: { $set: state.strat.template.party[slot].isPlaceholder() ? "servant" + slot : "template" }
+                        }))}
+                        onDrop={(source, target) => handleChange((state: StratBuilderState) => ({
+                            strat: { $set: state.strat.swap(source, target) },
+                            selectedTab: { $set: fixTabOnSwap(source.toString(), target.toString(), state.selectedTab) }
+                        }))} />
+                </Box>
                 <TabContext value={state.selectedOutput}>
                     <Box flexShrink={0}>
                         <TabList onChange={(_, v) => handleChange({ selectedOutput: { $set: v } })}>
@@ -270,5 +292,3 @@ function applyUpdate(origServants: (MainServant | undefined)[], targetServants: 
             update(targetServants, { [target]: { $set: origServants[source] } });
     }
 }
-
-export { StratBuilder }

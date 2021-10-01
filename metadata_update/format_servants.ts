@@ -104,8 +104,8 @@ function getDummyServant(name: string): ServantData {
         ServantClass.Shielder,
         ServantAttribute.Beast,
         0,
-        "",//TODO: find good icons
-        "images/select.png",//TODO: find good cards
+        "images/servants/select.png",//TODO: find good icons
+        "",//TODO: find good cards
         "",
         Trait.Shielder,
         [],
