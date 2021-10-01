@@ -30,6 +30,13 @@ const theme = createTheme({
             main: green[900],
         },
     },
+    typography: {
+        body2: {
+            //TODO: this is about the smallest font size that's comfortable to read but it still causes the scroll bar to render on the output grid
+            //next thing to try is to swap servant cards for icons and then transpose the output table, although having it mismatch with the advanced table is weird
+            fontSize: 13,
+        }
+    },
     components: {
         MuiTextField: {
             defaultProps: {
@@ -46,8 +53,28 @@ const theme = createTheme({
             defaultProps: {
                 disableClearable: true,
             }
-        }
-    }
+        },
+        //deprecated, but MUI's docs don't provide another mechanism to set this at the theme level (https://mui.com/customization/how-to-customize/#5-global-css-override)
+        MuiCssBaseline: {
+            styleOverrides: `
+                *::-webkit-scrollbar {
+                    width: .75em;
+                    height: .75em;
+                }
+                
+                *::-webkit-scrollbar-track {
+                    background-color: #121212;
+                    width: .5em;
+                    height: .5em;
+                    outline: 0px;
+                }
+                
+                *::-webkit-scrollbar-thumb {
+                    background-color: #212121;
+                }
+            `,
+        },
+    },
 });
 
 export { theme }

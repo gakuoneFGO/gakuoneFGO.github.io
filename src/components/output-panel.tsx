@@ -41,18 +41,20 @@ class OutputPanel extends React.Component<OutputPanelProps, StateWrapper<NodeDam
                         <TableRow>
                             <TableCell />
                             {this.state._.map((_, index) =>
-                                <TableCell key={index}>NP{index + 1}</TableCell>
+                                <TableCell key={index}><Typography variant="body1">NP{index + 1}</Typography></TableCell>
                             )}
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {this.state._[0].damagePerWave.map((_, waveIndex) =>
                             <TableRow key={waveIndex}>
-                                <TableCell><strong>T{waveIndex + 1}</strong></TableCell>
+                                <TableCell><Typography variant="body1">T{waveIndex + 1}</Typography></TableCell>
                                 {this.state._.map((nodeDamage, npIndex) =>
                                     <TableCell key={npIndex}>
-                                        <NumberFormat displayType="text" thousandSeparator=","
-                                            value={nodeDamage.damagePerWave[waveIndex].damagePerEnemy[0].low} />
+                                        <Typography variant="body2">
+                                            <NumberFormat displayType="text" thousandSeparator=","
+                                                value={nodeDamage.damagePerWave[waveIndex].damagePerEnemy[0].low} />
+                                        </Typography>
                                     </TableCell>
                                 )}
                             </TableRow>

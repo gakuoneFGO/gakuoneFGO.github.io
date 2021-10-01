@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Tab } from "@mui/material";
+import { Box, Grid, Stack, Tab, useMediaQuery, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
 import { useData } from "../Data";
@@ -26,8 +26,11 @@ interface StratBuilderState {
 
 //TODO: decompose this
 function StratBuilder() {
-    let [ data, promise ] = useData();
-    let [ state, setState ] = useState({} as StratBuilderState);
+    const [ data, promise ] = useData();
+    const [ state, setState ] = useState({} as StratBuilderState);
+    const theme = useTheme();
+    const [ sm, lg ] = [ useMediaQuery(theme.breakpoints.down("md")), useMediaQuery(theme.breakpoints.up("lg")) ];
+    const md = !sm && !lg;
 
     //force all data loaded before loading root control
     //this allows descendents to use data freely
@@ -99,30 +102,30 @@ function StratBuilder() {
     };
     
     return (
-        <Grid container direction="row-reverse" spacing={0}>
-            <Grid item lg={4} md={5} sm={12} xs={12}>
+        <Box height={sm ? undefined : "98vh"} width="98vw" display="flex" flexDirection={sm ? "column" : "row-reverse"}>
+            <Box display="flex" flexDirection="column" height="100%" width={lg ? "35%" : md ? "45%" : "100%"}>
                 <PartyDisplay party={state.strat.getRealParty().map(s => s[0])} />
                 <TabContext value={state.selectedOutput}>
-                    <Box>
+                    <Box flexShrink={0}>
                         <TabList onChange={(_, v) => handleChange({ selectedOutput: { $set: v } })}>
                             <Tab label="Basic" value="basic" />
                             <Tab label="Advanced" value="advanced" />
                         </TabList>
                     </Box>
-                    <TabPanel value="basic">
+                    <TabPanel value="basic" sx={{ overflowY: "scroll", height: "100%" }}>
                         <Stack spacing={2}>
                             <OutputPanel strat={state.strat} enemy={state.basicEnemy} />
                             <EnemyBuilder value={state.basicEnemy} onChange={enemy => handleChange({ basicEnemy: { $set: enemy } } )} />
                         </Stack>
                     </TabPanel>
-                    <TabPanel value="advanced">
+                    <TabPanel value="advanced" sx={{ overflowY: "scroll", height: "100%" }}>
                         <NodeOutputPanel strat={state.strat} node={state.advancedNode} />
                     </TabPanel>
                 </TabContext>
-            </Grid>
-            <Grid item lg={8} md={7} sm={12} xs={12}>
+            </Box>
+            <Box display="flex" flexDirection="column" height="100%"  width={lg ? "65%" : md ? "55%" : "100%"}>
                 <TabContext value={state.selectedTab}>
-                    <Box>
+                    <Box flexShrink={0}>
                         <TabList variant="scrollable" onChange={(_, v) => handleChange({ selectedTab: { $set: v } })}>
                             {state.strat.servants.map((servant, index) => servant ?
                                 <Tab key={index} label={`Servant ${(index + 1)}`} value={`servant${index}`} />
@@ -134,7 +137,7 @@ function StratBuilder() {
                     </Box>
                     {state.strat.servants.map((servant, index) => servant ?
                         //seems like the TabContext needs to know about even the tabs that aren't selected since I get issues trying to return just the selected one
-                        <TabPanel key={index} value={`servant${index}`}>
+                        <TabPanel key={index} value={`servant${index}`} sx={{ overflowY: "scroll", height: "100%" }}>
                             <Box>
                                 <ServantSelector value={servant.servant} label="Servant" onChange={(servant: Servant) => onServantChanged(servant, index)} />
                                 <BuffMatrixBuilder value={servant.buffs}
@@ -148,13 +151,13 @@ function StratBuilder() {
                             </Box>
                         </TabPanel>
                     : null)}
-                    <TabPanel value="template">
+                    <TabPanel value="template" sx={{ overflowY: "scroll", height: "100%" }}>
                         <TemplateBuilder
                             value={state.strat.template}
                             onChange={onTemplateChanged}
                             npCards={{ value: state.strat.npCards, onChange: v => handleChange({ strat: { npCards: { $set: v } } }) }} />
                     </TabPanel>
-                    <TabPanel value="ce">
+                    <TabPanel value="ce" sx={{ overflowY: "scroll", height: "100%" }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6} md={12} lg={6}>
                                 <CEBuilder label="Servant CE"
@@ -168,14 +171,14 @@ function StratBuilder() {
                             </Grid>
                         </Grid>
                     </TabPanel>
-                    <TabPanel value="node">
+                    <TabPanel value="node" sx={{ overflowY: "scroll", height: "100%" }}>
                         <Box>
                             <NodeBuilder value={state.advancedNode} onChange={node => handleChange({ advancedNode: { $set: node } })} />
                         </Box>
                     </TabPanel>
                 </TabContext>
-            </Grid>
-        </Grid>
+            </Box>
+        </Box>
     );
 }
 
