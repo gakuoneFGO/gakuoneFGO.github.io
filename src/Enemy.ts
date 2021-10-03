@@ -61,7 +61,6 @@ enum EnemyAttribute {
 
 enum Trait {
     Always = "always",
-    Never = "never",
     Shielder = "classShielder",
     Saber = "classSaber",
     Archer = "classArcher",

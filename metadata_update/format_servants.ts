@@ -7,20 +7,20 @@ import { Trait } from "../src/Enemy";
 
 const U_RATIO = 0.001;
 
-let enums: any = {};
-let enumStream = fs.createReadStream("metadata_update\\enums.json", { encoding: 'utf-8' });
+const enums: any = {};
+const enumStream = fs.createReadStream("metadata_update\\enums.json", { encoding: 'utf-8' });
 enumStream.pipe(JSONStream.parse([ { emitKey: true } ])).on("data", data => { enums[data.key] = data.value; });
 enumStream.on("end", () => {
-    let servants = new Map<string, ServantData[]>();
-    let stream = fs.createReadStream("metadata_update\\servants_raw.json", { encoding: 'utf-8' });
+    const servants = new Map<string, ServantData[]>();
+    const stream = fs.createReadStream("metadata_update\\servants_raw.json", { encoding: 'utf-8' });
     stream.pipe(JSONStream.parse("*")).on("data", data => {
         if (data.type == "enemyCollectionDetail") {
             console.log("Skipping servant named ", data.name, " because type was ", data.type);
             return;
         }
         //console.log(data.name);
-        let upgradedNps = getUpgraded(data.noblePhantasms, (np1, np2) => np1.card == np2.card);
-        let servant = new ServantData(
+        const upgradedNps = getUpgraded(data.noblePhantasms, (np1, np2) => np1.card == np2.card);
+        const servant = new ServantData(
             data.name,
             data.collectionNo,
             data.rarity,
@@ -31,11 +31,10 @@ enumStream.on("end", () => {
             data.extraAssets.faces.ascension["1"],
             data.extraAssets.charaGraph.ascension["1"],
             "",//charge profile...
-            data.appendPassive[2].skill.functions[0].buffs[0].tvals[0].name,
+            data.appendPassive[2].skill.functions[0].buffs[0].tvals.map(tval => tval.name),
             getPassives(data, data.noblePhantasms[0].card),
             getSkills(data, data.noblePhantasms[0].card),
             upgradedNps.map(np => mapNp(np, getUnupgraded(np, data.noblePhantasms, (np1, np2) => np1.card == np2.card)))
-            
         );
         //console.log(servant);
         if (!servants.has(servant.name))
@@ -45,7 +44,7 @@ enumStream.on("end", () => {
     }).on("end", () => {
         var allServants: ServantData[] = [ getDummyServant("<Placeholder>"), getDummyServant("<Unspecified>") ];
         servants.forEach(sArray => {
-            let origServant = sArray.reduce((min, cur) => min.id < cur.id ? min : cur);
+            const origServant = sArray.reduce((min, cur) => min.id < cur.id ? min : cur);
             allServants = allServants.concat(sArray.map(servant => {
                 if (servant == origServant)
                     return servant;
@@ -86,9 +85,9 @@ function getExtraMultiplier(npFunc: any): number[] {
         .map(svals => svals[0].Correction * U_RATIO);
 }
 
-function getExtraTrigger(npFunc: any): Trait {
-    if (!npFunc || !npFunc.svals[0].Target) return Trait.Never;
-    return enums.Trait[npFunc.svals[0].Target] as Trait;
+function getExtraTrigger(npFunc: any): Trait[] {
+    if (!npFunc || !npFunc.svals[0].Target) return [];
+    return [enums.Trait[npFunc.svals[0].Target]] as Trait[];
 }
 
 function toNiceClassName(className: string): string {
@@ -107,7 +106,7 @@ function getDummyServant(name: string): ServantData {
         "images/servants/select.png",//TODO: find good icons
         "",//TODO: find good cards
         "",
-        Trait.Shielder,
+        [],
         [],
         [],
         []
@@ -221,12 +220,12 @@ function toBuff(func: any): Buff[] {
         case "upDamage":
             if (func.buffs[0].tvals.length == 0) {
                 console.log("Missing power mod trigger", func.buffs[0]);
-                return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, Trait.Never) ];
+                return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, []) ];
             }
-            return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, func.buffs[0].tvals[0].name) ];
+            return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, func.buffs[0].tvals.map(tval => tval.name)) ];
         case "upDamageIndividualityActiveonly":
             //hack
-            return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, Trait.Always) ];
+            return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, [Trait.Always]) ];
         case "buffRate":
             //TODO: this is coded as "increase effects of this specific buff type" rather than against NP damage specifically
             //console.log("UpBuffRateBuffIndiv", func.buffs[0].script.UpBuffRateBuffIndiv);

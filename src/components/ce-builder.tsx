@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardHeader, TextField, Autocomplete, Grid, Typo
 import React, { useState } from "react";
 import { CraftEssence } from "../Damage";
 import { Buff, BuffType, CardType } from "../Servant";
-import { BaseComponent, BaseProps, PercentInput, ArrayBuilder, handleChange, SmartSelect } from "./common";
+import { BaseComponent, BaseProps, PercentInput, ArrayBuilder, handleChange, SmartSelect, TraitSelect } from "./common";
 import { Trait } from "../Enemy";
 import { useData } from "../Data";
 import { Save } from "@mui/icons-material";
@@ -34,27 +34,18 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
                         onChange={(_, v) => this.handleChange({ cardType: {$set: v! } })} />
                 : null}
                 {this.props.value.type == BuffType.PowerMod ?
-                    <Autocomplete
-                        options={Object.values(Trait)}
-                        value={this.props.value.trig ?? Trait.Never}
-                        renderInput={params => <TextField label="Trigger" {...params} />}
-                        onChange={(_, v) => this.handleChange({ trig: {$set: v! } })} />
+                    <TraitSelect
+                        label="Buff Trigger"
+                        value={this.props.value.trig ?? []}
+                        onChange={v => this.handleChange({ trig: {$set: v } })} />
                 : null}
             </React.Fragment>
         );
     }
 
     handleBuffTypeChanged(type: BuffType) {
-        var cardType: CardType | undefined = undefined;
-        var trig: Trait | undefined = undefined;
-        switch (type) {
-            case BuffType.CardTypeUp:
-                cardType = CardType.Buster;//TODO
-                break;
-            case BuffType.PowerMod:
-                trig = Trait.Always;
-                break;
-        }
+        const cardType = type == BuffType.CardTypeUp ? CardType.Buster : undefined;
+        const trig = type == BuffType.PowerMod ? [Trait.Always] : undefined;
         this.handleChange({ type: {$set: type }, cardType: { $set: cardType }, trig: { $set: trig } });
     }
 }

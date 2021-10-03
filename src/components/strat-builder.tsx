@@ -248,7 +248,7 @@ function fixNpCards(strat: Strat): Strat {
     if (!clearers.some((clearer, turn) => !clearer[0].data.hasNP(strat.npCards[turn]))) {
         return strat;
     }
-    let cards = clearers.map((clearer, turn) => clearer[0].data.hasNP(strat.npCards[turn]) ? strat.npCards[turn] : clearer[0].data.getNP().cardType);
+    const cards = clearers.map((clearer, turn) => clearer[0].data.hasNP(strat.npCards[turn]) ? strat.npCards[turn] : clearer[0].data.getNP().cardType);
     return update(strat, { npCards: { $set: cards } });
 }
 
@@ -258,10 +258,9 @@ function reconcilePlaceholders(strat: Strat, newTemplate: Template, genServant: 
     //main rule: if user changes a placeholder to a non-placeholder, keep all other placeholders as-is
     const locked = oldPlaceholders.filter(slot => newPlaceholders.includes(slot));
 
-    //fill remaining slots in order
     const needsHome = oldPlaceholders.filter(slot => !locked.includes(slot));
     const openSlots = newPlaceholders.filter(slot => !locked.includes(slot));
-    //fill slots left to right and delete any servants there is no space for
+    //fill remaining slots left to right and delete any servants there is no space for
     const movesAndDeletes = needsHome.map((slot, index) => [slot, openSlots[index]]) as [number, number | undefined][];
 
     const adds = openSlots.slice(needsHome.length).map(slot => [genServant(), slot]) as [Servant, number][];

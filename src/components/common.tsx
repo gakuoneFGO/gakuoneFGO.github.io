@@ -7,6 +7,7 @@ import { Add, Remove } from "@mui/icons-material";
 import { JsxElement } from "typescript";
 import { Persistor } from "../Data";
 import { useState } from "react";
+import { Trait } from "../Enemy";
 
 interface BaseProps<V> {
     value: V;
@@ -141,6 +142,16 @@ function SmartSelect<T extends { name: string }>(props: SelectProps<T> & BasePro
             }
             onChange={(_, v) => { if (v) props.onChange(v as T) }}
             forcePopupIcon={!props.endAdornment} />
+    );
+}
+
+export function TraitSelect(props: BaseProps<Trait[]> & { label?: string }) {
+    return (
+        <Autocomplete multiple disableClearable={false}
+            options={Object.values(Trait)}
+            value={props.value}
+            onChange={(_, v) => { if(v) props.onChange(v) }}
+            renderInput={params => <TextField {...params} label={props.label} />} />
     );
 }
 

@@ -51,7 +51,7 @@ class ServantData {
         readonly iconUrl: string,
         readonly cardArtUrl: string,
         readonly chargeProfile: string,
-        readonly appendTarget: Trait,
+        readonly appendTarget: Trait[],
         passives: Buff[],
         skills: Skill[],
         nps: NoblePhantasm[]) {
@@ -108,7 +108,7 @@ class Buff {
         readonly val: number,
         readonly turns: number,
         readonly cardType?: CardType,
-        readonly trig?: Trait) {}
+        readonly trig?: Trait[]) {}
 }
 
 enum BuffType {
@@ -118,6 +118,7 @@ enum BuffType {
     PowerMod = "pMod",
     Overcharge = "oc",
     NpBoost = "npBoost",
+    AddTrait = "addTrait",
 }
 
 class Skill {
@@ -137,7 +138,7 @@ class NoblePhantasm {
         readonly multiplier: number[],
         readonly multUpgrade: number,
         readonly extraDamage: number[],
-        readonly extraTrigger: Trait,
+        readonly extraTrigger: Trait[],
         preBuffs: Buff[],
         postBuffs: Buff[]) {
         this.preBuffs = preBuffs;

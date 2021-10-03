@@ -1,5 +1,5 @@
 import { Box, TextField, Autocomplete, Stack, Grid, Card, CardHeader, Typography, IconButton, Popover, CardContent, useTheme, InputAdornment } from "@mui/material";
-import { ArrayBuilder, BaseComponent, BaseProps, handleChange, SmartSelect } from "./common";
+import { ArrayBuilder, BaseComponent, BaseProps, handleChange, SmartSelect, TraitSelect } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass, Trait } from "../Enemy";
 import { EnemyNode, Wave } from "../Strat";
 import React, { useState } from "react";
@@ -26,11 +26,10 @@ function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
                 value={props.value.attribute}
                 renderInput={params => <TextField {...params} label="Enemy Attribute" />}
                 onChange={(e, v) => { if (v) handleChange({ $set: props.value.changeAttribute(v) }, props); }} />
-            <Autocomplete multiple disableClearable={false}
-                options={Object.values(Trait).filter(t => t != Trait.Always && t != Trait.Never).sort()}
+            <TraitSelect
+                label="Enemy Traits"
                 value={props.value.traits}
-                renderInput={params => <TextField {...params} label="Enemy Traits" />}
-                onChange={(e, v) => { if (v) handleChange({ traits: { $set: v as Trait[] } }, props); }} />
+                onChange={traits => { handleChange({ traits: { $set: traits } }, props); }} />
         </React.Fragment>
     );
 }

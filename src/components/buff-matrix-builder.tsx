@@ -8,7 +8,7 @@ import { BuffSet, PowerMod } from "../Damage";
 import { Trait } from "../Enemy";
 import { BuffType, CardType, Servant } from "../Servant";
 import { BuffMatrix } from "../Strat";
-import { BaseProps, handleChange as commonHandleChange, handleChange, PercentInput } from "./common";
+import { BaseProps, handleChange as commonHandleChange, handleChange, PercentInput, TraitSelect } from "./common";
 import { TransposedTableBody } from "./transposed-table"
 
 interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
@@ -113,11 +113,9 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                                         onChange={ v => { handlePowerModChange({ modifier: {$set: v} }, pIndex, index); }} />
                                 </TableCell>,
                                 <TableCell key={pIndex * 2 + 1}>
-                                    <Autocomplete
-                                        options={Object.values(Trait)}
+                                    <TraitSelect
                                         value={buffSet.powerMods[pIndex].trigger}
-                                        onChange={(_, v) => handlePowerModChange({ trigger: {$set: v! } }, pIndex, index)}
-                                        renderInput={params => <TextField {...params} />} />
+                                        onChange={v => handlePowerModChange({ trigger: {$set: v } }, pIndex, index)} />
                                 </TableCell>
                             ])}
                         </TableRow>

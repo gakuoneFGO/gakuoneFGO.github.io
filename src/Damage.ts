@@ -3,7 +3,7 @@ import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./Enemy";
 
 class PowerMod {
     constructor(
-        readonly trigger: Trait,
+        readonly trigger: Trait[],
         readonly modifier: number) {}
 }
 
@@ -17,7 +17,7 @@ class BuffSet {
         readonly overcharge: number) {}
 
     static empty(): BuffSet {
-        let powerMod = new PowerMod(Trait.Always, 0);
+        let powerMod = new PowerMod([Trait.Always], 0);
         const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0);
         return emptySingleton;
     }
@@ -34,23 +34,14 @@ class BuffSet {
     }
 
     static fromBuffs(buffs: Buff[], npCard: CardType): BuffSet {
-        let powerMod = new PowerMod(Trait.Always, 0);
+        let powerMod = new PowerMod([Trait.Always], 0);
         return new BuffSet(
             buffs.filter(b => b.type == BuffType.AttackUp).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.CardTypeUp && b.cardType == npCard).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.NpDmgUp).reduce((v, b) => v + b.val, 0),
             Math.max(0, ...buffs.filter(b => b.type == BuffType.NpBoost).map(b => b.val)),
-            //TODO: just make a groupBy method, geez
-            Array.from(buffs.filter(b => b.type == BuffType.PowerMod)
-                .reduce((map, buff) => {
-                    if (!map.has(buff.trig as Trait))
-                        map.set(buff.trig as Trait, buff.val);
-                    else
-                        map.set(buff.trig as Trait, buff.val + (map.get(buff.trig as Trait) as number));
-                    return map;
-                }, new Map<Trait, number>())
-                .entries()).map(entry => new PowerMod(entry[0], entry[1])).concat([ powerMod, powerMod, powerMod ]),
-                buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0)
+            buffs.filter(b => b.type == BuffType.PowerMod).map(b => new PowerMod(b.trig!, b.val)).concat([ powerMod, powerMod, powerMod ]),
+            buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0),
         );
     }
 
@@ -111,8 +102,9 @@ class Calculator {
     }
 }
 
-function isTriggerActive(enemy: Enemy, trigger: Trait): boolean {
-    return trigger == Trait.Always || enemy.traits.some(trait => trait == trigger);
+function isTriggerActive(enemy: Enemy, trigger: Trait[]): boolean {
+    //TODO: count stacks
+    return trigger.includes(Trait.Always) || enemy.traits.some(trait => trigger.some(trig => trig == trait));
 }
 
 class CraftEssence {

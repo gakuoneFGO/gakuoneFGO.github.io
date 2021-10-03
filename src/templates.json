@@ -10,15 +10,21 @@
                     "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -31,15 +37,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "threatToHumanity",
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
                             "modifier": 0.5
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -52,15 +64,21 @@
                     "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "threatToHumanity",
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
                             "modifier": 0.5
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -99,15 +117,21 @@
                     "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -120,15 +144,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -141,15 +171,21 @@
                     "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -188,15 +224,21 @@
                     "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -209,15 +251,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -230,15 +278,21 @@
                     "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -277,15 +331,21 @@
                     "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -298,15 +358,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "attributeHuman",
+                            "trigger": [
+                                "attributeHuman"
+                            ],
                             "modifier": 0.5
                         },
                         {
-                            "trigger": "livingHuman",
+                            "trigger": [
+                                "livingHuman"
+                            ],
                             "modifier": 0.5
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -319,15 +385,21 @@
                     "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "attributeHuman",
+                            "trigger": [
+                                "attributeHuman"
+                            ],
                             "modifier": 0.5
                         },
                         {
-                            "trigger": "livingHuman",
+                            "trigger": [
+                                "livingHuman"
+                            ],
                             "modifier": 0.5
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -366,15 +438,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -387,15 +465,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -408,15 +492,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -455,15 +545,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -476,15 +572,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -497,15 +599,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -544,15 +652,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -565,15 +679,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -586,15 +706,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -633,15 +759,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -654,15 +786,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -675,15 +813,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -722,15 +866,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -743,15 +893,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -764,15 +920,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -811,15 +973,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -832,15 +1000,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -853,15 +1027,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -900,15 +1080,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -921,15 +1107,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -942,15 +1134,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -989,15 +1187,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1010,15 +1214,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1031,15 +1241,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1078,15 +1294,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1099,15 +1321,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1120,15 +1348,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1167,15 +1401,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1188,15 +1428,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1209,15 +1455,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1256,15 +1508,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1277,15 +1535,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1298,15 +1562,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1345,15 +1615,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1366,15 +1642,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1387,15 +1669,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1434,15 +1722,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1455,15 +1749,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1476,15 +1776,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1523,15 +1829,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1544,15 +1856,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1565,15 +1883,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1612,15 +1936,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1633,15 +1963,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1654,15 +1990,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1701,15 +2043,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "threatToHumanity",
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
                             "modifier": 1
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1723,15 +2071,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "threatToHumanity",
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
                             "modifier": 1
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1745,15 +2099,21 @@
                     "npBoost": 1,
                     "powerMods": [
                         {
-                            "trigger": "threatToHumanity",
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
                             "modifier": 1
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1793,15 +2153,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1814,15 +2180,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1835,15 +2207,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1882,15 +2260,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1903,15 +2287,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
@@ -1924,15 +2314,21 @@
                     "npBoost": 0,
                     "powerMods": [
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         },
                         {
-                            "trigger": "always",
+                            "trigger": [
+                                "always"
+                            ],
                             "modifier": 0
                         }
                     ],
