@@ -70,17 +70,63 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                                 </IconButton>
                             </Stack>
                         </TableCell>
-                        {showCardType ? <TableCell><Typography>NP Type</Typography></TableCell> : null}
-                        <TableCell><Typography>Attack Up</Typography></TableCell>
-                        <TableCell><Typography>Card Type Up</Typography></TableCell>
-                        <TableCell><Typography>NP Damage Up</Typography></TableCell>
-                        {showNpBoost ? <TableCell><Typography>NP Up Boost</Typography></TableCell> : null}
-                        {showOc ? <TableCell><Typography>Overcharge</Typography></TableCell> : null}
+                        {showCardType ?
+                            <TableCell>
+                                <Tooltip title="NP type, for servants such as Space Ishtar that conditionally change NP type.">
+                                    <img src="images/buffs/npTypeChange.png" />
+                                </Tooltip>
+                            </TableCell>
+                        : null}
+                        <TableCell>
+                            <Tooltip title="Attack up buffs, plus defense down debuffs on enemies.">
+                                <img src="images/buffs/attackUp.png" />
+                            </Tooltip>
+                        </TableCell>
+                        <TableCell>
+                            <Tooltip title="Card effectiveness up buffs, plus card resistance down debuffs on enemies. Make sure that the card being buffed matches the NP type for that turn.">
+                                <Stack direction={{ xs: "column", sm: "row", md: "column", lg: "row" }} justifyContent="space-between">
+                                    <img src="images/buffs/busterUp.png" />
+                                    <img src="images/buffs/artsUp.png" />
+                                    <img src="images/buffs/quickUp.png" />
+                                </Stack>
+                            </Tooltip>
+                        </TableCell>
+                        <TableCell>
+                            <Tooltip title="NP damage up buffs.">
+                                <img src="images/buffs/npDmgUp.png" />
+                            </Tooltip>
+                        </TableCell>
+                        {showNpBoost ?
+                            <TableCell>
+                                <Tooltip title="NP damage effectiveness boost provided by Oberon's third skill. This does not stack, so don't enter a value higher than 100%!">
+                                    <img src="images/buffs/npBoost.png" />
+                                </Tooltip>
+                            </TableCell>
+                        : null}
+                        {showOc ?
+                            <TableCell>
+                                <Tooltip title="Additional overcharge level beyond 100%. This is used to calculate supereffective damage (AKA extra damage), as well as Arash and Chen Gong's multipliers. Other overcharge effects will NOT be accounted for; please enter such buffs manually.">
+                                    <img src="images/buffs/ocUp.png" />
+                                </Tooltip>
+                            </TableCell>
+                        : null}
                         {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [
-                            <TableCell key={pIndex * 2}><Typography>Power Mod{ maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</Typography></TableCell>,
-                            <TableCell key={pIndex * 2 + 1}><Typography>Trigger{ maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</Typography></TableCell>
+                            <TableCell key={pIndex * 2}>
+                                <Tooltip title="Power mod buffs. This generally includes event damage bonuses and buffs worded as 'apply Special Attack [X]', but not 'deal heavy Special Attack [X]'. Rule of thumb: if it's an NP effect that doesn't specify a certain number of turns/times, then it's NOT a power mod.">
+                                    <img src="images/buffs/powerMod.png" />
+                                </Tooltip>
+                            </TableCell>,
+                            <TableCell key={pIndex * 2 + 1}>
+                                <Tooltip title='Trait(s) that triggers the power mod above to apply. "Always" can be entered to force it to be included in the calculation. Note that there is a difference between one buff with two triggers (e.g. Morgan) and two buffs with two different triggers (e.g. Lancer Artoria).'>
+                                    <img src="images/buffs/trigger.png" />
+                                </Tooltip>
+                            </TableCell>
                         ])}
-                        <TableCell><Typography>Add Enemy Traits</Typography></TableCell>
+                        <TableCell>
+                            <Tooltip title="Traits forcefully applied to enemies on this turn, such as Romulus=Quirinus' Roman trait debuff or Summer Kama's charm.">
+                                <img src="images/buffs/individuality.png" />
+                            </Tooltip>
+                        </TableCell>
                     </TableRow>
                     {props.value.buffs.map((buffSet: BuffSet, index: number) => (
                         <TableRow key={index}>
@@ -102,25 +148,25 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                                     </ButtonGroup>
                                 </TableCell>
                             : null}
-                            <TableCell><PercentInput value={buffSet.attackUp} onChange={v => { handleChange({ buffs: { [index]: { attackUp: { $set: v } } } }, props); }} /></TableCell>
-                            <TableCell><PercentInput value={buffSet.cardUp} onChange={ v => { handleChange({ buffs: { [index]: { cardUp: { $set: v } } } }, props); } } /></TableCell>
-                            <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { handleChange({ buffs: { [index]: { npUp: { $set: v } } } }, props); }} /></TableCell>
-                            {showNpBoost ? <TableCell><PercentInput value={buffSet.npBoost} onChange={ v => { handleChange({ buffs : { [index]: { npBoost: { $set: v } } } }, props); }} /></TableCell> : null}
-                            {showOc ? <TableCell><PercentInput value={buffSet.overcharge} onChange={ v => { handleChange({ buffs : { [index]: { overcharge: { $set: v } } } }, props); }} /></TableCell> : null}
+                            <TableCell><PercentInput label="Attack Up" value={buffSet.attackUp} onChange={v => { handleChange({ buffs: { [index]: { attackUp: { $set: v } } } }, props); }} /></TableCell>
+                            <TableCell><PercentInput label="Card Type Up" value={buffSet.cardUp} onChange={ v => { handleChange({ buffs: { [index]: { cardUp: { $set: v } } } }, props); } } /></TableCell>
+                            <TableCell><PercentInput label="NP Damage Up" value={buffSet.npUp} onChange={ v => { handleChange({ buffs: { [index]: { npUp: { $set: v } } } }, props); }} /></TableCell>
+                            {showNpBoost ? <TableCell><PercentInput label="NP Up Boost" value={buffSet.npBoost} onChange={ v => { handleChange({ buffs : { [index]: { npBoost: { $set: v } } } }, props); }} /></TableCell> : null}
+                            {showOc ? <TableCell><PercentInput label="Overcharge" value={buffSet.overcharge} onChange={ v => { handleChange({ buffs : { [index]: { overcharge: { $set: v } } } }, props); }} /></TableCell> : null}
                             {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [
                                 <TableCell key={pIndex * 2}>
-                                    <PercentInput
+                                    <PercentInput label={`Power Mod ${pIndex + 1}`}
                                         value={buffSet.powerMods[pIndex].modifier}
                                         onChange={ v => { handlePowerModChange({ modifier: {$set: v} }, pIndex, index); }} />
                                 </TableCell>,
                                 <TableCell key={pIndex * 2 + 1}>
-                                    <TraitSelect
+                                    <TraitSelect label={`Trigger ${pIndex + 1}`}
                                         value={buffSet.powerMods[pIndex].trigger}
                                         onChange={v => handlePowerModChange({ trigger: {$set: v } }, pIndex, index)} />
                                 </TableCell>
                             ])}
                             <TableCell>
-                                <TraitSelect
+                                <TraitSelect label="Add Enemy Traits"
                                     value={buffSet.applyTraits}
                                     onChange={v => handleChange({ buffs: { [index]: { applyTraits: { $set: v } } } }, props)} />
                             </TableCell>

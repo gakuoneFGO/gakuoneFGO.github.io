@@ -6660,10 +6660,8 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect",
-                                "buffCharm"
-                            ]
+                            "buffMentalEffect",
+                            "buffCharm"
                         ]
                     }
                 ]
@@ -14216,10 +14214,8 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect",
-                                "buffCharm"
-                            ]
+                            "buffMentalEffect",
+                            "buffCharm"
                         ]
                     }
                 ]
@@ -15187,10 +15183,8 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect",
-                                "buffCharm"
-                            ]
+                            "buffMentalEffect",
+                            "buffCharm"
                         ]
                     }
                 ]
@@ -25254,10 +25248,8 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect",
-                                "buffCharm"
-                            ]
+                            "buffMentalEffect",
+                            "buffCharm"
                         ]
                     },
                     {
@@ -26257,10 +26249,8 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect",
-                                "buffCharm"
-                            ]
+                            "buffMentalEffect",
+                            "buffCharm"
                         ]
                     },
                     {
@@ -33034,10 +33024,8 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect",
-                                "buffCharm"
-                            ]
+                            "buffMentalEffect",
+                            "buffCharm"
                         ]
                     }
                 ]
@@ -46626,10 +46614,8 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect",
-                                "buffCharm"
-                            ]
+                            "buffMentalEffect",
+                            "buffCharm"
                         ]
                     }
                 ]
@@ -49615,10 +49601,8 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect",
-                                "buffCharm"
-                            ]
+                            "buffMentalEffect",
+                            "buffCharm"
                         ]
                     }
                 ]
@@ -62373,9 +62357,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect"
-                            ]
+                            "buffMentalEffect"
                         ]
                     },
                     {
@@ -62385,9 +62367,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            [
-                                "buffMentalEffect"
-                            ]
+                            "buffMentalEffect"
                         ]
                     },
                     {

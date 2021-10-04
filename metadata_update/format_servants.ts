@@ -327,7 +327,7 @@ function debuffToBuff(func: any): Buff[] {
         case "donotAct":
             const relevant = func.buffs[0].vals.map(val => val.name).filter(name => ["buffCharm", "buffMentalEffect"].includes(name));
             return relevant.length > 0 ?
-                [ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, [relevant]) ] :
+                [ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, relevant) ] :
                 [];
         case "donotSkill":
         case "donotNoble":
