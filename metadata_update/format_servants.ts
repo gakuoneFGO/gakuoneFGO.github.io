@@ -39,7 +39,6 @@ enumStream.on("end", () => {
             getSkills(data, data.noblePhantasms[0].card),
             upgradedNps.map(np => mapNp(np, getUnupgraded(np, data.noblePhantasms, (np1, np2) => np1.card == np2.card)))
         );
-        //console.log(servant);
         if (!servants.has(servant.name))
             servants.set(servant.name, [ servant ]);
         else
@@ -156,7 +155,6 @@ EXCEPTIONS
 */
 
 function getSkills(data: any, npType: CardType): Skill[] {
-    console.log(data.name);
     return getUpgraded(data.skills, (s1, s2) => s1.num == s2.num)
         .map(s => new Skill(s.coolDown[s.coolDown.length - 1], s.functions.flatMap(toBuff).filter(buff => isUseful(buff, npType))));
 }
@@ -170,7 +168,6 @@ function getUnupgraded(upgraded: any, array: any[], areSame: (item1: any, item2:
 }
 
 function getPassives(data: any, npType: CardType): Buff[] {
-    //console.log(data.name);
     return data.classPassive.flatMap(p => p.functions)
         .flatMap(toBuff)
         .filter(buff => buff.type != BuffType.CardTypeUp || isUseful(buff, npType));
@@ -238,7 +235,6 @@ function toBuff(func: any): Buff[] {
             return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, [Trait.Always]) ];
         case "buffRate":
             //TODO: this is coded as "increase effects of this specific buff type" rather than against NP damage specifically
-            //console.log("UpBuffRateBuffIndiv", func.buffs[0].script.UpBuffRateBuffIndiv);
             return [ new Buff(self, team, BuffType.NpBoost, getBuffValue(func), getBuffTurns(func)) ];
         case "upChagetd":
             return [ new Buff(self, team, BuffType.Overcharge, getBuffValue(func, 1), getBuffTurns(func, true)) ];

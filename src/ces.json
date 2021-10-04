@@ -11,10 +11,10 @@
             {
                 "self": true,
                 "team": false,
-                "type": "pMod",
+                "type": "powerMod",
                 "val": 1,
                 "turns": -1,
-                "trig": "always"
+                "trig": ["always"]
             }
         ]
     },
@@ -25,10 +25,10 @@
             {
                 "self": true,
                 "team": false,
-                "type": "pMod",
+                "type": "powerMod",
                 "val": 2,
                 "turns": -1,
-                "trig": "always"
+                "trig": ["always"]
             }
         ]
     },
@@ -39,7 +39,7 @@
             {
                 "self": true,
                 "team": false,
-                "type": "npDmg",
+                "type": "npDamage",
                 "val": 0.8,
                 "turns": -1
             }
@@ -52,7 +52,7 @@
             {
                 "self": true,
                 "team": false,
-                "type": "npDmg",
+                "type": "npDamage",
                 "val": 0.6,
                 "turns": -1
             }
