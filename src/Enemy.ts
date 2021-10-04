@@ -126,6 +126,7 @@ enum Trait {
     EarthOrSky = "skyOrEarth",
     SaberServant = "saberClassServant",
     Charmed = "buffCharm",
+    WeaknessFound = "weakPointsRevealed",
 }
 
 let classTraits = Object.values(Trait).filter(t => t.startsWith("class"));

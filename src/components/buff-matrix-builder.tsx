@@ -80,6 +80,7 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                             <TableCell key={pIndex * 2}><Typography>Power Mod{ maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</Typography></TableCell>,
                             <TableCell key={pIndex * 2 + 1}><Typography>Trigger{ maxPowerMods > 1 ? " " + (pIndex + 1).toString() : "" }</Typography></TableCell>
                         ])}
+                        <TableCell><Typography>Add Enemy Traits</Typography></TableCell>
                     </TableRow>
                     {props.value.buffs.map((buffSet: BuffSet, index: number) => (
                         <TableRow key={index}>
@@ -101,11 +102,11 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                                     </ButtonGroup>
                                 </TableCell>
                             : null}
-                            <TableCell><PercentInput value={buffSet.attackUp} onChange={v => { handleChange({ buffs : { [index]: { attackUp: {$set: v } } } }, props); }} /></TableCell>
-                            <TableCell><PercentInput value={buffSet.cardUp} onChange={ v => { handleChange({ buffs : { [index]: { cardUp: {$set: v} } } }, props); } } /></TableCell>
-                            <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { handleChange({ buffs : { [index]: { npUp: {$set: v} } } }, props); }} /></TableCell>
-                            {showNpBoost ? <TableCell><PercentInput value={buffSet.npBoost} onChange={ v => { handleChange({ buffs : { [index]: { npBoost: {$set: v} } } }, props); }} /></TableCell> : null}
-                            {showOc ? <TableCell><PercentInput value={buffSet.overcharge} onChange={ v => { handleChange({ buffs : { [index]: { overcharge: {$set: v} } } }, props); }} /></TableCell> : null}
+                            <TableCell><PercentInput value={buffSet.attackUp} onChange={v => { handleChange({ buffs: { [index]: { attackUp: { $set: v } } } }, props); }} /></TableCell>
+                            <TableCell><PercentInput value={buffSet.cardUp} onChange={ v => { handleChange({ buffs: { [index]: { cardUp: { $set: v } } } }, props); } } /></TableCell>
+                            <TableCell><PercentInput value={buffSet.npUp} onChange={ v => { handleChange({ buffs: { [index]: { npUp: { $set: v } } } }, props); }} /></TableCell>
+                            {showNpBoost ? <TableCell><PercentInput value={buffSet.npBoost} onChange={ v => { handleChange({ buffs : { [index]: { npBoost: { $set: v } } } }, props); }} /></TableCell> : null}
+                            {showOc ? <TableCell><PercentInput value={buffSet.overcharge} onChange={ v => { handleChange({ buffs : { [index]: { overcharge: { $set: v } } } }, props); }} /></TableCell> : null}
                             {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [
                                 <TableCell key={pIndex * 2}>
                                     <PercentInput
@@ -118,6 +119,11 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                                         onChange={v => handlePowerModChange({ trigger: {$set: v } }, pIndex, index)} />
                                 </TableCell>
                             ])}
+                            <TableCell>
+                                <TraitSelect
+                                    value={buffSet.applyTraits}
+                                    onChange={v => handleChange({ buffs: { [index]: { applyTraits: { $set: v } } } }, props)} />
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TransposedTableBody>

@@ -139,6 +139,7 @@ class NoblePhantasm {
         readonly multUpgrade: number,
         readonly extraDamage: number[],
         readonly extraTrigger: Trait[],
+        readonly extraDmgStacks: boolean,
         preBuffs: Buff[],
         postBuffs: Buff[]) {
         this.preBuffs = preBuffs;

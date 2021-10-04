@@ -8,32 +8,34 @@ class PowerMod {
 }
 
 class BuffSet {
-    constructor(
+    public constructor(
         readonly attackUp: number, //includes def down
         readonly cardUp: number, //includes resistance down
         readonly npUp: number,
         readonly npBoost: number,
         readonly powerMods: PowerMod[],
-        readonly overcharge: number) {}
+        readonly overcharge: number,
+        readonly applyTraits: Trait[]) {}
 
-    static empty(): BuffSet {
+    public static empty(): BuffSet {
         let powerMod = new PowerMod([Trait.Always], 0);
-        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0);
+        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0, []);
         return emptySingleton;
     }
 
-    static combine(buffs: BuffSet[], appendMod: PowerMod): BuffSet {
+    public static combine(buffs: BuffSet[], appendMod: PowerMod): BuffSet {
         return new BuffSet (
             buffs.map(buff => buff.attackUp).reduce((a, b) => a + b),
             buffs.map(buff => buff.cardUp).reduce((a, b) => a + b),
             buffs.map(buff => buff.npUp).reduce((a, b) => a + b),
             Math.max(...buffs.map(buff => buff.npBoost)),
             buffs.flatMap(buff => buff.powerMods).concat(appendMod),
-            buffs.map(buff => buff.overcharge).reduce((a, b) => a + b)
+            buffs.map(buff => buff.overcharge).reduce((a, b) => a + b),
+            buffs.flatMap(buff => buff.applyTraits)
         );
     }
 
-    static fromBuffs(buffs: Buff[], npCard: CardType): BuffSet {
+    public static fromBuffs(buffs: Buff[], npCard: CardType): BuffSet {
         let powerMod = new PowerMod([Trait.Always], 0);
         return new BuffSet(
             buffs.filter(b => b.type == BuffType.AttackUp).reduce((v, b) => v + b.val, 0),
@@ -42,11 +44,12 @@ class BuffSet {
             Math.max(0, ...buffs.filter(b => b.type == BuffType.NpBoost).map(b => b.val)),
             buffs.filter(b => b.type == BuffType.PowerMod).map(b => new PowerMod(b.trig!, b.val)).concat([ powerMod, powerMod, powerMod ]),
             buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0),
+            buffs.filter(b => b.type == BuffType.AddTrait).flatMap(b => b.trig!)
         );
     }
 
-    getMultiplier(enemy: Enemy) {
-        let powerMod = this.powerMods.filter(pm => isTriggerActive(enemy, pm.trigger)).map(pm => pm.modifier).reduce((a, b) => a + b);
+    public getMultiplier(enemy: Enemy) {
+        let powerMod = this.powerMods.filter(pm => isTriggerActive(enemy.traits.concat(this.applyTraits), pm.trigger)).map(pm => pm.modifier).reduce((a, b) => a + b);
         let modAndNp = powerMod + this.npUp * (1 + this.npBoost);
         return (1 + this.attackUp) * (1 + this.cardUp) * (1 + modAndNp);
     }
@@ -66,11 +69,14 @@ class Damage {
 
 class Calculator {
     calculateNpDamage(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[], npCard: CardType): Damage {
-        let np = servant.data.getNP(buffs.reduce((type, buff) => npCard ?? type, undefined as CardType | undefined));
-        let combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.config.appendMod);
-        let baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, combinedBuffs.overcharge) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
-        let triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute);
-        let extraDamage = isTriggerActive(enemy, np.extraTrigger) ? np.extraDamage[combinedBuffs.overcharge] : 1.0;
+        const np = servant.data.getNP(buffs.reduce((type, buff) => npCard ?? type, undefined as CardType | undefined));
+        const combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.config.appendMod);
+        const enemyTraits = enemy.traits.concat(combinedBuffs.applyTraits);
+        const baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, combinedBuffs.overcharge) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
+        const triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute);
+        const extraDamage = np.extraDmgStacks ?
+            1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[combinedBuffs.overcharge] :
+            isTriggerActive(enemyTraits, np.extraTrigger) ? np.extraDamage[combinedBuffs.overcharge] : 1.0;
         return new Damage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage);
     }
 
@@ -102,9 +108,13 @@ class Calculator {
     }
 }
 
-function isTriggerActive(enemy: Enemy, trigger: Trait[]): boolean {
+function isTriggerActive(traits: Trait[], trigger: Trait[]): boolean {
     //TODO: count stacks
-    return trigger.includes(Trait.Always) || enemy.traits.some(trait => trigger.some(trig => trig == trait));
+    return trigger.includes(Trait.Always) || matchTraits(traits, trigger).length > 0;
+}
+
+function matchTraits(traits: Trait[], trigger: Trait[]): Trait[] {
+    return traits.filter(trait => trigger.includes(trait));
 }
 
 class CraftEssence {

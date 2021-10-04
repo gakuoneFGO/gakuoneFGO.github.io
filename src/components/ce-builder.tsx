@@ -22,10 +22,12 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
                     value={this.props.value.type}
                     renderInput={params => <TextField label="Buff Type" {...params} />}
                     onChange={(_, v) => this.handleBuffTypeChanged(v!)} />
-                <PercentInput
-                    value={this.props.value.val}
-                    onChange={ v => { this.handleChange({ val: { $set: v } }); }}
-                    label="Buff Value" />
+                {this.props.value.type != BuffType.AddTrait ?
+                    <PercentInput
+                        value={this.props.value.val}
+                        onChange={ v => { this.handleChange({ val: { $set: v } }); }}
+                        label="Buff Value" />
+                : null}
                 {this.props.value.type == BuffType.CardTypeUp ?
                     <Autocomplete
                         options={Object.values(CardType)}
@@ -33,7 +35,7 @@ class BuffSelector extends BaseComponent<Buff, BuffSelectorProps, any, any> {
                         renderInput={params => <TextField label="Card Type" {...params} />}
                         onChange={(_, v) => this.handleChange({ cardType: {$set: v! } })} />
                 : null}
-                {this.props.value.type == BuffType.PowerMod ?
+                {this.props.value.type == BuffType.PowerMod || this.props.value.type == BuffType.AddTrait ?
                     <TraitSelect
                         label="Buff Trigger"
                         value={this.props.value.trig ?? []}

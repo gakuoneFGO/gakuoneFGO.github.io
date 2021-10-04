@@ -2612,6 +2612,7 @@
                 "extraTrigger": [
                     "dragon"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -2799,6 +2800,7 @@
                 "extraTrigger": [
                     "arthur"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -4002,8 +4004,10 @@
                     1
                 ],
                 "extraTrigger": [
-                    "genderMale"
+                    "classAlterEgo",
+                    "classMoonCancer"
                 ],
+                "extraDmgStacks": 0,
                 "preBuffs": [
                     {
                         "self": true,
@@ -4593,6 +4597,7 @@
                 "extraTrigger": [
                     "demonic"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -6647,7 +6652,18 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffCharm"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -7466,6 +7482,7 @@
                 "extraTrigger": [
                     "dragon"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -7860,6 +7877,7 @@
                 "extraTrigger": [
                     "genderMale"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -9435,6 +9453,7 @@
                 "extraTrigger": [
                     "attributeHuman"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -11055,6 +11074,7 @@
                 "extraTrigger": [
                     "oni"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -12521,6 +12541,7 @@
                 "extraTrigger": [
                     "weakToEnumaElish"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -12909,6 +12930,7 @@
                 "extraTrigger": [
                     "buffPoison"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -13280,6 +13302,7 @@
                 "extraTrigger": [
                     "giant"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -14031,6 +14054,7 @@
                 "extraTrigger": [
                     "skyOrEarth"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -14181,7 +14205,18 @@
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffCharm"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -14218,6 +14253,7 @@
                 "extraTrigger": [
                     "genderMale"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -15137,7 +15173,18 @@
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffCharm"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -16181,6 +16228,7 @@
                 "extraTrigger": [
                     "riding"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -16385,6 +16433,7 @@
                 "extraTrigger": [
                     "divine"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -17532,6 +17581,7 @@
                 "extraTrigger": [
                     "superGiant"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -17918,6 +17968,7 @@
                 "extraTrigger": [
                     "divine"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -18700,6 +18751,7 @@
                 "extraTrigger": [
                     "buffEvade"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -18886,6 +18938,7 @@
                 "extraTrigger": [
                     "weakPointsRevealed"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -21926,6 +21979,7 @@
                 "extraTrigger": [
                     "alignmentEvil"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -22120,6 +22174,7 @@
                 "extraTrigger": [
                     "divine"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -22878,6 +22933,7 @@
                 "extraTrigger": [
                     "threatToHumanity"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -23643,6 +23699,7 @@
                 "extraTrigger": [
                     "brynhildsBeloved"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -25184,6 +25241,16 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffCharm"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "atk",
                         "val": 0.3,
                         "turns": 1
@@ -25216,6 +25283,7 @@
                 "extraTrigger": [
                     "genderMale"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -26170,6 +26238,16 @@
             {
                 "cooldown": 6,
                 "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffCharm"
+                        ]
+                    },
                     {
                         "self": true,
                         "team": true,
@@ -27585,6 +27663,7 @@
                 "extraTrigger": [
                     "attributeEarth"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -29908,6 +29987,14 @@
                         "type": "atk",
                         "val": 0.2,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": "roman"
                     }
                 ]
             },
@@ -29948,8 +30035,9 @@
                     0.2
                 ],
                 "extraTrigger": [
-                    "genderMale"
+                    "roman"
                 ],
+                "extraDmgStacks": true,
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -30341,6 +30429,7 @@
                 "extraTrigger": [
                     "genderMale"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -31750,7 +31839,16 @@
                     1
                 ],
                 "extraTrigger": [],
-                "preBuffs": [],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": "dragon"
+                    }
+                ],
                 "postBuffs": []
             }
         ]
@@ -32913,7 +33011,18 @@
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffCharm"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -35917,6 +36026,7 @@
                     2
                 ],
                 "extraTrigger": [],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -36922,6 +37032,7 @@
                 "extraTrigger": [
                     "genderFemale"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -37147,6 +37258,7 @@
                 "extraTrigger": [
                     "superGiant"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -38206,6 +38318,7 @@
                 "extraTrigger": [
                     "demonic"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -42021,6 +42134,7 @@
                 "extraTrigger": [
                     "king"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -42052,6 +42166,7 @@
                 "extraTrigger": [
                     "king"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -44832,6 +44947,7 @@
                 "extraTrigger": [
                     "skillSeal"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -46484,7 +46600,18 @@
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffCharm"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -47685,6 +47812,7 @@
                 "extraTrigger": [
                     "saberface"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -48879,6 +49007,7 @@
                 "extraTrigger": [
                     "demonic"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -49457,6 +49586,16 @@
                         "type": "npDmg",
                         "val": 0.2,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffCharm"
+                        ]
                     }
                 ]
             },
@@ -49486,6 +49625,7 @@
                 "extraTrigger": [
                     "buffCharm"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -52628,6 +52768,7 @@
                 "extraTrigger": [
                     "saberClassServant"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -55439,6 +55580,7 @@
                 "extraTrigger": [
                     "attributeHuman"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -56675,6 +56817,7 @@
                 "extraTrigger": [
                     "alignmentEvil"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -57906,8 +58049,9 @@
                     0.2
                 ],
                 "extraTrigger": [
-                    "genderMale"
+                    "buffMentalEffect"
                 ],
+                "extraDmgStacks": true,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -59997,6 +60141,7 @@
                 "extraTrigger": [
                     "divine"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -60457,6 +60602,7 @@
                     0.25
                 ],
                 "extraTrigger": [],
+                "extraDmgStacks": true,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -61432,6 +61578,7 @@
                 "extraTrigger": [
                     "saberClassServant"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -61626,6 +61773,7 @@
                 "extraTrigger": [
                     "buffBurn"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -61821,6 +61969,7 @@
                 "extraTrigger": [
                     "attributeSky"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -62453,6 +62602,7 @@
                 "extraTrigger": [
                     "alignmentEvil"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [
                     {
                         "self": true,
@@ -62664,6 +62814,7 @@
                 "extraTrigger": [
                     "alignmentLawful"
                 ],
+                "extraDmgStacks": false,
                 "preBuffs": [],
                 "postBuffs": []
             }

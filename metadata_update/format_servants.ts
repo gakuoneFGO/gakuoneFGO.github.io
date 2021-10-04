@@ -12,13 +12,16 @@ const enumStream = fs.createReadStream("metadata_update\\enums.json", { encoding
 enumStream.pipe(JSONStream.parse([ { emitKey: true } ])).on("data", data => { enums[data.key] = data.value; });
 enumStream.on("end", () => {
     const servants = new Map<string, ServantData[]>();
-    const stream = fs.createReadStream("metadata_update\\servants_raw.json", { encoding: 'utf-8' });
+    const stream = fs.createReadStream("metadata_update\\servants_raw.ignored.json", { encoding: 'utf-8' });
     stream.pipe(JSONStream.parse("*")).on("data", data => {
         if (data.type == "enemyCollectionDetail") {
             console.log("Skipping servant named ", data.name, " because type was ", data.type);
             return;
         }
         //console.log(data.name);
+        if (data.name == "pasteNameHere") {
+            console.log(JSON.stringify(data, undefined, 4));
+        }
         const upgradedNps = getUpgraded(data.noblePhantasms, (np1, np2) => np1.card == np2.card);
         const servant = new ServantData(
             data.name,
@@ -72,6 +75,7 @@ function mapNp(np: any, unupgraded: any): NoblePhantasm {
             npFuncUnupgraded && unupgraded.strengthStatus ? (npFunc.svals[0].Value * U_RATIO - npFuncUnupgraded.svals[0].Value * U_RATIO) : 0,
             getExtraMultiplier(npFunc),
             getExtraTrigger(npFunc),
+            doesExtraDamageStack(npFunc),
             np.functions.filter((_, i) => i < npFuncIndex).flatMap(toBuff),
             np.functions.filter((_, i) => i > npFuncIndex).flatMap(toBuff)
                 .map((b: Buff) => update(b, { turns: { $set: b.turns - 1 } }))
@@ -87,7 +91,13 @@ function getExtraMultiplier(npFunc: any): number[] {
 
 function getExtraTrigger(npFunc: any): Trait[] {
     if (!npFunc || !npFunc.svals[0].Target) return [];
-    return [enums.Trait[npFunc.svals[0].Target]] as Trait[];
+    return npFunc.svals[0].TargetList ?
+        npFunc.svals[0].TargetList.map(target => enums.Trait[target]) :
+        [enums.Trait[npFunc.svals[0].Target]];
+}
+
+function doesExtraDamageStack(npFunc: any): boolean {
+    return npFunc && npFunc.svals[0].Correction && npFunc.svals[0].Correction * U_RATIO < 1;
 }
 
 function toNiceClassName(className: string): string {
@@ -316,7 +326,13 @@ function debuffToBuff(func: any): Buff[] {
             return [ new Buff(true, true, BuffType.AttackUp, getBuffValue(func), 1) ];
         case "downDefencecommandall":
             return [ new Buff(true, true, BuffType.CardTypeUp, getBuffValue(func), 1, getCardType(func.buffs[0].ckOpIndv[0].name)) ];
+        case "addIndividuality"://TODO: actually matters for romulus. fix then use the same approach for summer kama (maybe not paris)
+            return [ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, enums.Trait[func.svals[0].Value]) ];
         case "donotAct":
+            const relevant = func.buffs[0].vals.map(val => val.name).filter(name => ["buffCharm", "buffMentalEffect"].includes(name));
+            return relevant.length > 0 ?
+                [ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, [relevant]) ] :
+                [];
         case "donotSkill":
         case "donotNoble":
         case "avoidState":
@@ -338,7 +354,6 @@ function debuffToBuff(func: any): Buff[] {
         case "upHate":
         case "delayFunction":
         case "selfturnendFunction":
-        case "addIndividuality"://TODO: actually matters for romulus. fix then use the same approach for summer kama (maybe not paris)
             return [];
         default:
             console.log("Unknown debuff type", func.buffs[0]);
@@ -346,8 +361,12 @@ function debuffToBuff(func: any): Buff[] {
     }
 }
 
+function canMiss(func: any): boolean {
+    return func.svals[func.svals.length - 1].Rate * U_RATIO < 1;
+}
+
 function getBuffValue(func: any, buffRatio?: number): number {
-    return func.svals[func.svals.length - 1].Rate * U_RATIO >= 1 ? func.svals[func.svals.length - 1].Value * (buffRatio ?? U_RATIO) : 0;
+    return !canMiss(func) ? func.svals[func.svals.length - 1].Value * (buffRatio ?? U_RATIO) : 0;
 }
 
 function getBuffTurns(func: any, useTurns?: true | undefined): number {
@@ -376,6 +395,7 @@ function isUseful(buff: Buff, npType: CardType): boolean {
         case BuffType.PowerMod:
         case BuffType.Overcharge:
         case BuffType.NpBoost:
+        case BuffType.AddTrait:
             return buff.val > 0;
         case BuffType.CardTypeUp:
             return buff.val > 0 && (buff.team || buff.cardType == npType);
