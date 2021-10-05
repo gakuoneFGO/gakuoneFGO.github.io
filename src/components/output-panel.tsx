@@ -78,33 +78,33 @@ function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
     };
     
     return (
-        <Grid container direction="row" spacing={1} columns={result.damagePerWave.length}>
+        <Box sx={{ display: "flex", gap: theme.spacing(1), alignItems: "stretch" }}>
             {result.damagePerWave.map((wave, wIndex) => 
-                <Grid key={wIndex} item direction="column" spacing={1} columns={wave.damagePerEnemy.length} xs={1} lg={1}
-                    sx={{ display: "flex", flexDirection: "column", gap: theme.spacing(1) }}>
-                    {wave.damagePerEnemy.map((damage, eIndex) =>
-                        <Box key={eIndex}>
-                            {(() => {
-                                let enemy = props.node.waves[wIndex].enemies[eIndex];
-                                let color = getColor(enemy, damage);
-                                return (
-                                    <Paper key="0" sx={{ backgroundColor: color.main, color: color.contrastText}}>
-                                        <Typography textAlign="center">
-                                            <NumberFormat displayType="text" thousandSeparator="," value={damage.low} />
-                                        </Typography>
-                                        <Divider variant="middle" sx={{ background: color.contrastText }} />
-                                        <Typography textAlign="center">
-                                            <NumberFormat displayType="text" thousandSeparator="," value={enemy.hitPoints} />
-                                        </Typography>
-                                    </Paper>
-                                );
-                            })()}
-                            
-                        </Box>
-                    )}
-                </Grid>
+                <Box key={wIndex} sx={{ display: "flex", flexDirection: "column", gap: theme.spacing(1), flexGrow: 1 }}>
+                    {wave.damagePerEnemy.map((damage, eIndex) => {
+                        let enemy = props.node.waves[wIndex].enemies[eIndex];
+                        let color = getColor(enemy, damage);
+                        return (
+                            <Paper key={eIndex} sx={{ backgroundColor: color.main, color: color.contrastText, flexGrow: 1,
+                                display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                                <Typography textAlign="center">
+                                    <NumberFormat displayType="text" thousandSeparator="," value={damage.low} />
+                                </Typography>
+                                <Divider variant="middle" sx={{ background: color.contrastText }} />
+                                <Typography textAlign="center">
+                                    <NumberFormat displayType="text" thousandSeparator="," value={enemy.hitPoints} />
+                                </Typography>
+                            </Paper>
+                        );
+                    })}
+                    <Paper sx={{ background: theme.palette.refund.gradient, color: theme.palette.refund.contrastText, padding: theme.spacing(1) }}>
+                        <Typography textAlign="center" fontStyle="italic">
+                            <NumberFormat displayType="text" decimalScale={1} fixedDecimalScale suffix="%" value={98.9} />
+                        </Typography>
+                    </Paper>
+                </Box>
             )}
-        </Grid>
+        </Box>
     );
 }
 

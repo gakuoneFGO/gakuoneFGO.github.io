@@ -1,16 +1,26 @@
 import { createTheme } from "@mui/material";
-import { blue, green, grey, orange, purple, red, yellow } from "@mui/material/colors";
+import { blue, deepOrange, green, grey, orange, purple, red, yellow } from "@mui/material/colors";
 declare module '@mui/material/styles/createPalette' {
     interface PaletteOptions {
         buster?: PaletteColorOptions;
         arts?: PaletteColorOptions;
         quick?: PaletteColorOptions;
+        refund?: PaletteColorOptions;
+    }
+
+    interface SimplePaletteColorOptions {
+        gradient?: string;
     }
 
     interface Palette {
         buster: PaletteColor;
         arts: PaletteColor;
         quick: PaletteColor;
+        refund: PaletteColor;
+    }
+
+    interface PaletteColor {
+        gradient?: string;
     }
 }
 
@@ -29,12 +39,12 @@ const theme = createTheme({
         quick: {
             main: green[900],
         },
-    },
-    typography: {
-        body2: {
-            //TODO: this is about the smallest font size that's comfortable to read but it still causes the scroll bar to render on the output grid
-            //next thing to try is to swap servant cards for icons and then transpose the output table, although having it mismatch with the advanced table is weird
-            fontSize: 13,
+        refund: {
+            light: "#d27b17",
+            main: "#9f5a0d",
+            dark: "#bf6c0c",
+            gradient: "linear-gradient(to bottom, #452916, #d27b17 43%, #382514)",
+            //gradient: "linear-gradient(to bottom, #83400e, #d27b17 43%, #69380e)",
         }
     },
     components: {
