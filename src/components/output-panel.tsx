@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, useTheme } from "@mui/material";
+import { Divider, Grid, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, useTheme } from "@mui/material";
 import { StateWrapper } from "./common";
 import { BuffMatrix, EnemyNode, MainServant, NodeDamage, Strat } from "../Strat";
 import update from "immutability-helper";
@@ -7,6 +7,7 @@ import NumberFormat from "react-number-format";
 import { Enemy } from "../Enemy";
 import { Box } from "@mui/system";
 import { BuffSet, Damage } from "../Damage";
+import { TransposedTableBody } from "./transposed-table";
 
 interface OutputPanelProps {
     strat: Strat;
@@ -37,15 +38,13 @@ class OutputPanel extends React.Component<OutputPanelProps, StateWrapper<NodeDam
         return (
             <TableContainer>
                 <Table>
-                    <TableHead>
+                    <TransposedTableBody>
                         <TableRow>
                             <TableCell />
                             {this.state._.map((_, index) =>
                                 <TableCell key={index}><Typography variant="body1">NP{index + 1}</Typography></TableCell>
                             )}
                         </TableRow>
-                    </TableHead>
-                    <TableBody>
                         {this.state._[0].damagePerWave.map((_, waveIndex) =>
                             <TableRow key={waveIndex}>
                                 <TableCell><Typography variant="body1">T{waveIndex + 1}</Typography></TableCell>
@@ -59,7 +58,7 @@ class OutputPanel extends React.Component<OutputPanelProps, StateWrapper<NodeDam
                                 )}
                             </TableRow>
                         )}
-                    </TableBody>
+                    </TransposedTableBody>
                 </Table>
             </TableContainer>
         );
@@ -79,11 +78,12 @@ function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
     };
     
     return (
-        <Grid container direction="column" spacing={1}>
+        <Grid container direction="row" spacing={1} columns={result.damagePerWave.length}>
             {result.damagePerWave.map((wave, wIndex) => 
-                <Grid key={wIndex} item container spacing={1} columns={wave.damagePerEnemy.length}>
+                <Grid key={wIndex} item direction="column" spacing={1} columns={wave.damagePerEnemy.length} xs={1} lg={1}
+                    sx={{ display: "flex", flexDirection: "column", gap: theme.spacing(1) }}>
                     {wave.damagePerEnemy.map((damage, eIndex) =>
-                        <Grid key={eIndex} item xs={1} lg={1}>
+                        <Box key={eIndex}>
                             {(() => {
                                 let enemy = props.node.waves[wIndex].enemies[eIndex];
                                 let color = getColor(enemy, damage);
@@ -91,14 +91,16 @@ function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
                                     <Paper key="0" sx={{ backgroundColor: color.main, color: color.contrastText}}>
                                         <Typography textAlign="center">
                                             <NumberFormat displayType="text" thousandSeparator="," value={damage.low} />
-                                            &nbsp;/&nbsp;
+                                        </Typography>
+                                        <Divider variant="middle" sx={{ background: color.contrastText }} />
+                                        <Typography textAlign="center">
                                             <NumberFormat displayType="text" thousandSeparator="," value={enemy.hitPoints} />
                                         </Typography>
                                     </Paper>
                                 );
                             })()}
                             
-                        </Grid>
+                        </Box>
                     )}
                 </Grid>
             )}

@@ -116,7 +116,7 @@ export function StratBuilder() {
     
     return (
         <Box height={sm ? undefined : "98vh"} width="98vw" display="flex" flexDirection={sm ? "column" : "row-reverse"}>
-            <Box display="flex" flexDirection="column" height="100%" width={lg ? "35%" : md ? "45%" : "100%"}>
+            <Box display="flex" flexDirection="column" height="100%" width={lg ? "33%" : md ? "42%" : "100%"}>
                 <Box flexShrink={0}>
                     <PartyDisplay party={state.strat.getRealParty().map(s => s[0])}
                         onClick={(slot) => handleChange((state: StratBuilderState) => ({
@@ -145,7 +145,7 @@ export function StratBuilder() {
                     </TabPanel>
                 </TabContext>
             </Box>
-            <Box display="flex" flexDirection="column" height="100%"  width={lg ? "65%" : md ? "55%" : "100%"}>
+            <Box display="flex" flexDirection="column" height="100%"  width={lg ? "67%" : md ? "58%" : "100%"}>
                 <TabContext value={state.selectedTab}>
                     <Box flexShrink={0}>
                         <TabList variant="scrollable" onChange={(_, v) => handleChange({ selectedTab: { $set: v } })}>
