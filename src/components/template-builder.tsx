@@ -63,6 +63,8 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                     <Card>
                         <CardContent>
                             <ServantSelector
+                                allowPlaceholder={true}
+                                allowUnspecified={index > 2} //first 3 slots are always filled
                                 value={servant}
                                 label={"Servant " + (index + 1)}
                                 onChange={s => handleChange({ party: { [index]: { $set: s } } }, props)} />

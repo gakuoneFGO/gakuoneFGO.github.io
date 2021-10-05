@@ -123,13 +123,14 @@ interface SelectProps<T extends { name: string }> {
     provider: Persistor<T>;
     label: string;
     endAdornment: React.ReactNode;
+    filter?: (t: T) => boolean;
 }
 
 //TODO: there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
 function SmartSelect<T extends { name: string }>(props: SelectProps<T> & BaseProps<T>) {
     return (
         <Autocomplete
-            options={props.provider.getAll()}
+            options={props.filter ? props.provider.getAll().filter(props.filter) : props.provider.getAll()}
             value={props.value!}
             isOptionEqualToValue={(a, b) => a.name == b.name}
             getOptionLabel={v => v.name}

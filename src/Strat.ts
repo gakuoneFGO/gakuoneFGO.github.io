@@ -42,11 +42,21 @@ class Template {
 }
 
 class Wave {
-    constructor(readonly enemies: Enemy[]) {}
+    constructor(enemies: Enemy[]) {
+        this.enemies = enemies;
+    }
+
+    @Type(() => Enemy)
+    public enemies: Enemy[];
 }
 
 class EnemyNode {
-    constructor(readonly name: string, readonly waves: Wave[]) {}
+    constructor(readonly name: string, waves: Wave[]) {
+        this.waves = waves;
+    }
+
+    @Type(() => Wave)
+    public readonly waves: Wave[];
 
     static uniform(enemy: Enemy): EnemyNode {
         let waves = new Array<Wave>(3);

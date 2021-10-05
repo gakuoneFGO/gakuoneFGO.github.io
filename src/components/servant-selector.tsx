@@ -3,16 +3,17 @@ import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputLab
 import React, { useState } from "react";
 import { bindToggle, bindPopper, usePopupState } from 'material-ui-popup-state/hooks';
 import { useData } from "../Data";
-import { Servant } from "../Servant";
+import { Servant, ServantData } from "../Servant";
 import { BaseComponent, BaseProps, handleChange, SmartSelect } from "./common";
 
 interface ServantSelectorProps extends BaseProps<Servant> {
     label?: string;
+    allowPlaceholder: boolean;
+    allowUnspecified: boolean;
 }
 
 function ServantSelector(props: ServantSelectorProps) {
     const [ data ] = useData();
-    const [ , setState ] = useState({});
     const popupState = usePopupState({ variant: "popper", popupId: "ServantSelector" });
     let boundToggle = bindToggle(popupState);
     const theme = useTheme();
@@ -23,6 +24,11 @@ function ServantSelector(props: ServantSelectorProps) {
                 value={props.value.data}
                 onChange={v => props.onChange(data.getServantDefaults(v.name))}
                 label="Select Servant"
+                filter={
+                    props.allowPlaceholder && props.allowUnspecified ?
+                        undefined :
+                        servant => (props.allowPlaceholder || !servant.isPlaceholder()) && (props.allowUnspecified || servant.isSpecified())
+                }
                 endAdornment={
                     <InputAdornment position="end">
                         <IconButton title="Stats" {...boundToggle}>

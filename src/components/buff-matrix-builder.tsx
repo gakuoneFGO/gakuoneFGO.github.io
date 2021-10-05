@@ -123,7 +123,7 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                             </TableCell>
                         ])}
                         <TableCell>
-                            <Tooltip title="Traits forcefully applied to enemies on this turn, such as Romulus=Quirinus' Roman trait debuff or Summer Kama's charm.">
+                            <Tooltip title="Traits forcefully applied to enemies on each turn, such as Romulus=Quirinus' Roman trait debuff or Summer Kama's charm.">
                                 <img src="images/buffs/individuality.png" />
                             </Tooltip>
                         </TableCell>

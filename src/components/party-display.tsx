@@ -14,7 +14,7 @@ function PartyDisplay(props: PartyDisplayProps) {
     return (
         <DndProvider backend={HTML5Backend}>
             <ImageList cols={6}>
-                {props.party.map((servant, slot) => <PartyMember key={slot} servant={servant.data} slot={slot} onDrop={props.onDrop} onClick={props.onClick} />)}
+                {props.party.map((servant, slot) => <PartyMember key={slot + servant.data.name} servant={servant.data} slot={slot} onDrop={props.onDrop} onClick={props.onClick} />)}
             </ImageList>
         </DndProvider>
     );
@@ -27,11 +27,13 @@ interface PartyMemberProps {
     onClick: (slot: number) => void;
 };
 
+type ItemProps = { slot: number, servant: ServantData };
+
 function PartyMember(props: PartyMemberProps) {
     const [, drag] = useDrag(() => ({
         type: "partyMember",
         accept: "partyMember",
-        item: { slot: props.slot },
+        item: { slot: props.slot, servant: props.servant } as ItemProps,
         end: (dragged, monitor) => {
             const target = monitor.getDropResult<{slot: number}>();
             if (dragged && target) {
@@ -42,6 +44,9 @@ function PartyMember(props: PartyMemberProps) {
 
     const [, drop] = useDrop(() => ({
         accept: "partyMember",
+        canDrop: props.slot <= 2 ?
+            (item: ItemProps) => item.servant.isSpecified() :
+            (item: ItemProps) => item.slot > 2 || props.servant.isSpecified(),
         drop: () => ({ slot: props.slot }),
     }), []);
 

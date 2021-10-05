@@ -21,11 +21,11 @@ class Servant {
     }
 
     isPlaceholder(): boolean {
-        return this.data.name == "<Placeholder>";
+        return this.data.isPlaceholder();
     }
 
     isSpecified(): boolean {
-        return this.data.name != "<Unspecified>";
+        return this.data.isSpecified();
     }
 }
 
@@ -76,6 +76,14 @@ class ServantData {
 
     hasNP(cardType: CardType): boolean {
         return this.nps.some(np => np.cardType == cardType);
+    }
+
+    isPlaceholder(): boolean {
+        return this.name == "<Placeholder>";
+    }
+
+    isSpecified(): boolean {
+        return this.name != "<Unspecified>";
     }
 }
 

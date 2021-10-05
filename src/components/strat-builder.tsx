@@ -161,7 +161,8 @@ export function StratBuilder() {
                         //seems like the TabContext needs to know about even the tabs that aren't selected since I get issues trying to return just the selected one
                         <TabPanel key={index} value={`servant${index}`} sx={{ overflowY: "scroll", height: "100%" }}>
                             <Box>
-                                <ServantSelector value={servant.servant} label="Servant" onChange={(servant: Servant) => onServantChanged(servant, index)} />
+                                <ServantSelector value={servant.servant} label="Servant" allowUnspecified={false} allowPlaceholder={false}
+                                    onChange={(servant: Servant) => onServantChanged(servant, index)} />
                                 <BuffMatrixBuilder value={servant.buffs}
                                     maxPowerMods={2}
                                     onChange={buffs => handleChange({ strat: { servants: { [index]: { buffs: { $set: buffs } } } } })}
