@@ -52,6 +52,7 @@ const theme = createTheme({
             defaultProps: {
                 variant: "standard",
                 fullWidth: true,
+                onFocus: e => e.target.select()
             }
         },
         MuiInputLabel: {

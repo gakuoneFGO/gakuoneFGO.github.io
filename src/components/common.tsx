@@ -196,9 +196,15 @@ export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & 
         } else console.log(JSON.stringify(props.value));
     }
 
+    const onChange = (value: T) => {
+        setState({ newName: props.provider.isCustom(value) ? value.name.substring(2) : "" })
+        props.onChange(value);
+    }
+
     return (
         <React.Fragment>
-            <SmartSelect {...props} endAdornment={
+            <SmartSelect {...props} onChange={onChange}
+                endAdornment={
                     <InputAdornment position="end">
                         {props.provider.isCustom(props.value) ?
                             <IconButton title="Delete"
@@ -208,7 +214,7 @@ export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & 
                                     const newSelected =
                                         allItems.find(item => item.name.localeCompare(props.value.name) > 0) ??
                                         allItems[allItems.length - 1];
-                                    props.onChange(newSelected);
+                                    onChange(newSelected);
                                 }}>
                                 <Delete />
                             </IconButton>
