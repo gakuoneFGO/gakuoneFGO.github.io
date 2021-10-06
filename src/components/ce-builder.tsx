@@ -69,7 +69,7 @@ function CEBuilder(props: CEBuilderProps) {
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={9} sm={12} md={9}>
-                            <SaveableSelect provider={data.craftEssences} {...props} label="Select CE" />
+                            <SaveableSelect provider={data.craftEssences} {...props} label="Select CE" saveLabel="CE Name" />
                         </Grid>
                         <Grid item xs={3} sm={12} md={3}>
                             <IntegerInput label="Attack Stat" value={props.value.attackStat}

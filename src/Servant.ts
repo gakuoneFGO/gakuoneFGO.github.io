@@ -70,20 +70,27 @@ class ServantData {
     @Type(() => NoblePhantasm)
     readonly nps: NoblePhantasm[];
 
-    getNP(cardType?: CardType): NoblePhantasm {
+    public getNP(cardType?: CardType): NoblePhantasm {
         return this.nps.find(np => !cardType || np.cardType == cardType) as NoblePhantasm;
     }
 
-    hasNP(cardType: CardType): boolean {
+    public hasNP(cardType: CardType): boolean {
         return this.nps.some(np => np.cardType == cardType);
     }
 
-    isPlaceholder(): boolean {
+    public isPlaceholder(): boolean {
         return this.name == "<Placeholder>";
     }
 
-    isSpecified(): boolean {
+    public isSpecified(): boolean {
         return this.name != "<Unspecified>";
+    }
+
+    public hasBuffInKit(buffType: BuffType): boolean {
+        return this.skills.flatMap(s => s.buffs)
+            .concat(this.nps.flatMap(np => np.preBuffs))
+            .concat(this.nps.flatMap(np => np.postBuffs))
+            .some(b => b.type == buffType);
     }
 }
 

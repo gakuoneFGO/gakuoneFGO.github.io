@@ -180,6 +180,7 @@ export interface SaveableSelectProps<T extends { name: string }> {
     provider: Persistor<T>;
     label: string;
     filter?: (t: T) => boolean;
+    saveLabel: string;
 }
 
 export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & BaseProps<T>) {
@@ -230,7 +231,7 @@ export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & 
                 <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
                     <CardContent>
                         <Stack justifyContent="space-evenly" spacing={2} direction="row">
-                            <TextField autoFocus label="Node Name" value={state.newName} onChange={e => setState({ newName: e.target.value })}
+                            <TextField autoFocus label={props.saveLabel} value={state.newName} onChange={e => setState({ newName: e.target.value })}
                                 onKeyPress={e => { if (e.code == "Enter") doSave() }} />
                             <IconButton title="Save"
                                 onClick={doSave}>
@@ -250,6 +251,7 @@ export function TraitSelect(props: BaseProps<Trait[]> & { label?: string }) {
             options={Object.values(Trait)}
             value={props.value}
             onChange={(_, v) => { if(v) props.onChange(v) }}
+            forcePopupIcon={false}
             renderInput={params => <TextField {...params} label={props.label} />} />
     );
 }

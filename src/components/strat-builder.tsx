@@ -101,7 +101,8 @@ export function StratBuilder() {
         const templateUpdated = update(servantsReconciled, { template: { $set: template } });
 
         //decide which NP
-        const npCardsFixed = fixNpCards(templateUpdated);
+        const clearersFixed = fixClearers(templateUpdated);
+        const npCardsFixed = fixNpCards(clearersFixed);
 
         //generate buffs
         const buffsGenerated = updates.filter(upd => upd[0] instanceof Servant).reduce((strat, upd) => defaultBuffsetHeuristic(strat, upd[1] as number), npCardsFixed);
@@ -242,6 +243,11 @@ function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
 }
 
 type ServantUpdate = [ number | Servant, number | undefined ];
+
+function fixClearers(strat: Strat): Strat {
+    const validClearers = strat.template.clearers.map(c => strat.template.party[c].isSpecified() ? c : 0);
+    return update(strat, { template: { clearers: { $set: validClearers } } });
+}
 
 function fixNpCards(strat: Strat): Strat {
     //assumes selected servants are up to date

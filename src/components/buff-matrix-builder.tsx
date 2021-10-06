@@ -20,6 +20,10 @@ interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
         readonly warnOtherNp?: true | undefined;
 }
 
+function isBuffSelected(buffs: BuffMatrix, buffType: keyof BuffSet): boolean {
+    return buffs.buffs.some(buffset => buffset[buffType] != 0);
+}
+
 function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     const theme = useTheme();
     //can't short circuit with hooks
@@ -31,10 +35,9 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     };
     
     const maxPowerMods = props.maxPowerMods ?? 3;
-    const showNpBoost = state.showAll || props.servants.flatMap(s => s.data.skills).flatMap(s => s.buffs).some(b => b.type == BuffType.NpBoost);
-    const showOc = state.showAll || props.servants
-        .flatMap(s => s.data.skills.flatMap(s => s.buffs).concat(s.data.nps.flatMap(np => np.preBuffs)).concat(s.data.nps.flatMap(np => np.postBuffs)))
-        .some(b => b.type == BuffType.Overcharge);
+    const showNpBoost = state.showAll || isBuffSelected(props.value, "npBoost") || props.servants.some(s => s.data.hasBuffInKit(BuffType.NpBoost));
+    const showOc = state.showAll || isBuffSelected(props.value, "overcharge") || props.servants.some(s => s.data.hasBuffInKit(BuffType.Overcharge));
+        
     const showCardType = state.showAll || props.servants.some(s => s.data.nps.length > 1);
     const validCardTypes = props.clearers.map(s => s.data.nps.map(np => np.cardType));
 

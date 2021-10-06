@@ -37,7 +37,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <SaveableSelect provider={data.nodes} {...props} label="Select Node" />
+                <SaveableSelect provider={data.nodes} {...props} label="Select Node" saveLabel="NodeName" />
             </Grid>
             {props.value.waves.map((wave, index) => (
                 <Grid key={index} item xs={12} sm={4} md={12} lg={4}>

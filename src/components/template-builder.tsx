@@ -27,7 +27,8 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                 <SaveableSelect provider={data.templates}
                     value={props.value.asSaveable()}
                     onChange={template => props.onChange(data.getTemplate(template.name))}
-                    label="Select template" />
+                    label="Select Template"
+                    saveLabel="Template Name" />
             </Grid>
             {props.value.party.map((servant, index) =>(
                 <Grid item xs={12} sm={6} md={12} lg={4} key={index}>
