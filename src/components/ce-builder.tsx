@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardHeader, TextField, Autocomplete, Grid, Typo
 import React, { useState } from "react";
 import { CraftEssence } from "../Damage";
 import { Buff, BuffType, CardType } from "../Servant";
-import { BaseComponent, BaseProps, PercentInput, ArrayBuilder, handleChange, SmartSelect, TraitSelect } from "./common";
+import { BaseComponent, BaseProps, PercentInput, ArrayBuilder, handleChange, SmartSelect, TraitSelect, SaveableSelect } from "./common";
 import { Trait } from "../Enemy";
 import { useData } from "../Data";
 import { Save } from "@mui/icons-material";
@@ -69,36 +69,7 @@ function CEBuilder(props: CEBuilderProps) {
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={9} sm={12} md={9}>
-                            <SmartSelect provider={data.craftEssences} {...props} label="Select CE"
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton title="Save" {...bindTrigger(popupState)}>
-                                            <Save />
-                                        </IconButton>
-                                    </InputAdornment>
-                                } />
-                            <Popover {...bindPopover(popupState)}
-                                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                                transformOrigin={{ vertical: "top", horizontal: "center" }}>
-                                <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
-                                    <CardContent>
-                                        <Stack justifyContent="space-evenly" spacing={2} direction="row">
-                                            <TextField autoFocus label="CE Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
-                                            <IconButton title="Save"
-                                                onClick={() => {
-                                                    if (state.newName){
-                                                        const ce = update(props.value, { name: { $set: "* " + state.newName } })
-                                                        data.craftEssences.put(ce);
-                                                        props.onChange(ce);
-                                                        popupState.setOpen(false);
-                                                    }
-                                                }}>
-                                                <Save />
-                                            </IconButton>
-                                        </Stack>
-                                    </CardContent>
-                                </Card>
-                            </Popover>
+                            <SaveableSelect provider={data.craftEssences} {...props} label="Select CE" />
                         </Grid>
                         <Grid item xs={3} sm={12} md={3}>
                             <TextField type="number"

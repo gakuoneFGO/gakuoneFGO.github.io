@@ -1,5 +1,5 @@
 import { Box, TextField, Autocomplete, Stack, Grid, Card, CardHeader, Typography, IconButton, Popover, CardContent, useTheme, InputAdornment } from "@mui/material";
-import { ArrayBuilder, BaseComponent, BaseProps, handleChange, SmartSelect, TraitSelect } from "./common";
+import { ArrayBuilder, BaseComponent, BaseProps, handleChange, SaveableSelect, TraitSelect } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass, Trait } from "../Enemy";
 import { EnemyNode, Wave } from "../Strat";
 import React, { useState } from "react";
@@ -43,36 +43,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <SmartSelect provider={data.nodes} {...props} label="Select Node"
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton title="Save" {...bindTrigger(popupState)}>
-                                <Save />
-                            </IconButton>
-                        </InputAdornment>
-                    } />
-                <Popover {...bindPopover(popupState)}
-                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                    transformOrigin={{ vertical: "top", horizontal: "center" }}>
-                    <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
-                        <CardContent>
-                            <Stack justifyContent="space-evenly" spacing={2} direction="row">
-                                <TextField autoFocus label="Node Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
-                                <IconButton title="Save"
-                                    onClick={() => {
-                                        if (state.newName){
-                                            const node = update(props.value, { name: { $set: "* " + state.newName } })
-                                            data.nodes.put(node);
-                                            props.onChange(node);
-                                            popupState.setOpen(false);
-                                        } else console.log(JSON.stringify(props.value));
-                                    }}>
-                                    <Save />
-                                </IconButton>
-                            </Stack>
-                        </CardContent>
-                    </Card>
-                </Popover>
+                <SaveableSelect provider={data.nodes} {...props} label="Select Node" />
             </Grid>
             {props.value.waves.map((wave, index) => (
                 <Grid key={index} item xs={12} sm={4} md={12} lg={4}>

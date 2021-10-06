@@ -3,6 +3,7 @@ import { CardType, Servant } from "./Servant";
 import { Enemy } from "./Enemy";
 import update, { Spec } from "immutability-helper";
 import { Type } from "class-transformer";
+import { TemplateData } from "./Data";
 
 class BuffMatrix {
     constructor(buffs: BuffSet[]) {
@@ -39,6 +40,17 @@ class Template {
         readonly clearers: number[],
         readonly description: string,
         readonly instructions: string[]) {}
+    
+    public asSaveable(): TemplateData {
+        return new TemplateData(
+            this.name,
+            this.buffs,
+            this.party.map(servant => servant.data.name),
+            this.clearers,
+            this.description,
+            this.instructions
+        );
+    }
 }
 
 class Wave {

@@ -2,12 +2,13 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { Autocomplete, AutocompleteRenderInputParams, Card, CardContent, CardHeader, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
-import { Add, Remove } from "@mui/icons-material";
+import { Autocomplete, AutocompleteRenderInputParams, Card, CardContent, CardHeader, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
+import { Add, Delete, Remove, Save } from "@mui/icons-material";
 import { JsxElement } from "typescript";
-import { Persistor } from "../Data";
+import { Named, Persistor } from "../Data";
 import { useState } from "react";
 import { Trait } from "../Enemy";
+import { bindPopover, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
 
 interface BaseProps<V> {
     value: V;
@@ -119,7 +120,7 @@ function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
     );
 }
 
-interface SelectProps<T extends { name: string }> {
+interface SmartSelectProps<T extends { name: string }> {
     provider: Persistor<T>;
     label: string;
     endAdornment: React.ReactNode;
@@ -127,7 +128,7 @@ interface SelectProps<T extends { name: string }> {
 }
 
 //TODO: there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
-function SmartSelect<T extends { name: string }>(props: SelectProps<T> & BaseProps<T>) {
+export function SmartSelect<T extends { name: string }>(props: SmartSelectProps<T> & BaseProps<T>) {
     return (
         <Autocomplete
             options={props.filter ? props.provider.getAll().filter(props.filter) : props.provider.getAll()}
@@ -146,6 +147,68 @@ function SmartSelect<T extends { name: string }>(props: SelectProps<T> & BasePro
     );
 }
 
+export interface SaveableSelectProps<T extends { name: string }> {
+    provider: Persistor<T>;
+    label: string;
+    filter?: (t: T) => boolean;
+}
+
+export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & BaseProps<T>) {
+    const theme = useTheme();
+    const popupState = usePopupState({ variant: "popover", popupId: "ServantSelector" });
+    const [ state, setState ] = useState({ newName: "" });
+
+    const doSave = () => {
+        if (state.newName){
+            const newItem = update(props.value as Named, { name: { $set: "* " + state.newName } }) as T;
+            props.provider.put(newItem);
+            props.onChange(newItem);
+            popupState.setOpen(false);
+        } else console.log(JSON.stringify(props.value));
+    }
+
+    return (
+        <React.Fragment>
+            <SmartSelect {...props} endAdornment={
+                    <InputAdornment position="end">
+                        {props.provider.isCustom(props.value) ?
+                            <IconButton title="Delete"
+                                onClick={() => {
+                                    props.provider.delete(props.value);
+                                    const allItems = props.provider.getAll();
+                                    const newSelected =
+                                        allItems.find(item => item.name.localeCompare(props.value.name) > 0) ??
+                                        allItems[allItems.length - 1];
+                                    props.onChange(newSelected);
+                                }}>
+                                <Delete />
+                            </IconButton>
+                        : null}
+                        <IconButton title="Save" {...bindTrigger(popupState)}>
+                            <Save />
+                        </IconButton>
+                    </InputAdornment>
+                } />
+            <Popover {...bindPopover(popupState)}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                transformOrigin={{ vertical: "top", horizontal: "center" }}>
+                <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
+                    <CardContent>
+                        <Stack justifyContent="space-evenly" spacing={2} direction="row">
+                            <TextField autoFocus label="Node Name" value={state.newName} onChange={e => setState({ newName: e.target.value })}
+                                onKeyPress={e => { if (e.code == "Enter") doSave() }} />
+                            <IconButton title="Save"
+                                onClick={doSave}>
+                                <Save />
+                            </IconButton>
+                        </Stack>
+                    </CardContent>
+                </Card>
+            </Popover>
+        </React.Fragment>
+    );
+}
+
 export function TraitSelect(props: BaseProps<Trait[]> & { label?: string }) {
     return (
         <Autocomplete multiple disableClearable={false}
@@ -156,5 +219,5 @@ export function TraitSelect(props: BaseProps<Trait[]> & { label?: string }) {
     );
 }
 
-export { BaseComponent, PercentInput, StateWrapper, handleChange, ArrayBuilder, SmartSelect };
+export { BaseComponent, PercentInput, StateWrapper, handleChange, ArrayBuilder };
 export type { BaseProps };

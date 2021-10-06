@@ -86,7 +86,9 @@ class DataProvider {
     }
 }
 
-class Persistor<T extends { name: string }> {
+export interface Named { name: string }
+
+class Persistor<T extends Named> {
     constructor(type: ClassConstructor<T>, storageKey: string | undefined, staticItems: T[]) {
         if (storageKey) {
             this.storageKey = storageKey;
@@ -104,12 +106,12 @@ class Persistor<T extends { name: string }> {
     private map: Map<string, T>;
     private isAllCustom: boolean;
 
-    get(name: string): T {
-        return this.map.get(name) as T;
-    }
-
     has(name: string): boolean {
         return this.map.has(name);
+    }
+
+    get(name: string): T {
+        return this.map.get(name) as T;
     }
 
     getAll(): T[] {
@@ -118,14 +120,25 @@ class Persistor<T extends { name: string }> {
     }
 
     put(item: T) {
+        this.map.set(item.name, item);
+        this.items = this.items.filter(i => i.name != item.name).concat(item).sort((a, b)=> a.name.localeCompare(b.name));
+        this.save(savedItems => savedItems.filter(i => i.name != item.name).concat(item));
+    }
+
+    delete(item: T) {
+        this.map.delete(item.name);
+        this.items = this.items.filter(i => i.name != item.name);
+        this.save(savedItems => savedItems.filter(i => i.name != item.name));
+    }
+
+    private save(transform: (existing: T[]) => T[]) {
         if (!this.storageKey) {
-            console.log("Invalid call to Persistor.put", item);
             throw new Error("Attempted to save state which was not intended to be saved.")
         }
-        
-        this.map.set(item.name, item);
-        this.items = Array.from(this.map.values()).sort((a, b)=> a.name.localeCompare(b.name));//TODO: kinda inefficient, all we need to do is binary search then insert
-        localStorage.setItem(this.storageKey, JSON.stringify(this.items.filter(this.isCustom, this)));
+
+        const existing = JSON.parse(localStorage.getItem(this.storageKey!) ?? "[]");
+        const transformed = transform(existing);
+        localStorage.setItem(this.storageKey, JSON.stringify(transformed));
     }
 
     isCustom(item: T) {
@@ -152,7 +165,7 @@ function getMaxLevel(rarity: number): number {
     return 0;
 }
 
-class TemplateData {
+export class TemplateData {
     constructor(
         readonly name: string,
         buffs: BuffMatrix,

@@ -97,8 +97,8 @@ function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
                             </Paper>
                         );
                     })}
-                    <Paper sx={{ background: theme.palette.refund.gradient, color: theme.palette.refund.contrastText, padding: theme.spacing(1) }}>
-                        <Typography textAlign="center" fontStyle="italic">
+                    <Paper sx={{ background: theme.palette.refund.gradient, color: theme.palette.refund.contrastText }}>
+                        <Typography textAlign="center" style={{ textShadow: "1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000" }}>
                             <NumberFormat displayType="text" decimalScale={1} fixedDecimalScale suffix="%" value={98.9} />
                         </Typography>
                     </Paper>

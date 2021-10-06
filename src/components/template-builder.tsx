@@ -2,7 +2,7 @@ import { Checkbox, FormControlLabel, Grid, TextField, Stack, Card, CardContent, 
 import { useData } from "../Data";
 import { Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
-import { BaseProps, handleChange, SmartSelect } from "./common";
+import { BaseProps, handleChange, SaveableSelect, SmartSelect } from "./common";
 import { ServantSelector } from "./servant-selector";
 import { bindPopover, usePopupState, bindTrigger } from "material-ui-popup-state/hooks";
 import { useState } from "react";
@@ -24,39 +24,10 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <SmartSelect provider={data.templates}
-                    value={data.templates.get(props.value.name)}
-                    onChange={v => props.onChange(data.getTemplate(v.name))}
-                    label="Select Template"
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton title="Save" {...bindTrigger(popupState)}>
-                                <Save />
-                            </IconButton>
-                        </InputAdornment>
-                    } />
-                <Popover {...bindPopover(popupState)}
-                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                    transformOrigin={{ vertical: "top", horizontal: "center" }}>
-                    <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
-                        <CardContent>
-                            <Stack justifyContent="space-evenly" spacing={2} direction="row">
-                                <TextField autoFocus label="Template Name" value={state.newName} onChange={e => setState({ newName: e.target.value })} />
-                                <IconButton title="Save"
-                                    onClick={() => {
-                                        if (state.newName){
-                                            const item = update(props.value, { name: { $set: "* " + state.newName } })
-                                            data.setTemplate(item);
-                                            props.onChange(item);
-                                            popupState.setOpen(false);
-                                        } else console.log(JSON.stringify(props.value.buffs.buffs));
-                                    }}>
-                                    <Save />
-                                </IconButton>
-                            </Stack>
-                        </CardContent>
-                    </Card>
-                </Popover>
+                <SaveableSelect provider={data.templates}
+                    value={props.value.asSaveable()}
+                    onChange={template => props.onChange(data.getTemplate(template.name))}
+                    label="Select template" />
             </Grid>
             {props.value.party.map((servant, index) =>(
                 <Grid item xs={12} sm={6} md={12} lg={4} key={index}>
