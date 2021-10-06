@@ -114,7 +114,7 @@ class Strat {
     public getRealParty(): [Servant, BuffMatrix | undefined, CraftEssence][] {
         return this.servants.map((servant, index) => servant ?
             [ servant.servant, servant.buffs, this.servantCe ] :
-            [ this.template.party[index], undefined, this.supportCe ], this);
+            [ this.template.party[index], undefined, this.supportCe ]);
     }
 
     public getRealClearers(): [Servant, BuffMatrix | undefined, CraftEssence][] {
@@ -141,6 +141,14 @@ class Strat {
                 clearers: { $set: this.template.clearers.map(getNewClearer) }
             }
         });
+    }
+
+    public setNpLevel(level: number): Strat {
+        return this.template.clearers.reduce((unique, c) => unique.includes(c) ? unique : unique.concat([c]), [] as number[])
+            .reduce((strat, clearer) => this.servants[clearer] ?
+                update(strat, { servants: { [clearer]: { servant: { config: { npLevel: { $set: level } } } } } }) :
+                update(strat, { template: { party: { [clearer]: { config: { npLevel: { $set: level } } } } } }),
+                this as Strat)
     }
 
     //TODO: fix this garbage

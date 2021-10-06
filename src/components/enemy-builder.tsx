@@ -1,5 +1,5 @@
 import { Box, TextField, Autocomplete, Stack, Grid, Card, CardHeader, Typography, IconButton, Popover, CardContent, useTheme, InputAdornment } from "@mui/material";
-import { ArrayBuilder, BaseComponent, BaseProps, handleChange, SaveableSelect, TraitSelect } from "./common";
+import { ArrayBuilder, BaseComponent, BaseProps, handleChange, IntegerInput, SaveableSelect, TraitSelect } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass, Trait } from "../Enemy";
 import { EnemyNode, Wave } from "../Strat";
 import React, { useState } from "react";
@@ -12,9 +12,8 @@ function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
     return (
         <React.Fragment>
             {props.showHealth ?
-                <TextField type="number"
-                    label="Enemy HP" value={props.value.hitPoints.toString()}
-                    onChange={(e) => { if (e.target.value) handleChange({ hitPoints: { $set: Number.parseInt(e.target.value) } }, props)}} />
+                <IntegerInput label="Enemy HP" value={props.value.hitPoints}
+                    onChange={ v => { handleChange({ hitPoints: { $set: v } }, props)}} />
             : null}
             <Autocomplete
                 options={Object.values(EnemyClass)}

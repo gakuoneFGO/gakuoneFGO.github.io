@@ -46,17 +46,17 @@ class StateWrapper<S> {
     constructor(readonly _: S) {}
 }
 
-interface PercentInputProps extends BaseProps<number> {
+interface NumberInputProps extends BaseProps<number> {
     label?: string;
 }
 
-interface PercentInputState {
+interface NumberInputState {
     value: number;
     displayValue: string;
 }
 
-const PercentInput = React.memo((props: PercentInputProps) => {
-    const getDisplayValue = (value: number): PercentInputState => {
+export function PercentInput(props: NumberInputProps) {
+    const getDisplayValue = (value: number): NumberInputState => {
         if (value == 0) return { value: value, displayValue: "" };
         let displayValue = (value * 100).toFixed(2).replace(/(0|\.00)$/, "");
         return { value: value, displayValue: displayValue };
@@ -88,7 +88,36 @@ const PercentInput = React.memo((props: PercentInputProps) => {
             }}
             onChange={e => { onChange(e.target.value) }} />
     );
-});
+}
+
+export function IntegerInput(props: NumberInputProps) {
+    const getDisplayValue = (value: number): NumberInputState => {
+        return { value: value, displayValue: value == 0 ? "" : value.toString() };
+    }
+
+    const [ state, setState ] = useState(getDisplayValue(props.value));
+
+    if (state.value != props.value) {
+        setState(getDisplayValue(props.value));
+    }
+
+    const onChange = (stringValue: string) => {
+        //TODO: validate input
+        let value = stringValue == "" ? 0 : Number.parseInt(stringValue);
+        setState({ value: value, displayValue: stringValue });
+        handleChange({ $set: value }, props);
+    }
+
+    return (
+        <TextField
+            type="number"
+            label={props.label}
+            value={state.displayValue}
+            onKeyPress={e => { if ([".", "e"].includes(e.key)) e.preventDefault(); }}
+            placeholder="0"
+            onChange={e => { onChange(e.target.value) }} />
+    );
+}
 
 interface ArrayBuilderProps<T> {
     createOne: () => T;
@@ -219,5 +248,5 @@ export function TraitSelect(props: BaseProps<Trait[]> & { label?: string }) {
     );
 }
 
-export { BaseComponent, PercentInput, StateWrapper, handleChange, ArrayBuilder };
+export { BaseComponent, StateWrapper, handleChange, ArrayBuilder };
 export type { BaseProps };

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { bindToggle, bindPopper, usePopupState } from 'material-ui-popup-state/hooks';
 import { useData } from "../Data";
 import { Servant, ServantData } from "../Servant";
-import { BaseComponent, BaseProps, handleChange, SmartSelect } from "./common";
+import { BaseComponent, BaseProps, handleChange, IntegerInput, SmartSelect } from "./common";
 
 interface ServantSelectorProps extends BaseProps<Servant> {
     label?: string;
@@ -50,11 +50,10 @@ function ServantSelector(props: ServantSelectorProps) {
                                 value={props.value.config.npLevel.toString()}
                                 renderInput={params => <TextField {...params} label="NP Level" />}
                                 onChange={(e, v) => { if (v) handleChange({ config: { npLevel: { $set: Number.parseInt(v) } } }, props)}} />
-                            <TextField
-                                type="number"
+                            <IntegerInput
                                 label="Fous"
-                                value={props.value.config.attackFou.toString()}
-                                onChange={(e) => { if (e.target.value) handleChange({ config: { attackFou: { $set: Number.parseInt(e.target.value) } } }, props)}} />
+                                value={props.value.config.attackFou}
+                                onChange={v => { handleChange({ config: { attackFou: { $set: v } } }, props)}} />
                             <Stack direction="row" justifyContent="space-between">
                                 <FormControlLabel
                                     label="NP Upgrade"

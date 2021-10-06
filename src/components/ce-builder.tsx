@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardHeader, TextField, Autocomplete, Grid, Typo
 import React, { useState } from "react";
 import { CraftEssence } from "../Damage";
 import { Buff, BuffType, CardType } from "../Servant";
-import { BaseComponent, BaseProps, PercentInput, ArrayBuilder, handleChange, SmartSelect, TraitSelect, SaveableSelect } from "./common";
+import { BaseComponent, BaseProps, PercentInput, ArrayBuilder, handleChange, SmartSelect, TraitSelect, SaveableSelect, IntegerInput } from "./common";
 import { Trait } from "../Enemy";
 import { useData } from "../Data";
 import { Save } from "@mui/icons-material";
@@ -72,9 +72,8 @@ function CEBuilder(props: CEBuilderProps) {
                             <SaveableSelect provider={data.craftEssences} {...props} label="Select CE" />
                         </Grid>
                         <Grid item xs={3} sm={12} md={3}>
-                            <TextField type="number"
-                                label="Attack Stat" value={props.value.attackStat.toString()}
-                                onChange={(e) => { if (e.target.value) handleChange({ attackStat: { $set: Number.parseInt(e.target.value) } }, props)}} />
+                            <IntegerInput label="Attack Stat" value={props.value.attackStat}
+                                onChange={v => { handleChange({ attackStat: { $set: v } }, props)}} />
                         </Grid>
                     </Grid>
                 </CardContent>
