@@ -49,7 +49,7 @@ export function StratBuilder() {
             );
             setState({
                 strat: defaultBuffsetHeuristic(strat, 0),
-                basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).changeClass(getLikelyClassMatchup(servant.data.sClass)),
+                basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).withClass(getLikelyClassMatchup(servant.data.sClass)),
                 advancedNode: data.nodes.get("[LANCERS] Nursemas Band-aid Farming"),
                 selectedTab: "servant0",
                 selectedOutput: "basic"
@@ -75,7 +75,7 @@ export function StratBuilder() {
             strat = fixNpCards(strat);
             handleChange({
                 strat: { $set: defaultBuffsetHeuristic(strat, index) },
-                basicEnemy: { $set: state.basicEnemy.changeClass(getLikelyClassMatchup(servant.data.sClass)) }
+                basicEnemy: { $set: state.basicEnemy.withClass(getLikelyClassMatchup(servant.data.sClass)) }
             });
         } else {
             handleChange({ strat: { servants: { [index]: { servant: { $set: servant } } } } });

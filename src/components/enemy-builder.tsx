@@ -1,12 +1,10 @@
-import { Box, TextField, Autocomplete, Stack, Grid, Card, CardHeader, Typography, IconButton, Popover, CardContent, useTheme, InputAdornment } from "@mui/material";
-import { ArrayBuilder, BaseComponent, BaseProps, handleChange, IntegerInput, SaveableSelect, TraitSelect } from "./common";
+import { Box, TextField, Autocomplete, Stack, Grid, Card, CardHeader, Typography } from "@mui/material";
+import { ArrayBuilder, BaseProps, handleChange, IntegerInput, SaveableSelect, TraitSelect } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass, Trait } from "../Enemy";
-import { EnemyNode, Wave } from "../Strat";
-import React, { useState } from "react";
+import { EnemyNode } from "../Strat";
+import React from "react";
 import { useData } from "../Data";
-import { bindPopover, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
 import update from "immutability-helper";
-import { Save } from "@mui/icons-material";
 
 function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
     return (
@@ -19,25 +17,22 @@ function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
                 options={Object.values(EnemyClass)}
                 value={props.value.eClass}
                 renderInput={params => <TextField {...params} label="Enemy Class" />}
-                onChange={(e, v) => { if (v) handleChange({ $set: props.value.changeClass(v) }, props); }} />
+                onChange={(e, v) => { if (v) handleChange({ $set: props.value.withClass(v) }, props); }} />
             <Autocomplete
                 options={Object.values(EnemyAttribute)}
                 value={props.value.attribute}
                 renderInput={params => <TextField {...params} label="Enemy Attribute" />}
-                onChange={(e, v) => { if (v) handleChange({ $set: props.value.changeAttribute(v) }, props); }} />
+                onChange={(e, v) => { if (v) handleChange({ $set: props.value.withAttribute(v) }, props); }} />
             <TraitSelect
                 label="Enemy Traits"
                 value={props.value.traits}
-                onChange={traits => { handleChange({ traits: { $set: traits } }, props); }} />
+                onChange={traits => { handleChange({ $set: props.value.withSpecificTraits(traits) }, props); }} />
         </React.Fragment>
     );
 }
 
 function NodeBuilder(props: BaseProps<EnemyNode>) {
     const [ data ] = useData();
-    const popupState = usePopupState({ variant: "popover", popupId: "ServantSelector" });
-    const theme = useTheme();
-    const [ state, setState ] = useState({ newName: "" });
     
     return (
         <Grid container spacing={2}>
