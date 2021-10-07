@@ -30,7 +30,7 @@ enumStream.on("end", () => {
             new GrowthCurve(new Map(data.atkGrowth.map((atk: number, i: number) => [ (i + 1).toString(), atk ]))),
             data.className,
             data.attribute,
-            0,//TODO: f2pCopies. most you can get from rarity + ascension mat list. the few 3* and 4* exceptions can be handled manually (even though application logic will probably just assume that you have any 3* you are using at NP5)
+            getF2PCopies(data),
             data.extraAssets.faces.ascension["1"],
             data.extraAssets.charaGraph.ascension["1"],
             "",//charge profile...
@@ -71,7 +71,7 @@ function mapNp(np: any, unupgraded: any): NoblePhantasm {
         npFuncUnupgraded
             ? npFuncUnupgraded.svals.map(v => v.Value * U_RATIO) 
             : [ 0, 0, 0, 0, 0 ],
-            npFuncUnupgraded && unupgraded.strengthStatus ? (npFunc.svals[0].Value * U_RATIO - npFuncUnupgraded.svals[0].Value * U_RATIO) : 0,
+            npFunc ? npFunc.svals[0].Value * U_RATIO - npFuncUnupgraded.svals[0].Value * U_RATIO : 0,
             getExtraMultiplier(npFunc),
             getExtraTrigger(npFunc),
             doesExtraDamageStack(npFunc),
@@ -160,11 +160,11 @@ function getSkills(data: any, npType: CardType): Skill[] {
 }
 
 function getUpgraded(array: any[], areSame: (item1: any, item2:any) => boolean): any[] {
-    return array.filter(item => !array.some(other => areSame(item, other) && other.strengthStatus > item.strengthStatus));
+    return array.filter(item => !array.some(other => areSame(item, other) && other.condQuestId > item.condQuestId));
 }
 
 function getUnupgraded(upgraded: any, array: any[], areSame: (item1: any, item2:any) => boolean): any {
-    return array.find(item => areSame(item, upgraded) && !array.some(other => areSame(item, other) && other.strengthStatus < item.strengthStatus));
+    return array.find(item => areSame(item, upgraded) && !array.some(other => areSame(item, other) && other.condQuestId < item.condQuestId));
 }
 
 function getPassives(data: any, npType: CardType): Buff[] {
@@ -395,6 +395,19 @@ function isUseful(buff: Buff, npType: CardType): boolean {
             return buff.val > 0;
         case BuffType.CardTypeUp:
             return buff.val > 0 && (buff.team || buff.cardType == npType);
+    }
+}
+
+//doesn't actually return f2p copies but as "default NP level" this is reasonable
+function getF2PCopies(data: any): number {
+    if (["Altria Pendragon (Lily)", "Habetrot"].includes(data.name)) return 5;
+
+    switch (data.rarity) {
+        case 1:
+        case 2:
+        case 3: return 5; //not true but w/e
+        case 5: return 0;
+        case 4: return data.ascensionMaterials["3"].items.length <= 1 ? 5 : 0;
     }
 }
 
