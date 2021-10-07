@@ -214,6 +214,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -416,6 +417,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -629,6 +631,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -813,6 +816,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -1031,6 +1035,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     5.5,
@@ -1224,6 +1229,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -1434,6 +1440,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -1619,6 +1626,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4.5,
@@ -1804,6 +1812,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -1996,6 +2005,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -2199,6 +2209,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -2399,6 +2410,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -2594,6 +2606,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -2782,6 +2795,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -2979,6 +2993,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -3180,6 +3195,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -3364,6 +3380,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -3574,6 +3591,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -3794,6 +3812,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -3988,6 +4007,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -4203,6 +4223,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -4395,6 +4416,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -4579,6 +4601,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -4758,6 +4781,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -4943,6 +4967,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -5135,6 +5160,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -5336,6 +5362,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -5512,6 +5539,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -5706,6 +5734,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -5899,6 +5928,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -6101,6 +6131,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -6286,6 +6317,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -6482,6 +6514,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -6695,6 +6728,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -6895,6 +6929,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -7087,6 +7122,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     7,
                     9,
@@ -7280,6 +7316,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -7465,6 +7502,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -7661,6 +7699,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -7860,6 +7899,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -8064,6 +8104,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -8240,6 +8281,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -8433,6 +8475,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -8642,6 +8685,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -8847,6 +8891,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -9049,6 +9094,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -9234,6 +9280,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -9436,6 +9483,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -9632,6 +9680,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -9834,6 +9883,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -10034,6 +10084,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -10227,6 +10278,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -10421,6 +10473,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -10638,6 +10691,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -10851,6 +10905,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -11036,6 +11091,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -11235,6 +11291,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -11448,6 +11505,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -11674,6 +11732,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -11875,6 +11934,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -12092,6 +12152,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -12277,6 +12338,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -12298,6 +12360,7 @@
             },
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -12482,6 +12545,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -12695,6 +12759,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -12871,6 +12936,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -13059,6 +13125,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -13243,6 +13310,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -13431,6 +13499,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -13626,6 +13695,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -13811,6 +13881,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -13995,6 +14066,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -14195,6 +14267,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     9,
@@ -14374,6 +14447,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -14559,6 +14633,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -14762,6 +14837,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -14955,6 +15031,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -15151,6 +15228,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -15335,6 +15413,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -15546,6 +15625,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -15748,6 +15828,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -15947,6 +16028,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -16142,6 +16224,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -16347,6 +16430,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -16542,6 +16626,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -16728,6 +16813,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -16915,6 +17001,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -17100,6 +17187,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -17310,6 +17398,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -17495,6 +17584,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -17683,6 +17773,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -17882,6 +17973,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -18093,6 +18185,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -18284,6 +18377,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -18478,6 +18572,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -18665,6 +18760,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -18852,6 +18948,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -19048,6 +19145,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -19241,6 +19339,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -19451,6 +19550,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -19663,6 +19763,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -19863,6 +19964,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -20056,6 +20158,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -20273,6 +20376,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -20491,6 +20595,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -20701,6 +20806,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -20911,6 +21017,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -21122,6 +21229,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -21315,6 +21423,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -21508,6 +21617,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -21692,6 +21802,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -21893,6 +22004,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -22088,6 +22200,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -22290,6 +22403,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -22466,6 +22580,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -22653,6 +22768,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -22847,6 +22963,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -23043,6 +23160,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -23228,6 +23346,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -23421,6 +23540,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -23613,6 +23733,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -23826,6 +23947,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -24041,6 +24163,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -24226,6 +24349,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -24410,6 +24534,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -24602,6 +24727,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -24787,6 +24913,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -24987,6 +25114,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -25198,6 +25326,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -25403,6 +25532,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -25605,6 +25735,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -25807,6 +25938,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -25992,6 +26124,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -26196,6 +26329,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -26389,6 +26523,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -26591,6 +26726,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -26793,6 +26929,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -27008,6 +27145,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -27201,6 +27339,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -27386,6 +27525,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -27579,6 +27719,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -27791,6 +27932,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -27991,6 +28133,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -28199,6 +28342,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -28384,6 +28528,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -28577,6 +28722,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -28778,6 +28924,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -28965,6 +29112,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -29141,6 +29289,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -29334,6 +29483,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -29527,6 +29677,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -29728,6 +29879,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -29953,6 +30105,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -30160,6 +30313,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -30345,6 +30499,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -30532,6 +30687,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -30745,6 +30901,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -30937,6 +31094,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -31150,6 +31308,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -31171,6 +31330,7 @@
             },
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -31381,6 +31541,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -31581,6 +31742,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -31757,6 +31919,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -31965,6 +32128,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -32161,6 +32325,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -32353,6 +32518,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -32555,6 +32721,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -32749,6 +32916,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -32963,6 +33131,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -33156,6 +33325,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -33349,6 +33519,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -33542,6 +33713,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -33726,6 +33898,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -33930,6 +34103,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -34123,6 +34297,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     5.5,
@@ -34308,6 +34483,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -34510,6 +34686,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -34710,6 +34887,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -34895,6 +35073,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -35097,6 +35276,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -35299,6 +35479,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -35501,6 +35682,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -35694,6 +35876,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -35903,6 +36086,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -36104,6 +36288,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -36307,6 +36492,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -36515,6 +36701,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -36723,6 +36910,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -36907,6 +37095,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -37133,6 +37322,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -37353,6 +37543,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -37562,6 +37753,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -37780,6 +37972,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -37982,6 +38175,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -38193,6 +38387,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -38381,6 +38576,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -38574,6 +38770,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     4.5,
                     6,
@@ -38759,6 +38956,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -38944,6 +39142,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -39137,6 +39336,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -39330,6 +39530,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -39524,6 +39725,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -39716,6 +39918,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -39910,6 +40113,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -40101,6 +40305,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -40285,6 +40490,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -40488,6 +40694,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -40682,6 +40889,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4,
                     5.5,
@@ -40867,6 +41075,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -41060,6 +41269,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -41245,6 +41455,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -41437,6 +41648,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -41630,6 +41842,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -41815,6 +42028,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -42009,6 +42223,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -42204,6 +42419,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -42414,6 +42630,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -42616,6 +42833,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -42801,6 +43019,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -43014,6 +43233,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -43215,6 +43435,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -43418,6 +43639,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -43617,6 +43839,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -43802,6 +44025,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -43987,6 +44211,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -44172,6 +44397,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     9,
                     12,
@@ -44384,6 +44610,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -44577,6 +44804,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -44790,6 +45018,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -44993,6 +45222,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -45169,6 +45399,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -45354,6 +45585,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -45538,6 +45770,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -45723,6 +45956,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -45925,6 +46159,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -46101,6 +46336,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -46295,6 +46531,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -46498,6 +46735,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -46694,6 +46932,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -46892,6 +47131,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -47068,6 +47308,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -47260,6 +47501,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -47445,6 +47687,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -47656,6 +47899,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -47843,6 +48087,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -48045,6 +48290,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -48239,6 +48485,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -48439,6 +48686,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -48624,6 +48872,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -48809,6 +49058,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -49006,6 +49256,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -49215,6 +49466,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -49428,6 +49680,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -49634,6 +49887,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -49827,6 +50081,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -50050,6 +50305,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -50251,6 +50507,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -50452,6 +50709,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -50646,6 +50904,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -50830,6 +51089,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -51051,6 +51311,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -51235,6 +51496,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -51419,6 +51681,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -51613,6 +51876,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -51800,6 +52064,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -51993,6 +52258,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -52185,6 +52451,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -52370,6 +52637,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -52571,6 +52839,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -52779,6 +53048,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -52974,6 +53244,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -53186,6 +53457,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -53388,6 +53660,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -53573,6 +53846,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -53775,6 +54049,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -53975,6 +54250,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -54160,6 +54436,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -54371,6 +54648,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -54575,6 +54853,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -54760,6 +55039,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -54961,6 +55241,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -55154,6 +55435,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -55362,6 +55644,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -55545,6 +55828,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -55566,6 +55850,7 @@
             },
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -55760,6 +56045,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -55963,6 +56249,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -56155,6 +56442,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -56356,6 +56644,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -56558,6 +56847,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -56764,6 +57054,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -56981,6 +57272,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -57173,6 +57465,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -57374,6 +57667,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -57576,6 +57870,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -57792,6 +58087,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -57979,6 +58275,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -58163,6 +58460,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -58357,6 +58655,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -58550,6 +58849,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -58766,6 +59066,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -58941,6 +59242,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -59125,6 +59427,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -59309,6 +59612,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -59493,6 +59797,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -59686,6 +59991,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -59881,6 +60187,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -60083,6 +60390,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -60112,6 +60420,7 @@
             },
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -60141,6 +60450,7 @@
             },
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -60344,6 +60654,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "st",
                 "multiplier": [
                     12,
                     16,
@@ -60530,6 +60841,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -60722,6 +61034,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -60914,6 +61227,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "aoe",
                 "multiplier": [
                     4.5,
                     6,
@@ -61123,6 +61437,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "st",
                 "multiplier": [
                     6,
                     8,
@@ -61318,6 +61633,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -61513,6 +61829,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "st",
                 "multiplier": [
                     9,
                     12,
@@ -61709,6 +62026,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -61920,6 +62238,7 @@
         "nps": [
             {
                 "cardType": "arts",
+                "target": "none",
                 "multiplier": [
                     0,
                     0,
@@ -62158,6 +62477,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,
@@ -62362,6 +62682,7 @@
         "nps": [
             {
                 "cardType": "quick",
+                "target": "aoe",
                 "multiplier": [
                     6,
                     8,
@@ -62574,6 +62895,7 @@
         "nps": [
             {
                 "cardType": "buster",
+                "target": "aoe",
                 "multiplier": [
                     3,
                     4,

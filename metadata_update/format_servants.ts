@@ -1,7 +1,7 @@
 import * as JSONStream from "JSONStream";
 import * as fs from "fs";
 import "reflect-metadata";
-import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType } from "../src/Servant"
+import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType, NPTarget } from "../src/Servant"
 import update from "immutability-helper";
 import { Trait } from "../src/Enemy";
 
@@ -62,12 +62,13 @@ enumStream.on("end", () => {
 });
 
 function mapNp(np: any, unupgraded: any): NoblePhantasm {
-    let npFuncIndex = np.functions.findIndex(f => f.funcType.startsWith("damageNp"));
-    let npFunc = np.functions[npFuncIndex];
-    let npFuncUnupgraded = unupgraded.functions.find(f => f.funcType.startsWith("damageNp"));
+    const npFuncIndex = np.functions.findIndex(f => f.funcType.startsWith("damageNp"));
+    const npFunc = np.functions[npFuncIndex];
+    const npFuncUnupgraded = unupgraded.functions.find(f => f.funcType.startsWith("damageNp"));
 
     return new NoblePhantasm(
         np.card,
+        getNpTarget(npFunc),
         npFuncUnupgraded
             ? npFuncUnupgraded.svals.map(v => v.Value * U_RATIO) 
             : [ 0, 0, 0, 0, 0 ],
@@ -80,6 +81,17 @@ function mapNp(np: any, unupgraded: any): NoblePhantasm {
                 .map((b: Buff) => update(b, { turns: { $set: b.turns - 1 } }))
                 .filter(b => b.turns > 0)
     );
+}
+
+function getNpTarget(func: any): NPTarget {
+    if (!func) return "none";
+    switch (func.funcTargetType) {
+        case "enemyAll": return "aoe";
+        case "enemy": return "st";
+        default:
+            console.log("Unknown NP target", func.funcTargetType);
+            return "none";
+    }
 }
 
 function getExtraMultiplier(npFunc: any): number[] {
@@ -140,10 +152,6 @@ EFFECT TYPES (each has a skill flavor and an on-NP flavor)
     track CDs so that we know what gets popped twice if vitch is in the party (mostly affects ishtar, melusine, oberon, cas cu)
 
 EXCEPTIONS
-    summer kama, grand boring, robin (checkbox for enabling supereffective damage, usually hidden. this applies a stack of the extraTrigger trait)
-        romulus needs special stacking logic. also need to fix his NP import, it's messed up atm. same with kagekiyo
-        paris is similar but it's very not straightforward to figure out if hers can apply
-    arjuna alter (import power mod as "always")
     ishtar (restrict mana burst to T2+? this is so niche that it doesn't feel like it's worth implementing)
     melusine...
         double vitch => third skill only once

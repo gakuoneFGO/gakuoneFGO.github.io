@@ -71,7 +71,7 @@ class ServantData {
     readonly nps: NoblePhantasm[];
 
     public getNP(cardType?: CardType): NoblePhantasm {
-        return this.nps.find(np => !cardType || np.cardType == cardType) as NoblePhantasm;
+        return this.nps.find(np => np.cardType == cardType) ?? this.nps.find(np => np.target == "aoe") ?? this.nps[0];
     }
 
     public hasNP(cardType: CardType): boolean {
@@ -147,9 +147,12 @@ class Skill {
     readonly buffs: Buff[];
 }
 
+export type NPTarget = "aoe" | "st" | "none";
+
 class NoblePhantasm {
     constructor(
         readonly cardType: CardType,
+        readonly target: NPTarget,
         readonly multiplier: number[],
         readonly multUpgrade: number,
         readonly extraDamage: number[],
