@@ -14,7 +14,9 @@ interface OutputPanelProps {
 }
 
 export const OutputPanel = React.memo((props: OutputPanelProps) => {
+    const theme = useTheme();
     const output = [ 1, 2, 3, 4, 5 ].map(npLevel => props.strat.setNpLevel(npLevel).run(EnemyNode.uniform(props.enemy)));
+    const selectedNpLevels = props.strat.getRealClearers().map(c => c[0].config.npLevel);
 
     return (
         <TableContainer>
@@ -23,17 +25,18 @@ export const OutputPanel = React.memo((props: OutputPanelProps) => {
                     <TableRow>
                     <TableCell />
                         {props.strat.template.clearers.map((_, turn) => (
-                            <TableCell key={turn}><Typography>T{turn + 1}</Typography></TableCell>
+                            <TableCell key={turn}><Typography sx={{textAlign: "center"}}>T{turn + 1}</Typography></TableCell>
                         ))}
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {output.map((nodeDamage, npIndex) =>
                         <TableRow key={npIndex}>
-                            <TableCell><Typography>NP{npIndex + 1}</Typography></TableCell>
+                            <TableCell><Typography sx={{textAlign: "center"}}>NP{npIndex + 1}</Typography></TableCell>
                             {nodeDamage.damagePerWave.map((waveDamage, turn) =>
-                                <TableCell key={turn}>
-                                    <Typography variant="body2">
+                                <TableCell key={turn} sx={selectedNpLevels[turn] == npIndex + 1 ?
+                                    {backgroundColor: theme.palette.warning.light, color: theme.palette.warning.contrastText} : {}}>
+                                    <Typography variant="body2" sx={{textAlign: "center"}}>
                                         <NumberFormat displayType="text" thousandSeparator=","
                                             value={waveDamage.damagePerEnemy[0].low} />
                                     </Typography>
