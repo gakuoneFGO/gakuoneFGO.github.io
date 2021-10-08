@@ -428,14 +428,14 @@
         ]
     },
     {
-        "name": "TmpObeVitchVsKnights50",
+        "name": "[BUSTER] Double Oberon + Vitch (40% vs Knights)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "cardUp": 0.5,
+                    "npUp": 0.6,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
@@ -460,21 +460,21 @@
                 },
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "cardUp": 0.5,
+                    "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -486,22 +486,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.3,
+                    "cardUp": 1,
+                    "npUp": 0.6,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -535,13 +535,13 @@
         ]
     },
     {
-        "name": "TmpCastoria0Backloaded",
+        "name": "[BUSTER] Double Oberon + Castoria (0%, Backloaded)",
         "buffs": {
             "buffs": [
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.2,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -566,16 +566,16 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.2,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "threatToHumanity"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -593,16 +593,16 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.5,
+                    "cardUp": 1,
+                    "npUp": 0.6,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "threatToHumanity"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -642,13 +642,13 @@
         ]
     },
     {
-        "name": "TmpReines10Backloaded",
+        "name": "[BUSTER] Double Oberon + Reines (10%, Backloaded)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -673,9 +673,9 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.4,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -700,10 +700,10 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.7,
+                    "cardUp": 1,
+                    "npUp": 0.6,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
@@ -749,13 +749,13 @@
         ]
     },
     {
-        "name": "TmpWaver20Backloaded",
+        "name": "[BUSTER] Double Oberon + Waver (20%, Backloaded)",
         "buffs": {
             "buffs": [
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.3,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -780,9 +780,9 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.3,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -807,10 +807,10 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.6,
+                    "cardUp": 1,
+                    "npUp": 0.6,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
@@ -856,13 +856,13 @@
         ]
     },
     {
-        "name": "TmpVitch40Backloaded",
+        "name": "[BUSTER] Double Oberon + Vitch (40%, Backloaded)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -888,21 +888,21 @@
                 },
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "cardUp": 0.5,
+                    "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -914,22 +914,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.3,
+                    "cardUp": 1.5,
+                    "npUp": 0.6,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -963,14 +963,41 @@
         ]
     },
     {
-        "name": "TmpObeVitchVsKnights50Transposed",
+        "name": "[BUSTER] Double Oberon + Merlin (Vitch DPS Only)",
         "buffs": {
             "buffs": [
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "attackUp": 0.2,
+                    "cardUp": 0.5,
+                    "npUp": 0.3,
                     "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "attributeHuman"
+                            ],
+                            "modifier": 0.5
+                        },
+                        {
+                            "trigger": [
+                                "livingHuman"
+                            ],
+                            "modifier": 0.5
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0
+                },
+                {
+                    "attackUp": 0.2,
+                    "cardUp": 0.5,
+                    "npUp": 0.3,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
@@ -994,156 +1021,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.5,
+                    "cardUp": 1,
+                    "npUp": 0.6,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        }
-                    ],
-                    "overcharge": 0
-                },
-                {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
-                    "powerMods": [
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        }
-                    ],
-                    "overcharge": 0
-                }
-            ]
-        },
-        "party": [
-            "<Placeholder>",
-            "Oberon",
-            "Koyanskaya of Light",
-            "Oberon",
-            "<Unspecified>",
-            "<Unspecified>"
-        ],
-        "clearers": [
-            1,
-            0,
-            0
-        ],
-        "description": "Transposed version of the other template (Oberon clears wave 2 instead of 1). Optimized for Eresh mainly, since her NP provides team attack up.",
-        "instructions": [
-            "Vitch skills on DPS. Swap for Oberon. Use both Oberon S1s. NP with DPS",
-            "One Oberon uses S2 + S3 on himself and NPs",
-            "Oberon S2 + servant's own skills to refill"
-        ]
-    },
-    {
-        "name": "TmpVitchMerlinHack",
-        "buffs": {
-            "buffs": [
-                {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
-                    "powerMods": [
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        }
-                    ],
-                    "overcharge": 0
-                },
-                {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
-                    "powerMods": [
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        }
-                    ],
-                    "overcharge": 0
-                },
-                {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
-                    "powerMods": [
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -1177,13 +1070,13 @@
         ]
     },
     {
-        "name": "TmpDoubleVitchDPS",
+        "name": "[BUSTER] Vitch + Waver + Oberon (Vitch DPS Only)",
         "buffs": {
             "buffs": [
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.5,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.5,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -1208,22 +1101,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "attackUp": 0.3,
+                    "cardUp": 0.5,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -1235,22 +1128,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.6,
+                    "cardUp": 1,
+                    "npUp": 0.3,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -1284,26 +1177,26 @@
         ]
     },
     {
-        "name": "TmpMelusine",
+        "name": "[BUSTER] Double Vitch + Oberon (Melusine Only)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
+                    "cardUp": 1,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
@@ -1316,21 +1209,21 @@
                 },
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
+                    "cardUp": 1,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
@@ -1342,22 +1235,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.3,
+                    "cardUp": 1.5,
+                    "npUp": 0.3,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
@@ -1391,26 +1284,26 @@
         ]
     },
     {
-        "name": "TmpFriendMelusine",
+        "name": "[BUSTER] Vitch + Waver + Oberon (Friend Melusine)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
+                    "cardUp": 0.5,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -1422,22 +1315,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
+                    "attackUp": 0.3,
+                    "cardUp": 0.5,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -1449,22 +1342,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.6,
+                    "cardUp": 1,
+                    "npUp": 0.3,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -1498,26 +1391,26 @@
         ]
     },
     {
-        "name": "TmpOberonDPSWithDoubleVitch",
+        "name": "[BUSTER] Double Vitch + Waver (Oberon DPS Only)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
+                    "cardUp": 0.5,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -1529,22 +1422,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
+                    "attackUp": 0.3,
+                    "cardUp": 0.5,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -1556,22 +1449,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.6,
+                    "cardUp": 1,
+                    "npUp": 0.3,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -1605,26 +1498,26 @@
         ]
     },
     {
-        "name": "TmpCasCu",
+        "name": "[BUSTER] Double Vitch + Oberon (Caster Cu Only)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "cardUp": 1,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
@@ -1637,21 +1530,21 @@
                 },
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "cardUp": 1,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
@@ -1663,22 +1556,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.3,
+                    "cardUp": 1.5,
+                    "npUp": 0.3,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
@@ -1712,13 +1605,40 @@
         ]
     },
     {
-        "name": "TmpCasCuMerlin",
+        "name": "[BUSTER] Double Oberon + Merlin (80%)",
         "buffs": {
             "buffs": [
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "attackUp": 0.2,
+                    "cardUp": 0.5,
+                    "npUp": 0.3,
+                    "npBoost": 1,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0
+                },
+                {
+                    "attackUp": 0.2,
+                    "cardUp": 0.5,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -1743,37 +1663,10 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
-                    "powerMods": [
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        }
-                    ],
-                    "overcharge": 0
-                },
-                {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.5,
+                    "cardUp": 1,
+                    "npUp": 0.6,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
@@ -1811,21 +1704,48 @@
             0,
             0
         ],
-        "description": "You can use Arash to sneak Merlin into a double Oberon team as long as the DPS gives 20% gauge T2 and 50% T3 (i.e. CasCu only).",
+        "description": "You can use Arash to sneak Merlin into a double Oberon team as long as the DPS gives 20% gauge T2 and 50% T3 (i.e. CasCu) or 80% T3 (i.e. Avicebron).",
         "instructions": [
-            "Merlin buffs Cu, swap for Oberon, Oberon buffs Arash",
-            "Support Oberon comes in and uses S1. Use Cu S1 and S3",
-            "Oberon S2 + S3, plugsuit buff"
+            "Use Merlin buffs, swap for Oberon, Oberon buffs Arash",
+            "Support Oberon comes in. Use Cu S1 + S3 and Oberon S1, or else Oberon S2 if using Avicebron",
+            "Oberon's remaining skills + plugsuit buff"
         ]
     },
     {
-        "name": "TmpCraneBronze10",
+        "name": "[BUSTER] Double Oberon + Vitch + Miss Crane (10% Bronze)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "cardUp": 0.5,
+                    "npUp": 0.3,
+                    "npBoost": 1,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 1
+                },
+                {
+                    "attackUp": 0.2,
+                    "cardUp": 0.5,
+                    "npUp": 0.9,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -1850,37 +1770,10 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
-                    "powerMods": [
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        },
-                        {
-                            "trigger": [
-                                "always"
-                            ],
-                            "modifier": 0
-                        }
-                    ],
-                    "overcharge": 0
-                },
-                {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.5,
+                    "cardUp": 1,
+                    "npUp": 0.9,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
@@ -1926,13 +1819,13 @@
         ]
     },
     {
-        "name": "TmpObeOzy1-1-X",
+        "name": "[BUSTER] Double Oberon + Vitch (Ozymandias vs 1-1-X)",
         "buffs": {
             "buffs": [
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.6,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -1957,9 +1850,9 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
+                    "attackUp": 0.6,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.6,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -1984,22 +1877,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.7,
+                    "cardUp": 1.5,
+                    "npUp": 0.6,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 0.5
                         },
                         {
                             "trigger": [
@@ -2013,7 +1906,7 @@
             ]
         },
         "party": [
-            "<Placeholder>",
+            "Ozymandias",
             "Oberon",
             "Koyanskaya of Light",
             "Oberon",
@@ -2135,7 +2028,7 @@
             0,
             0
         ],
-        "description": "Best case double-Castoria setup. Space Ishtar can sometimes get enough refund on X-2-X here.",
+        "description": "Best case double-Castoria setup. Space Ishtar can sometimes get enough refund on 1-2-X here.",
         "instructions": [
             "Apply Castoria S1s and S3s. Use one S2 on your whale friend's NP5 Castoria, then NP with her and the looper",
             "Apply the other Castoria S2 to the damage dealer. Swap in Oberon and S1. Refill gauge with the looper's skills if needed, then NP with Castoria and the looper",
@@ -2143,12 +2036,12 @@
         ]
     },
     {
-        "name": "TmpDoubleSkadi",
+        "name": "[QUICK] Double Skadi + Oberon",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
+                    "cardUp": 1,
                     "npUp": 0,
                     "npBoost": 0,
                     "powerMods": [
@@ -2174,9 +2067,9 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "attackUp": 0.3,
+                    "cardUp": 1,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -2201,10 +2094,10 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.6,
+                    "cardUp": 1,
+                    "npUp": 0.3,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
@@ -2250,13 +2143,13 @@
         ]
     },
     {
-        "name": "TmpDoubleVitch50",
+        "name": "[BUSTER] Double Vitch + Oberon (50%)",
         "buffs": {
             "buffs": [
                 {
                     "attackUp": 0,
                     "cardUp": 0,
-                    "npUp": 0,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
@@ -2282,21 +2175,21 @@
                 },
                 {
                     "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
+                    "cardUp": 1,
+                    "npUp": 0.3,
                     "npBoost": 0,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
@@ -2308,22 +2201,22 @@
                     "overcharge": 0
                 },
                 {
-                    "attackUp": 0,
-                    "cardUp": 0,
-                    "npUp": 0,
-                    "npBoost": 0,
+                    "attackUp": 0.3,
+                    "cardUp": 1.5,
+                    "npUp": 0.3,
+                    "npBoost": 1,
                     "powerMods": [
                         {
                             "trigger": [
-                                "always"
+                                "attributeHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [
-                                "always"
+                                "livingHuman"
                             ],
-                            "modifier": 0
+                            "modifier": 1
                         },
                         {
                             "trigger": [

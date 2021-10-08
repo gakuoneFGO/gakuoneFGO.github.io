@@ -159,8 +159,10 @@ function getClassTriangleMultiplier(servantClass: ServantClass, enemyClass: Enem
     if (enemyClass == EnemyClass.Ruler && !isExtra(servantClass)) return 0.5;
     if (servantClass == ServantClass.AlterEgo && isCavalry(enemyClass)) return 1.5;
     if (servantClass == ServantClass.Pretender && isKnight(enemyClass)) return 1.5;
+    if (servantClass == ServantClass.AlterEgo && isKnight(enemyClass)) return 0.5;
+    if (servantClass == ServantClass.Pretender && isCavalry(enemyClass)) return 0.5;
     if (enemyClass == EnemyClass.Knight || enemyClass == EnemyClass.Cavalry) return 1.0;
-    let castEnemyClass = (enemyClass as string) as ServantClass;
+    const castEnemyClass = (enemyClass as string) as ServantClass;
     if (isAdvantaged(servantClass, castEnemyClass, classTriangleAdvantages)) return 2.0;
     if (isAdvantaged(castEnemyClass, servantClass, classTriangleAdvantages)) return 0.5;
     return 1.0
@@ -187,6 +189,7 @@ function isCavalry(enemyClass: EnemyClass): boolean {
         case EnemyClass.Caster:
         case EnemyClass.Assassin:
         case EnemyClass.Berserker:
+        case EnemyClass.Cavalry:
             return true;
         default:
             return false;
@@ -198,6 +201,7 @@ function isKnight(enemyClass: EnemyClass): boolean {
         case EnemyClass.Saber:
         case EnemyClass.Archer:
         case EnemyClass.Lancer:
+        case EnemyClass.Knight:
             return true;
         default:
             return false;
