@@ -1,10 +1,10 @@
 import { Clear, Replay, Visibility, VisibilityOff, Warning } from "@mui/icons-material";
-import { Table, TableCell, TableContainer, TableRow, TextField, Tooltip, Box, ButtonGroup, Button, Typography, IconButton, Stack, useMediaQuery, capitalize } from "@mui/material";
+import { Table, TableCell, TableContainer, TableRow, Tooltip, Box, ButtonGroup, Button, Typography, IconButton, Stack, useMediaQuery, capitalize } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Spec } from "immutability-helper";
 import { useState } from "react";
-import { BuffSet, PowerMod } from "../Damage";
-import { BuffType, CardType, Servant } from "../Servant";
+import { BuffSet } from "../Damage";
+import { BuffType, CardType, Servant, PowerMod } from "../Servant";
 import { BuffMatrix } from "../Strat";
 import { BaseProps, handleChange, PercentInput, TraitSelect } from "./common";
 import { TransposedTableBody } from "./transposed-table"

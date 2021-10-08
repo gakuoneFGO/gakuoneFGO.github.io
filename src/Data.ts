@@ -1,25 +1,7 @@
-import { CardType, GrowthCurve, ServantConfig, Servant, ServantData } from "./Servant";
-import { Template, Strat, BuffMatrix, EnemyNode } from "./Strat";
+import { ServantConfig, Servant, ServantData } from "./Servant";
+import { Template, BuffMatrix, EnemyNode } from "./Strat";
 import { ClassConstructor, deserializeArray, Type } from 'class-transformer';
-import { CraftEssence, PowerMod } from "./Damage";
-
-class Data {
-    constructor(
-        public servants: Map<string, ServantData>,
-        public templates: Map<string, Template>,
-        public setups: [ Strat, Node ][]) {}
-
-    getServantDefaults(name: string): Servant {
-        let servantData = this.servants.get(name) as ServantData;
-        let config = new ServantConfig(
-            servantData.name, Math.max(servantData.f2pCopies, 1),
-            getMaxLevel(servantData.rarity),
-            1000,
-            new PowerMod(servantData.appendTarget, 0.3),
-            servantData.nps.some(np => np.multUpgrade > 0.0));
-        return new Servant(config, servantData);
-    }
-}
+import { CraftEssence } from "./Damage";
 
 class DataProvider {
     constructor(
@@ -46,7 +28,7 @@ class DataProvider {
                 data.name, Math.max(data.f2pCopies, 1),
                 getMaxLevel(data.rarity),
                 1000,
-                new PowerMod(data.appendTarget, 0.3),//TODO
+                data.rarity < 3 ? 9 : 0,
                 data.nps.some(np => np.multUpgrade > 0.0));
         const servant = new Servant(config, data);
         this.defaultServantCache.set(name, servant);
@@ -88,7 +70,7 @@ class DataProvider {
 
 export interface Named { name: string }
 
-class Persistor<T extends Named> {
+export class Persistor<T extends Named> {
     constructor(type: ClassConstructor<T>, storageKey: string | undefined, staticItems: T[]) {
         if (storageKey) {
             this.storageKey = storageKey;
@@ -147,7 +129,7 @@ class Persistor<T extends Named> {
 }
 
 async function load<T extends { name: string }>(sources: { type: ClassConstructor<T>, url?: string, storageKey?: string }): Promise<Persistor<T>> {
-    let staticItems = sources.url ?
+    const staticItems = sources.url ?
         fetch(sources.url!).then(resp => resp.text()).then(resp => deserializeArray(sources.type, resp)) :
         Promise.all([]);
     const items = await staticItems;
@@ -181,7 +163,7 @@ export class TemplateData {
 }
 
 var provider: DataProvider;
-let promise = Promise.all([
+const promise = Promise.all([
     load({ type: ServantData, url: "servants.json" }),
     load({ type: ServantConfig, storageKey: "servants" }),
     load({ type: TemplateData, url: "templates.json", storageKey: "templates" }),
@@ -189,8 +171,7 @@ let promise = Promise.all([
     load({ type: EnemyNode, url: "nodes.json", storageKey: "enemyNodes" }),
 ]).then(responses => provider = new DataProvider(...responses));
 
-function useData(): [ DataProvider, Promise<DataProvider> ] {
+//not really a hook but usage is vaguely similar
+export function useData(): [ DataProvider, Promise<DataProvider> ] {
     return [ provider, promise ];
 }
-
-export { useData, Persistor }

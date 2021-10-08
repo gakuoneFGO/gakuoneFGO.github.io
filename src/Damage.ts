@@ -1,11 +1,5 @@
-import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, ServantData } from "./Servant";
+import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod } from "./Servant";
 import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./Enemy";
-
-class PowerMod {
-    constructor(
-        readonly trigger: Trait[],
-        readonly modifier: number) {}
-}
 
 class BuffSet {
     public constructor(
@@ -70,7 +64,7 @@ class Damage {
 class Calculator {
     calculateNpDamage(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[], npCard: CardType): Damage {
         const np = servant.data.getNP(buffs.reduce((type, buff) => npCard ?? type, undefined as CardType | undefined));
-        const combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.config.appendMod);
+        const combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.getAppendMod());
         const enemyTraits = enemy.traits.concat(combinedBuffs.applyTraits);
         const baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, combinedBuffs.overcharge) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
         const triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute);
@@ -225,4 +219,4 @@ let classTriangleAdvantages: Map<ServantClass, ServantClass> = new Map([
     [ServantClass.Pretender, ServantClass.AlterEgo],
 ]);
 
-export { PowerMod, BuffSet, Calculator, Damage, CraftEssence, getLikelyClassMatchup };
+export { BuffSet, Calculator, Damage, CraftEssence, getLikelyClassMatchup };

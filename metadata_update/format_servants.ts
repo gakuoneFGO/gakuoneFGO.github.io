@@ -34,7 +34,7 @@ enumStream.on("end", () => {
             data.extraAssets.faces.ascension["1"],
             data.extraAssets.charaGraph.ascension["1"],
             "",//charge profile...
-            data.appendPassive[2].skill.functions[0].buffs[0].tvals.map(tval => tval.name),
+            data.className == "berserker" ? [] : data.appendPassive[2].skill.functions[0].buffs[0].tvals.map(tval => tval.name),
             getPassives(data, data.noblePhantasms[0].card),
             getSkills(data, data.noblePhantasms[0].card),
             upgradedNps.map(np => mapNp(np, getUnupgraded(np, data.noblePhantasms, (np1, np2) => np1.card == np2.card)))

@@ -1,5 +1,4 @@
 import { Type } from "class-transformer";
-import { PowerMod } from "./Damage";
 import { Trait } from "./Enemy";
 
 class Servant {
@@ -27,6 +26,10 @@ class Servant {
     isSpecified(): boolean {
         return this.data.isSpecified();
     }
+    
+    public getAppendMod(): PowerMod {
+        return new PowerMod(this.data.appendTarget, appendMod[this.config.appendLevel]);
+    }
 }
 
 class ServantConfig {
@@ -35,9 +38,12 @@ class ServantConfig {
         readonly npLevel: number,
         readonly level: number,
         readonly attackFou: number,
-        readonly appendMod: PowerMod,
+        readonly appendLevel: AppendLevel,
         readonly isNpUpgraded: boolean) {}
 }
+
+const appendMod = [ 0, .2, .21, .22, .23, .24, .25, .26, .27, .28, .3 ];
+export type AppendLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 class ServantData {
     constructor(
@@ -145,6 +151,12 @@ class Skill {
 
     @Type(() => Buff)
     readonly buffs: Buff[];
+}
+
+export class PowerMod {
+    constructor(
+        readonly trigger: Trait[],
+        readonly modifier: number) {}
 }
 
 export type NPTarget = "aoe" | "st" | "none";

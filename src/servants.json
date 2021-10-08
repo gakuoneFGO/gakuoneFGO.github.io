@@ -4051,9 +4051,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7036000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703600/703600a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classLancer"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1964,
@@ -4822,9 +4820,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7002000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/700200/700200a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classBerserker"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1746,
@@ -6961,9 +6957,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7004000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/700400/700400a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classSaber"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1573,
@@ -16259,9 +16253,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7029000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/702900/702900a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classMoonCancer"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1691,
@@ -20223,9 +20215,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7041000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/704100/704100a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classRuler"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1657,
@@ -23768,9 +23758,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7038000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703800/703800a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classLancer"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1699,
@@ -25767,9 +25755,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7013000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/701300/701300a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classLancer"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1233,
@@ -26961,9 +26947,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7023000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/702300/702300a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classAssassin"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1786,
@@ -28165,9 +28149,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7022000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/702200/702200a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classSaber"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1606,
@@ -34524,9 +34506,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7006000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/700600/700600a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classAssassin"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1964,
@@ -50345,9 +50325,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7001000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/700100/700100a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classSaber"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1775,
@@ -50539,9 +50517,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7003000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/700300/700300a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classRider"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1507,
@@ -50741,9 +50717,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7005000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/700500/700500a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classRider"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 922,
@@ -50936,9 +50910,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7007000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/700700/700700a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classLancer"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1777,
@@ -51121,9 +51093,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7008000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/700800/700800a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classSaber"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1707,
@@ -51343,9 +51313,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7009000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/700900/700900a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classSaber"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1097,
@@ -51528,9 +51496,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7010000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/701000/701000a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classSaber"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1211,
@@ -51713,9 +51679,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7011000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/701100/701100a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classRider"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1412,
@@ -51908,9 +51872,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7014000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/701400/701400a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classAvenger"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1573,
@@ -52096,9 +52058,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7015000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/701500/701500a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classCaster"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1116,
@@ -52298,9 +52258,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7016000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/701600/701600a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classAlterEgo"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1504,
@@ -52483,9 +52441,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7020000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/702000/702000a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classLancer"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1979,
@@ -52677,9 +52633,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7024000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/702400/702400a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classAssassin"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1717,
@@ -52885,9 +52839,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7025000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/702500/702500a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classAlterEgo"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1868,
@@ -53082,9 +53034,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7026000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/702600/702600a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classRuler"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1490,
@@ -53276,9 +53226,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7027000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/702700/702700a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classRider"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1750,
@@ -53489,9 +53437,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7028000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/702800/702800a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classAssassin"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1099,
@@ -53692,9 +53638,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7030000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703000/703000a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classArcher"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1634,
@@ -53878,9 +53822,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7031000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703100/703100a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classArcher"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1716,
@@ -54282,9 +54224,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7032000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703200/703200a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classSaber"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1794,
@@ -54476,9 +54416,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7033000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703300/703300a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classArcher"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1803,
@@ -54689,9 +54627,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7034000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703400/703400a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classRuler"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1221,
@@ -54885,9 +54821,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7035000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703500/703500a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classAvenger"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1436,
@@ -55071,9 +55005,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7037000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703700/703700a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classSaber"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1529,
@@ -55281,9 +55213,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7039000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/703900/703900a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classAssassin"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1764,
@@ -55475,9 +55405,7 @@
         "iconUrl": "https://static.atlasacademy.io/JP/Faces/f_7040000.png",
         "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/704000/704000a@1.png",
         "chargeProfile": "",
-        "appendTarget": [
-            "classSaber"
-        ],
+        "appendTarget": [],
         "growthCurve": {
             "stats": {
                 "1": 1884,

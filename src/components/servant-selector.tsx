@@ -1,10 +1,10 @@
 import { Save, Settings } from "@mui/icons-material";
-import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, InputLabel, TextField, Autocomplete, Typography, InputAdornment, IconButton, Popper, FormControlLabel, Stack, Card, CardContent, useTheme } from "@mui/material";
+import { Checkbox, TextField, Autocomplete, InputAdornment, IconButton, Popper, FormControlLabel, Stack, Card, CardContent, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { bindToggle, bindPopper, usePopupState } from 'material-ui-popup-state/hooks';
 import { useData } from "../Data";
-import { Servant, ServantData } from "../Servant";
-import { BaseComponent, BaseProps, handleChange, IntegerInput, SmartSelect } from "./common";
+import { AppendLevel, Servant } from "../Servant";
+import { BaseProps, handleChange, IntegerInput, SmartSelect } from "./common";
 
 interface ServantSelectorProps extends BaseProps<Servant> {
     label?: string;
@@ -44,16 +44,24 @@ function ServantSelector(props: ServantSelectorProps) {
                                 options={props.value.data.growthCurve.getValidLevels()}
                                 value={props.value.config.level.toString()}
                                 renderInput={params => <TextField {...params} label="Level" />}
-                                onChange={(e, v) => { if (v) handleChange({ config: { level: { $set: Number.parseInt(v) } } }, props)}} />
+                                onChange={(_, v) => { if (v) handleChange({ config: { level: { $set: Number.parseInt(v) } } }, props)}} />
                             <Autocomplete
                                 options={["1", "2", "3", "4", "5"]}
                                 value={props.value.config.npLevel.toString()}
                                 renderInput={params => <TextField {...params} label="NP Level" />}
-                                onChange={(e, v) => { if (v) handleChange({ config: { npLevel: { $set: Number.parseInt(v) } } }, props)}} />
+                                onChange={(_, v) => { if (v) handleChange({ config: { npLevel: { $set: Number.parseInt(v) } } }, props)}} />
                             <IntegerInput
                                 label="Fous"
                                 value={props.value.config.attackFou}
                                 onChange={v => { handleChange({ config: { attackFou: { $set: v } } }, props)}} />
+                            {props.value.data.appendTarget.length > 0 ?
+                                <Autocomplete
+                                    options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as AppendLevel[]}
+                                    getOptionLabel={o => o.toString()}
+                                    value={props.value.config.appendLevel}
+                                    renderInput={params => <TextField {...params} label="Append 3 Level" />}
+                                    onChange={(_, v) => { if (v != null) handleChange({ config: { appendLevel: { $set: v } } }, props)}} />
+                            : null}
                             <Stack direction="row" justifyContent="space-between">
                                 <FormControlLabel
                                     label="NP Upgrade"
