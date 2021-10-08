@@ -4,12 +4,12 @@ import { Trait } from "./Enemy";
 class Servant {
     constructor(readonly config: ServantConfig, readonly data: ServantData) {};
 
-    getAttackStat(): number {
+    public getAttackStat(): number {
         return this.data.growthCurve.getAttackStat(this.config.level) + this.config.attackFou;
     }
 
-    getNpMultiplier(np: NoblePhantasm, overcharge: number): number {
-        let multiplier = np.multiplier[this.config.npLevel - 1] + (this.config.isNpUpgraded ? np.multUpgrade : 0.0);
+    public getNpMultiplier(np: NoblePhantasm, overcharge: number): number {
+        let multiplier = np.multiplier[this.config.npLevel - 1] + (this.config.isNpUpgraded ? this.getNpMultUpgrade(np) : 0.0);
         if (this.data.name == "Arash") {
             return multiplier + overcharge * (this.config.isNpUpgraded ?  2.0 : 1.0);
         } else if (this.data.name == "Chen Gong") {
@@ -19,16 +19,35 @@ class Servant {
         }
     }
 
-    isPlaceholder(): boolean {
-        return this.data.isPlaceholder();
-    }
-
-    isSpecified(): boolean {
-        return this.data.isSpecified();
+    private getNpMultUpgrade(np: NoblePhantasm) {
+        if (np.multUpgrade > 0 || np.target == "none") return np.multUpgrade;
+        //user selected to view upgraded NP damage but this servant has no upgrade yet, so add standard multiplier buff
+        const cardMult =
+            np.cardType == CardType.Buster  ?   1   :
+            np.cardType == CardType.Arts    ?   1.5 :
+            np.cardType == CardType.Quick   ?   2   :
+                                                0   ;
+        const targetMult =
+            np.target == "aoe"  ?   1   :
+            np.target == "st"   ?   2   :
+                                    0   ;
+        return cardMult * targetMult;
     }
     
     public getAppendMod(): PowerMod {
         return new PowerMod(this.data.appendTarget, appendMod[this.config.appendLevel]);
+    }
+
+    public hasInvalidNpUpgrade(): boolean {
+        return this.config.isNpUpgraded && this.data.nps.some(np => np.target != "none" && np.multUpgrade == 0);
+    }
+
+    public isPlaceholder(): boolean {
+        return this.data.isPlaceholder();
+    }
+
+    public isSpecified(): boolean {
+        return this.data.isSpecified();
     }
 }
 

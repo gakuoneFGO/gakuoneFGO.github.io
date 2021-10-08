@@ -1,5 +1,5 @@
-import { Save, Settings } from "@mui/icons-material";
-import { Checkbox, TextField, Autocomplete, InputAdornment, IconButton, Popper, FormControlLabel, Stack, Card, CardContent, useTheme } from "@mui/material";
+import { Save, Settings, Warning } from "@mui/icons-material";
+import { Checkbox, TextField, Autocomplete, InputAdornment, IconButton, Popper, FormControlLabel, Stack, Card, CardContent, useTheme, Tooltip } from "@mui/material";
 import React, { useState } from "react";
 import { bindToggle, bindPopper, usePopupState } from 'material-ui-popup-state/hooks';
 import { useData } from "../Data";
@@ -31,9 +31,16 @@ function ServantSelector(props: ServantSelectorProps) {
                 }
                 endAdornment={
                     <InputAdornment position="end">
-                        <IconButton title="Stats" {...boundToggle}>
-                            <Settings />
-                        </IconButton>
+                        {props.value.hasInvalidNpUpgrade() ?
+                            <Tooltip title="NP upgrade selected but this servant has no NP upgrade yet. Damage will be calculated using the standard multipliers for an upgraded NP.">
+                                <Warning color="warning" />
+                            </Tooltip>
+                        : null}
+                        {props.value.isSpecified() && !props.value.isPlaceholder() ?
+                            <IconButton title="Stats" {...boundToggle}>
+                                <Settings />
+                            </IconButton>
+                        : null}
                     </InputAdornment>
                 } />
             <Popper placement="bottom-end" {...bindPopper(popupState)}>
