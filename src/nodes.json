@@ -1,25 +1,48 @@
 [
     {
-        "name": "[LANCERS] Nursemas Band-aid Farming",
+        "name": "<Empty>",
+        "waves": [
+            {
+                "enemies": []
+            },
+            {
+                "enemies": []
+            },
+            {
+                "enemies": []
+            }
+        ]
+    },
+    {
+        "name": "2019-11 Nursemas Band-aid Farming [LANCERS]",
         "waves": [
             {
                 "enemies": [
                     {
                         "eClass": "lancer",
                         "attribute": "sky",
-                        "traits": [],
+                        "traits": [
+                            "classLancer",
+                            "attributeSky"
+                        ],
                         "hitPoints": 24945
                     },
                     {
                         "eClass": "lancer",
                         "attribute": "sky",
-                        "traits": [],
+                        "traits": [
+                            "classLancer",
+                            "attributeSky"
+                        ],
                         "hitPoints": 33371
                     },
                     {
                         "eClass": "lancer",
                         "attribute": "sky",
-                        "traits": [],
+                        "traits": [
+                            "classLancer",
+                            "attributeSky"
+                        ],
                         "hitPoints": 24526
                     }
                 ]
@@ -29,19 +52,28 @@
                     {
                         "eClass": "lancer",
                         "attribute": "sky",
-                        "traits": [],
+                        "traits": [
+                            "classLancer",
+                            "attributeSky"
+                        ],
                         "hitPoints": 92001
                     },
                     {
                         "eClass": "lancer",
                         "attribute": "sky",
-                        "traits": [],
+                        "traits": [
+                            "classLancer",
+                            "attributeSky"
+                        ],
                         "hitPoints": 34015
                     },
                     {
                         "eClass": "lancer",
                         "attribute": "sky",
-                        "traits": [],
+                        "traits": [
+                            "classLancer",
+                            "attributeSky"
+                        ],
                         "hitPoints": 27176
                     }
                 ]
@@ -51,27 +83,38 @@
                     {
                         "eClass": "lancer",
                         "attribute": "sky",
-                        "traits": [],
+                        "traits": [
+                            "classLancer",
+                            "attributeSky"
+                        ],
                         "hitPoints": 31308
                     },
                     {
                         "eClass": "lancer",
                         "attribute": "sky",
                         "traits": [
-                            "divine",
-                            "divineSpirit",
                             "genderFemale",
+                            "classLancer",
+                            "attributeSky",
+                            "alignmentNeutral",
+                            "alignmentGood",
+                            "divine",
                             "humanoid",
+                            "weakToEnumaElish",
                             "riding",
-                            "servant",
-                            "weakToEnumaElish"
+                            "skyOrEarth",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "divineSpirit"
                         ],
                         "hitPoints": 151215
                     },
                     {
                         "eClass": "lancer",
                         "attribute": "sky",
-                        "traits": [],
+                        "traits": [
+                            "classLancer",
+                            "attributeSky"
+                        ],
                         "hitPoints": 31869
                     }
                 ]
@@ -79,7 +122,133 @@
         ]
     },
     {
-        "name": "[MIXED] Scatfest R1 90+",
+        "name": "2019-09 Scatfest R1 Lvl90 [MIXED]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "attributeEarth",
+                            "genderMale",
+                            "humanoid",
+                            "livingHuman",
+                            "classLancer"
+                        ],
+                        "hitPoints": 19884
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderMale",
+                            "humanoid",
+                            "livingHuman",
+                            "classLancer",
+                            "attributeHuman"
+                        ],
+                        "hitPoints": 13448
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderMale",
+                            "humanoid",
+                            "livingHuman",
+                            "classLancer",
+                            "attributeHuman"
+                        ],
+                        "hitPoints": 13226
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "caster",
+                        "attribute": "sky",
+                        "traits": [
+                            "classCaster",
+                            "attributeSky",
+                            "divine",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 80962
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "humanoid",
+                            "livingHuman",
+                            "genderMale"
+                        ],
+                        "hitPoints": 35929
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "classLancer",
+                            "humanoid",
+                            "livingHuman",
+                            "genderMale",
+                            "attributeHuman"
+                        ],
+                        "hitPoints": 30312
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "caster",
+                        "attribute": "sky",
+                        "traits": [
+                            "genderMale",
+                            "classCaster",
+                            "attributeSky",
+                            "alignmentLawful",
+                            "alignmentBalanced",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "brynhildsBeloved",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 160380
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [
+                            "genderFemale",
+                            "classLancer",
+                            "attributeSky",
+                            "alignmentLawful",
+                            "alignmentGood",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "divineSpirit"
+                        ],
+                        "hitPoints": 93054
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2019-09 Scatfest R1 Lvl90+ [MIXED]",
         "waves": [
             {
                 "enemies": [
@@ -87,6 +256,8 @@
                         "eClass": "rider",
                         "attribute": "earth",
                         "traits": [
+                            "classRider",
+                            "attributeEarth",
                             "fae",
                             "demonic",
                             "humanoid",
@@ -98,6 +269,8 @@
                         "eClass": "rider",
                         "attribute": "sky",
                         "traits": [
+                            "classRider",
+                            "attributeSky",
                             "wildbeast"
                         ],
                         "hitPoints": 29402
@@ -110,6 +283,8 @@
                         "eClass": "rider",
                         "attribute": "earth",
                         "traits": [
+                            "classRider",
+                            "attributeEarth",
                             "wildbeast",
                             "demonic",
                             "superGiant"
@@ -124,27 +299,1432 @@
                         "eClass": "lancer",
                         "attribute": "sky",
                         "traits": [
-                            "brynhildsBeloved",
+                            "genderMale",
+                            "classLancer",
+                            "attributeSky",
+                            "alignmentLawful",
+                            "alignmentBalanced",
                             "divine",
                             "humanoid",
-                            "genderMale",
-                            "servant",
-                            "weakToEnumaElish"
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "brynhildsBeloved",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "hominidaeServant"
                         ],
                         "hitPoints": 201722
                     },
                     {
                         "eClass": "lancer",
-                        "attribute": "sky",
+                        "attribute": "star",
                         "traits": [
-                            "hasCostume",
                             "genderFemale",
+                            "classLancer",
+                            "attributeStar",
+                            "alignmentNeutral",
+                            "alignmentGood",
                             "humanoid",
+                            "weakToEnumaElish",
                             "king",
-                            "servant",
-                            "weakToEnumaElish"
+                            "hominidaeServant",
+                            "hasCostume"
                         ],
                         "hitPoints": 120082
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2019-09 Scatfest R2 Lvl90 [LANCERS]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "classLancer",
+                            "attributeHuman",
+                            "livingHuman",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 10596
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "classLancer",
+                            "attributeHuman",
+                            "livingHuman",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 15218
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "classLancer",
+                            "attributeHuman",
+                            "livingHuman",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 10786
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "classLancer",
+                            "attributeHuman",
+                            "livingHuman",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 16752
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "classLancer",
+                            "attributeHuman",
+                            "livingHuman",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 21132
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "wildbeast",
+                            "demonic",
+                            "superGiant"
+                        ],
+                        "hitPoints": 21132
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [
+                            "genderMale",
+                            "classLancer",
+                            "attributeSky",
+                            "alignmentLawful",
+                            "alignmentBalanced",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 160509
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderMale",
+                            "classLancer",
+                            "attributeHuman",
+                            "alignmentNeutral",
+                            "alignmentEvil",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 69091
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderMale",
+                            "classLancer",
+                            "attributeHuman",
+                            "alignmentLawful",
+                            "alignmentGood",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "king",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 64714
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2019-09 Scatfest R2 Lvl90+ [ASSASSINS]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "assassin",
+                        "attribute": "earth",
+                        "traits": [
+                            "classAssassin",
+                            "attributeEarth",
+                            "demonic",
+                            "superGiant"
+                        ],
+                        "hitPoints": 104641
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "assassin",
+                        "attribute": "human",
+                        "traits": [
+                            "classAssassin",
+                            "attributeHuman",
+                            "humanoid",
+                            "servant",
+                            "genderMale"
+                        ],
+                        "hitPoints": 31769
+                    },
+                    {
+                        "eClass": "assassin",
+                        "attribute": "human",
+                        "traits": [
+                            "classAssassin",
+                            "attributeHuman",
+                            "humanoid",
+                            "servant",
+                            "genderMale"
+                        ],
+                        "hitPoints": 22889
+                    },
+                    {
+                        "eClass": "assassin",
+                        "attribute": "human",
+                        "traits": [
+                            "classAssassin",
+                            "attributeHuman",
+                            "humanoid",
+                            "servant",
+                            "genderMale"
+                        ],
+                        "hitPoints": 23334
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "assassin",
+                        "attribute": "human",
+                        "traits": [
+                            "genderFemale",
+                            "classAssassin",
+                            "attributeHuman",
+                            "alignmentNeutral",
+                            "alignmentSummer",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "riding",
+                            "brynhildsBeloved",
+                            "hominidaeServant",
+                            "genji"
+                        ],
+                        "hitPoints": 201222
+                    },
+                    {
+                        "eClass": "assassin",
+                        "attribute": "star",
+                        "traits": [
+                            "genderFemale",
+                            "classAssassin",
+                            "attributeStar",
+                            "alignmentNeutral",
+                            "alignmentGood",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "king",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 121030
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2019-09 Scatfest R3 Lvl90 [MIXED]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "berserker",
+                        "attribute": "earth",
+                        "traits": [
+                            "classBerserker",
+                            "attributeEarth",
+                            "giant",
+                            "humanoid",
+                            "superGiant",
+                            "genderMale"
+                        ],
+                        "hitPoints": 13858
+                    },
+                    {
+                        "eClass": "berserker",
+                        "attribute": "earth",
+                        "traits": [
+                            "classBerserker",
+                            "attributeEarth",
+                            "giant",
+                            "humanoid",
+                            "superGiant",
+                            "genderMale"
+                        ],
+                        "hitPoints": 20472
+                    },
+                    {
+                        "eClass": "berserker",
+                        "attribute": "earth",
+                        "traits": [
+                            "classBerserker",
+                            "attributeEarth",
+                            "giant",
+                            "humanoid",
+                            "superGiant",
+                            "genderMale"
+                        ],
+                        "hitPoints": 13564
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "saber",
+                        "attribute": "sky",
+                        "traits": [
+                            "classSaber",
+                            "attributeSky",
+                            "mechanical"
+                        ],
+                        "hitPoints": 81790
+                    },
+                    {
+                        "eClass": "berserker",
+                        "attribute": "earth",
+                        "traits": [
+                            "classBerserker",
+                            "attributeEarth",
+                            "giant",
+                            "humanoid",
+                            "superGiant",
+                            "genderMale"
+                        ],
+                        "hitPoints": 30154
+                    },
+                    {
+                        "eClass": "berserker",
+                        "attribute": "earth",
+                        "traits": [
+                            "classBerserker",
+                            "attributeEarth",
+                            "giant",
+                            "humanoid",
+                            "superGiant",
+                            "genderMale"
+                        ],
+                        "hitPoints": 20870
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "saber",
+                        "attribute": "earth",
+                        "traits": [
+                            "genderMale",
+                            "classSaber",
+                            "attributeEarth",
+                            "alignmentLawful",
+                            "alignmentBalanced",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "riding",
+                            "skyOrEarth",
+                            "brynhildsBeloved",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "saberClassServant",
+                            "king",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 108945
+                    },
+                    {
+                        "eClass": "berserker",
+                        "attribute": "earth",
+                        "traits": [
+                            "genderMale",
+                            "classBerserker",
+                            "attributeEarth",
+                            "alignmentChaotic",
+                            "alignmentEvil",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "brynhildsBeloved",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 160360
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2019-09 Scatfest R3 Lvl90+ [MIXED]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "berserker",
+                        "attribute": "earth",
+                        "traits": [
+                            "classBerserker",
+                            "attributeEarth",
+                            "demonic",
+                            "oni",
+                            "undead"
+                        ],
+                        "hitPoints": 69589
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "berserker",
+                        "attribute": "sky",
+                        "traits": [
+                            "classBerserker",
+                            "attributeSky",
+                            "demonic"
+                        ],
+                        "hitPoints": 103897
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "star",
+                        "traits": [
+                            "genderFemale",
+                            "classLancer",
+                            "attributeStar",
+                            "alignmentNeutral",
+                            "alignmentGood",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "king",
+                            "hominidaeServant",
+                            "hasCostume"
+                        ],
+                        "hitPoints": 118600
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "genderUnknown",
+                            "classLancer",
+                            "attributeEarth",
+                            "alignmentNeutral",
+                            "alignmentEvil",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "brynhildsBeloved",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "king",
+                            "feminineLookingServant",
+                            "argonaut",
+                            "divineSpirit"
+                        ],
+                        "hitPoints": 191280
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2020-12 Xmas 6 Lvl90 [LANCERS]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "humanoid",
+                            "genderMale"
+                        ],
+                        "hitPoints": 30199
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "humanoid",
+                            "genderMale"
+                        ],
+                        "hitPoints": 28974
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "humanoid",
+                            "genderMale"
+                        ],
+                        "hitPoints": 28551
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "humanoid",
+                            "genderMale"
+                        ],
+                        "hitPoints": 30199
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "humanoid",
+                            "genderMale"
+                        ],
+                        "hitPoints": 39297
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "wildbeast",
+                            "demonic",
+                            "superGiant"
+                        ],
+                        "hitPoints": 81059
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "wildbeast",
+                            "demonic"
+                        ],
+                        "hitPoints": 54951
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "wildbeast",
+                            "demonic"
+                        ],
+                        "hitPoints": 53588
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderFemale",
+                            "classLancer",
+                            "attributeHuman",
+                            "alignmentLawful",
+                            "alignmentGood",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "brynhildsBeloved",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 107096
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2020-12 Xmas 6 Lvl90+ [ARCHERS]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "human",
+                        "traits": [
+                            "classArcher",
+                            "attributeHuman",
+                            "livingHuman",
+                            "humanoid",
+                            "genderMale"
+                        ],
+                        "hitPoints": 81048
+                    },
+                    {
+                        "eClass": "archer",
+                        "attribute": "human",
+                        "traits": [
+                            "classArcher",
+                            "attributeHuman",
+                            "livingHuman",
+                            "humanoid",
+                            "genderMale"
+                        ],
+                        "hitPoints": 65295
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "sky",
+                        "traits": [
+                            "classArcher",
+                            "attributeSky",
+                            "demonic"
+                        ],
+                        "hitPoints": 112786
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classArcher",
+                            "attributeEarth",
+                            "wildbeast",
+                            "demonic"
+                        ],
+                        "hitPoints": 75919
+                    },
+                    {
+                        "eClass": "archer",
+                        "attribute": "sky",
+                        "traits": [
+                            "genderMale",
+                            "classArcher",
+                            "attributeSky",
+                            "alignmentChaotic",
+                            "alignmentGood",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "king",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 176809
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2021-06 Nerofest R1 Lvl 90 [MIXED]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classArcher",
+                            "attributeEarth",
+                            "demonic",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 22136
+                    },
+                    {
+                        "eClass": "archer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classArcher",
+                            "attributeEarth",
+                            "demonic",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 21168
+                    },
+                    {
+                        "eClass": "archer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classArcher",
+                            "attributeEarth",
+                            "demonic",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 30949
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classArcher",
+                            "attributeEarth",
+                            "demonic",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 22136
+                    },
+                    {
+                        "eClass": "archer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classArcher",
+                            "attributeEarth",
+                            "demonic",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 31776
+                    },
+                    {
+                        "eClass": "archer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classArcher",
+                            "attributeEarth",
+                            "divine",
+                            "genderMale",
+                            "superGiant"
+                        ],
+                        "hitPoints": 70748
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderFemale",
+                            "classArcher",
+                            "attributeHuman",
+                            "alignmentChaotic",
+                            "alignmentGood",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 163943
+                    },
+                    {
+                        "eClass": "ruler",
+                        "attribute": "star",
+                        "traits": [
+                            "genderMale",
+                            "classRuler",
+                            "attributeStar",
+                            "alignmentNeutral",
+                            "alignmentGood",
+                            "humanoid",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 83331
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2021-06 Nerofest R1 Lvl 90+ [MIXED]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "berserker",
+                        "attribute": "sky",
+                        "traits": [
+                            "classBerserker",
+                            "attributeSky",
+                            "demonic",
+                            "humanoid",
+                            "undead"
+                        ],
+                        "hitPoints": 77481
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "berserker",
+                        "attribute": "earth",
+                        "traits": [
+                            "classBerserker",
+                            "attributeEarth",
+                            "dragon",
+                            "superGiant"
+                        ],
+                        "hitPoints": 171642
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "berserker",
+                        "attribute": "sky",
+                        "traits": [
+                            "classBerserker",
+                            "attributeSky",
+                            "demonic",
+                            "humanoid",
+                            "undead"
+                        ],
+                        "hitPoints": 82866
+                    },
+                    {
+                        "eClass": "berserker",
+                        "attribute": "earth",
+                        "traits": [
+                            "genderFemale",
+                            "classBerserker",
+                            "attributeEarth",
+                            "alignmentNeutral",
+                            "alignmentEvil",
+                            "oni",
+                            "humanoid",
+                            "dragon",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "demonic",
+                            "skyOrEarthExceptPseudoAndDemi"
+                        ],
+                        "hitPoints": 102008
+                    },
+                    {
+                        "eClass": "saber",
+                        "attribute": "sky",
+                        "traits": [
+                            "genderFemale",
+                            "classSaber",
+                            "attributeSky",
+                            "alignmentChaotic",
+                            "alignmentGood",
+                            "oni",
+                            "divine",
+                            "dragon",
+                            "weakToEnumaElish",
+                            "riding",
+                            "skyOrEarth",
+                            "demonic",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "saberClassServant",
+                            "demonicBeastServant",
+                            "giant",
+                            "hasCostume",
+                            "divineSpirit"
+                        ],
+                        "hitPoints": 186194
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2021-06 Nerofest R2 Lvl 90 [MIXED]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "rider",
+                        "attribute": "earth",
+                        "traits": [
+                            "greekMythologyMales",
+                            "humanoid",
+                            "genderMale",
+                            "classRider",
+                            "attributeEarth"
+                        ],
+                        "hitPoints": 16155
+                    },
+                    {
+                        "eClass": "rider",
+                        "attribute": "earth",
+                        "traits": [
+                            "greekMythologyMales",
+                            "humanoid",
+                            "genderMale",
+                            "classRider",
+                            "attributeEarth"
+                        ],
+                        "hitPoints": 16450
+                    },
+                    {
+                        "eClass": "rider",
+                        "attribute": "earth",
+                        "traits": [
+                            "greekMythologyMales",
+                            "humanoid",
+                            "genderMale",
+                            "classRider",
+                            "attributeEarth"
+                        ],
+                        "hitPoints": 18760
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "rider",
+                        "attribute": "earth",
+                        "traits": [
+                            "classRider",
+                            "attributeEarth",
+                            "greekMythologyMales",
+                            "humanoid",
+                            "genderMale"
+                        ],
+                        "hitPoints": 18760
+                    },
+                    {
+                        "eClass": "rider",
+                        "attribute": "earth",
+                        "traits": [
+                            "classRider",
+                            "attributeEarth",
+                            "wildbeast",
+                            "demonic",
+                            "superGiant"
+                        ],
+                        "hitPoints": 73776
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "rider",
+                        "attribute": "sky",
+                        "traits": [
+                            "genderMale",
+                            "classRider",
+                            "attributeSky",
+                            "alignmentChaotic",
+                            "alignmentBalanced",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "riding",
+                            "skyOrEarth",
+                            "brynhildsBeloved",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "king",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 160950
+                    },
+                    {
+                        "eClass": "archer",
+                        "attribute": "earth",
+                        "traits": [
+                            "genderMale",
+                            "classArcher",
+                            "attributeEarth",
+                            "alignmentChaotic",
+                            "alignmentBalanced",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "brynhildsBeloved",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 72217
+                    },
+                    {
+                        "eClass": "caster",
+                        "attribute": "earth",
+                        "traits": [
+                            "genderFemale",
+                            "classCaster",
+                            "attributeEarth",
+                            "alignmentLawful",
+                            "alignmentGood",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "king",
+                            "hominidaeServant",
+                            "hasCostume",
+                            "divineSpirit"
+                        ],
+                        "hitPoints": 79832
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2021-06 Nerofest R2 Lvl 90+ [ARCHERS]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "sky",
+                        "traits": [
+                            "classArcher",
+                            "attributeSky",
+                            "wildbeast"
+                        ],
+                        "hitPoints": 67114
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classArcher",
+                            "attributeEarth",
+                            "demonic",
+                            "superGiant"
+                        ],
+                        "hitPoints": 132805
+                    },
+                    {
+                        "eClass": "archer",
+                        "attribute": "sky",
+                        "traits": [
+                            "classArcher",
+                            "attributeSky",
+                            "wildbeast"
+                        ],
+                        "hitPoints": 68360
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderMale",
+                            "classArcher",
+                            "attributeHuman",
+                            "alignmentChaotic",
+                            "alignmentEvil",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 101595
+                    },
+                    {
+                        "eClass": "archer",
+                        "attribute": "sky",
+                        "traits": [
+                            "genderMale",
+                            "classArcher",
+                            "attributeSky",
+                            "alignmentChaotic",
+                            "alignmentBalanced",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "brynhildsBeloved",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 180307
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2021-06 Nerofest R3 Lvl 90 [MIXED]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "caster",
+                        "attribute": "sky",
+                        "traits": [
+                            "classCaster",
+                            "attributeSky"
+                        ],
+                        "hitPoints": 23301
+                    },
+                    {
+                        "eClass": "caster",
+                        "attribute": "sky",
+                        "traits": [
+                            "classCaster",
+                            "attributeSky"
+                        ],
+                        "hitPoints": 23301
+                    },
+                    {
+                        "eClass": "caster",
+                        "attribute": "sky",
+                        "traits": [
+                            "classCaster",
+                            "attributeSky"
+                        ],
+                        "hitPoints": 23465
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "caster",
+                        "attribute": "sky",
+                        "traits": [
+                            "classCaster",
+                            "attributeSky"
+                        ],
+                        "hitPoints": 23319
+                    },
+                    {
+                        "eClass": "caster",
+                        "attribute": "sky",
+                        "traits": [
+                            "classCaster",
+                            "attributeSky"
+                        ],
+                        "hitPoints": 23465
+                    },
+                    {
+                        "eClass": "caster",
+                        "attribute": "sky",
+                        "traits": [
+                            "classCaster",
+                            "attributeSky",
+                            "demonic"
+                        ],
+                        "hitPoints": 81857
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "archer",
+                        "attribute": "sky",
+                        "traits": [
+                            "genderMale",
+                            "classArcher",
+                            "attributeSky",
+                            "alignmentChaotic",
+                            "alignmentGood",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "king",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 152661
+                    },
+                    {
+                        "eClass": "saber",
+                        "attribute": "human",
+                        "traits": [
+                            "genderFemale",
+                            "classSaber",
+                            "attributeHuman",
+                            "alignmentChaotic",
+                            "humanoid",
+                            "roman",
+                            "saberface",
+                            "weakToEnumaElish",
+                            "riding",
+                            "saberClassServant",
+                            "king",
+                            "hominidaeServant"
+                        ],
+                        "hitPoints": 98090
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2021-06 Nerofest R3 Lvl 90+ [ASSASSINS]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "assassin",
+                        "attribute": "sky",
+                        "traits": [
+                            "classAssassin",
+                            "attributeSky",
+                            "divine",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 66162
+                    },
+                    {
+                        "eClass": "assassin",
+                        "attribute": "sky",
+                        "traits": [
+                            "classAssassin",
+                            "attributeSky",
+                            "divine",
+                            "humanoid",
+                            "genderFemale"
+                        ],
+                        "hitPoints": 69013
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "assassin",
+                        "attribute": "earth",
+                        "traits": [
+                            "classAssassin",
+                            "attributeEarth",
+                            "giant",
+                            "demonic",
+                            "oni",
+                            "superGiant"
+                        ],
+                        "hitPoints": 138905
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "assassin",
+                        "attribute": "earth",
+                        "traits": [
+                            "genderUnknown",
+                            "classAssassin",
+                            "attributeEarth",
+                            "alignmentChaotic",
+                            "alignmentBalanced",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "skyOrEarth",
+                            "demonic",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "feminineLookingServant"
+                        ],
+                        "hitPoints": 103987
+                    },
+                    {
+                        "eClass": "assassin",
+                        "attribute": "human",
+                        "traits": [
+                            "genderMale",
+                            "classAssassin",
+                            "attributeHuman",
+                            "alignmentNeutral",
+                            "alignmentEvil",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "hominidaeServant",
+                            "hasCostume"
+                        ],
+                        "hitPoints": 172810
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "2021-09 Summer 6 [LANCERS]",
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderMale",
+                            "attributeHuman",
+                            "alignmentNeutral",
+                            "alignmentEvil",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "riding",
+                            "hominidaeServant",
+                            "classLancer"
+                        ],
+                        "hitPoints": 51912
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderMale",
+                            "attributeHuman",
+                            "alignmentNeutral",
+                            "alignmentEvil",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "riding",
+                            "hominidaeServant",
+                            "classLancer"
+                        ],
+                        "hitPoints": 52938
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "human",
+                        "traits": [
+                            "genderMale",
+                            "attributeHuman",
+                            "alignmentNeutral",
+                            "alignmentEvil",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "riding",
+                            "hominidaeServant",
+                            "classLancer"
+                        ],
+                        "hitPoints": 50355
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [
+                            "classLancer",
+                            "attributeSky",
+                            "mechanical"
+                        ],
+                        "hitPoints": 158124
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "wildbeast"
+                        ],
+                        "hitPoints": 60098
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "earth",
+                        "traits": [
+                            "classLancer",
+                            "attributeEarth",
+                            "wildbeast"
+                        ],
+                        "hitPoints": 61876
+                    },
+                    {
+                        "eClass": "lancer",
+                        "attribute": "sky",
+                        "traits": [
+                            "genderFemale",
+                            "classLancer",
+                            "attributeSky",
+                            "alignmentNeutral",
+                            "alignmentSummer",
+                            "divine",
+                            "humanoid",
+                            "weakToEnumaElish",
+                            "riding",
+                            "skyOrEarth",
+                            "skyOrEarthExceptPseudoAndDemi",
+                            "demonicBeastServant",
+                            "divineSpirit"
+                        ],
+                        "hitPoints": 215087
                     }
                 ]
             }
