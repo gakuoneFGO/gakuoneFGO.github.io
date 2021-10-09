@@ -1,15 +1,12 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { Autocomplete, AutocompleteRenderInputParams, Box, Card, CardContent, CardHeader, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
+import { Autocomplete, Box, Card, CardContent, CardHeader, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
 import { Add, ContentCopy, Delete, Remove, Save } from "@mui/icons-material";
-import { JsxElement } from "typescript";
 import { Named, Persistor } from "../Data";
 import { useState } from "react";
 import { Trait } from "../Enemy";
 import { bindPopover, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
-import { NumberFormatPropsBase } from "react-number-format";
 
 interface BaseProps<V> {
     value: V;
@@ -136,6 +133,10 @@ interface ArrayBuilderRenderProps<T> {
 function ArrayBuilder<T, C>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
     return (
         <React.Fragment>
+            <Card>
+                <CardHeader title={props.addLabel}
+                    action={<IconButton title="Add" onClick={_ => handleChange({ $push: [ props.createOne() ] }, props)}><Add /></IconButton>} />
+            </Card>
             {props.value.map((item, index) =>
                 <Card key={index}>
                     <CardHeader title={props.renderHeader ? props.renderHeader(item, index) : undefined}
@@ -150,10 +151,6 @@ function ArrayBuilder<T, C>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
                     </CardContent>
                 </Card>
             )}
-            <Card>
-                <CardHeader title={props.addLabel}
-                    action={<IconButton title="Add" onClick={_ => handleChange({ $push: [ props.createOne() ] }, props)}><Add /></IconButton>} />
-            </Card>
         </React.Fragment>
     );
 }
