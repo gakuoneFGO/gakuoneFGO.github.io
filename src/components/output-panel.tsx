@@ -35,7 +35,7 @@ export const OutputPanel = React.memo((props: OutputPanelProps) => {
                             <TableCell><Typography sx={{textAlign: "center"}}>NP{npIndex + 1}</Typography></TableCell>
                             {nodeDamage.damagePerWave.map((waveDamage, turn) =>
                                 <TableCell key={turn} sx={selectedNpLevels[turn] == npIndex + 1 ?
-                                    {backgroundColor: theme.palette.warning.light, color: theme.palette.warning.contrastText} : {}}>
+                                    {backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText} : {}}>
                                     <Typography variant="body2" sx={{textAlign: "center"}}>
                                         <NumberFormat displayType="text" thousandSeparator=","
                                             value={waveDamage.damagePerEnemy[0].low} />
@@ -68,7 +68,7 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
         <React.Fragment>
             <Grid container>
                 {props.node.waves.map((wave, turn) =>
-                    <Grid item xs={4} lg={4} textAlign="center">
+                    <Grid key={turn} item xs={4} lg={4} textAlign="center">
                         {nps[turn].target == "st" && wave.enemies.length > 1 ?
                             <Tooltip title="Single target NP is selected for this wave. Damage is displayed for all enemies but can apply only to one.">
                                 <Warning color="warning" />
