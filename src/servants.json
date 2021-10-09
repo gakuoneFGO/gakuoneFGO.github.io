@@ -3048,7 +3048,15 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "attackUp",
+                        "val": 0.3,
+                        "turns": 1
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -26771,7 +26779,15 @@
             },
             {
                 "cooldown": 3,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "attackUp",
+                        "val": 0.5,
+                        "turns": 1
+                    }
+                ]
             }
         ],
         "nps": [
@@ -38790,7 +38806,22 @@
                 ],
                 "extraTrigger": [],
                 "preBuffs": [],
-                "postBuffs": []
+                "postBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "attackUp",
+                        "val": 0.2,
+                        "turns": 2
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "attackUp",
+                        "val": 0.2,
+                        "turns": 2
+                    }
+                ]
             }
         ]
     },

@@ -75,10 +75,9 @@ export class Persistor<T extends Named> {
         if (storageKey) {
             this.storageKey = storageKey;
             let storedItems = deserializeArray(type, localStorage.getItem(storageKey!) ?? "[]");
-            this.items = staticItems.concat(storedItems);
+            this.items = staticItems.concat(storedItems).sort((a, b)=> a.name.localeCompare(b.name));
         } else this.items = staticItems;
 
-        this.items = this.items.sort((a, b)=> a.name.localeCompare(b.name));
         this.map = new Map(this.items.map(item => [item.name, item]));
         this.isAllCustom = staticItems.length == 0;
     }
@@ -130,7 +129,7 @@ export class Persistor<T extends Named> {
 
 async function load<T extends { name: string }>(sources: { type: ClassConstructor<T>, url?: string, storageKey?: string }): Promise<Persistor<T>> {
     const staticItems = sources.url ?
-        fetch(sources.url!).then(resp => resp.text()).then(resp => deserializeArray(sources.type, resp)) :
+        fetch(sources.url).then(resp => resp.text()).then(resp => deserializeArray(sources.type, resp)) :
         Promise.all([]);
     const items = await staticItems;
     return new Persistor(sources.type, sources.storageKey, items);

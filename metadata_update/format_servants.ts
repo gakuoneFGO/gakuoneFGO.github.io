@@ -4,67 +4,80 @@ import "reflect-metadata";
 import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType, NPTarget } from "../src/Servant"
 import update from "immutability-helper";
 import { Trait } from "../src/Enemy";
+import fetch from "node-fetch";
 
 const U_RATIO = 0.001;
 
 const enums: any = {};
 const enumStream = fs.createReadStream("metadata_update\\enums.json", { encoding: 'utf-8' });
+const allPromises = [] as Promise<void>[];
 enumStream.pipe(JSONStream.parse([ { emitKey: true } ])).on("data", data => { enums[data.key] = data.value; });
 enumStream.on("end", () => {
     const servants = new Map<string, ServantData[]>();
     const stream = fs.createReadStream("metadata_update\\servants_raw.ignored.json", { encoding: 'utf-8' });
     stream.pipe(JSONStream.parse("*")).on("data", data => {
-        if (data.type == "enemyCollectionDetail") {
-            console.log("Skipping servant named ", data.name, " because type was ", data.type);
-            return;
-        }
-        //console.log(data.name);
-        if (data.name == "pasteNameHere") {
-            console.log(JSON.stringify(data, undefined, 4));
-        }
-        const upgradedNps = getUpgraded(data.noblePhantasms, (np1, np2) => np1.card == np2.card);
-        const servant = new ServantData(
-            data.name,
-            data.collectionNo,
-            data.rarity,
-            new GrowthCurve(new Map(data.atkGrowth.map((atk: number, i: number) => [ (i + 1).toString(), atk ]))),
-            data.className,
-            data.attribute,
-            getF2PCopies(data),
-            data.extraAssets.faces.ascension["1"],
-            data.extraAssets.charaGraph.ascension["1"],
-            "",//charge profile...
-            data.className == "berserker" ? [] : data.appendPassive[2].skill.functions[0].buffs[0].tvals.map(tval => tval.name),
-            getPassives(data, data.noblePhantasms[0].card),
-            getSkills(data, data.noblePhantasms[0].card),
-            upgradedNps.map(np => mapNp(np, getUnupgraded(np, data.noblePhantasms, (np1, np2) => np1.card == np2.card)))
-        );
-        if (!servants.has(servant.name))
-            servants.set(servant.name, [ servant ]);
-        else
-            servants.get(servant.name).push(servant);
+        allPromises.push(mapServant(data).then(servant => {
+            if (!servant) return;
+            if (!servants.has(servant.name))
+                servants.set(servant.name, [ servant ]);
+            else
+                servants.get(servant.name).push(servant);
+            console.log("done -", data.name);
+        }));
     }).on("end", () => {
-        var allServants: ServantData[] = [ getDummyServant("<Placeholder>"), getDummyServant("<Unspecified>") ];
-        servants.forEach(sArray => {
-            const origServant = sArray.reduce((min, cur) => min.id < cur.id ? min : cur);
-            allServants = allServants.concat(sArray.map(servant => {
-                if (servant == origServant)
-                    return servant;
-                if (servant.sClass != origServant.sClass)
-                    //TODO: fold in class name when ends in (Alter)
-                    return update(servant, { name: { $set: servant.name + " (" + toNiceClassName(servant.sClass) + ")" } })
-                //just BB and Abby will hit this for now
-                return update(servant, { name: { $set: servant.name + " (Summer)" } });
-            }));
+        Promise.all(allPromises).then(() => {
+            let allServants: ServantData[] = [ getDummyServant("<Placeholder>"), getDummyServant("<Unspecified>") ];
+            servants.forEach(sArray => {
+                const origServant = sArray.reduce((min, cur) => min.id < cur.id ? min : cur);
+                allServants = allServants.concat(sArray.map(servant => {
+                    if (servant == origServant)
+                        return servant;
+                    if (servant.sClass != origServant.sClass)
+                        //TODO: fold in class name when ends in (Alter)
+                        return update(servant, { name: { $set: servant.name + " (" + toNiceClassName(servant.sClass) + ")" } })
+                    //just BB and Abby will hit this for now
+                    return update(servant, { name: { $set: servant.name + " (Summer)" } });
+                }));
+            });
+            fs.createWriteStream("src\\servants.json", { encoding: "utf-8" }).write(JSON.stringify(allServants.sort((a, b) => a.name.localeCompare(b.name)), replaceMap, 4));
         });
-        fs.createWriteStream("src\\servants.json", { encoding: "utf-8" }).write(JSON.stringify(allServants.sort((a, b) => a.name.localeCompare(b.name)), replaceMap, 4));
     });
 });
 
-function mapNp(np: any, unupgraded: any): NoblePhantasm {
+async function mapServant(data: any): Promise<ServantData> {
+    if (data.type == "enemyCollectionDetail") {
+        console.log("Skipping servant named ", data.name, " because type was ", data.type);
+        return;
+    }
+    console.log(data.name);
+    if (data.name == "pasteNameHere") {
+        console.log(JSON.stringify(data, undefined, 4));
+    }
+    const upgradedNps = getUpgraded(data.noblePhantasms, (np1, np2) => np1.card == np2.card);
+    return new ServantData(
+        data.name,
+        data.collectionNo,
+        data.rarity,
+        new GrowthCurve(new Map(data.atkGrowth.map((atk: number, i: number) => [ (i + 1).toString(), atk ]))),
+        data.className,
+        data.attribute,
+        getF2PCopies(data),
+        data.extraAssets.faces.ascension["1"],
+        data.extraAssets.charaGraph.ascension["1"],
+        "",//charge profile...
+        data.className == "berserker" ? [] : data.appendPassive[2].skill.functions[0].buffs[0].tvals.map(tval => tval.name),
+        await getPassives(data, data.noblePhantasms[0].card),
+        await getSkills(data, data.noblePhantasms[0].card),
+        await Promise.all(upgradedNps.map(np => mapNp(np, getUnupgraded(np, data.noblePhantasms, (np1, np2) => np1.card == np2.card))))
+    );
+}
+
+async function mapNp(np: any, unupgraded: any): Promise<NoblePhantasm> {
     const npFuncIndex = np.functions.findIndex(f => f.funcType.startsWith("damageNp"));
     const npFunc = np.functions[npFuncIndex];
     const npFuncUnupgraded = unupgraded.functions.find(f => f.funcType.startsWith("damageNp"));
+    const preBuffs: Buff[][] = await Promise.all(np.functions.filter((_, i) => i < npFuncIndex).map(toBuff));
+    const postBuffs: Buff[][] = await Promise.all(np.functions.filter((_, i) => i > npFuncIndex).map(toBuff));
 
     return new NoblePhantasm(
         np.card,
@@ -76,8 +89,8 @@ function mapNp(np: any, unupgraded: any): NoblePhantasm {
             getExtraMultiplier(npFunc),
             getExtraTrigger(npFunc),
             doesExtraDamageStack(npFunc),
-            np.functions.filter((_, i) => i < npFuncIndex).flatMap(toBuff),
-            np.functions.filter((_, i) => i > npFuncIndex).flatMap(toBuff)
+            preBuffs.flat(1),
+            postBuffs.flat(1)
                 .map((b: Buff) => update(b, { turns: { $set: b.turns - 1 } }))
                 .filter(b => b.turns > 0)
     );
@@ -162,9 +175,13 @@ EXCEPTIONS
 
 */
 
-function getSkills(data: any, npType: CardType): Skill[] {
-    return getUpgraded(data.skills, (s1, s2) => s1.num == s2.num)
-        .map(s => new Skill(s.coolDown[s.coolDown.length - 1], s.functions.flatMap(toBuff).filter(buff => isUseful(buff, npType))));
+async function getSkills(data: any, npType: CardType): Promise<Skill[]> {
+    return Promise.all(getUpgraded(data.skills, (s1, s2) => s1.num == s2.num).map(s => getSkill(s, npType)));
+}
+
+async function getSkill(skill: any, npType: CardType): Promise<Skill> {
+    const buffs: Buff[][] = await Promise.all(skill.functions.map(toBuff));
+    return new Skill(skill.coolDown[skill.coolDown.length - 1], buffs.flat(1).filter(buff => isUseful(buff, npType)))
 }
 
 function getUpgraded(array: any[], areSame: (item1: any, item2:any) => boolean): any[] {
@@ -175,13 +192,13 @@ function getUnupgraded(upgraded: any, array: any[], areSame: (item1: any, item2:
     return array.find(item => areSame(item, upgraded) && !array.some(other => areSame(item, other) && other.condQuestId < item.condQuestId));
 }
 
-function getPassives(data: any, npType: CardType): Buff[] {
-    return data.classPassive.flatMap(p => p.functions)
-        .flatMap(toBuff)
-        .filter(buff => buff.type != BuffType.CardTypeUp || isUseful(buff, npType));
+async function getPassives(data: any, npType: CardType): Promise<Buff[]> {
+    const buffs: Buff[][] = await Promise.all(data.classPassive.flatMap(p => p.functions).map(toBuff));
+    return buffs.flat(1).filter(buff => buff.type != BuffType.CardTypeUp || isUseful(buff, npType));
 }
 
-function toBuff(func: any): Buff[] {
+async function toBuff(func: any): Promise<Buff[]> {
+    if (func.buffs == undefined) console.log(func);
     if (func.buffs.length < 1) {
         return [];
     }
@@ -198,7 +215,7 @@ function toBuff(func: any): Buff[] {
         case "enemyAll":
             return debuffToBuff(func);
         case "self":
-        case "ptOne"://misses cases where there is a targeted buff useful only for the secondary clearer but I don't think such a skill exists
+        case "ptOne"://misses cases where there is a targeted buff useful only for the secondary clearer but I don't think such a skill exists (except chen gong but no one uses that guy)
             self = true;
             team = false;
             break;
@@ -220,7 +237,7 @@ function toBuff(func: any): Buff[] {
     }
 
     switch (func.buffs[0].type) {
-        //TODO: check how conditional buffs like liz work. (not sure I wanna bother though? none of them apply to arash/oberon anyway)
+        //TODO: check how conditional buffs like liz work. (not sure I wanna bother though? none of them apply to arash/oberon/gong anyway)
         //TODO: figure out how to filter stuff like zerkersashi's power mod
         case "upAtk":
             return [ new Buff(self, team, BuffType.AttackUp, getBuffValue(func), getBuffTurns(func)) ];
@@ -246,6 +263,13 @@ function toBuff(func: any): Buff[] {
             return [ new Buff(self, team, BuffType.NpBoost, getBuffValue(func), getBuffTurns(func)) ];
         case "upChagetd":
             return [ new Buff(self, team, BuffType.Overcharge, getBuffValue(func, 1), getBuffTurns(func, true)) ];
+        case "delayFunction":
+        case "selfturnendFunction":
+            const delayedFunc = await lookUpSkill(getBuffValue(func) / U_RATIO);
+            //console.log(delayedFunc);
+            //TODO: this applies everything immediately, which may be fine for most skills but is not fine for NP effects (are there any relevant ones?)
+            const buffs: Buff[][] = await Promise.all(delayedFunc.functions.map(toBuff));
+            return buffs.flat(1);
         case "overwriteClassRelation":
             //TODO: I had no idea kiara had this, wtf. well we needed to do this for kama anyway
         case "upCommandatk": //TODO: handle this if it comes up for any new servants
@@ -263,6 +287,7 @@ function toBuff(func: any): Buff[] {
         case "upDefence":
         case "downDefence":
         case "upDefencecommandall":
+        case "upSpecialdefence":
         case "avoidance":
         case "invincible":
         case "specialInvincible":
@@ -294,11 +319,13 @@ function toBuff(func: any): Buff[] {
         case "npattackPrevBuff":
         case "damageFunction":
         case "changeCommandCardType":
+        case "skillRankUp":
         case "donotAct":
         case "donotSkill":
         case "donotSelectCommandcard":
         case "donotNoble":
         case "donotNobleCondMismatch":
+        case "donotReplace":
         case "fixCommandcard":
         case "upGainHp":
         case "upGivegainHp":
@@ -308,8 +335,6 @@ function toBuff(func: any): Buff[] {
         case "upFuncHpReduce":
         case "regainHp":
         case "reduceHp":
-        case "delayFunction"://TODO: not sure how this is wired up
-        case "selfturnendFunction"://TODO: not sure how this is wired up
         case "deadFunction":
         case "addIndividuality"://TODO: what is this
         case "fieldIndividuality"://TODO: do you want to go so far as to know who can change field type to proc their own buffs?
@@ -319,6 +344,10 @@ function toBuff(func: any): Buff[] {
             console.log("Unknown buff type", func.buffs[0]);
             return [];
     }
+}
+
+async function lookUpSkill(id: number): Promise<any> {
+    return await fetch(`https://api.atlasacademy.io/nice/JP/skill/${id}`, undefined).then(resp => resp.text()).then(raw => JSON.parse(raw));
 }
 
 function debuffToBuff(func: any): Buff[] {
