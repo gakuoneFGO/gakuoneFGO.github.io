@@ -1,7 +1,6 @@
 import { Type } from "class-transformer";
-import { Trait } from "./Enemy";
 
-class Servant {
+export class Servant {
     constructor(readonly config: ServantConfig, readonly data: ServantData) {};
 
     public getAttackStat(): number {
@@ -51,7 +50,7 @@ class Servant {
     }
 }
 
-class ServantConfig {
+export class ServantConfig {
     constructor(
         readonly name: string,
         readonly npLevel: number,
@@ -64,7 +63,28 @@ class ServantConfig {
 const appendMod = [ 0, .2, .21, .22, .23, .24, .25, .26, .27, .28, .3 ];
 export type AppendLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
-class ServantData {
+export class GrowthCurve {
+    constructor(stats: Map<string, number>) {
+        this.stats = stats;
+    }
+
+    @Type(() => Map)
+    readonly stats: Map<string, number>;
+
+    getAttackStat(level: number): number {
+        if (!this.stats.has(level.toString())) {
+            throw new Error("Missing stats for servant at level " + level);
+        }
+
+        return this.stats.get(level.toString()) as number;
+    }
+
+    getValidLevels(): string[] {
+        return Array.from(this.stats.keys());
+    }
+}
+
+export class ServantData {
     constructor(
         readonly name: string,
         readonly id: number,
@@ -119,28 +139,7 @@ class ServantData {
     }
 }
 
-class GrowthCurve {
-    constructor(stats: Map<string, number>) {
-        this.stats = stats;
-    }
-
-    @Type(() => Map)
-    readonly stats: Map<string, number>;
-
-    getAttackStat(level: number): number {
-        if (!this.stats.has(level.toString())) {
-            throw new Error("Missing stats for servant at level " + level);
-        }
-
-        return this.stats.get(level.toString()) as number;
-    }
-
-    getValidLevels(): string[] {
-        return Array.from(this.stats.keys());
-    }
-}
-
-class Buff {
+export class Buff {
     constructor(
         readonly self: boolean,
         readonly team: boolean,
@@ -151,7 +150,7 @@ class Buff {
         readonly trig?: Trait[]) {}
 }
 
-enum BuffType {
+export enum BuffType {
     AttackUp = "attackUp",
     CardTypeUp = "cardTypeUp",
     NpDmgUp = "npDamage",
@@ -161,7 +160,7 @@ enum BuffType {
     AddTrait = "addTrait",
 }
 
-class Skill {
+export class Skill {
     constructor(
         readonly cooldown: number,
         buffs: Buff[]) {
@@ -180,7 +179,7 @@ export class PowerMod {
 
 export type NPTarget = "aoe" | "st" | "none";
 
-class NoblePhantasm {
+export class NoblePhantasm {
     constructor(
         readonly cardType: CardType,
         readonly target: NPTarget,
@@ -201,14 +200,14 @@ class NoblePhantasm {
     readonly postBuffs: Buff[];
 } 
 
-enum CardType {
+export enum CardType {
     Buster = "buster",
     Arts = "arts",
     Quick = "quick",
     Extra = "extra",
 }
 
-enum ServantClass {
+export enum ServantClass {
     Saber = "saber",
     Archer = "archer",
     Lancer = "lancer",
@@ -225,7 +224,7 @@ enum ServantClass {
     Shielder = "shielder",
 }
 
-enum ServantAttribute {
+export enum ServantAttribute {
     Man = "human",
     Earth = "earth",
     Sky = "sky",
@@ -233,7 +232,7 @@ enum ServantAttribute {
     Beast = "beast",
 }
 
-enum Alignment {
+export enum Alignment {
     Good = "good",
     Evil = "evil",
     Lawful = "lawful",
@@ -243,4 +242,72 @@ enum Alignment {
     Madness = "madness",
 }
 
-export { Servant, ServantConfig, ServantData, Buff, BuffType, Skill, NoblePhantasm, ServantClass, ServantAttribute, CardType, GrowthCurve, Alignment };
+export enum Trait {
+    Always = "always",
+    Shielder = "classShielder",
+    Saber = "classSaber",
+    Archer = "classArcher",
+    Lancer = "classLancer",
+    Rider = "classRider",
+    Caster = "classCaster",
+    Assassin = "classAssassin",
+    Berserker = "classBerserker",
+    Ruler = "classRuler",
+    Avenger = "classAvenger",
+    MoonCancer = "classMoonCancer",
+    AlterEgo = "classAlterEgo",
+    Foreigner = "classForeigner",
+    Pretender = "classPretender",
+    Man = "attributeHuman",
+    Earth = "attributeEarth",
+    Sky = "attributeSky",
+    Star = "attributeStar",
+    Beast = "attributeBeast",
+    Good = "alignmentGood",
+    Evil = "alignmentEvil",
+    Lawful = "alignmentLawful",
+    Chaotic = "alignmentChaotic",
+    Neutral = "alignmentNeutral",
+    Summer = "alignmentSummer",
+    Madness = "alignmentMadness",
+    Male = "genderMale",
+    Female = "genderFemale",
+    UnknownGender = "genderUnknown",
+    Argo = "argonaut",
+    Arthur = "arthur",
+    BrynhildrsBeloved = "brynhildsBeloved",
+    Children = "childServant",
+    CostumeOwning = "hasCostume",
+    Demonic = "demonic",
+    Divine = "divine",
+    DivineSpirit = "divineSpirit",
+    Dragon = "dragon",
+    Fae = "fae",
+    Feminine = "feminineLookingServant",
+    Genji = "genji",
+    Giant = "giant",
+    GreekMythMales = "greekMythologyMales",
+    Humanoid = "humanoid",
+    Illya = "illya",
+    King = "king",
+    Human = "livingHuman",
+    Mechanical = "mechanical",
+    Nobunaga = "nobunaga",
+    Oni = "oni",
+    SkyOrEarthExceptPseudoAndDemi = "skyOrEarthExceptPseudoAndDemi",
+    Riding = "riding",
+    Roman = "roman",
+    KoTR = "knightsOfTheRound",
+    Saberface = "saberface",
+    Servant = "servant",
+    Shuten = "shuten",
+    SuperLarge = "superGiant",
+    ThreatToHumanity = "threatToHumanity",
+    Undead = "undead",
+    WeakToEnumaElish = "weakToEnumaElish",
+    WildBeast = "wildbeast",
+    EarthOrSky = "skyOrEarth",
+    SaberServant = "saberClassServant",
+    Charmed = "buffCharm",
+    WeaknessFound = "weakPointsRevealed",
+}

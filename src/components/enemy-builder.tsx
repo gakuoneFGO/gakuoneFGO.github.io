@@ -1,10 +1,9 @@
-import { Box, TextField, Autocomplete, Stack, Grid, Card, CardHeader, Typography } from "@mui/material";
+import { Box, TextField, Autocomplete, Stack, Grid, Typography } from "@mui/material";
 import { ArrayBuilder, BaseProps, handleChange, IntegerInput, SaveableSelect, TraitSelect } from "./common";
-import { Enemy, EnemyAttribute, EnemyClass, Trait } from "../Enemy";
+import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
 import { EnemyNode } from "../Strat";
 import React from "react";
-import { useData } from "../Data";
-import update from "immutability-helper";
+import { db } from "../Data";
 
 function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
     return (
@@ -32,12 +31,10 @@ function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
 }
 
 function NodeBuilder(props: BaseProps<EnemyNode>) {
-    const [ data ] = useData();
-    
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <SaveableSelect provider={data.nodes} {...props} label="Select Node" saveLabel="NodeName" />
+                <SaveableSelect provider={db.nodes} {...props} label="Select Node" saveLabel="NodeName" />
             </Grid>
             {props.value.waves.map((wave, index) => (
                 <Grid key={index} item xs={12} sm={4} md={12} lg={4}>

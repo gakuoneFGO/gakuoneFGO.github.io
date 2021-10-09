@@ -1,21 +1,12 @@
-import { Checkbox, FormControlLabel, Grid, TextField, Stack, Card, CardContent, Box, InputAdornment, IconButton, useTheme, Popover } from "@mui/material";
-import { useData } from "../Data";
+import { Checkbox, FormControlLabel, Grid, Stack, Card, CardContent, Box, useTheme } from "@mui/material";
+import { db } from "../Data";
 import { Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
-import { BaseProps, handleChange, SaveableSelect, SmartSelect } from "./common";
+import { BaseProps, handleChange, SaveableSelect } from "./common";
 import { ServantSelector } from "./servant-selector";
-import { bindPopover, usePopupState, bindTrigger } from "material-ui-popup-state/hooks";
-import { useState } from "react";
-import update from "immutability-helper";
-import { Save } from "@mui/icons-material";
 import { CardType } from "../Servant";
 
 function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardType[]> }) {
-    const [ data ] = useData();
-    const popupState = usePopupState({ variant: "popover", popupId: "ServantSelector" });
-    const theme = useTheme();
-    const [ state, setState ] = useState({ newName: "" });
-
     function handleClearerChanged(value: boolean, turnIndex: number, clearerIndex: number) {
         if (!value) return;
         handleChange({ clearers: { [turnIndex]: { $set: clearerIndex } } }, props);
@@ -24,9 +15,9 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <SaveableSelect provider={data.templates}
+                <SaveableSelect provider={db.templates}
                     value={props.value.asSaveable()}
-                    onChange={template => props.onChange(data.getTemplate(template.name))}
+                    onChange={template => props.onChange(db.getTemplate(template.name))}
                     label="Select Template"
                     saveLabel="Template Name" />
             </Grid>
@@ -77,7 +68,7 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                     onChange={buffs => handleChange({ buffs: { $set: buffs } }, props)}
                     clearers={props.value.clearers.map(c => props.value.party[c])}
                     npCards={props.npCards}
-                    doRefresh={() => handleChange({ buffs: { $set: data.getTemplate(props.value.name).buffs } }, props)} />
+                    doRefresh={() => handleChange({ buffs: { $set: db.getTemplate(props.value.name).buffs } }, props)} />
             </Grid>
         </Grid>
     );

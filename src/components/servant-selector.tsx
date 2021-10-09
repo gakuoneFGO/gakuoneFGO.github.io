@@ -2,7 +2,7 @@ import { Save, Settings, Warning } from "@mui/icons-material";
 import { Checkbox, TextField, Autocomplete, InputAdornment, IconButton, Popper, FormControlLabel, Stack, Card, CardContent, useTheme, Tooltip, ClickAwayListener } from "@mui/material";
 import React, { useState } from "react";
 import { bindToggle, bindPopper, usePopupState } from 'material-ui-popup-state/hooks';
-import { useData } from "../Data";
+import { db } from "../Data";
 import { AppendLevel, Servant } from "../Servant";
 import { BaseProps, handleChange, IntegerInput, SmartSelect } from "./common";
 
@@ -13,15 +13,14 @@ interface ServantSelectorProps extends BaseProps<Servant> {
 }
 
 function ServantSelector(props: ServantSelectorProps) {
-    const [ data ] = useData();
     const popupState = usePopupState({ variant: "popper", popupId: "ServantSelector" });
     const theme = useTheme();
 
     return (
         <React.Fragment>
-            <SmartSelect provider={data.servantData}
+            <SmartSelect provider={db.servantData}
                 value={props.value.data}
-                onChange={v => props.onChange(data.getServantDefaults(v.name))}
+                onChange={v => props.onChange(db.getServantDefaults(v.name))}
                 label="Select Servant"
                 filter={
                     props.allowPlaceholder && props.allowUnspecified ?
@@ -79,7 +78,7 @@ function ServantSelector(props: ServantSelectorProps) {
                                         } />
                                     <IconButton title="Save as Default"
                                         onClick={(e) => {
-                                            data.setServantDefaults(props.value.config);
+                                            db.setServantDefaults(props.value.config);
                                             popupState.setOpen(false);
                                         }}>
                                         <Save />

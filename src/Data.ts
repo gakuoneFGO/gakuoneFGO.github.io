@@ -162,16 +162,10 @@ export class TemplateData {
     readonly buffs: BuffMatrix;
 }
 
-var provider: DataProvider;
-const promise = Promise.all([
+export const db: DataProvider = await Promise.all([
     load({ type: ServantData, url: "servants.json" }),
     load({ type: ServantConfig, storageKey: "servants" }),
     load({ type: TemplateData, url: "templates.json", storageKey: "templates" }),
     load({ type: CraftEssence, url: "ces.json", storageKey: "craftEssences" }),
     load({ type: EnemyNode, url: "nodes.json", storageKey: "enemyNodes" }),
-]).then(responses => provider = new DataProvider(...responses));
-
-//not really a hook but usage is vaguely similar
-export function useData(): [ DataProvider, Promise<DataProvider> ] {
-    return [ provider, promise ];
-}
+]).then(responses => new DataProvider(...responses));

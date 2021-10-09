@@ -1,7 +1,7 @@
 import { Box, Grid, Stack, Tab, useMediaQuery, useTheme } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
-import { useData } from "../Data";
+import { db } from "../Data";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
 import { EnemyBuilder, NodeBuilder } from "./enemy-builder";
 import { NodeOutputPanel, OutputPanel } from "./output-panel";
@@ -13,7 +13,7 @@ import { ServantSelector } from "./servant-selector";
 import { TemplateBuilder } from "./template-builder";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { CardType, NoblePhantasm, Servant, ServantData } from "../Servant";
+import { CardType, Servant } from "../Servant";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 interface StratBuilderState {
@@ -28,35 +28,30 @@ type StateChange = (state: StratBuilderState) => Spec<Readonly<StratBuilderState
 
 //TODO: decompose this
 export function StratBuilder() {
-    const [ data, promise ] = useData();
-    const [ state, setState ] = useState({} as StratBuilderState);
+    const init = () => {
+        const servant = db.getServantDefaults("Iskandar");
+        const template = db.getTemplate("[BUSTER] Double Oberon + Castoria (0%)");
+        const strat = new Strat(
+            [new MainServant(servant, template.buffs), ...Array(5).fill(undefined)],
+            template,
+            new CraftEssence("<None>", 0, []),
+            new CraftEssence("<None>", 0, []),
+            new Array(3).fill(CardType.Buster)
+        );
+
+        return {
+            strat: defaultBuffsetHeuristic(strat, 0),
+            basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).withClass(getLikelyClassMatchup(servant.data.sClass)),
+            advancedNode: db.nodes.get("[LANCERS] Nursemas Band-aid Farming"),
+            selectedTab: "servant0",
+            selectedOutput: "basic"
+        } as StratBuilderState;
+    }
+
+    const [ state, setState ] = useState(init);
     const theme = useTheme();
     const [ sm, lg ] = [ useMediaQuery(theme.breakpoints.down("md")), useMediaQuery(theme.breakpoints.up("lg")) ];
     const md = !sm && !lg;
-
-    //force all data loaded before loading root control
-    //this allows descendents to use data freely
-    if (!data) {
-        promise.then( data => {
-            let servant = data.getServantDefaults("Iskandar");
-            let template = data.getTemplate("[BUSTER] Double Oberon + Castoria (0%)");
-            var strat = new Strat(
-                [new MainServant(servant, template.buffs), ...Array(5).fill(undefined)],
-                template,
-                new CraftEssence("<None>", 0, []),
-                new CraftEssence("<None>", 0, []),
-                new Array(3).fill(CardType.Buster)
-            );
-            setState({
-                strat: defaultBuffsetHeuristic(strat, 0),
-                basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).withClass(getLikelyClassMatchup(servant.data.sClass)),
-                advancedNode: data.nodes.get("[LANCERS] Nursemas Band-aid Farming"),
-                selectedTab: "servant0",
-                selectedOutput: "basic"
-            });
-        });
-        return null;
-    };
 
     const handleChange = (change: Spec<Readonly<StratBuilderState>, never> | StateChange) => {
         //console.log(spec);
@@ -86,9 +81,9 @@ export function StratBuilder() {
     //TODO: this is cool but you technically should use the same servant that was selected in the template (including config). only <Unspecified> should trigger random
     //the time for randomness is usually on page load anyway
     const getRandomServant: () => Servant = () => {
-        const pool = data.servantData.getAll();
+        const pool = db.servantData.getAll();
         const rand = Math.floor(Math.random() * pool.length)
-        const result = data.getServantDefaults(pool[rand].name)
+        const result = db.getServantDefaults(pool[rand].name)
         return !result.isPlaceholder() && result.isSpecified() ? result : getRandomServant();
     };
 
