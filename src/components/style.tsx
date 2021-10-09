@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import { blue, deepOrange, green, grey, orange, purple, red, yellow } from "@mui/material/colors";
+import { blue, blueGrey, deepOrange, green, grey, lightBlue, orange, purple, red, yellow } from "@mui/material/colors";
 declare module '@mui/material/styles/createPalette' {
     interface PaletteOptions {
         buster?: PaletteColorOptions;
@@ -27,6 +27,12 @@ declare module '@mui/material/styles/createPalette' {
 const theme = createTheme({
     palette: {
         mode: "dark",
+        primary: {
+            main: yellow[900]
+        },
+        secondary: {
+            main: blueGrey[900]
+        },
         info: {
             main: green[500]
         },
