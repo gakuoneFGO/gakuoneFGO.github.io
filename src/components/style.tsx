@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme, Paper } from "@mui/material";
 import { blue, blueGrey, deepOrange, green, grey, lightBlue, orange, purple, red, yellow } from "@mui/material/colors";
 declare module '@mui/material/styles/createPalette' {
     interface PaletteOptions {
@@ -69,6 +69,7 @@ const theme = createTheme({
         MuiAutocomplete: {
             defaultProps: {
                 disableClearable: true,
+                PaperComponent: props => <Paper {...props} sx={{ backgroundColor: theme.palette.secondary.main, color: theme.palette.secondary.contrastText}} />
             }
         },
         //deprecated, but MUI's docs don't provide another mechanism to set this at the theme level (https://mui.com/customization/how-to-customize/#5-global-css-override)
