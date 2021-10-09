@@ -2,8 +2,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { Autocomplete, AutocompleteRenderInputParams, Card, CardContent, CardHeader, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
-import { Add, Delete, Remove, Save } from "@mui/icons-material";
+import { Autocomplete, AutocompleteRenderInputParams, Box, Card, CardContent, CardHeader, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
+import { Add, ContentCopy, Delete, Remove, Save } from "@mui/icons-material";
 import { JsxElement } from "typescript";
 import { Named, Persistor } from "../Data";
 import { useState } from "react";
@@ -124,6 +124,7 @@ interface ArrayBuilderProps<T> {
     renderOne: (item: T, props: ArrayBuilderRenderProps<T>, index: number) => any;
     renderHeader?: (item: T, index: number) => any;
     addLabel: React.ReactNode;
+    canCopy?: boolean;
 }
 
 interface ArrayBuilderRenderProps<T> {
@@ -135,7 +136,12 @@ function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
         <React.Fragment>
             {props.value.map((item, index) =>
                 <Card key={index}>
-                    <CardHeader title={props.renderHeader ? props.renderHeader(item, index) : undefined} action={<IconButton onClick={_ => handleChange({ $splice: [[ index, 1 ]] }, props)}><Remove /></IconButton>} />
+                    <CardHeader title={props.renderHeader ? props.renderHeader(item, index) : undefined}
+                        action={
+                            <Box>
+                                {props.canCopy ? <IconButton onClick={_ => handleChange({ $push: [item] }, props)}><ContentCopy /></IconButton> : null}
+                                <IconButton onClick={_ => handleChange({ $splice: [[ index, 1 ]] }, props)}><Remove /></IconButton>
+                            </Box>} />
                     <CardContent>
                         {props.renderOne(item, { onChange: item => handleChange({ $splice: [[ index, 1, item ]] }, props) }, index)}
                     </CardContent>

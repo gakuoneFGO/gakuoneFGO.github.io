@@ -39,7 +39,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
             {props.value.waves.map((wave, index) => (
                 <Grid key={index} item xs={12} sm={4} md={12} lg={4}>
                     <Stack direction="column" spacing={2}>
-                        <ArrayBuilder value={wave.enemies}
+                        <ArrayBuilder canCopy value={wave.enemies}
                             onChange={enemies => handleChange({ waves: { [index]: { enemies: { $set: enemies } } } }, props)}
                             createOne={() => new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0)}
                             renderOne={(enemy, props) => 
@@ -47,7 +47,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
                                     <EnemyBuilder value={enemy} showHealth {...props} />
                                 </Stack>
                             }
-                            renderHeader={(_, eIndex) => <Typography>Wave {index + 1} Enemy {eIndex + 1}</Typography>}
+                            renderHeader={(_, eIndex) => <Typography>W{index + 1} E{eIndex + 1}</Typography>}
                             addLabel={<Typography>Add Wave {index + 1} Enemy</Typography>} />
                     </Stack>
                 </Grid>
