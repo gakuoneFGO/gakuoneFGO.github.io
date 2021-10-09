@@ -4,3 +4,10 @@
      */
     z-index: unset !important;
 }
+
+.MuiAutocomplete-inputRoot .MuiAutocomplete-input {
+    /**
+     * Fixes an issue with the autocomplete width being set to 0 in the NodeBuilder component.
+     */
+    width: unset !important;
+}

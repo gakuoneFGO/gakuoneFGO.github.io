@@ -1,9 +1,11 @@
-import { Box, TextField, Autocomplete, Stack, Grid, Typography } from "@mui/material";
-import { ArrayBuilder, BaseProps, handleChange, IntegerInput, SaveableSelect, TraitSelect } from "./common";
+import { Box, TextField, Autocomplete, Stack, Grid, Typography, IconButton, Popper, Popover, Card, CardContent, useTheme } from "@mui/material";
+import { ArrayBuilder, BaseProps, handleChange, IntegerInput, SaveableSelect, SmartSelect, TraitSelect } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
 import { EnemyNode } from "../Strat";
-import React from "react";
+import React, { useState } from "react";
 import { db } from "../Data";
+import { PersonSearch } from "@mui/icons-material";
+import { bindPopover, bindToggle, usePopupState } from "material-ui-popup-state/hooks";
 
 function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
     return (
@@ -31,6 +33,9 @@ function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
 }
 
 function NodeBuilder(props: BaseProps<EnemyNode>) {
+    const theme = useTheme();
+    const popupState = usePopupState({ variant: "popover", popupId: "NodeBuilder" });
+    const [state, setState] = useState({ waveIndex: 0, enemyIndex: 0, hp: 0 });
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -48,10 +53,34 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
                                 </Stack>
                             }
                             renderHeader={(_, eIndex) => <Typography>W{index + 1} E{eIndex + 1}</Typography>}
-                            addLabel={<Typography>Add Wave {index + 1} Enemy</Typography>} />
+                            addLabel={<Typography>Add Wave {index + 1} Enemy</Typography>}
+                            customButtons={(enemy, eIndex) => (
+                                <IconButton {...bindToggle(popupState)} title="Fill from Servant"
+                                    onClick={e => {
+                                        popupState.setAnchorEl(e.currentTarget);
+                                        popupState.toggle();
+                                        setState({ waveIndex: index, enemyIndex: eIndex, hp: enemy.hitPoints });
+                                    }}>
+                                    <PersonSearch />
+                                </IconButton>
+                            )} />
                     </Stack>
                 </Grid>
             ))}
+            <Popover {...bindPopover(popupState)}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                transformOrigin={{ vertical: "top", horizontal: "center" }}>
+                <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
+                    <CardContent>
+                        <SmartSelect provider={db.servantData} filter={s => s.isSpecified() && !s.isPlaceholder()}
+                            label="Select Enemy Servant" autoFocus
+                            onChange={servant => {
+                                handleChange({ waves: { [state.waveIndex]: { enemies: { [state.enemyIndex]: { $set: Enemy.fromServant(servant, state.hp) } } } } }, props);
+                                popupState.close();
+                            }} />
+                    </CardContent>
+                </Card>
+            </Popover>
         </Grid>
     );
 }

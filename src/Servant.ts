@@ -92,6 +92,7 @@ export class ServantData {
         growthCurve: GrowthCurve,
         readonly sClass: ServantClass,
         readonly attribute: ServantAttribute,
+        readonly traits: Trait[],
         readonly f2pCopies: number,
         readonly iconUrl: string,
         readonly cardArtUrl: string,
@@ -232,15 +233,16 @@ export enum ServantAttribute {
     Beast = "beast",
 }
 
-export enum Alignment {
-    Good = "good",
-    Evil = "evil",
-    Lawful = "lawful",
-    Chaotic = "chaotic",
-    Neutral = "neutral",
-    Summer = "summer",
-    Madness = "madness",
-}
+// export enum Alignment {
+//     Good = "good",
+//     Evil = "evil",
+//     Lawful = "lawful",
+//     Chaotic = "chaotic",
+//     Neutral = "neutral",
+//     Balanced = "balanced",
+//     Summer = "summer",
+//     Madness = "madness",
+// }
 
 export enum Trait {
     Always = "always",
@@ -268,6 +270,7 @@ export enum Trait {
     Lawful = "alignmentLawful",
     Chaotic = "alignmentChaotic",
     Neutral = "alignmentNeutral",
+    Balanced = "alignmentBalanced",
     Summer = "alignmentSummer",
     Madness = "alignmentMadness",
     Male = "genderMale",
@@ -288,6 +291,7 @@ export enum Trait {
     Giant = "giant",
     GreekMythMales = "greekMythologyMales",
     Humanoid = "humanoid",
+    HominidaeServant = "hominidaeServant",
     Illya = "illya",
     King = "king",
     Human = "livingHuman",
@@ -308,6 +312,7 @@ export enum Trait {
     WildBeast = "wildbeast",
     EarthOrSky = "skyOrEarth",
     SaberServant = "saberClassServant",
+    DemonicBeastServant = "demonicBeastServant",
     Charmed = "buffCharm",
     WeaknessFound = "weakPointsRevealed",
 }

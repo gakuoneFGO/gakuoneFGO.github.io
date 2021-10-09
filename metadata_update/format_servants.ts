@@ -22,7 +22,7 @@ enumStream.on("end", () => {
                 servants.set(servant.name, [ servant ]);
             else
                 servants.get(servant.name).push(servant);
-            console.log("done -", data.name);
+            //console.log("done -", data.name);
         }));
     }).on("end", () => {
         Promise.all(allPromises).then(() => {
@@ -49,11 +49,15 @@ async function mapServant(data: any): Promise<ServantData> {
         console.log("Skipping servant named ", data.name, " because type was ", data.type);
         return;
     }
-    console.log(data.name);
+    //console.log(data.name);
     if (data.name == "pasteNameHere") {
         console.log(JSON.stringify(data, undefined, 4));
     }
     const upgradedNps = getUpgraded(data.noblePhantasms, (np1, np2) => np1.card == np2.card);
+    const unknownTraits = data.traits.map(t => t.name).filter(t => !allowedTraits.includes(t) && !excludedTraits.includes(t));
+    if (unknownTraits.length > 0) {
+        console.log("Unknown traits", data.name, unknownTraits);
+    }
     return new ServantData(
         data.name,
         data.collectionNo,
@@ -61,6 +65,7 @@ async function mapServant(data: any): Promise<ServantData> {
         new GrowthCurve(new Map(data.atkGrowth.map((atk: number, i: number) => [ (i + 1).toString(), atk ]))),
         data.className,
         data.attribute,
+        data.traits.map(t => t.name).filter(t => allowedTraits.includes(t)),
         getF2PCopies(data),
         data.extraAssets.faces.ascension["1"],
         data.extraAssets.charaGraph.ascension["1"],
@@ -71,6 +76,19 @@ async function mapServant(data: any): Promise<ServantData> {
         await Promise.all(upgradedNps.map(np => mapNp(np, getUnupgraded(np, data.noblePhantasms, (np1, np2) => np1.card == np2.card))))
     );
 }
+
+const allowedTraits = Object.values(Trait);
+const excludedTraits = [
+    "unknown",
+    "canBeInBattle",
+    "basedOnServant",
+    "existenceOutsideTheDomain",
+    "divineOrDaemonOrUndead",
+    "dragonSlayer",
+    "genderCaenisServant",
+    "atalante",
+    "demonBeast",
+];
 
 async function mapNp(np: any, unupgraded: any): Promise<NoblePhantasm> {
     const npFuncIndex = np.functions.findIndex(f => f.funcType.startsWith("damageNp"));
@@ -136,6 +154,7 @@ function getDummyServant(name: string): ServantData {
         new GrowthCurve(new Map()),
         ServantClass.Shielder,
         ServantAttribute.Beast,
+        [],
         0,
         "images/servants/select.png",//TODO: find good icons
         "",//TODO: find good cards

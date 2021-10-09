@@ -9,6 +9,7 @@ import { Named, Persistor } from "../Data";
 import { useState } from "react";
 import { Trait } from "../Enemy";
 import { bindPopover, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
+import { NumberFormatPropsBase } from "react-number-format";
 
 interface BaseProps<V> {
     value: V;
@@ -125,13 +126,14 @@ interface ArrayBuilderProps<T> {
     renderHeader?: (item: T, index: number) => any;
     addLabel: React.ReactNode;
     canCopy?: boolean;
+    customButtons?: (item: T, index: number) => JSX.Element;
 }
 
 interface ArrayBuilderRenderProps<T> {
     onChange: (item: T) => void;
 }
 
-function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
+function ArrayBuilder<T, C>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
     return (
         <React.Fragment>
             {props.value.map((item, index) =>
@@ -139,8 +141,9 @@ function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
                     <CardHeader title={props.renderHeader ? props.renderHeader(item, index) : undefined}
                         action={
                             <Box>
-                                {props.canCopy ? <IconButton onClick={_ => handleChange({ $push: [item] }, props)}><ContentCopy /></IconButton> : null}
-                                <IconButton onClick={_ => handleChange({ $splice: [[ index, 1 ]] }, props)}><Remove /></IconButton>
+                                {props.customButtons ? props.customButtons(item, index) : null}
+                                {props.canCopy ? <IconButton title="Copy" onClick={_ => handleChange({ $push: [item] }, props)}><ContentCopy /></IconButton> : null}
+                                <IconButton title="Remove" onClick={_ => handleChange({ $splice: [[ index, 1 ]] }, props)}><Remove /></IconButton>
                             </Box>} />
                     <CardContent>
                         {props.renderOne(item, { onChange: item => handleChange({ $splice: [[ index, 1, item ]] }, props) }, index)}
@@ -149,32 +152,35 @@ function ArrayBuilder<T>(props: ArrayBuilderProps<T> & BaseProps<T[]>) {
             )}
             <Card>
                 <CardHeader title={props.addLabel}
-                    action={<IconButton onClick={_ => handleChange({ $push: [ props.createOne() ] }, props)}><Add /></IconButton>} />
+                    action={<IconButton title="Add" onClick={_ => handleChange({ $push: [ props.createOne() ] }, props)}><Add /></IconButton>} />
             </Card>
         </React.Fragment>
     );
 }
 
 interface SmartSelectProps<T extends { name: string }> {
+    value?: T;
+    onChange: (item: T) => void;
     provider: Persistor<T>;
     label: string;
-    endAdornment: React.ReactNode;
+    endAdornment?: React.ReactNode;
     filter?: (t: T) => boolean;
+    autoFocus?: boolean | undefined
 }
 
 //TODO: there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
-export function SmartSelect<T extends { name: string }>(props: SmartSelectProps<T> & BaseProps<T>) {
+export function SmartSelect<T extends { name: string }>(props: SmartSelectProps<T>) {
     return (
         <Autocomplete
             options={props.filter ? props.provider.getAll().filter(props.filter) : props.provider.getAll()}
-            value={props.value!}
+            value={props.value}
             isOptionEqualToValue={(a, b) => a.name == b.name}
             getOptionLabel={v => v.name}
             renderInput={params =>
-                <TextField {...params} label={props.label}
+                <TextField {...params} label={props.label} autoFocus={props.autoFocus}
                     InputProps={{
                         ...params.InputProps,
-                        endAdornment: props.endAdornment
+                        endAdornment: props.endAdornment ?? params.InputProps.endAdornment
                     }} />
             }
             onChange={(_, v) => { if (v) props.onChange(v as T) }}
@@ -191,7 +197,7 @@ export interface SaveableSelectProps<T extends { name: string }> {
 
 export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & BaseProps<T>) {
     const theme = useTheme();
-    const popupState = usePopupState({ variant: "popover", popupId: "ServantSelector" });
+    const popupState = usePopupState({ variant: "popover", popupId: "SaveableSelect" });
     const [ state, setState ] = useState({ newName: "" });
 
     const doSave = () => {

@@ -1,5 +1,5 @@
 import update from "immutability-helper";
-import { Trait } from "./Servant";
+import { ServantData, Trait } from "./Servant";
 
 class Enemy {
     constructor(
@@ -45,7 +45,15 @@ class Enemy {
             computed.flatMap(({ trait, oldEval }) => oldEval ? [trait] : []),//to remove
         ];
     }
-}                   
+
+    public static fromServant(servant: ServantData, hitPoints: number): Enemy {
+        return new Enemy(
+            servant.sClass as string as EnemyClass,
+            servant.attribute as string as EnemyAttribute,
+            servant.traits,
+            hitPoints);
+    }
+}
 
 function toTrait<T extends string>(traitType: string, enumValue: T): Trait {
     return (traitType + enumValue.substring(0, 1).toUpperCase() + enumValue.substring(1)) as Trait;

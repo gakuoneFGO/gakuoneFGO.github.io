@@ -42,7 +42,7 @@ export function StratBuilder() {
         return {
             strat: defaultBuffsetHeuristic(strat, 0),
             basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).withClass(getLikelyClassMatchup(servant.data.sClass)),
-            advancedNode: db.nodes.get("[LANCERS] Nursemas Band-aid Farming"),
+            advancedNode: db.nodes.get("2019-11 Nursemas Band-aid Farming [LANCERS]"),
             selectedTab: "servant0",
             selectedOutput: "basic"
         } as StratBuilderState;
