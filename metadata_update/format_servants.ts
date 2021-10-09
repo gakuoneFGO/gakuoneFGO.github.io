@@ -57,7 +57,7 @@ enumStream.on("end", () => {
                 return update(servant, { name: { $set: servant.name + " (Summer)" } });
             }));
         });
-        fs.createWriteStream("src\\servants.json", { encoding: "utf-8" }).write(JSON.stringify(allServants, replaceMap, 4));
+        fs.createWriteStream("src\\servants.json", { encoding: "utf-8" }).write(JSON.stringify(allServants.sort((a, b) => a.name.localeCompare(b.name)), replaceMap, 4));
     });
 });
 
