@@ -428,7 +428,7 @@
         ]
     },
     {
-        "name": "[BUSTER] Double Oberon + Vitch (40% vs Knights)",
+        "name": "[BUSTER] Double Oberon + Vitch (50% vs Knights)",
         "buffs": {
             "buffs": [
                 {
@@ -1926,6 +1926,226 @@
         ]
     },
     {
+        "name": "[ARTS] Double Castoria + 2004",
+        "party": [
+            "<Placeholder>",
+            "Altria Caster",
+            "Altria Caster",
+            "<Unspecified>",
+            "<Unspecified>",
+            "<Unspecified>"
+        ],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
+        "description": "Basic double Castoria setup with Fragment of 2004 MC.",
+        "instructions": [
+            "Apply Castoria S1s and S3s and one S2",
+            "Apply the other Castoria S2 and 2004 NP gain buff (depending on node)",
+            "2004 NP damage buff"
+        ],
+        "buffs": {
+            "buffs": [
+                {
+                    "attackUp": 0.4,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "npCard": "buster"
+                },
+                {
+                    "attackUp": 0.4,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "npCard": "buster"
+                },
+                {
+                    "attackUp": 0.4,
+                    "cardUp": 1,
+                    "npUp": 0.5,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "npCard": "buster"
+                }
+            ]
+        }
+    },
+    {
+        "name": "[ARTS] Double Castoria + Oberon",
+        "party": [
+            "<Placeholder>",
+            "Altria Caster",
+            "Altria Caster",
+            "Oberon",
+            "<Unspecified>",
+            "<Unspecified>"
+        ],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
+        "description": "Basic double Castoria setup with plugsuit Oberon.",
+        "instructions": [
+            "Apply Castoria S1s and S3s, along with one S2",
+            "Apply the other Castoria S2 to the damage dealer. Swap in Oberon and S1",
+            "Oberon S2 + S3"
+        ],
+        "buffs": {
+            "buffs": [
+                {
+                    "attackUp": 0.4,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "npCard": "buster"
+                },
+                {
+                    "attackUp": 0.4,
+                    "cardUp": 1,
+                    "npUp": 0.3,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "npCard": "buster"
+                },
+                {
+                    "attackUp": 0.7,
+                    "cardUp": 1,
+                    "npUp": 0.3,
+                    "npBoost": 1,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "npCard": "buster"
+                }
+            ]
+        }
+    },
+    {
         "name": "[ARTS] Double Castoria + Oberon (Optimistic)",
         "buffs": {
             "buffs": [
@@ -1954,7 +2174,7 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0,
+                    "overcharge": 1,
                     "npCard": "buster"
                 },
                 {
@@ -1982,7 +2202,7 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0,
+                    "overcharge": 1,
                     "npCard": "buster"
                 },
                 {
@@ -2135,7 +2355,7 @@
             0,
             0
         ],
-        "description": "Dual Skadi for reference. Only Caren and maybe Voyager can realistically use this for 2-2-X. Instructions below for Caren.",
+        "description": "Basic double Skadi setup with plugsuit Oberon. Only Caren and maybe Voyager can realistically use this to 6CE vs 2-2-X. Instructions below for Caren.",
         "instructions": [
             "Use friend Skadi S1 + S3 and your own Skadi's S1. (If friend Skadi doesn't have the append skill, use S2 and swap for Oberon). Use Caren's S1 + S2 and NP",
             "Got 10% refund and 20% from Caren's S1. Use Oberon's S1 and Skadi's S3 and NP again",
