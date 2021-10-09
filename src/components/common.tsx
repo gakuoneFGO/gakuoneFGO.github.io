@@ -259,7 +259,9 @@ export function TraitSelect(props: BaseProps<Trait[]> & { label?: string }) {
         <Autocomplete multiple disableClearable={false}
             options={Object.values(Trait)}
             value={props.value}
-            onChange={(_, v) => { if(v) props.onChange(v) }}
+            onChange={(_, traits) => props.value.length == 1 && props.value[0] == Trait.Always ?
+                props.onChange(traits.filter(trait => trait != Trait.Always)) :
+                props.onChange(traits)}
             forcePopupIcon={false}
             renderInput={params => <TextField {...params} label={props.label} />} />
     );
