@@ -188,8 +188,9 @@ export function SmartSelect<T extends { name: string }>(props: SmartSelectProps<
 export interface SaveableSelectProps<T extends { name: string }> {
     provider: Persistor<T>;
     label: string;
-    filter?: (t: T) => boolean;
     saveLabel: string;
+    filter?: (t: T) => boolean;
+    customButtons?: JSX.Element;
 }
 
 export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & BaseProps<T>) {
@@ -216,6 +217,7 @@ export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & 
             <SmartSelect {...props} onChange={onChange}
                 endAdornment={
                     <InputAdornment position="end">
+                        {props.customButtons ?? null}
                         {props.provider.isCustom(props.value) ?
                             <IconButton title="Delete"
                                 onClick={() => {

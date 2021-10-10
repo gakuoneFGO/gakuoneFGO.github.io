@@ -634,7 +634,7 @@
             0,
             0
         ],
-        "description": "Any servant that doesn't kill themselves can do this. Needs 10% append and 20% on Arash. Uses Both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
+        "description": "Any servant that doesn't kill themselves can do this. Needs 10% append and 20% on Arash. Uses both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
         "instructions": [
             "Castoria skills on DPS. Swap for Oberon and S1. NP with Arash",
             "Second Oberon uses S1 to fill DPS to 100%",
@@ -741,7 +741,7 @@
             0,
             0
         ],
-        "description": "Servants which self charge 10% can use Reines. This is not usually recommended since her attack buff is targeted. Uses Both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
+        "description": "Servants which self charge 10% can use Reines. This is not usually recommended since her attack buff is targeted. Uses both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
         "instructions": [
             "Reines provides 30% each to Arash and DPS. Swap for Oberon and S1+S3. NP with Arash",
             "Second Oberon uses S1 to fill DPS to 100%",
@@ -848,7 +848,7 @@
             0,
             0
         ],
-        "description": "Servants which provide 20-30% self gauge by T2 will usually prefer Waver over other options. Uses Both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
+        "description": "Servants which provide 20-30% self gauge by T2 will usually prefer Waver over other options. Uses both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
         "instructions": [
             "Waver skills on Arash. Swap for Oberon and S1. NP with Arash",
             "Second Oberon uses S1 to fill DPS to 100%",
@@ -955,7 +955,7 @@
             0,
             0
         ],
-        "description": "Servant provides 50% charge T3. Uses Both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
+        "description": "Servant provides 50% charge T3. Uses both Oberon S3 on T3 for cases where Arash doesn't need it T1.",
         "instructions": [
             "Vitch skills on DPS, then swap for Oberon and S1 + S2 Arash",
             "Use the next Oberon's S1 and NP",
@@ -1279,8 +1279,8 @@
         "description": "The infamous Melusine combo.",
         "instructions": [
             "Melusine S1 + S3 into NP",
-            "Refill with both Vitch S1s",
-            "Swap in Oberon. Use his skills along with Melusine's (which are off cooldown)"
+            "Refill with both Vitch S1s. Use Melusine's S3 again",
+            "Swap in Oberon. Use his skills along with Melusine's S1"
         ]
     },
     {
@@ -1387,7 +1387,7 @@
         "instructions": [
             "Melusine S3 into NP",
             "Refill with both supports",
-            "Swap in Oberon. Use his skills along with Melusine's (which are off cooldown)"
+            "Swap in Oberon. Use his skills along with Melusine's S1"
         ]
     },
     {

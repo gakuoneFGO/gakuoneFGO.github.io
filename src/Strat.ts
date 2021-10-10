@@ -47,8 +47,8 @@ class Template {
             this.buffs,
             this.party.map(servant => servant.data.name),
             this.clearers,
-            this.description,
-            this.instructions
+            "",
+            ["", "", ""]
         );
     }
 }
