@@ -1,0 +1,15 @@
+body {
+    background-color: black;
+    color: blue;
+}
+
+svg, img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 90vh;
+    height: 90vh;
+    border: 1px solid white;
+    stroke: currentColor;
+    fill: none;
+}

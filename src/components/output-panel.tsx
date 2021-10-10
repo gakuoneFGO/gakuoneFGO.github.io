@@ -1,12 +1,12 @@
 import React from "react";
 import { Divider, Grid, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography, useTheme } from "@mui/material";
 import { EnemyNode, Strat } from "../Strat";
-import update from "immutability-helper";
 import NumberFormat from "react-number-format";
 import { Enemy } from "../Enemy";
 import { Box } from "@mui/system";
 import { Damage } from "../Damage";
 import { Warning } from "@mui/icons-material";
+import { ClassIcon } from "./icons";
 
 interface OutputPanelProps {
     strat: Strat;
@@ -84,15 +84,21 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
                             const enemy = props.node.waves[turn].enemies[eIndex];
                             const color = getColor(enemy, damage);
                             return (
-                                <Paper key={eIndex} sx={{ backgroundColor: color.main, color: color.contrastText, flexGrow: 1,
-                                    display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                                    <Typography textAlign="center">
-                                        <NumberFormat displayType="text" thousandSeparator="," value={damage.low} />
-                                    </Typography>
-                                    <Divider variant="middle" sx={{ background: color.contrastText }} />
-                                    <Typography textAlign="center">
-                                        <NumberFormat displayType="text" thousandSeparator="," value={enemy.hitPoints} />
-                                    </Typography>
+                                <Paper key={eIndex} sx={{ backgroundColor: color.main, color: color.contrastText, flexGrow: 1 }}>
+                                    <Grid container direction="row" alignItems="center" height="100%">
+                                        <Grid item xs={3}>
+                                            <ClassIcon type={props.node.waves[turn].enemies[eIndex].eClass} style={{width: "100%", height: "100%"}} />
+                                        </Grid>
+                                        <Grid item xs={9} sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                                            <Typography textAlign="center">
+                                                <NumberFormat displayType="text" thousandSeparator="," value={damage.low} />
+                                            </Typography>
+                                            <Divider variant="middle" sx={{ background: color.contrastText }} />
+                                            <Typography textAlign="center">
+                                                <NumberFormat displayType="text" thousandSeparator="," value={enemy.hitPoints} />
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
                                 </Paper>
                             );
                         })}
