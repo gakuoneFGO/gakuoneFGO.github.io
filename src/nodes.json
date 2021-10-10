@@ -122,7 +122,7 @@
         ]
     },
     {
-        "name": "2019-09 Scatfest R1 Lvl90 [MIXED]",
+        "name": "2020-09 Scatfest R1 Lvl90 [MIXED]",
         "waves": [
             {
                 "enemies": [
@@ -248,7 +248,7 @@
         ]
     },
     {
-        "name": "2019-09 Scatfest R1 Lvl90+ [MIXED]",
+        "name": "2020-09 Scatfest R1 Lvl90+ [MIXED]",
         "waves": [
             {
                 "enemies": [
@@ -336,7 +336,7 @@
         ]
     },
     {
-        "name": "2019-09 Scatfest R2 Lvl90 [LANCERS]",
+        "name": "2020-09 Scatfest R2 Lvl90 [LANCERS]",
         "waves": [
             {
                 "enemies": [
@@ -474,7 +474,7 @@
         ]
     },
     {
-        "name": "2019-09 Scatfest R2 Lvl90+ [ASSASSINS]",
+        "name": "2020-09 Scatfest R2 Lvl90+ [ASSASSINS]",
         "waves": [
             {
                 "enemies": [
@@ -572,7 +572,7 @@
         ]
     },
     {
-        "name": "2019-09 Scatfest R3 Lvl90 [MIXED]",
+        "name": "2020-09 Scatfest R3 Lvl90 [MIXED]",
         "waves": [
             {
                 "enemies": [
@@ -704,7 +704,7 @@
         ]
     },
     {
-        "name": "2019-09 Scatfest R3 Lvl90+ [MIXED]",
+        "name": "2020-09 Scatfest R3 Lvl90+ [MIXED]",
         "waves": [
             {
                 "enemies": [
@@ -1486,21 +1486,21 @@
             {
                 "enemies": [
                     {
-                        "eClass": "archer",
-                        "attribute": "sky",
+                        "eClass": "caster",
+                        "attribute": "human",
                         "traits": [
                             "genderMale",
-                            "classArcher",
-                            "attributeSky",
-                            "alignmentChaotic",
+                            "classCaster",
+                            "attributeHuman",
+                            "alignmentLawful",
                             "alignmentGood",
                             "divine",
                             "humanoid",
                             "weakToEnumaElish",
-                            "skyOrEarth",
-                            "skyOrEarthExceptPseudoAndDemi",
+                            "brynhildsBeloved",
                             "king",
-                            "hominidaeServant"
+                            "hominidaeServant",
+                            "hasCostume"
                         ],
                         "hitPoints": 152661
                     },
