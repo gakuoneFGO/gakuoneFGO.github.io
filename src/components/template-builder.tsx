@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, Grid, Stack, Card, CardContent, Box, useTheme, IconButton, Modal, Typography, List, ListItem, Paper, CardHeader, ListItemText, ListItemIcon } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, Stack, Card, CardContent, Box, useTheme, IconButton, Modal, Typography, List, ListItem, CardHeader, ListItemText, ListItemIcon } from "@mui/material";
 import { db } from "../Data";
 import { Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
@@ -30,13 +30,13 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                         </IconButton>
                     : undefined} />
                 <Modal open={open} onClose={() => setOpen(false)}>
-                    <Card sx={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+                    <Card sx={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", maxHeight: "100vh", overflowY: "auto"}}>
                         <CardHeader title="Template Info" action={<IconButton title="close" onClick={() => setOpen(false)}><Close /></IconButton>} />
                         <CardContent>
                             <Typography>{props.value.description}</Typography>
                             <List>
                                 {props.value.instructions.map((instruction, turn) =>
-                                    <ListItem>
+                                    <ListItem key={turn}>
                                         <ListItemIcon>
                                             T{turn + 1}
                                         </ListItemIcon>
@@ -60,7 +60,7 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                                 onChange={s => handleChange({ party: { [index]: { $set: s } } }, props)} />
                             <Stack justifyContent="space-evenly" direction="row">
                                 {props.value.clearers.map((clearer, turn) =>
-                                    <FormControlLabel
+                                    <FormControlLabel key={turn}
                                         label={"NP T" + (turn + 1)}
                                         labelPlacement="bottom"
                                         control={

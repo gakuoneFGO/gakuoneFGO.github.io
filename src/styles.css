@@ -11,3 +11,11 @@
      */
     width: unset !important;
 }
+
+.MuiAutocomplete-inputRoot {
+    /**
+     * Not sure who wants their input adornments to randomly wrap down to the next line but I don't.
+     */
+    flex-wrap: unset !important;
+    -webkit-flex-wrap: unset !important;
+}

@@ -315,4 +315,5 @@ export enum Trait {
     DemonicBeastServant = "demonicBeastServant",
     Charmed = "buffCharm",
     WeaknessFound = "weakPointsRevealed",
+    ShadowServant = "shadowServant",
 }
