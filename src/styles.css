@@ -5,17 +5,9 @@
     z-index: unset !important;
 }
 
-.MuiAutocomplete-inputRoot .MuiAutocomplete-input {
+.autocompleteWidthFix .MuiAutocomplete-input {
     /**
      * Fixes an issue with the autocomplete width being set to 0 in the NodeBuilder component.
      */
     width: unset !important;
-}
-
-.MuiAutocomplete-inputRoot {
-    /**
-     * Not sure who wants their input adornments to randomly wrap down to the next line but I don't.
-     */
-    flex-wrap: unset !important;
-    -webkit-flex-wrap: unset !important;
 }

@@ -162,7 +162,8 @@ interface SmartSelectProps<T extends { name: string }> {
     label: string;
     endAdornment?: React.ReactNode;
     filter?: (t: T) => boolean;
-    autoFocus?: boolean | undefined
+    autoFocus?: boolean | undefined;
+    className?: string;
 }
 
 //TODO: there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
@@ -181,7 +182,8 @@ export function SmartSelect<T extends { name: string }>(props: SmartSelectProps<
                     }} />
             }
             onChange={(_, v) => { if (v) props.onChange(v as T) }}
-            forcePopupIcon={!props.endAdornment} />
+            forcePopupIcon={!props.endAdornment}
+            className={props.className} />
     );
 }
 

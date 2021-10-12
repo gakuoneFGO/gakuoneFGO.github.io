@@ -72,7 +72,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
                 transformOrigin={{ vertical: "top", horizontal: "center" }}>
                 <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
                     <CardContent>
-                        <SmartSelect provider={db.servantData} filter={s => s.isSpecified() && !s.isPlaceholder()}
+                        <SmartSelect className="autocompleteWidthFix" provider={db.servantData} filter={s => s.isSpecified() && !s.isPlaceholder()}
                             label="Select Enemy Servant" autoFocus
                             onChange={servant => {
                                 handleChange({ waves: { [state.waveIndex]: { enemies: { [state.enemyIndex]: { $set: Enemy.fromServant(servant, state.hp) } } } } }, props);
