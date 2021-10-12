@@ -58,6 +58,12 @@ async function mapServant(data: any): Promise<ServantData> {
     if (unknownTraits.length > 0) {
         console.log("Unknown traits", data.name, unknownTraits);
     }
+    const iconPath = `/images/servants/${data.collectionNo}.png`;
+    if (!fs.existsSync("src" + iconPath)) {
+        console.log("Downloading icon", iconPath);
+        const icon = await fetch(data.extraAssets.faces.ascension["1"]);
+        icon.body.pipe(fs.createWriteStream("src" + iconPath));
+    }
     return new ServantData(
         data.name,
         data.collectionNo,
@@ -67,7 +73,7 @@ async function mapServant(data: any): Promise<ServantData> {
         data.attribute,
         data.traits.map(t => t.name).filter(t => allowedTraits.includes(t)),
         getF2PCopies(data),
-        data.extraAssets.faces.ascension["1"],
+        iconPath,
         data.extraAssets.charaGraph.ascension["1"],
         "",//charge profile...
         data.className == "berserker" ? [] : data.appendPassive[2].skill.functions[0].buffs[0].tvals.map(tval => tval.name),
