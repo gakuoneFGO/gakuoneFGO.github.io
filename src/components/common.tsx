@@ -1,7 +1,7 @@
 import * as React from "react";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { Autocomplete, Box, Card, CardContent, CardHeader, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
+import { Autocomplete, Box, Card, CardContent, CardHeader, Chip, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
 import { Add, ContentCopy, Delete, Remove, Save } from "@mui/icons-material";
 import { Named, Persistor } from "../Data";
 import { useState } from "react";
@@ -267,7 +267,8 @@ export function TraitSelect(props: BaseProps<Trait[]> & { label?: string }) {
                 props.onChange(traits.filter(trait => trait != Trait.Always)) :
                 props.onChange(traits)}
             forcePopupIcon={false}
-            renderInput={params => <TextField {...params} label={props.label} />} />
+            renderInput={params => <TextField {...params} label={props.label} />}
+            renderTags={(traits, getTagProps) => traits.map((trait, index) => <Chip label={trait} {...getTagProps({ index })} title={trait} />)} />
     );
 }
 
