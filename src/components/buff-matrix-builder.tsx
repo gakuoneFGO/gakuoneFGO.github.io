@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Clear, Replay, Visibility, VisibilityOff, Warning } from "@mui/icons-material";
-import { Table, TableCell, TableContainer, TableRow, Tooltip, Box, ButtonGroup, Button, Typography, IconButton, Stack, useMediaQuery, capitalize, TableBody, Grid, GridSize, Divider } from "@mui/material";
+import { Clear, Replay, Visibility, VisibilityOff, Warning, Menu, KeyboardArrowDown } from "@mui/icons-material";
+import { Tooltip, Box, ButtonGroup, Button, Typography, IconButton, Stack, capitalize, Grid, GridSize, Divider, MenuItem, ListItemIcon, ListItemText, ListItemButton } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Spec } from "immutability-helper";
 import { useState } from "react";
@@ -9,6 +9,8 @@ import { BuffType, CardType, Servant, PowerMod } from "../Servant";
 import { BuffMatrix } from "../Strat";
 import { BaseProps, handleChange, PercentInput, TraitSelect } from "./common";
 import { TransposedTable } from "./transposed-table"
+import { usePopupState, bindMenu, bindHover } from "material-ui-popup-state/hooks";
+import HoverMenu from 'material-ui-popup-state/HoverMenu'
 
 interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
         readonly servants: Servant[];
@@ -26,6 +28,7 @@ function isBuffSelected(buffs: BuffMatrix, buffType: keyof BuffSet): boolean {
 function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     const theme = useTheme();
     const [ state, setState ] = useState({ showAll: false });
+    const popupState = usePopupState({ variant: "popover", popupId: "BuffMatrixBuilder" });
 
     const handlePowerModChange = (spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) => {
         handleChange({ buffs : { [buffIndex]: { powerMods: { [modIndex]: spec } } } }, props);
@@ -66,19 +69,6 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
 
     return (
         <Grid container rowSpacing={2}>
-            <Grid item xs={12}>
-                <Stack direction="row">
-                    <IconButton title={state.showAll ? "Hide Extra Buffs" : "Show All Buffs" } onClick={() => setState({ showAll: !state.showAll })}>
-                        {state.showAll ? <VisibilityOff /> : < Visibility />}
-                    </IconButton>
-                    <IconButton title="Clear All" onClick={() => props.onChange(BuffMatrix.create(props.value.buffs.length))}>
-                        <Clear />
-                    </IconButton>
-                    <IconButton title="Reset" onClick={props.doRefresh}>
-                        <Replay />
-                    </IconButton>
-                </Stack>
-            </Grid>
             <TransposedTable createRow={(children, index) =>
                     <React.Fragment key={index}>
                         <Grid container columns={10} columnSpacing={2} item xs={12}>{children}</Grid>
@@ -87,6 +77,23 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                 }>
                 <Box>
                     <Grid {...gridLeftHeaderProps}>
+                        <Button endIcon={<KeyboardArrowDown />} {...bindHover(popupState)}>
+                            <Menu />
+                        </Button>
+                        {/* Text is omitted from menu items to avoid annoying behavior when mousing over the space between the button and the far end of the menu */}
+                        <HoverMenu {...bindMenu(popupState)}
+                            anchorOrigin={{horizontal: "center", vertical: "bottom"}}
+                            transformOrigin={{horizontal: "center", vertical:"top"}}>
+                            <MenuItem title={state.showAll ? "Hide Extra Buffs" : "Show All Buffs" } onClick={() => setState({ showAll: !state.showAll })}>
+                                {state.showAll ? <VisibilityOff /> : < Visibility />}
+                            </MenuItem>
+                            <MenuItem title="Clear All" onClick={() => props.onChange(BuffMatrix.create(props.value.buffs.length))}>
+                                <Clear />
+                            </MenuItem>
+                            <MenuItem title="Reset" onClick={props.doRefresh}>
+                                <Replay />
+                            </MenuItem>
+                        </HoverMenu>
                     </Grid>
                     {showCardType ?
                         <Grid {...gridLeftHeaderProps}>
