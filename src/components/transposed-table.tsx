@@ -1,23 +1,19 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { TableBody, TableRow } from "@mui/material";
 
-class TransposedTableBody extends React.Component<any, any, any> {
-    render() {
-        return (
-            <TableBody>
-                {React.Children.toArray((React.Children.toArray(this.props.children)[0] as React.Component).props.children).map((_, rowIndex) => {
-                    return (
-                        <TableRow key={rowIndex}>
-                            {React.Children.map(this.props.children, child => {
-                                return React.Children.toArray((child as React.Component).props.children)[rowIndex];
-                            })}
-                        </TableRow>
-                    );
-                })}
-            </TableBody>
-        );
-    }
+interface TransposedTableProps {
+    children: React.ReactNode[];
+    createRow: (children: (React.ReactChild | React.ReactFragment | React.ReactPortal)[] | null | undefined, rowIndex: number) => React.ReactNode;
 }
 
-export { TransposedTableBody };
+export function TransposedTable(props: TransposedTableProps) {
+    return (
+        <React.Fragment>
+            {React.Children.toArray((React.Children.toArray(props.children)[0] as React.Component).props.children).map((_, rowIndex) => 
+                props.createRow(
+                    React.Children.map(props.children, child => React.Children.toArray((child as React.Component).props.children)[rowIndex]),
+                    rowIndex
+                )
+            )}
+        </React.Fragment>
+    );
+}
