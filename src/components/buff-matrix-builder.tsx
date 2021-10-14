@@ -65,17 +65,17 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     };
 
     return (
-        <Grid container rowSpacing={2}>
+        <Grid container spacing={2} columns={10}>
             <TransposedTable createRow={(children, index) =>
                     <React.Fragment key={index}>
-                        <Grid container columns={10} columnSpacing={2} item xs={12}>{children}</Grid>
-                        <Grid item xs={12}><Divider /></Grid>
+                        {children}
+                        <Grid item xs={10}><Divider /></Grid>
                     </React.Fragment>
                 }>
                 <Box>
                     <Grid {...gridLeftHeaderProps} position="relative">
                         <SpeedDial direction="right" icon={<Menu />}
-                            ariaLabel="Buff Matrix Menu" sx={{position: "absolute", top: 0, bottom: 0}}
+                            ariaLabel="Buff Matrix Menu" sx={{position: "absolute", top: 0}}
                             FabProps={{sx: {height: "40px", width: "40px"}}}>
                             <SpeedDialAction key="hide"
                                 tooltipTitle={state.showAll ? "Hide Extra Buffs" : "Show All Buffs" }
