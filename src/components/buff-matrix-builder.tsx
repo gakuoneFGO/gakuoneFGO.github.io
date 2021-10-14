@@ -76,7 +76,7 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                     <Grid {...gridLeftHeaderProps} position="relative">
                         <SpeedDial direction="right" icon={<Menu />}
                             ariaLabel="Buff Matrix Menu" sx={{position: "absolute", top: 0}}
-                            FabProps={{sx: {height: "40px", width: "40px"}}}>
+                            FabProps={{size: "small"}}>
                             <SpeedDialAction key="hide"
                                 tooltipTitle={state.showAll ? "Hide Extra Buffs" : "Show All Buffs" }
                                 icon={state.showAll ? <VisibilityOff /> : < Visibility />}
