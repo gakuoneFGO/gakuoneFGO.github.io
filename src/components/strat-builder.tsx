@@ -13,7 +13,7 @@ import { ServantSelector } from "./servant-selector";
 import { TemplateBuilder } from "./template-builder";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { CardType, Servant } from "../Servant";
+import { BuffType, CardType, Servant } from "../Servant";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 interface StratBuilderState {
@@ -228,13 +228,20 @@ function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
             return order.turn <= turn
                 ? order.buffs
                     .filter(b => (isMain && b.self) || (!isMain && b.team))
-                    .filter(b => order.turn + b.turns > turn)
+                    .filter(b => order.turn + b.turns > turn &&
+                        //HACK: all current OC buffs are single use but I don't want to actually model "X times" constraints
+                        (b.type != BuffType.Overcharge || isFirstUseOfBuff(turn, order.turn, clearers)))
                 : []
             }).concat(servant.data.passives.filter(b => (isMain && b.self) || (!isMain && b.team))),
             getNP(turn).cardType)
     }));
 
     return update(strat, { servants: { [clearerIndex]: { buffs: { $set: servantBuffs } } } });
+}
+
+function isFirstUseOfBuff(currentTurn: number, turnApplied: number, clearers: Servant[]): boolean {
+    return currentTurn == turnApplied ||
+        !clearers.slice(0, currentTurn).includes(clearers[currentTurn])
 }
 
 type ServantUpdate = [ number | Servant, number | undefined ];

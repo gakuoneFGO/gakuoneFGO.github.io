@@ -66,11 +66,12 @@ class Calculator {
         const np = servant.data.getNP(buffs.reduce((type, buff) => npCard ?? type, undefined as CardType | undefined));
         const combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.getAppendMod());
         const enemyTraits = enemy.traits.concat(combinedBuffs.applyTraits);
-        const baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, combinedBuffs.overcharge) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
+        const oc = Math.floor(combinedBuffs.overcharge);
+        const baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, oc) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
         const triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute);
         const extraDamage = np.extraDmgStacks ?
-            1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[combinedBuffs.overcharge] :
-            isTriggerActive(enemyTraits, np.extraTrigger) ? np.extraDamage[combinedBuffs.overcharge] : 1.0;
+            1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[oc] :
+            isTriggerActive(enemyTraits, np.extraTrigger) ? np.extraDamage[oc] : 1.0;
         return new Damage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage);
     }
 
