@@ -14,7 +14,9 @@
                 "type": "powerMod",
                 "val": 1,
                 "turns": -1,
-                "trig": ["always"]
+                "trig": [
+                    "always"
+                ]
             }
         ]
     },
@@ -28,7 +30,9 @@
                 "type": "powerMod",
                 "val": 2,
                 "turns": -1,
-                "trig": ["always"]
+                "trig": [
+                    "always"
+                ]
             }
         ]
     },
@@ -54,6 +58,204 @@
                 "team": false,
                 "type": "npDamage",
                 "val": 0.6,
+                "turns": -1
+            }
+        ]
+    },
+    {
+        "name": "[Nursemas] Traces of Christmas",
+        "attackStat": 500,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.08,
+                "turns": -1,
+                "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "npGain",
+                "val": 0.08,
+                "turns": -1
+            }
+        ]
+    },
+    {
+        "name": "[Nursemas MLB] Traces of Christmas (Lvl 15)",
+        "attackStat": 712,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.1,
+                "turns": -1,
+                "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "npGain",
+                "val": 0.1,
+                "turns": -1
+            }
+        ]
+    },
+    {
+        "name": "[Scatfest] Wearing Our Hearts on Our Sleeves",
+        "attackStat": 250,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.08,
+                "turns": -1,
+                "cardType": "buster"
+            }
+        ]
+    },
+    {
+        "name": "[Scatfest MLB] Wearing Our Hearts on Our Sleeves (Lvl 15)",
+        "attackStat": 356,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.1,
+                "turns": -1,
+                "cardType": "buster"
+            }
+        ]
+    },
+    {
+        "name": "[Xmas 6] Cherry Icicle",
+        "attackStat": 250,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.05,
+                "turns": -1,
+                "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "npDamage",
+                "val": 0.1,
+                "turns": -1
+            }
+        ]
+    },
+    {
+        "name": "[Xmas 6 MLB] Cherry Icicle (Lvl 15)",
+        "attackStat": 356,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.08,
+                "turns": -1,
+                "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "npDamage",
+                "val": 0.15,
+                "turns": -1
+            }
+        ]
+    },
+    {
+        "name": "[Nerofest] Cheer for Master",
+        "attackStat": 250,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.06,
+                "turns": -1,
+                "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.06,
+                "turns": -1,
+                "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.03,
+                "turns": -1,
+                "cardType": "quick"
+            }
+        ]
+    },
+    {
+        "name": "[Nerofest MLB] Cheer for Master (Lvl 15)",
+        "attackStat": 356,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.08,
+                "turns": -1,
+                "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.08,
+                "turns": -1,
+                "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.08,
+                "turns": -1,
+                "cardType": "quick"
+            }
+        ]
+    },
+    {
+        "name": "[Summer 6] Sink Deeper",
+        "attackStat": 0,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "npDamage",
+                "val": 0.15,
+                "turns": -1
+            }
+        ]
+    },
+    {
+        "name": "[Summer 6 MLB] Sink Deeper (Lvl 15)",
+        "attackStat": 0,
+        "buffs": [
+            {
+                "self": true,
+                "team": false,
+                "type": "npDamage",
+                "val": 0.20,
                 "turns": -1
             }
         ]

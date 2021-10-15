@@ -158,6 +158,7 @@ export enum BuffType {
     PowerMod = "powerMod",
     Overcharge = "overcharge",
     NpBoost = "npBoost",
+    NpGain = "npGain",
     AddTrait = "addTrait",
 }
 
