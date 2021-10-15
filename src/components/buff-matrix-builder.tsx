@@ -155,14 +155,13 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                 </Box>
                 {props.value.buffs.map((buffSet: BuffSet, index: number) => (
                     <Box key={index}>
-                        <Grid {...gridCellProps}>
-                            <Typography display="inline">T{index + 1}</Typography>
-                            <Box display={ props.warnOtherNp && !props.servants.includes(props.clearers[index]) ? "inline" : "none" }>
-                                &nbsp;
+                        <Grid {...gridCellProps} display="flex" gap={theme.spacing(1)}>
+                            <Typography>T{index + 1}</Typography>
+                            {props.warnOtherNp && !props.servants.includes(props.clearers[index]) ?
                                 <Tooltip title="Wave is cleared by another servant. Only put team buffs provided by this servant in this column!">
                                     <Warning color="warning" />
                                 </Tooltip>
-                            </Box>
+                            : null}
                         </Grid>
                         {showCardType ?
                             <Grid {...gridCellProps}>
