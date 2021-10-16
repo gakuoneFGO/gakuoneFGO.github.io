@@ -410,6 +410,13 @@
                 "val": 0.08,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
             }
         ],
         "skills": [
@@ -626,6 +633,13 @@
                 "val": 0.09,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 185,
+                "turns": -1
             }
         ],
         "skills": [
@@ -874,6 +888,13 @@
                 "val": 0.11,
                 "turns": -1,
                 "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
             }
         ],
         "skills": [
@@ -1093,6 +1114,13 @@
                 "val": 0.11,
                 "turns": -1,
                 "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 100,
+                "turns": -1
             }
         ],
         "skills": [
@@ -1315,7 +1343,15 @@
                 "120": 15859
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -3932,6 +3968,13 @@
                 "type": "attackUp",
                 "val": 0.2,
                 "turns": -1
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
             }
         ],
         "skills": [
@@ -5560,7 +5603,15 @@
                 "120": 15858
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -5774,6 +5825,13 @@
                 "val": 0.12,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 250,
+                "turns": -1
             }
         ],
         "skills": [
@@ -6426,6 +6484,13 @@
                 "val": 0.1,
                 "turns": -1,
                 "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
             }
         ],
         "skills": [
@@ -6617,7 +6682,15 @@
                 "120": 15742
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -7464,6 +7537,13 @@
                 "val": 0.1,
                 "turns": -1,
                 "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
             }
         ],
         "skills": [
@@ -7684,6 +7764,13 @@
                 "val": 0.05,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 210,
+                "turns": -1
             }
         ],
         "skills": [
@@ -8290,6 +8377,13 @@
                 "val": 0.12,
                 "turns": -1,
                 "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
             }
         ],
         "skills": [
@@ -9560,7 +9654,15 @@
                 "120": 14367
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 250,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -11068,7 +11170,15 @@
                 "120": 14689
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 100,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -11283,6 +11393,13 @@
                 "val": 0.035,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 100,
+                "turns": -1
             }
         ],
         "skills": [
@@ -11520,6 +11637,13 @@
                 "val": 0.12,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
             }
         ],
         "skills": [
@@ -11732,7 +11856,15 @@
                 "120": 13514
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -14215,7 +14347,15 @@
                 "120": 13212
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -15023,7 +15163,15 @@
                 "120": 14247
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 125,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -15223,7 +15371,15 @@
                 "120": 11506
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -15428,6 +15584,13 @@
                 "val": 0.06,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
             }
         ],
         "skills": [
@@ -15628,7 +15791,15 @@
                 "120": 10459
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -15835,7 +16006,15 @@
                 "120": 11257
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -17078,7 +17257,15 @@
                 "120": 15213
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -17700,7 +17887,15 @@
                 "120": 12968
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 100,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -19364,7 +19559,15 @@
                 "120": 13290
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -19796,7 +19999,15 @@
                 "120": 15081
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -20013,7 +20224,15 @@
                 "120": 11177
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 300,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -20428,7 +20647,15 @@
                 "120": 12695
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 125,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -21661,6 +21888,13 @@
                 "val": 0.08,
                 "turns": -1,
                 "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 125,
+                "turns": -1
             }
         ],
         "skills": [
@@ -22922,7 +23156,15 @@
                 "120": 15779
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -23140,6 +23382,13 @@
                 "val": 0.1,
                 "turns": -1,
                 "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
             }
         ],
         "skills": [
@@ -23350,7 +23599,15 @@
                 "120": 12233
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -25801,7 +26058,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "damagePlus",
+                        "val": 2000,
+                        "turns": 5
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -26205,6 +26470,13 @@
                 "val": 0.08,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
             }
         ],
         "skills": [
@@ -27695,6 +27967,13 @@
                 "val": 0.12,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 250,
+                "turns": -1
             }
         ],
         "skills": [
@@ -28371,6 +28650,13 @@
                 "val": 0.08,
                 "turns": -1,
                 "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
             }
         ],
         "skills": [
@@ -28562,7 +28848,15 @@
                 "120": 15742
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -28786,6 +29080,13 @@
                 "val": 0.12,
                 "turns": -1,
                 "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
             }
         ],
         "skills": [
@@ -29005,7 +29306,15 @@
                 "120": 14853
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -29647,6 +29956,13 @@
                 "val": 0.02,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
             }
         ],
         "skills": [
@@ -31333,7 +31649,15 @@
                 "120": 11777
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -31762,6 +32086,13 @@
                 "val": 0.1,
                 "turns": -1,
                 "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
             }
         ],
         "skills": [
@@ -31979,7 +32310,15 @@
                 "120": 16977
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -32203,7 +32542,15 @@
                 "120": 15388
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -32413,7 +32760,15 @@
                 "120": 13050
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -32839,6 +33194,13 @@
                 "val": 0.04,
                 "turns": -1,
                 "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
             }
         ],
         "skills": [
@@ -33042,7 +33404,15 @@
                 "120": 13348
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 100,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -33697,6 +34067,13 @@
                 "val": 0.11,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 250,
+                "turns": -1
             }
         ],
         "skills": [
@@ -34590,6 +34967,13 @@
                 "val": 0.08,
                 "turns": -1,
                 "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
             }
         ],
         "skills": [
@@ -37323,7 +37707,15 @@
                 "120": 11393
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -38944,6 +39336,13 @@
                 "val": 0.11,
                 "turns": -1,
                 "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 95,
+                "turns": -1
             }
         ],
         "skills": [
@@ -39144,7 +39543,15 @@
                 "120": 11733
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 250,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -39371,6 +39778,13 @@
                 "val": 0.08,
                 "turns": -1,
                 "cardType": "quick"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
             }
         ],
         "skills": [
@@ -40252,6 +40666,13 @@
                 "val": 0.12,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
             }
         ],
         "skills": [
@@ -40483,6 +40904,13 @@
                 "val": 0.06,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
             }
         ],
         "skills": [
@@ -41115,7 +41543,15 @@
                 "120": 16334
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 125,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 4,
@@ -43214,7 +43650,15 @@
                 "120": 13166
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 4,
@@ -44324,7 +44768,15 @@
                 "120": 13672
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -44750,7 +45202,15 @@
                 "120": 14682
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -46242,6 +46702,13 @@
                 "val": 0.1,
                 "turns": -1,
                 "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
             }
         ],
         "skills": [
@@ -46444,7 +46911,15 @@
                 "120": 12528
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 185,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -49180,7 +49655,15 @@
                 "120": 13908
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -49395,7 +49878,15 @@
                 "120": 12645
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 145,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -49614,7 +50105,15 @@
                 "120": 15381
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -50223,7 +50722,15 @@
                 "120": 11554
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -50430,7 +50937,15 @@
                 "120": 14641
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -50852,6 +51367,13 @@
                 "val": 0.12,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
             }
         ],
         "skills": [
@@ -52760,7 +53282,15 @@
                 "120": 15420
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 300,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 7,
@@ -52970,7 +53500,15 @@
                 "120": 13771
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 250,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -53181,7 +53719,15 @@
                 "120": 14009
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 4,
@@ -53999,6 +54545,13 @@
             }
         },
         "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 235,
+                "turns": -1
+            },
             {
                 "self": true,
                 "team": false,
@@ -54857,7 +55410,15 @@
                 "120": 12162
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 170,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -55071,6 +55632,13 @@
                 "val": 0.02,
                 "turns": -1,
                 "cardType": "buster"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 125,
+                "turns": -1
             }
         ],
         "skills": [
@@ -55272,7 +55840,15 @@
                 "120": 13959
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -56307,6 +56883,13 @@
                 "val": 0.12,
                 "turns": -1,
                 "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 250,
+                "turns": -1
             }
         ],
         "skills": [
@@ -57186,7 +57769,15 @@
                 "120": 14531
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -58278,7 +58869,15 @@
                 "120": 15410
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 7,
@@ -58494,7 +59093,15 @@
                 "120": 13560
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -59158,7 +59765,15 @@
                 "120": 16016
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -59576,6 +60191,13 @@
                 "val": 0.1,
                 "turns": -1,
                 "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 225,
+                "turns": -1
             }
         ],
         "skills": [
@@ -59774,7 +60396,15 @@
                 "120": 16205
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 270,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -60259,7 +60889,15 @@
                 "120": 12773
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 300,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -60478,7 +61116,15 @@
                 "120": 16134
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -60699,7 +61345,15 @@
                 "120": 13568
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -61336,6 +61990,13 @@
                 "val": 0.06,
                 "turns": -1,
                 "cardType": "arts"
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
             }
         ],
         "skills": [
@@ -61546,7 +62207,15 @@
                 "120": 13782
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 230,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -63238,7 +63907,15 @@
                 "120": 11426
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 200,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -63446,7 +64123,15 @@
                 "120": 14416
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 185,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 6,
@@ -65745,7 +66430,15 @@
                 "120": 14979
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 125,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 7,
@@ -66364,7 +67057,15 @@
                 "120": 15858
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 7,
@@ -66998,6 +67699,13 @@
                         "team": true,
                         "type": "attackUp",
                         "val": 0.3,
+                        "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "damagePlus",
+                        "val": 500,
                         "turns": 3
                     }
                 ]

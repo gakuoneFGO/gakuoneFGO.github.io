@@ -22,8 +22,14 @@ function BuffSelector(props: BaseProps<Buff>): JSX.Element {
                 value={props.value.type}
                 renderInput={params => <TextField label="Buff Type" {...params} />}
                 onChange={(_, v) => handleBuffTypeChanged(v!)} />
-            {props.value.type != BuffType.AddTrait ?
+            {props.value.type != BuffType.AddTrait && props.value.type != BuffType.DamagePlus ?
                 <PercentInput
+                    value={props.value.val}
+                    onChange={ v => handleChange({ val: { $set: v } }, props)}
+                    label="Buff Value" />
+            : null}
+            {props.value.type == BuffType.DamagePlus ?
+                <IntegerInput
                     value={props.value.val}
                     onChange={ v => handleChange({ val: { $set: v } }, props)}
                     label="Buff Value" />

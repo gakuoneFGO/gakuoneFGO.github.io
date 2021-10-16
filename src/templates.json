@@ -28,7 +28,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -55,7 +56,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -82,7 +84,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -135,7 +138,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.4,
@@ -162,7 +166,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.7,
@@ -189,7 +194,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -242,7 +248,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 },
                 {
                     "attackUp": 0.3,
@@ -269,7 +276,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 },
                 {
                     "attackUp": 0.6,
@@ -296,7 +304,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 }
             ]
         },
@@ -349,7 +358,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0,
@@ -376,7 +386,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -403,7 +414,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -456,7 +468,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0,
@@ -483,7 +496,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -510,7 +524,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -563,7 +578,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -590,7 +606,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -617,7 +634,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -670,7 +688,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.4,
@@ -697,7 +716,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.7,
@@ -724,7 +744,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -777,7 +798,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 },
                 {
                     "attackUp": 0.3,
@@ -804,7 +826,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 },
                 {
                     "attackUp": 0.6,
@@ -831,7 +854,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 }
             ]
         },
@@ -884,7 +908,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0,
@@ -911,7 +936,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -938,7 +964,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -991,7 +1018,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -1018,7 +1046,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -1045,7 +1074,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -1098,7 +1128,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 },
                 {
                     "attackUp": 0.3,
@@ -1125,7 +1156,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 },
                 {
                     "attackUp": 0.6,
@@ -1152,7 +1184,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 }
             ]
         },
@@ -1205,7 +1238,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0,
@@ -1232,7 +1266,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -1259,7 +1294,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -1312,7 +1348,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -1339,7 +1376,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 },
                 {
                     "attackUp": 0.6,
@@ -1366,7 +1404,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 }
             ]
         },
@@ -1419,7 +1458,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 },
                 {
                     "attackUp": 0.3,
@@ -1446,7 +1486,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 },
                 {
                     "attackUp": 0.6,
@@ -1473,7 +1514,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 500
                 }
             ]
         },
@@ -1526,7 +1568,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0,
@@ -1553,7 +1596,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -1580,7 +1624,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -1633,7 +1678,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -1660,7 +1706,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -1687,7 +1734,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -1740,7 +1788,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 1
+                    "overcharge": 1,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -1767,7 +1816,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -1794,7 +1844,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -1847,7 +1898,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.6,
@@ -1874,7 +1926,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.7,
@@ -1901,7 +1954,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -1974,7 +2028,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "npCard": "buster"
+                    "npCard": "buster",
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.4,
@@ -2002,7 +2057,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "npCard": "buster"
+                    "npCard": "buster",
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.4,
@@ -2030,7 +2086,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "npCard": "buster"
+                    "npCard": "buster",
+                    "flatDamage": 0
                 }
             ]
         }
@@ -2084,7 +2141,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "npCard": "buster"
+                    "npCard": "buster",
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.4,
@@ -2112,7 +2170,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "npCard": "buster"
+                    "npCard": "buster",
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.7,
@@ -2140,7 +2199,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "npCard": "buster"
+                    "npCard": "buster",
+                    "flatDamage": 0
                 }
             ]
         }
@@ -2175,7 +2235,8 @@
                         }
                     ],
                     "overcharge": 1,
-                    "npCard": "buster"
+                    "npCard": "buster",
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 1.2,
@@ -2203,7 +2264,8 @@
                         }
                     ],
                     "overcharge": 1,
-                    "npCard": "buster"
+                    "npCard": "buster",
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 1.5,
@@ -2231,7 +2293,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "npCard": "buster"
+                    "npCard": "buster",
+                    "flatDamage": 0
                 }
             ]
         },
@@ -2284,7 +2347,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -2311,7 +2375,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.6,
@@ -2338,7 +2403,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },
@@ -2391,7 +2457,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0,
@@ -2418,7 +2485,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -2445,7 +2513,8 @@
                             "modifier": 0
                         }
                     ],
-                    "overcharge": 0
+                    "overcharge": 0,
+                    "flatDamage": 0
                 }
             ]
         },

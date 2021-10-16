@@ -295,6 +295,8 @@ async function toBuff(func: any): Promise<Buff[]> {
             //TODO: this applies everything immediately, which may be fine for most skills but is not fine for NP effects (are there any relevant ones?)
             const buffs: Buff[][] = await Promise.all(delayedFunc.functions.map(toBuff));
             return buffs.flat(1);
+        case "addDamage":
+            return [ new Buff(self, team, BuffType.DamagePlus, getBuffValue(func) / U_RATIO, getBuffTurns(func)) ];
         case "overwriteClassRelation":
             //TODO: I had no idea kiara had this, wtf. well we needed to do this for kama anyway
         case "upCommandatk": //TODO: handle this if it comes up for any new servants
@@ -331,7 +333,6 @@ async function toBuff(func: any): Promise<Buff[]> {
         case "downCriticalrate":
         case "upCriticalpoint":
         case "downCriticalpoint":
-        case "addDamage"://TODO: flat damage
         case "multiattack":
         case "subSelfdamage":
         case "preventDeathByDamage":
@@ -391,12 +392,13 @@ function debuffToBuff(func: any): Buff[] {
             return relevant.length > 0 ?
                 [ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, relevant) ] :
                 [];
+        case "addSelfdamage":
+            return [ new Buff(true, true, BuffType.DamagePlus, getBuffValue(func) / U_RATIO, 1) ];
         case "donotSkill":
         case "donotNoble":
         case "avoidState":
         case "invincible":
         case "reduceHp"://TODO: curse/poison/burn
-        case "addSelfdamage":
         case "upFuncHpReduce":
         case "downGainHp":
         case "downCriticalpoint":
@@ -448,15 +450,12 @@ function getCardType(name: string): CardType {
 
 function isUseful(buff: Buff, npType: CardType): boolean {
     switch (buff.type) {
-        case BuffType.AttackUp:
-        case BuffType.NpDmgUp:
-        case BuffType.PowerMod:
-        case BuffType.Overcharge:
-        case BuffType.NpBoost:
-        case BuffType.AddTrait:
-            return buff.val > 0;
         case BuffType.CardTypeUp:
-            return buff.val > 0 && (buff.team || buff.cardType == npType);
+            return buff.val > 0 && (buff.team || npType == buff.cardType)
+        case BuffType.NpGain:
+            return buff.val > 0 && (buff.team || npType != CardType.Buster)
+        default:
+            return buff.val > 0;;
     }
 }
 

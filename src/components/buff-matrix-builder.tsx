@@ -7,7 +7,7 @@ import { useState } from "react";
 import { BuffSet } from "../Damage";
 import { BuffType, CardType, Servant, PowerMod } from "../Servant";
 import { BuffMatrix } from "../Strat";
-import { BaseProps, handleChange, PercentInput, TraitSelect } from "./common";
+import { BaseProps, handleChange, IntegerInput, PercentInput, TraitSelect } from "./common";
 import { TransposedTable } from "./transposed-table"
 
 interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
@@ -148,6 +148,11 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                         </Grid>
                     ])}
                     <Grid {...gridLeftHeaderProps}>
+                        <Tooltip title="Flat damage from damage plus buffs minus damage cut buffs on enemies. Note: Any burn/poison/curse damage added here will incorrectly be factored into refund calculations.">
+                            <img src="images/buffs/powerMod.png" />
+                        </Tooltip>
+                    </Grid>
+                    <Grid {...gridLeftHeaderProps}>
                         <Tooltip title="Traits forcefully applied to enemies on each turn, such as Romulus=Quirinus' Roman trait debuff or Summer Kama's charm.">
                             <img src="images/buffs/individuality.png" />
                         </Tooltip>
@@ -189,6 +194,9 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                                     onChange={v => handlePowerModChange({ trigger: {$set: v } }, pIndex, index)} />
                             </Grid>
                         ])}
+                        <Grid {...gridCellProps}>
+                            <IntegerInput label="Damage Plus" value={buffSet.flatDamage} onChange={v => handleChange({ buffs: { [index]: { flatDamage: { $set: v } } } }, props)} />
+                        </Grid>
                         <Grid {...gridCellProps}>
                             <TraitSelect label="Add Enemy Traits"
                                 value={buffSet.applyTraits}

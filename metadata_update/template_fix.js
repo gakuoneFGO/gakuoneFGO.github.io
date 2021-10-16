@@ -1,5 +1,5 @@
 function modifyTemplate(template) {
-    template.buffs.buffs.flatMap(buffset => buffset.powerMods).forEach(pm => pm.trigger = [pm.trigger])
+    template.buffs.buffs.forEach(buffSet => buffSet.flatDamage = 0);
 }
 
 var fs = require("fs");

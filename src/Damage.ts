@@ -9,11 +9,12 @@ class BuffSet {
         readonly npBoost: number,
         readonly powerMods: PowerMod[],
         readonly overcharge: number,
+        readonly flatDamage: number,
         readonly applyTraits: Trait[]) {}
 
     public static empty(): BuffSet {
         let powerMod = new PowerMod([Trait.Always], 0);
-        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0, []);
+        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0, 0, []);
         return emptySingleton;
     }
 
@@ -25,6 +26,7 @@ class BuffSet {
             Math.max(...buffs.map(buff => buff.npBoost)),
             buffs.flatMap(buff => buff.powerMods).concat(appendMod),
             buffs.map(buff => buff.overcharge).reduce((a, b) => a + b),
+            buffs.map(buff => buff.flatDamage).reduce((a, b) => a + b),
             buffs.flatMap(buff => buff.applyTraits)
         );
     }
@@ -38,6 +40,7 @@ class BuffSet {
             Math.max(0, ...buffs.filter(b => b.type == BuffType.NpBoost).map(b => b.val)),
             buffs.filter(b => b.type == BuffType.PowerMod).map(b => new PowerMod(b.trig!, b.val)).concat([ powerMod, powerMod, powerMod ]),
             buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0),
+            buffs.filter(b => b.type == BuffType.DamagePlus).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.AddTrait).flatMap(b => b.trig!)
         );
     }
@@ -54,25 +57,27 @@ class Damage {
     readonly average: number;
     readonly high: number;
 
-    constructor(average: number) {
-        this.average = Math.round(average);
-        this.low = Math.round(average * 0.9);
-        this.high = Math.round(average * 1.1); 
+    constructor(average: number, flatDamage: number) {
+        this.average = Math.round(average + flatDamage);
+        this.low = Math.round(average * 0.9 + flatDamage);
+        this.high = Math.round(average * 1.1 + flatDamage);
     }
 }
 
 class Calculator {
     calculateNpDamage(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[], npCard: CardType): Damage {
-        const np = servant.data.getNP(buffs.reduce((type, buff) => npCard ?? type, undefined as CardType | undefined));
+        const np = servant.data.getNP(npCard);
         const combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.getAppendMod());
         const enemyTraits = enemy.traits.concat(combinedBuffs.applyTraits);
         const oc = Math.floor(combinedBuffs.overcharge);
         const baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, oc) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
+        //skip damage plus for non-damaging NPs
+        if (baseDamage == 0) return new Damage(0, 0);
         const triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute);
         const extraDamage = np.extraDmgStacks ?
             1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[oc] :
             isTriggerActive(enemyTraits, np.extraTrigger) ? np.extraDamage[oc] : 1.0;
-        return new Damage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage);
+        return new Damage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage, combinedBuffs.flatDamage);
     }
 
     getCardMultiplier(cardType:CardType): number {
