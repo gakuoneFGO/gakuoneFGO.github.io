@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Clear, Replay, Visibility, VisibilityOff, Warning, Menu } from "@mui/icons-material";
-import { Tooltip, Box, ButtonGroup, Button, Typography, capitalize, Grid, GridSize, Divider, SpeedDial, SpeedDialAction } from "@mui/material";
+import { Clear, Replay, Visibility, VisibilityOff, Warning, Menu, KeyboardArrowDown } from "@mui/icons-material";
+import { Tooltip, Box, ButtonGroup, Button, Typography, capitalize, Grid, GridSize, Divider, MenuItem } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Spec } from "immutability-helper";
 import { useState } from "react";
@@ -9,6 +9,8 @@ import { BuffType, CardType, Servant, PowerMod } from "../Servant";
 import { BuffMatrix } from "../Strat";
 import { BaseProps, handleChange, IntegerInput, PercentInput, TraitSelect } from "./common";
 import { TransposedTable } from "./transposed-table"
+import { usePopupState, bindMenu, bindHover } from "material-ui-popup-state/hooks";
+import HoverMenu from 'material-ui-popup-state/HoverMenu'
 
 interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
         readonly servants: Servant[];
@@ -26,6 +28,7 @@ function isBuffSelected(buffs: BuffMatrix, buffType: keyof BuffSet): boolean {
 function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     const theme = useTheme();
     const [ state, setState ] = useState({ showAll: false });
+    const popupState = usePopupState({ variant: "popover", popupId: "BuffMatrixBuilder" });
 
     const handlePowerModChange = (spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) => {
         handleChange({ buffs : { [buffIndex]: { powerMods: { [modIndex]: spec } } } }, props);
@@ -63,6 +66,8 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     const gridLeftHeaderProps = {
         item: true,
         xs: 1 as GridSize,
+        display: "flex",
+        justifyContent: "center",
     };
 
     return (
@@ -74,26 +79,24 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                     </React.Fragment>
                 }>
                 <Box>
-                    <Grid {...gridLeftHeaderProps} position="relative">
-                        <SpeedDial direction="right" icon={<Menu />}
-                            ariaLabel="Buff Matrix Menu" sx={{position: "absolute", top: 0}}
-                            FabProps={{size: "small"}}>
-                            <SpeedDialAction key="hide"
-                                tooltipTitle={state.showAll ? "Hide Extra Buffs" : "Show All Buffs" }
-                                icon={state.showAll ? <VisibilityOff /> : < Visibility />}
-                                onClick={() => setState({ showAll: !state.showAll })}
-                                FabProps={{sx: {backgroundColor: theme.palette.secondary.main}}} />
-                            <SpeedDialAction key="clear"
-                                tooltipTitle="Clear"
-                                icon={<Clear />}
-                                onClick={() => props.onChange(BuffMatrix.create(props.value.buffs.length))}
-                                FabProps={{sx: {backgroundColor: theme.palette.secondary.main}}} />
-                            <SpeedDialAction key="reset"
-                                tooltipTitle="Reset"
-                                icon={<Replay />}
-                                onClick={props.doRefresh}
-                                FabProps={{sx: {backgroundColor: theme.palette.secondary.main}}} />
-                        </SpeedDial>
+                    <Grid {...gridLeftHeaderProps}>
+                        <Button endIcon={<KeyboardArrowDown />} {...bindHover(popupState)}>
+                            <Menu />
+                        </Button>
+                        {/* Text is omitted from menu items to avoid annoying behavior when mousing over the space between the button and the far end of the menu */}
+                        <HoverMenu {...bindMenu(popupState)}
+                            anchorOrigin={{horizontal: "center", vertical: "bottom"}}
+                            transformOrigin={{horizontal: "center", vertical:"top"}}>
+                            <MenuItem title={state.showAll ? "Hide Extra Buffs" : "Show All Buffs" } onClick={() => setState({ showAll: !state.showAll })}>
+                                {state.showAll ? <VisibilityOff /> : < Visibility />}
+                            </MenuItem>
+                            <MenuItem title="Clear All" onClick={() => props.onChange(BuffMatrix.create(props.value.buffs.length))}>
+                                <Clear />
+                            </MenuItem>
+                            <MenuItem title="Reset" onClick={props.doRefresh}>
+                                <Replay />
+                            </MenuItem>
+                        </HoverMenu>
                     </Grid>
                     {showCardType ?
                         <Grid {...gridLeftHeaderProps}>
@@ -168,7 +171,7 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                 </Box>
                 {props.value.buffs.map((buffSet: BuffSet, index: number) => (
                     <Box key={index}>
-                        <Grid {...gridCellProps} display="flex" gap={theme.spacing(1)}>
+                        <Grid {...gridCellProps} display="flex" alignItems="center" gap={theme.spacing(1)}>
                             <Typography>T{index + 1}</Typography>
                             {props.warnOtherNp && !props.servants.includes(props.clearers[index]) ?
                                 <Tooltip title="Wave is cleared by another servant. Only put team buffs provided by this servant in this column!">

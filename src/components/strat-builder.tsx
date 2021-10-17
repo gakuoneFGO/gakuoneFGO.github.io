@@ -156,18 +156,22 @@ export function StratBuilder() {
                     {state.strat.servants.map((servant, index) => servant ?
                         //seems like the TabContext needs to know about even the tabs that aren't selected since I get issues trying to return just the selected one
                         <TabPanel key={index} value={`servant${index}`} sx={{ overflowY: "scroll", height: "100%" }}>
-                            <Stack spacing={1}>
-                                <ServantSelector value={servant.servant} label="Servant" allowUnspecified={false} allowPlaceholder={false}
-                                    onChange={(servant: Servant) => onServantChanged(servant, index)} />
-                                <BuffMatrixBuilder value={servant.buffs}
-                                    maxPowerMods={2}
-                                    onChange={buffs => handleChange({ strat: { servants: { [index]: { buffs: { $set: buffs } } } } })}
-                                    servants={[servant.servant]}
-                                    warnOtherNp
-                                    clearers={state.strat.getRealClearers().map(c => c[0])}
-                                    npCards={{ value: state.strat.npCards, onChange: v => handleChange({ strat: { npCards: { $set: v } } }) }}
-                                    doRefresh={() => handleChange({ strat: { $set: defaultBuffsetHeuristic(state.strat, index) } })} />
-                            </Stack>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <ServantSelector value={servant.servant} label="Servant" allowUnspecified={false} allowPlaceholder={false}
+                                        onChange={(servant: Servant) => onServantChanged(servant, index)} />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <BuffMatrixBuilder value={servant.buffs}
+                                        maxPowerMods={2}
+                                        onChange={buffs => handleChange({ strat: { servants: { [index]: { buffs: { $set: buffs } } } } })}
+                                        servants={[servant.servant]}
+                                        warnOtherNp
+                                        clearers={state.strat.getRealClearers().map(c => c[0])}
+                                        npCards={{ value: state.strat.npCards, onChange: v => handleChange({ strat: { npCards: { $set: v } } }) }}
+                                        doRefresh={() => handleChange({ strat: { $set: defaultBuffsetHeuristic(state.strat, index) } })} />
+                                </Grid>
+                            </Grid>
                         </TabPanel>
                     : null)}
                     <TabPanel value="template" sx={{ overflowY: "scroll", height: "100%" }}>
