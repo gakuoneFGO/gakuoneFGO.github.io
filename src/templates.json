@@ -2382,6 +2382,122 @@
         }
     },
     {
+        "name": "[ARTS] Double Castoria + Tamamo",
+        "party": [
+            "<Placeholder>",
+            "Altria Caster",
+            "Tamamo-no-Mae",
+            "Altria Caster",
+            "<Unspecified>",
+            "<Unspecified>"
+        ],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
+        "description": "Basic double Castoria setup with plugsuit Tamamo.",
+        "instructions": [
+            "Apply Tamamo's skills. Swap for Castoria and apply all Castoria skills (may need to save some charge skills to make the loop work)",
+            "Refill with looper's skills (or deferred Castoria skills)",
+            "Plugsuit buff (and any remaining Castoria skills)"
+        ],
+        "buffs": {
+            "buffs": [
+                {
+                    "attackUp": 0.4,
+                    "cardUp": 1.5,
+                    "npUp": 0.3,
+                    "npBoost": 0,
+                    "npGain": 0.6,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "flatDamage": 0,
+                    "npCard": "buster"
+                },
+                {
+                    "attackUp": 0.4,
+                    "cardUp": 1.5,
+                    "npUp": 0.3,
+                    "npBoost": 0,
+                    "npGain": 0.6,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "flatDamage": 500,
+                    "npCard": "buster"
+                },
+                {
+                    "attackUp": 0.7,
+                    "cardUp": 1.5,
+                    "npUp": 0.3,
+                    "npBoost": 0,
+                    "npGain": 0.6,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "flatDamage": 500,
+                    "npCard": "buster"
+                }
+            ]
+        }
+    },
+    {
         "name": "[ARTS] Double Castoria + Oberon",
         "party": [
             "<Placeholder>",
@@ -2611,6 +2727,119 @@
             "Apply Castoria S1s and S3s. Use one S2 on your whale friend's NP5 Castoria, then NP with her and the looper",
             "Apply the other Castoria S2 to the damage dealer. Swap in Oberon and S1. Refill gauge with the looper's skills if needed, then NP with Castoria and the looper",
             "Oberon S2 + S3"
+        ]
+    },
+    {
+        "name": "[QUICK] Double Skadi + Waver",
+        "buffs": {
+            "buffs": [
+                {
+                    "attackUp": 0.3,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "flatDamage": 500,
+                    "npGain": 0
+                },
+                {
+                    "attackUp": 0.3,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "flatDamage": 500,
+                    "npGain": 0
+                },
+                {
+                    "attackUp": 1.2,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "flatDamage": 500,
+                    "npGain": 0
+                }
+            ]
+        },
+        "party": [
+            "<Placeholder>",
+            "Scáthach-Skadi",
+            "Zhuge Liang (Lord El-Melloi II)",
+            "Scáthach-Skadi",
+            "<Unspecified>",
+            "<Unspecified>"
+        ],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
+        "description": "Basic double Skadi setup with plugsuit Waver. Typically used with a 50% starting gauge CE.",
+        "instructions": [
+            "Use Waver's skills. Swap for Skadi and use both Skadi quick buffs",
+            "Refill with one Skadi's charge skill",
+            "Use remaining charge skill, defense debuffs, plugsuit buff"
         ]
     },
     {
