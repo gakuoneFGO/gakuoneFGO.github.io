@@ -198,7 +198,7 @@ export interface SaveableSelectProps<T extends { name: string }> {
 export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & BaseProps<T>) {
     const theme = useTheme();
     const popupState = usePopupState({ variant: "popover", popupId: "SaveableSelect" });
-    const [ state, setState ] = useState({ newName: "" });
+    const [ state, setState ] = useState({ newName: props.provider.isCustom(props.value) ? props.value.name.substring(2) : "" });
 
     const doSave = () => {
         if (state.newName){
