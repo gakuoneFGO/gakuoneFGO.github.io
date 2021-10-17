@@ -1,4 +1,4 @@
-import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod } from "./Servant";
+import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod, NoblePhantasm } from "./Servant";
 import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./Enemy";
 
 class BuffSet {
@@ -7,15 +7,15 @@ class BuffSet {
         readonly cardUp: number, //includes resistance down
         readonly npUp: number,
         readonly npBoost: number,
+        readonly npGain: number,
         readonly powerMods: PowerMod[],
         readonly overcharge: number,
         readonly flatDamage: number,
         readonly applyTraits: Trait[]) {}
 
     public static empty(): BuffSet {
-        let powerMod = new PowerMod([Trait.Always], 0);
-        const emptySingleton = new BuffSet(0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0, 0, []);
-        return emptySingleton;
+        const powerMod = new PowerMod([Trait.Always], 0);
+        return new BuffSet(0, 0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0, 0, []);
     }
 
     public static combine(buffs: BuffSet[], appendMod: PowerMod): BuffSet {
@@ -24,6 +24,7 @@ class BuffSet {
             buffs.map(buff => buff.cardUp).reduce((a, b) => a + b),
             buffs.map(buff => buff.npUp).reduce((a, b) => a + b),
             Math.max(...buffs.map(buff => buff.npBoost)),
+            buffs.map(buff => buff.npGain).reduce((a, b) => a + b),
             buffs.flatMap(buff => buff.powerMods).concat(appendMod),
             buffs.map(buff => buff.overcharge).reduce((a, b) => a + b),
             buffs.map(buff => buff.flatDamage).reduce((a, b) => a + b),
@@ -38,6 +39,7 @@ class BuffSet {
             buffs.filter(b => b.type == BuffType.CardTypeUp && b.cardType == npCard).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.NpDmgUp).reduce((v, b) => v + b.val, 0),
             Math.max(0, ...buffs.filter(b => b.type == BuffType.NpBoost).map(b => b.val)),
+            buffs.filter(b => b.type == BuffType.NpGain).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.PowerMod).map(b => new PowerMod(b.trig!, b.val)).concat([ powerMod, powerMod, powerMod ]),
             buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.DamagePlus).reduce((v, b) => v + b.val, 0),
@@ -52,35 +54,67 @@ class BuffSet {
     }
 }
 
-class Damage {
-    readonly low: number;
-    readonly average: number;
-    readonly high: number;
+export class Range {
+    constructor(
+        readonly low: number,
+        readonly average: number,
+        readonly high: number
+    ) {}
 
-    constructor(average: number, flatDamage: number) {
-        this.average = Math.round(average + flatDamage);
-        this.low = Math.round(average * 0.9 + flatDamage);
-        this.high = Math.round(average * 1.1 + flatDamage);
+    public static ofDamage(average: number, flatDamage: number): Range {
+        return new Range(
+            average * 0.9 + flatDamage,
+            average + flatDamage,
+            average * 1.1 + flatDamage
+        );
+    }
+
+    public static sum(ranges: Range[]): Range {
+        return new Range(
+            ranges.reduce((val, range) => val + range.low, 0),
+            ranges.reduce((val, range) => val + range.average, 0),
+            ranges.reduce((val, range) => val + range.high, 0)
+        );
+    }
+
+    public forDisplay(): number {
+        return Math.round(this.low);
     }
 }
 
+export class NpResult {
+    constructor(
+        readonly damage: Range,
+        readonly refund: Range
+    ) {}
+}
+
 class Calculator {
-    calculateNpDamage(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[], npCard: CardType): Damage {
-        const np = servant.data.getNP(npCard);
-        const combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.getAppendMod());
-        const enemyTraits = enemy.traits.concat(combinedBuffs.applyTraits);
-        const oc = Math.floor(combinedBuffs.overcharge);
-        const baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, oc) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
-        //skip damage plus for non-damaging NPs
-        if (baseDamage == 0) return new Damage(0, 0);
-        const triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute);
-        const extraDamage = np.extraDmgStacks ?
-            1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[oc] :
-            isTriggerActive(enemyTraits, np.extraTrigger) ? np.extraDamage[oc] : 1.0;
-        return new Damage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage, combinedBuffs.flatDamage);
+    public calculateNp(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[], npCard: CardType): NpResult {
+        const
+            np = servant.data.getNP(npCard),
+            combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.getAppendMod()),
+            damage = this.calculateNpDamage(servant, np, ce, enemy, combinedBuffs),
+            refund = this.calculateNpRefund(np, combinedBuffs, enemy, damage);
+        return new NpResult(damage, refund);
     }
 
-    getCardMultiplier(cardType:CardType): number {
+    private calculateNpDamage(servant: Servant, np: NoblePhantasm, ce: CraftEssence, enemy: Enemy, combinedBuffs: BuffSet): Range {
+        const
+            oc = Math.floor(combinedBuffs.overcharge),
+            baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, oc) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
+        //skip damage plus for non-damaging NPs
+        if (baseDamage == 0) return Range.ofDamage(0, 0);
+        const
+            enemyTraits = enemy.traits.concat(combinedBuffs.applyTraits),
+            triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute),
+            extraDamage = np.extraDmgStacks ?
+                1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[oc] :
+                isTriggerActive(enemyTraits, np.extraTrigger) ? np.extraDamage[oc] : 1.0;
+        return Range.ofDamage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage, combinedBuffs.flatDamage);
+    }
+
+    private getCardMultiplier(cardType:CardType): number {
         switch (cardType) {
             case CardType.Buster: return 1.5;
             case CardType.Arts: return 1;
@@ -89,7 +123,7 @@ class Calculator {
         }
     }
 
-    getClassMultiplier(servantClass: ServantClass): number {
+    private getClassMultiplier(servantClass: ServantClass): number {
         switch (servantClass) {
             case ServantClass.Berserker:
             case ServantClass.Ruler:
@@ -106,10 +140,43 @@ class Calculator {
                 return 1.0;
         }
     }
+
+    private calculateNpRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, damage: Range): Range {
+        return new Range(
+            this.calculateNpRefundScenario(np, buffs, enemy, damage.low),
+            this.calculateNpRefundScenario(np, buffs, enemy, damage.average),
+            this.calculateNpRefundScenario(np, buffs, enemy, damage.high)
+        );
+    }
+
+    private calculateNpRefundScenario(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, damage: number): number {
+        return np.hitDistribution.reduce((cumulative, hit) =>
+            ({
+                hp: cumulative.hp - damage * hit,
+                refund: cumulative.refund + this.calculateSingleHitRefund(np, buffs, enemy, cumulative.hp <= 0)
+            }),
+            {
+                hp: enemy.hitPoints,
+                refund: 0
+            }).refund;
+    }
+
+    private calculateSingleHitRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, isOverkill: boolean): number {
+        const baseGain =
+            np.refundRate *
+            npGainByCard.get(np.cardType)! *
+            (1 + buffs.cardUp) *
+            (npGainByEnemyClass.get(enemy.eClass as string as ServantClass) ?? 1) *
+            (1 + buffs.npGain);
+        return isOverkill ? roundDown(roundDown(baseGain) * 1.5) : roundDown(baseGain);
+    }
+}
+
+function roundDown(val: number): number {
+    return Math.floor(val * 10) / 10;
 }
 
 function isTriggerActive(traits: Trait[], trigger: Trait[]): boolean {
-    //TODO: count stacks
     return trigger.includes(Trait.Always) || matchTraits(traits, trigger).length > 0;
 }
 
@@ -145,7 +212,7 @@ function getLikelyClassMatchup(servantClass: ServantClass): EnemyClass {
     }
 }
 
-let attributeTriangleAdvantages: Map<ServantAttribute, ServantAttribute> = new Map([
+const attributeTriangleAdvantages: Map<ServantAttribute, ServantAttribute> = new Map([
     [ServantAttribute.Man, ServantAttribute.Sky],
     [ServantAttribute.Earth, ServantAttribute.Man],
     [ServantAttribute.Sky, ServantAttribute.Earth],
@@ -214,7 +281,7 @@ function isKnight(enemyClass: EnemyClass): boolean {
     }
 }
 
-let classTriangleAdvantages: Map<ServantClass, ServantClass> = new Map([
+const classTriangleAdvantages: Map<ServantClass, ServantClass> = new Map([
     [ServantClass.Saber, ServantClass.Lancer],
     [ServantClass.Archer, ServantClass.Saber],
     [ServantClass.Lancer, ServantClass.Archer],
@@ -229,4 +296,21 @@ let classTriangleAdvantages: Map<ServantClass, ServantClass> = new Map([
     [ServantClass.Pretender, ServantClass.AlterEgo],
 ]);
 
-export { BuffSet, Calculator, Damage, CraftEssence, getLikelyClassMatchup };
+const npGainByCard: Map<CardType, number> = new Map([
+    [ CardType.Buster, 0 ],
+    [ CardType.Arts, 3 ],
+    [ CardType.Quick, 1 ],
+    [ CardType.Extra, 1 ],
+]);
+
+//assume 1 if omitted
+const npGainByEnemyClass: Map<ServantClass, number> = new Map([
+    [ ServantClass.Caster, 1.2 ],
+    [ ServantClass.MoonCancer, 1.2 ],
+    [ ServantClass.Rider, 1.1 ],
+    [ ServantClass.Assassin, 0.9 ],
+    [ ServantClass.Berserker, 0.8 ],
+    //TODO: not sure what typical Pretender rate is
+]);
+
+export { BuffSet, Calculator, CraftEssence, getLikelyClassMatchup };

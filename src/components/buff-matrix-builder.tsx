@@ -34,7 +34,8 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     const maxPowerMods = props.maxPowerMods ?? 3;
     const showNpBoost = state.showAll || isBuffSelected(props.value, "npBoost") || props.servants.some(s => s.data.hasBuffInKit(BuffType.NpBoost));
     const showOc = state.showAll || isBuffSelected(props.value, "overcharge") || props.servants.some(s => s.data.hasBuffInKit(BuffType.Overcharge));
-        
+    const showNpGain = state.showAll || isBuffSelected(props.value, "npGain") || (props.servants.some(s => s.data.hasBuffInKit(BuffType.NpGain)) && props.npCards.value.some(card => card != CardType.Buster));
+
     const showCardType = state.showAll || props.servants.some(s => s.data.nps.length > 1);
     const validCardTypes = props.clearers.map(s => s.data.nps.map(np => np.cardType));
 
@@ -121,6 +122,13 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                             <img src="images/buffs/npDmgUp.png" />
                         </Tooltip>
                     </Grid>
+                    {showNpGain ?
+                        <Grid {...gridLeftHeaderProps}>
+                            <Tooltip title="NP gain up buffs.">
+                                <img src="images/buffs/npGainUp.png" />
+                            </Tooltip>
+                        </Grid>
+                    : null}
                     {showNpBoost ?
                         <Grid {...gridLeftHeaderProps}>
                             <Tooltip title="NP damage effectiveness boost provided by Oberon's third skill. This does not stack, so don't enter a value higher than 100%!">
@@ -180,6 +188,7 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                         <Grid {...gridCellProps}><PercentInput label="Attack Up" value={buffSet.attackUp} onChange={v => { handleChange({ buffs: { [index]: { attackUp: { $set: v } } } }, props); }} /></Grid>
                         <Grid {...gridCellProps}><PercentInput label="Card Type Up" value={buffSet.cardUp} onChange={ v => { handleChange({ buffs: { [index]: { cardUp: { $set: v } } } }, props); } } /></Grid>
                         <Grid {...gridCellProps}><PercentInput label="NP Damage Up" value={buffSet.npUp} onChange={ v => { handleChange({ buffs: { [index]: { npUp: { $set: v } } } }, props); }} /></Grid>
+                        {showNpGain ? <Grid {...gridCellProps}><PercentInput label="NP Gain Up" value={buffSet.npGain} onChange={ v => { handleChange({ buffs : { [index]: { npGain: { $set: v } } } }, props); }} /></Grid> : null}
                         {showNpBoost ? <Grid {...gridCellProps}><PercentInput label="NP Up Boost" value={buffSet.npBoost} onChange={ v => { handleChange({ buffs : { [index]: { npBoost: { $set: v } } } }, props); }} /></Grid> : null}
                         {showOc ? <Grid {...gridCellProps}><PercentInput label="Overcharge" value={buffSet.overcharge} onChange={ v => { handleChange({ buffs : { [index]: { overcharge: { $set: v } } } }, props); }} /></Grid> : null}
                         {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [

@@ -29,7 +29,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -57,7 +58,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -85,7 +87,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -139,7 +142,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.4,
@@ -167,7 +171,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.7,
@@ -195,7 +200,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -249,7 +255,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -277,7 +284,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.6,
@@ -305,7 +313,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 }
             ]
         },
@@ -359,7 +368,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0,
@@ -387,7 +397,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -415,7 +426,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -469,7 +481,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0,
@@ -497,7 +510,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -525,7 +539,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -579,7 +594,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -607,7 +623,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -635,7 +652,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -689,7 +707,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.4,
@@ -717,7 +736,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.7,
@@ -745,7 +765,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -799,7 +820,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -827,7 +849,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.6,
@@ -855,7 +878,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 }
             ]
         },
@@ -909,7 +933,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0,
@@ -937,7 +962,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -965,7 +991,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -1019,7 +1046,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -1047,7 +1075,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -1075,7 +1104,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -1129,7 +1159,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -1157,7 +1188,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.6,
@@ -1185,7 +1217,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 }
             ]
         },
@@ -1239,7 +1272,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0,
@@ -1267,7 +1301,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -1295,7 +1330,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -1349,7 +1385,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -1377,7 +1414,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.6,
@@ -1405,7 +1443,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 }
             ]
         },
@@ -1459,7 +1498,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -1487,7 +1527,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.6,
@@ -1515,7 +1556,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 500
+                    "flatDamage": 500,
+                    "npGain": 0
                 }
             ]
         },
@@ -1569,7 +1611,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0,
@@ -1597,7 +1640,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -1625,7 +1669,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -1679,7 +1724,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -1707,7 +1753,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -1735,7 +1782,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -1789,7 +1837,8 @@
                         }
                     ],
                     "overcharge": 1,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.2,
@@ -1817,7 +1866,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.5,
@@ -1845,7 +1895,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -1899,7 +1950,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.6,
@@ -1927,7 +1979,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.7,
@@ -1955,7 +2008,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -2029,7 +2083,8 @@
                     ],
                     "overcharge": 0,
                     "npCard": "buster",
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0.6
                 },
                 {
                     "attackUp": 0.4,
@@ -2058,7 +2113,8 @@
                     ],
                     "overcharge": 0,
                     "npCard": "buster",
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 1.1
                 },
                 {
                     "attackUp": 0.4,
@@ -2087,7 +2143,240 @@
                     ],
                     "overcharge": 0,
                     "npCard": "buster",
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0.6
+                }
+            ]
+        }
+    },
+    {
+        "name": "[ARTS] Double Castoria + Waver",
+        "party": [
+            "<Placeholder>",
+            "Altria Caster",
+            "Altria Caster",
+            "Zhuge Liang (Lord El-Melloi II)",
+            "<Unspecified>",
+            "<Unspecified>"
+        ],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
+        "description": "Basic double Castoria setup with plugsuit Waver.",
+        "instructions": [
+            "Apply Castoria skills",
+            "Swap in Waver and apply S3 and other skills as needed",
+            "Apply plugsuit buff and remaining Waver skills as needed"
+        ],
+        "buffs": {
+            "buffs": [
+                {
+                    "attackUp": 0.4,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "npCard": "buster",
+                    "flatDamage": 0,
+                    "npGain": 0.6
+                },
+                {
+                    "attackUp": 0.7,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "npCard": "buster",
+                    "flatDamage": 500,
+                    "npGain": 0.6
+                },
+                {
+                    "attackUp": 1,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "npCard": "buster",
+                    "flatDamage": 500,
+                    "npGain": 0.6
+                }
+            ]
+        }
+    },
+    {
+        "name": "[ARTS] Double Castoria + Bride",
+        "party": [
+            "<Placeholder>",
+            "Altria Caster",
+            "Nero Claudius (Bride)",
+            "Altria Caster",
+            "<Unspecified>",
+            "<Unspecified>"
+        ],
+        "clearers": [
+            0,
+            0,
+            0
+        ],
+        "description": "Basic double Castoria setup with plugsuit Nero Bride.",
+        "instructions": [
+            "Apply Bride skills and swap for Castoria. Use all Castoria skills except one S1",
+            "Remaining Castoria S1",
+            "Plugsuit buff"
+        ],
+        "buffs": {
+            "buffs": [
+                {
+                    "attackUp": 0.6,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "npGain": 1.05,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "attributeSky"
+                            ],
+                            "modifier": 0.3
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "flatDamage": 0,
+                    "npCard": "buster"
+                },
+                {
+                    "attackUp": 0.8,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "npGain": 1.05,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "attributeSky"
+                            ],
+                            "modifier": 0.3
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "flatDamage": 500,
+                    "npCard": "buster"
+                },
+                {
+                    "attackUp": 1.1,
+                    "cardUp": 1,
+                    "npUp": 0,
+                    "npBoost": 0,
+                    "npGain": 1.05,
+                    "powerMods": [
+                        {
+                            "trigger": [
+                                "threatToHumanity"
+                            ],
+                            "modifier": 1
+                        },
+                        {
+                            "trigger": [
+                                "attributeSky"
+                            ],
+                            "modifier": 0.3
+                        },
+                        {
+                            "trigger": [
+                                "always"
+                            ],
+                            "modifier": 0
+                        }
+                    ],
+                    "overcharge": 0,
+                    "flatDamage": 500,
+                    "npCard": "buster"
                 }
             ]
         }
@@ -2142,7 +2431,8 @@
                     ],
                     "overcharge": 0,
                     "npCard": "buster",
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0.3
                 },
                 {
                     "attackUp": 0.4,
@@ -2171,7 +2461,8 @@
                     ],
                     "overcharge": 0,
                     "npCard": "buster",
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0.6
                 },
                 {
                     "attackUp": 0.7,
@@ -2200,7 +2491,8 @@
                     ],
                     "overcharge": 0,
                     "npCard": "buster",
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0.6
                 }
             ]
         }
@@ -2236,7 +2528,8 @@
                     ],
                     "overcharge": 1,
                     "npCard": "buster",
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0.3
                 },
                 {
                     "attackUp": 1.2,
@@ -2265,7 +2558,8 @@
                     ],
                     "overcharge": 1,
                     "npCard": "buster",
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0.6
                 },
                 {
                     "attackUp": 1.5,
@@ -2294,7 +2588,8 @@
                     ],
                     "overcharge": 0,
                     "npCard": "buster",
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0.6
                 }
             ]
         },
@@ -2348,7 +2643,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -2376,7 +2672,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.6,
@@ -2404,7 +2701,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },
@@ -2458,7 +2756,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0,
@@ -2486,7 +2785,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 },
                 {
                     "attackUp": 0.3,
@@ -2514,7 +2814,8 @@
                         }
                     ],
                     "overcharge": 0,
-                    "flatDamage": 0
+                    "flatDamage": 0,
+                    "npGain": 0
                 }
             ]
         },

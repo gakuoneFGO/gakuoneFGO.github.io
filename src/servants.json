@@ -208,6 +208,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -469,6 +473,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.25,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -721,6 +732,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -917,7 +934,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 1
+                    }
+                ]
             }
         ],
         "nps": [
@@ -940,6 +965,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -1186,6 +1219,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -1402,6 +1439,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.84,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -1580,7 +1621,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -1626,6 +1675,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.54,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -1855,6 +1908,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -2066,6 +2123,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -2278,6 +2341,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.74,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -2505,6 +2575,15 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -2725,6 +2804,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.08,
+                    0.11,
+                    0.29
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -2957,6 +3049,11 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.1,
+                "hitDistribution": [
+                    0.33,
+                    0.67
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -3134,7 +3231,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -3161,6 +3266,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -3348,7 +3464,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 1
+                    }
+                ]
             }
         ],
         "nps": [
@@ -3371,6 +3495,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -3598,6 +3729,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.87,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -3804,6 +3941,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -3980,7 +4121,15 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": false,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 7,
@@ -4028,6 +4177,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -4249,6 +4406,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -4453,6 +4617,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -4634,7 +4804,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             }
         ],
         "nps": [
@@ -4658,6 +4836,15 @@
                 ],
                 "extraTrigger": [
                     null
+                ],
+                "refundRate": 0.84,
+                "hitDistribution": [
+                    0.05,
+                    0.11,
+                    0.17,
+                    0.11,
+                    0.23,
+                    0.33
                 ],
                 "preBuffs": [],
                 "postBuffs": []
@@ -4863,6 +5050,18 @@
                 ],
                 "extraTrigger": [
                     null
+                ],
+                "refundRate": 0.85,
+                "hitDistribution": [
+                    0.03,
+                    0.16,
+                    0.1,
+                    0.13,
+                    0.06,
+                    0.1,
+                    0.13,
+                    0.06,
+                    0.23
                 ],
                 "preBuffs": [],
                 "postBuffs": []
@@ -5071,6 +5270,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.7,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -5257,6 +5462,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.79,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -5447,6 +5656,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.84,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -5662,6 +5875,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -5886,6 +6103,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.98,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -6112,6 +6337,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.84,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -6319,6 +6550,12 @@
                     "superGiant"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -6500,7 +6737,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 7,
@@ -6527,6 +6772,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.81,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -6748,6 +6997,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.7,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -6946,6 +7203,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.68,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -7155,6 +7416,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.66,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -7364,6 +7629,18 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.52,
+                "hitDistribution": [
+                    0.02,
+                    0.04,
+                    0.06,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.15,
+                    0.17,
+                    0.24
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -7556,6 +7833,13 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
                     }
                 ]
             },
@@ -7600,6 +7884,17 @@
                     "alignmentEvil"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.43,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -7818,6 +8113,14 @@
                 "extraTrigger": [
                     null
                 ],
+                "refundRate": 0.58,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -7981,7 +8284,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.5,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -8017,6 +8328,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.5,
+                "hitDistribution": [
+                    0.03,
+                    0.05,
+                    0.03,
+                    0.07,
+                    0.08,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.22
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -8215,6 +8539,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.05,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -8428,6 +8760,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -8624,6 +8969,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.61,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -8633,7 +8984,15 @@
                         "turns": 1
                     }
                 ],
-                "postBuffs": []
+                "postBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.1,
+                        "turns": 2
+                    }
+                ]
             }
         ]
     },
@@ -8841,6 +9200,15 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.58,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -9067,6 +9435,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.74,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -9299,6 +9675,15 @@
                 ],
                 "extraTrigger": [],
                 "extraDmgStacks": false,
+                "refundRate": 0.65,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -9496,6 +9881,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.61,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -9713,6 +10106,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.61,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -9889,6 +10288,13 @@
                         "type": "npDamage",
                         "val": 0.2,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
                     }
                 ]
             }
@@ -9913,6 +10319,11 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.11,
+                "hitDistribution": [
+                    0.33,
+                    0.67
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -10138,6 +10549,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.56,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -10393,6 +10812,21 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.68,
+                "hitDistribution": [
+                    0.13,
+                    0.07,
+                    0.1,
+                    0.05,
+                    0.07,
+                    0.05,
+                    0.07,
+                    0.05,
+                    0.07,
+                    0.05,
+                    0.07,
+                    0.22
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -10590,6 +11024,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.56,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -10799,6 +11239,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.85,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -11006,6 +11450,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.7,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -11232,6 +11684,14 @@
                     "brynhildsBeloved"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 1.07,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -11461,6 +11921,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.85,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -11688,6 +12156,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -11916,6 +12390,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.66,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -12137,6 +12617,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -12348,6 +12836,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.68,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -12548,6 +13040,10 @@
                     "genderFemale"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 2.15,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -12761,6 +13257,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.52,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -12964,6 +13467,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.03,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -13168,6 +13682,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.91,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -13377,6 +13898,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.06,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -13588,6 +14113,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.52,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -13804,6 +14333,14 @@
                     "skillSeal"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.53,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -14000,6 +14537,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.4,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -14190,6 +14734,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.83,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -14399,6 +14947,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.68,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -14599,6 +15154,15 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.38,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -14811,6 +15375,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.55,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -15009,6 +15581,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.39,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -15206,6 +15786,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.06,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -15422,6 +16010,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.07,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -15627,6 +16219,21 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.69,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.07,
+                    0.1,
+                    0.05,
+                    0.07,
+                    0.1,
+                    0.05,
+                    0.07,
+                    0.1,
+                    0.05,
+                    0.27
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -15842,6 +16449,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.6,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -16060,6 +16671,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.08,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -16274,6 +16889,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.67,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -16475,6 +17103,10 @@
                     "giant"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.76,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -16689,6 +17321,15 @@
                     "divine"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.49,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -16879,6 +17520,11 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.79,
+                "hitDistribution": [
+                    0.6,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -17073,7 +17719,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             }
         ],
         "nps": [
@@ -17096,6 +17750,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.73,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -17264,6 +17931,13 @@
                 "type": "damagePlus",
                 "val": 225,
                 "turns": -1
+            },
+            {
+                "self": true,
+                "team": false,
+                "type": "npGain",
+                "val": 0.05,
+                "turns": -1
             }
         ],
         "skills": [
@@ -17324,6 +17998,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -17493,7 +18178,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.5,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -17520,6 +18213,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.62,
+                "hitDistribution": [
+                    0.03,
+                    0.06,
+                    0.1,
+                    0.13,
+                    0.16,
+                    0.13,
+                    0.1,
+                    0.29
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -17731,6 +18435,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.56,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -17950,6 +18662,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.63,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -18161,6 +18879,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.1,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -18377,6 +19103,16 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.55,
+                "hitDistribution": [
+                    0.03,
+                    0.07,
+                    0.1,
+                    0.14,
+                    0.17,
+                    0.21,
+                    0.28
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -18574,6 +19310,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.6,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -18772,6 +19516,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    0.03,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.08,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.22
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             },
@@ -18794,6 +19551,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    0.03,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.08,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.22
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -18998,6 +19768,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.43,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -19195,6 +19978,24 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.28,
+                "hitDistribution": [
+                    0.06,
+                    0.04,
+                    0.08,
+                    0.06,
+                    0.08,
+                    0.04,
+                    0.06,
+                    0.04,
+                    0.02,
+                    0.06,
+                    0.02,
+                    0.08,
+                    0.02,
+                    0.06,
+                    0.28
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -19396,6 +20197,14 @@
                     "threatToHumanity"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.53,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -19588,7 +20397,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             }
         ],
         "nps": [
@@ -19614,6 +20431,14 @@
                     "attributeEarth"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.54,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -19834,6 +20659,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.02,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -20059,6 +20892,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.58,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -20291,6 +21131,10 @@
                     "genderMale"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.9,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -20492,6 +21336,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.09,
+                "hitDistribution": [
+                    0.3,
+                    0.1,
+                    0.15,
+                    0.2,
+                    0.25
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -20672,7 +21524,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 7,
@@ -20699,6 +21559,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.55,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -20895,6 +21761,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.77,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -21106,6 +21976,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.42,
+                "hitDistribution": [
+                    0.33,
+                    0.13,
+                    0.2,
+                    0.06,
+                    0.28
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -21263,7 +22141,15 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.45,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -21310,6 +22196,15 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.83,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -21480,7 +22375,15 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.8,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -21526,6 +22429,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.7,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -21722,6 +22633,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.54,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -21947,6 +22866,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.1,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -22179,6 +23111,18 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.6,
+                "hitDistribution": [
+                    0.02,
+                    0.04,
+                    0.06,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.15,
+                    0.17,
+                    0.24
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -22379,6 +23323,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -22596,6 +23551,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.14,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -22785,6 +23747,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.85,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -23000,6 +23969,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.9,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -23210,6 +24183,10 @@
                     "weakToEnumaElish"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.34,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -23442,6 +24419,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.16,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -23662,6 +24652,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.62,
+                "hitDistribution": [
+                    0.04,
+                    0.08,
+                    0.13,
+                    0.04,
+                    0.08,
+                    0.13,
+                    0.04,
+                    0.08,
+                    0.13,
+                    0.25
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -23833,7 +24836,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.45,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -23860,6 +24871,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.82,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -24072,6 +25087,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.58,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -24270,6 +25291,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.37,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -24425,7 +25452,15 @@
                 "120": 13443
             }
         },
-        "passives": [],
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "npGain",
+                "val": 0.1,
+                "turns": -1
+            }
+        ],
         "skills": [
             {
                 "cooldown": 5,
@@ -24487,6 +25522,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -24687,6 +25729,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -24892,6 +25940,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.66,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -25087,6 +26139,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.07,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -25251,7 +26307,15 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -25282,6 +26346,22 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.38,
+                "hitDistribution": [
+                    0.16,
+                    0.05,
+                    0.11,
+                    0.08,
+                    0.11,
+                    0.05,
+                    0.08,
+                    0.05,
+                    0.02,
+                    0.08,
+                    0.02,
+                    0.11,
+                    0.08
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -25479,6 +26559,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.53,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -25676,6 +26760,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.08,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -25898,6 +26986,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.45,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -26102,6 +27196,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.38,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -26307,6 +27408,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.05,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -26521,6 +27626,24 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.07,
+                "hitDistribution": [
+                    0.01,
+                    0.02,
+                    0.01,
+                    0.03,
+                    0.04,
+                    0.04,
+                    0.05,
+                    0.06,
+                    0.07,
+                    0.08,
+                    0.09,
+                    0.09,
+                    0.1,
+                    0.11,
+                    0.2
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -26719,6 +27842,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.79,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -26923,6 +28057,14 @@
                 ],
                 "extraTrigger": [
                     null
+                ],
+                "refundRate": 1.08,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
                 ],
                 "preBuffs": [],
                 "postBuffs": []
@@ -27141,6 +28283,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -27353,6 +28499,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.06,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -27582,6 +28732,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.03,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -27797,6 +28951,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.06,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -28038,6 +29198,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.78,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -28238,6 +29405,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.32,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -28246,6 +29420,13 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
                     }
                 ],
                 "postBuffs": [
@@ -28430,6 +29611,13 @@
                 "buffs": [
                     {
                         "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    },
+                    {
+                        "self": true,
                         "team": true,
                         "type": "attackUp",
                         "val": 0.2,
@@ -28462,6 +29650,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.63,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -28666,7 +29862,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -28693,6 +29897,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.42,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -28907,6 +30115,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.45,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -29108,6 +30322,13 @@
                         "val": 0.2,
                         "turns": 3,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
                     }
                 ]
             },
@@ -29117,7 +30338,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.5,
+                        "turns": 1
+                    }
+                ]
             }
         ],
         "nps": [
@@ -29140,6 +30369,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.68,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -29374,6 +30610,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    0.33,
+                    0.12,
+                    0.08,
+                    0.04,
+                    0.12,
+                    0.08,
+                    0.04,
+                    0.19
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -29574,6 +30821,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.62,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -29781,6 +31036,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.07,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -30016,6 +31278,11 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.05,
+                "hitDistribution": [
+                    0.33,
+                    0.67
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -30227,6 +31494,21 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.38,
+                "hitDistribution": [
+                    0.01,
+                    0.02,
+                    0.03,
+                    0.05,
+                    0.06,
+                    0.07,
+                    0.08,
+                    0.1,
+                    0.11,
+                    0.12,
+                    0.14,
+                    0.21
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -30437,6 +31719,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.37,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -30650,6 +31940,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.76,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -30863,6 +32157,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.83,
+                "hitDistribution": [
+                    0.03,
+                    0.05,
+                    0.03,
+                    0.07,
+                    0.08,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.22
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -31075,6 +32382,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.52,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -31295,6 +32610,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.68,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -31493,6 +32815,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.72,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -31685,7 +33015,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 1
+                    }
+                ]
             }
         ],
         "nps": [
@@ -31708,6 +33046,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.35,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -31923,6 +33267,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.05,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -32145,6 +33493,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.74,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -32384,6 +33745,13 @@
                     "buffCharm"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.52,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -32604,6 +33972,14 @@
                     "divine"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.72,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -32812,6 +34188,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.78,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -33023,6 +34410,12 @@
                     "demonic"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -33249,6 +34642,14 @@
                     "attributeHuman"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.33,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -33456,6 +34857,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.46,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -33647,6 +35059,13 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
                     }
                 ]
             }
@@ -33671,6 +35090,16 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.56,
+                "hitDistribution": [
+                    0.03,
+                    0.07,
+                    0.1,
+                    0.14,
+                    0.17,
+                    0.21,
+                    0.28
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -33894,6 +35323,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.85,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -34118,6 +35560,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.56,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -34350,6 +35800,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 2.03,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -34567,6 +36023,15 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.05,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -34795,6 +36260,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.76,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -35018,6 +36494,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.01,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -35183,7 +36666,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 1,
+                        "turns": 1
+                    }
+                ]
             }
         ],
         "nps": [
@@ -35206,6 +36697,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.5,
+                "hitDistribution": [
+                    0.03,
+                    0.05,
+                    0.03,
+                    0.07,
+                    0.08,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.22
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -35407,6 +36911,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.83,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -35621,6 +37129,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.54,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -35842,6 +37354,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.49,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -36063,6 +37581,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.67,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -36276,6 +37800,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.07,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -36472,6 +38000,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.52,
+                "hitDistribution": [
+                    0.12,
+                    0.25,
+                    0.63
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -36684,6 +38218,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.99,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -36903,6 +38441,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.04,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -37119,6 +38661,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -37349,6 +38898,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -37553,6 +39110,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.32,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -37758,6 +39321,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.58,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -37973,6 +39540,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.76,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.1,
+                    0.13,
+                    0.08,
+                    0.1,
+                    0.13,
+                    0.08,
+                    0.23
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -38157,6 +39737,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.84,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             },
@@ -38179,6 +39763,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.84,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -38382,6 +39970,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 2.1,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -38578,6 +40170,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.9,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -38774,6 +40377,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.9,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -38950,7 +40564,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.5,
+                        "turns": 1
+                    }
+                ]
             }
         ],
         "nps": [
@@ -38973,6 +40595,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.64,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -39172,6 +40798,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.4,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -39364,7 +40994,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             }
         ],
         "nps": [
@@ -39387,6 +41025,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.58,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -39614,6 +41256,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.44,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -39837,6 +41490,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.92,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -40067,7 +41731,23 @@
                     1
                 ],
                 "extraTrigger": [],
-                "preBuffs": [],
+                "refundRate": 0.65,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ],
                 "postBuffs": []
             },
             {
@@ -40089,6 +41769,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.65,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -40295,6 +41983,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.81,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -40503,6 +42195,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.81,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -40739,6 +42435,16 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.46,
+                "hitDistribution": [
+                    0.16,
+                    0.12,
+                    0.12,
+                    0.08,
+                    0.16,
+                    0.12,
+                    0.24
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -40964,6 +42670,15 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.75,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -41161,6 +42876,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.39,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -41382,6 +43101,16 @@
                     "classMoonCancer"
                 ],
                 "extraDmgStacks": 0,
+                "refundRate": 0.87,
+                "hitDistribution": [
+                    0.03,
+                    0.07,
+                    0.1,
+                    0.14,
+                    0.17,
+                    0.21,
+                    0.28
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -41570,6 +43299,13 @@
                             "cardArts",
                             "faceCard"
                         ]
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.5,
+                        "turns": 3
                     }
                 ]
             },
@@ -41613,6 +43349,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -41811,6 +43554,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.81,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -42024,6 +43771,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.8,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -42231,6 +43986,14 @@
                     "arthur"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.56,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -42441,6 +44204,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -42628,7 +44399,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.25,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 7,
@@ -42658,6 +44437,15 @@
                     "attributeHuman"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.53,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -42872,6 +44660,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.5,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -43097,6 +44893,15 @@
                     "demonic"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.45,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -43302,6 +45107,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.53,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -43491,6 +45302,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.79,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -43710,6 +45532,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.76,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -43940,6 +45768,21 @@
                     "saberface"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.81,
+                "hitDistribution": [
+                    0.05,
+                    0.07,
+                    0.05,
+                    0.07,
+                    0.05,
+                    0.07,
+                    0.05,
+                    0.07,
+                    0.05,
+                    0.07,
+                    0.05,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -44149,6 +45992,18 @@
                     "saberClassServant"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 1.07,
+                "hitDistribution": [
+                    0.02,
+                    0.04,
+                    0.06,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.15,
+                    0.17,
+                    0.24
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -44374,6 +46229,13 @@
                     "saberClassServant"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.64,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -44604,6 +46466,13 @@
                     "alignmentEvil"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.9,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -44793,7 +46662,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 1
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -44828,6 +46705,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.45,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -45042,6 +46930,14 @@
                     "divine"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -45287,6 +47183,12 @@
                     "superGiant"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -45504,6 +47406,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.84,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -45676,7 +47582,15 @@
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.45,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -45714,6 +47628,11 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.7,
+                "hitDistribution": [
+                    0.25,
+                    0.75
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -45921,6 +47840,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.4,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -46127,6 +48054,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.72,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -46338,6 +48271,15 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.6,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -46498,7 +48440,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": false,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -46536,6 +48486,12 @@
                     "skyOrEarth"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.87,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -46754,6 +48710,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.54,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -46945,6 +48907,13 @@
                         "type": "npDamage",
                         "val": 0.2,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
                     }
                 ]
             }
@@ -46969,6 +48938,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.78,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -47164,6 +49139,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.54,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -47383,6 +49364,13 @@
                     "alignmentLawful"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -47579,6 +49567,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.75,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -47754,7 +49746,15 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -47799,6 +49799,19 @@
                     "riding"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.43,
+                "hitDistribution": [
+                    0.03,
+                    0.05,
+                    0.03,
+                    0.07,
+                    0.08,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.22
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -48015,6 +50028,21 @@
                     "divine"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.93,
+                "hitDistribution": [
+                    0.01,
+                    0.02,
+                    0.03,
+                    0.05,
+                    0.06,
+                    0.07,
+                    0.08,
+                    0.1,
+                    0.11,
+                    0.12,
+                    0.14,
+                    0.21
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -48234,6 +50262,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.58,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -48441,6 +50475,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.79,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -48650,6 +50691,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.09,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -48871,6 +50918,16 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.77,
+                "hitDistribution": [
+                    0.03,
+                    0.07,
+                    0.1,
+                    0.14,
+                    0.17,
+                    0.21,
+                    0.28
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -49054,7 +51111,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             }
         ],
         "nps": [
@@ -49077,6 +51142,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.67,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -49291,6 +51367,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.92,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -49500,6 +51582,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -49706,6 +51796,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.83,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -49938,6 +52032,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.62,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -50156,6 +52257,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -50339,7 +52448,15 @@
             },
             {
                 "cooldown": 8,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.5,
+                        "turns": 3
+                    }
+                ]
             }
         ],
         "nps": [
@@ -50362,6 +52479,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.55,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -50566,6 +52689,14 @@
                     "weakPointsRevealed"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.43,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -50742,6 +52873,13 @@
                         "val": 0.3,
                         "turns": 3,
                         "cardType": "quick"
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
                     }
                 ]
             },
@@ -50782,6 +52920,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.08,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -50988,6 +53133,21 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.77,
+                "hitDistribution": [
+                    0.01,
+                    0.02,
+                    0.03,
+                    0.05,
+                    0.06,
+                    0.07,
+                    0.08,
+                    0.1,
+                    0.11,
+                    0.12,
+                    0.14,
+                    0.21
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -51204,6 +53364,11 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.67,
+                "hitDistribution": [
+                    0.33,
+                    0.67
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -51437,6 +53602,17 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.07,
+                "hitDistribution": [
+                    0.02,
+                    0.05,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.16,
+                    0.19,
+                    0.26
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -51645,6 +53821,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.64,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -51842,6 +54025,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -52050,6 +54237,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.65,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -52255,6 +54446,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.79,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -52467,6 +54662,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.47,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -52693,6 +54892,14 @@
                     "genderMale"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -52902,6 +55109,15 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.72,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -53124,6 +55340,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.81,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -53342,6 +55566,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.9,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -53560,6 +55788,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -53773,6 +56008,14 @@
                     "demonic"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.84,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -53991,6 +56234,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -54153,7 +56403,15 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -54183,6 +56441,10 @@
                     "buffPoison"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.87,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -54380,6 +56642,16 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.07,
+                "hitDistribution": [
+                    0.03,
+                    0.07,
+                    0.1,
+                    0.14,
+                    0.17,
+                    0.21,
+                    0.28
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -54623,6 +56895,14 @@
                     "roman"
                 ],
                 "extraDmgStacks": true,
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -54845,6 +57125,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.84,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -55041,6 +57325,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.8,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -55246,6 +57536,16 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.76,
+                "hitDistribution": [
+                    0.03,
+                    0.07,
+                    0.1,
+                    0.14,
+                    0.17,
+                    0.21,
+                    0.28
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -55470,6 +57770,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.56,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -55683,6 +57990,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.03,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -55892,6 +58203,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.15,
+                "hitDistribution": [
+                    0.35,
+                    0.21,
+                    0.14,
+                    0.3
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -56107,6 +58425,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -56294,6 +58618,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.05,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -56522,6 +58852,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -56719,6 +59053,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -56934,6 +59276,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.67,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -57142,6 +59488,14 @@
                     "king"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -57354,6 +59708,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -57580,6 +59941,16 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.77,
+                "hitDistribution": [
+                    0.03,
+                    0.07,
+                    0.1,
+                    0.14,
+                    0.17,
+                    0.21,
+                    0.28
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -57821,6 +60192,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.39,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -58046,6 +60425,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.59,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -58218,7 +60603,15 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.5,
+                        "turns": 1
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -58266,6 +60659,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.55,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -58497,6 +60896,12 @@
                     "buffMentalEffect"
                 ],
                 "extraDmgStacks": true,
+                "refundRate": 0.6,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -58710,6 +61115,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.76,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -58935,6 +61344,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.55,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -59163,6 +61576,22 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.46,
+                "hitDistribution": [
+                    0.01,
+                    0.02,
+                    0.03,
+                    0.04,
+                    0.05,
+                    0.06,
+                    0.07,
+                    0.08,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.13,
+                    0.2
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -59329,7 +61758,15 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -59380,6 +61817,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.78,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -59605,8 +62048,20 @@
                     "dragon"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.83,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
-                "postBuffs": []
+                "postBuffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 2
+                    }
+                ]
             }
         ]
     },
@@ -59820,6 +62275,16 @@
                     "dragon"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.62,
+                "hitDistribution": [
+                    0.03,
+                    0.07,
+                    0.1,
+                    0.14,
+                    0.17,
+                    0.21,
+                    0.28
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -60026,6 +62491,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.64,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -60243,6 +62712,15 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.83,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -60462,6 +62940,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.69,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -60492,6 +62976,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.69,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -60522,6 +63012,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.69,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -60734,6 +63230,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.01,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -60959,6 +63459,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 2.26,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -61179,6 +63683,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.96,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -61417,8 +63925,29 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [],
-                "postBuffs": []
+                "postBuffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 2
+                    }
+                ]
             }
         ]
     },
@@ -61629,6 +64158,19 @@
                 ],
                 "extraTrigger": [],
                 "extraDmgStacks": true,
+                "refundRate": 0.81,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -61826,6 +64368,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -62050,6 +64600,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.32,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -62280,6 +64834,13 @@
                     "genderMale"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 1.05,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -62477,6 +65038,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.57,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -62692,6 +65259,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -62908,6 +65479,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.87,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -63111,6 +65686,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.55,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -63327,6 +65908,16 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.58,
+                "hitDistribution": [
+                    0.05,
+                    0.11,
+                    0.16,
+                    0.05,
+                    0.11,
+                    0.16,
+                    0.36
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -63503,6 +66094,13 @@
                 "buffs": [
                     {
                         "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    },
+                    {
+                        "self": true,
                         "team": false,
                         "type": "cardTypeUp",
                         "val": 0.2,
@@ -63544,6 +66142,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.87,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -63752,6 +66354,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.54,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -63966,6 +66576,16 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    0.03,
+                    0.07,
+                    0.1,
+                    0.14,
+                    0.17,
+                    0.21,
+                    0.28
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -64190,6 +66810,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.76,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": [
                     {
@@ -64372,7 +66996,15 @@
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             }
         ],
         "nps": [
@@ -64395,6 +67027,19 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.5,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -64602,6 +67247,15 @@
                     "alignmentEvil"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 1.1,
+                "hitDistribution": [
+                    0.04,
+                    0.09,
+                    0.14,
+                    0.19,
+                    0.23,
+                    0.31
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -64808,6 +67462,14 @@
                     "attributeSky"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.56,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -65036,6 +67698,12 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.55,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -65239,6 +67907,12 @@
                     "oni"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.6,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -65446,6 +68120,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.59,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -65646,6 +68327,12 @@
                     "buffEvade"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.66,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -65860,6 +68547,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.6,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -66073,6 +68764,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.87,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -66269,6 +68967,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -66454,7 +69160,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -66489,6 +69203,21 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.82,
+                "hitDistribution": [
+                    0.15,
+                    0.03,
+                    0.06,
+                    0.09,
+                    0.03,
+                    0.06,
+                    0.09,
+                    0.03,
+                    0.06,
+                    0.09,
+                    0.03,
+                    0.28
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -66662,7 +69391,15 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.5,
+                        "turns": 1
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -66697,6 +69434,13 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.81,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -66863,7 +69607,15 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 1
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -66903,6 +69655,20 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.71,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.04,
+                    0.06,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.13,
+                    0.15,
+                    0.2
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -67111,6 +69877,13 @@
                     "buffBurn"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 0.51,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -67308,6 +70081,14 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 0.75,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [
                     {
                         "self": true,
@@ -67475,7 +70256,29 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -67518,6 +70321,14 @@
                     "genderMale"
                 ],
                 "extraDmgStacks": false,
+                "refundRate": 1.1,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }
@@ -67731,6 +70542,10 @@
                     1
                 ],
                 "extraTrigger": [],
+                "refundRate": 1.64,
+                "hitDistribution": [
+                    1
+                ],
                 "preBuffs": [],
                 "postBuffs": []
             }

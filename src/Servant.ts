@@ -191,6 +191,8 @@ export class NoblePhantasm {
         readonly extraDamage: number[],
         readonly extraTrigger: Trait[],
         readonly extraDmgStacks: boolean,
+        readonly refundRate: number,
+        readonly hitDistribution: number[],
         preBuffs: Buff[],
         postBuffs: Buff[]) {
         this.preBuffs = preBuffs;

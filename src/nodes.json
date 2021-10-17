@@ -122,7 +122,7 @@
         ]
     },
     {
-        "name": "2020-09 Scatfest R1 Lvl90 [MIXED]",
+        "name": "2020-09 Scatfest R1 Lvl90 [CASTERS + LANCERS]",
         "waves": [
             {
                 "enemies": [
@@ -248,7 +248,7 @@
         ]
     },
     {
-        "name": "2020-09 Scatfest R1 Lvl90+ [MIXED]",
+        "name": "2020-09 Scatfest R1 Lvl90+ [LANCERS + RIDERS]",
         "waves": [
             {
                 "enemies": [
@@ -572,7 +572,7 @@
         ]
     },
     {
-        "name": "2020-09 Scatfest R3 Lvl90 [MIXED]",
+        "name": "2020-09 Scatfest R3 Lvl90 [SABERS + BERSERKERS]",
         "waves": [
             {
                 "enemies": [
@@ -704,7 +704,7 @@
         ]
     },
     {
-        "name": "2020-09 Scatfest R3 Lvl90+ [MIXED]",
+        "name": "2020-09 Scatfest R3 Lvl90+ [LANCERS + BERSERKERS]",
         "waves": [
             {
                 "enemies": [
@@ -985,7 +985,7 @@
         ]
     },
     {
-        "name": "2021-06 Nerofest R1 Lvl 90 [MIXED]",
+        "name": "2021-06 Nerofest R1 Lvl 90 [ARCHERS + RULER]",
         "waves": [
             {
                 "enemies": [
@@ -1103,7 +1103,7 @@
         ]
     },
     {
-        "name": "2021-06 Nerofest R1 Lvl 90+ [MIXED]",
+        "name": "2021-06 Nerofest R1 Lvl 90+ [SABER + BERSERKERS]",
         "waves": [
             {
                 "enemies": [
@@ -1199,7 +1199,7 @@
         ]
     },
     {
-        "name": "2021-06 Nerofest R2 Lvl 90 [MIXED]",
+        "name": "2021-06 Nerofest R2 Lvl 90 [RIDERS+]",
         "waves": [
             {
                 "enemies": [
@@ -1418,7 +1418,7 @@
         ]
     },
     {
-        "name": "2021-06 Nerofest R3 Lvl 90 [MIXED]",
+        "name": "2021-06 Nerofest R3 Lvl 90 [CASTERS + SABER]",
         "waves": [
             {
                 "enemies": [

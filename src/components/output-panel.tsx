@@ -4,7 +4,7 @@ import { EnemyNode, Strat } from "../Strat";
 import NumberFormat from "react-number-format";
 import { Enemy } from "../Enemy";
 import { Box } from "@mui/system";
-import { Damage } from "../Damage";
+import { Range } from "../Damage";
 import { Warning } from "@mui/icons-material";
 import { ClassIcon } from "./icons";
 
@@ -38,7 +38,7 @@ export const OutputPanel = React.memo((props: OutputPanelProps) => {
                                     {backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText} : {}}>
                                     <Typography variant="body2" sx={{textAlign: "center"}}>
                                         <NumberFormat displayType="text" thousandSeparator=","
-                                            value={waveDamage.damagePerEnemy[0].low} />
+                                            value={waveDamage.damagePerEnemy[0].damage.forDisplay()} />
                                     </Typography>
                                 </TableCell>
                             )}
@@ -57,7 +57,7 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
     const result = props.strat.run(props.node);
     const nps = props.strat.getRealClearers().map((clearer, turn) => clearer[0].data.getNP(props.strat.npCards[turn]));
 
-    const getColor = (enemy: Enemy, damage: Damage) => {
+    const getColor = (enemy: Enemy, damage: Range) => {
         const remaining = enemy.hitPoints - damage.low;
         if (remaining <= 0) return theme.palette.info;
         if (remaining <= THRESHOLD) return theme.palette.warning;
@@ -80,9 +80,9 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
             <Box sx={{ display: "flex", gap: theme.spacing(1), alignItems: "stretch" }}>
                 {result.damagePerWave.map((wave, turn) => 
                     <Box key={turn} sx={{ display: "flex", flexDirection: "column", gap: theme.spacing(1), flexGrow: 1 }}>
-                        {wave.damagePerEnemy.map((damage, eIndex) => {
+                        {wave.damagePerEnemy.map((enemyResult, eIndex) => {
                             const enemy = props.node.waves[turn].enemies[eIndex];
-                            const color = getColor(enemy, damage);
+                            const color = getColor(enemy, enemyResult.damage);
                             return (
                                 <Paper key={eIndex} sx={{ backgroundColor: color.main, color: color.contrastText, flexGrow: 1 }}>
                                     <Grid container direction="row" alignItems="center" height="100%">
@@ -91,7 +91,7 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
                                         </Grid>
                                         <Grid item xs={9} sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
                                             <Typography textAlign="center">
-                                                <NumberFormat displayType="text" thousandSeparator="," value={damage.low} />
+                                                <NumberFormat displayType="text" thousandSeparator="," value={enemyResult.damage.forDisplay()} />
                                             </Typography>
                                             <Divider variant="middle" sx={{ background: color.contrastText }} />
                                             <Typography textAlign="center">
@@ -102,9 +102,10 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
                                 </Paper>
                             );
                         })}
-                        <Paper sx={{ background: theme.palette.refund.gradient, color: theme.palette.refund.contrastText }}>
+                        <Paper sx={{ background: theme.palette.refund.gradient, color: theme.palette.refund.contrastText,
+                            visibility: turn == props.node.waves.length - 1 ? "hidden" : "initial" }}>
                             <Typography textAlign="center" style={{ textShadow: "1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000" }}>
-                                <NumberFormat displayType="text" decimalScale={1} fixedDecimalScale suffix="%" value={98.9} />
+                                <NumberFormat displayType="text" decimalScale={1} fixedDecimalScale suffix="%" value={wave.refund.low} />
                             </Typography>
                         </Paper>
                     </Box>

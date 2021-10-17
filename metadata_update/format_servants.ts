@@ -109,14 +109,16 @@ async function mapNp(np: any, unupgraded: any): Promise<NoblePhantasm> {
         npFuncUnupgraded
             ? npFuncUnupgraded.svals.map(v => v.Value * U_RATIO) 
             : [ 0, 0, 0, 0, 0 ],
-            npFunc ? npFunc.svals[0].Value * U_RATIO - npFuncUnupgraded.svals[0].Value * U_RATIO : 0,
-            getExtraMultiplier(npFunc),
-            getExtraTrigger(npFunc),
-            doesExtraDamageStack(npFunc),
-            preBuffs.flat(1),
-            postBuffs.flat(1)
-                .map((b: Buff) => update(b, { turns: { $set: b.turns - 1 } }))
-                .filter(b => b.turns > 0)
+        npFunc ? npFunc.svals[0].Value * U_RATIO - npFuncUnupgraded.svals[0].Value * U_RATIO : 0,
+        getExtraMultiplier(npFunc),
+        getExtraTrigger(npFunc),
+        doesExtraDamageStack(npFunc),
+        np.npGain.np[0] / 100,
+        np.npDistribution.map(hit => hit / 100),
+        preBuffs.flat(1),
+        postBuffs.flat(1)
+            .map((b: Buff) => update(b, { turns: { $set: b.turns - 1 } }))
+            .filter(b => b.turns > 0)
     );
 }
 
@@ -177,28 +179,6 @@ function replaceMap(_: any, value: any): any {
         return Object.fromEntries(value.entries());
     return value;
 }
-
-/*
-
-EFFECT TYPES (each has a skill flavor and an on-NP flavor)
-    team buff (1T - 3T)
-    self buff (1T - 3T)
-    debuff (treat as 1T team buff; can reasonably apply to whole wave since 95% of the time you are just trying to get enough damage to kill the chunkiest enemy)
-    buffs with "X times" can just be modeled as X turns (take the max of the actual turn limit)
-        main problem is morgan's NP. we already need to handle NP effects after damage like eresh, but 
-    optimize T3 by default
-    track CDs so that we know what gets popped twice if vitch is in the party (mostly affects ishtar, melusine, oberon, cas cu)
-
-EXCEPTIONS
-    ishtar (restrict mana burst to T2+? this is so niche that it doesn't feel like it's worth implementing)
-    melusine...
-        double vitch => third skill only once
-        single vitch => no third skill
-        arash strat => third skill available again
-    oberon
-        just always limit third skill to T3
-
-*/
 
 async function getSkills(data: any, npType: CardType): Promise<Skill[]> {
     return Promise.all(getUpgraded(data.skills, (s1, s2) => s1.num == s2.num).map(s => getSkill(s, npType)));
@@ -297,6 +277,8 @@ async function toBuff(func: any): Promise<Buff[]> {
             return buffs.flat(1);
         case "addDamage":
             return [ new Buff(self, team, BuffType.DamagePlus, getBuffValue(func) / U_RATIO, getBuffTurns(func)) ];
+        case "upDropnp":
+            return [ new Buff(self, team, BuffType.NpGain, getBuffValue(func), getBuffTurns(func)) ];
         case "overwriteClassRelation":
             //TODO: I had no idea kiara had this, wtf. well we needed to do this for kama anyway
         case "upCommandatk": //TODO: handle this if it comes up for any new servants
@@ -337,7 +319,6 @@ async function toBuff(func: any): Promise<Buff[]> {
         case "subSelfdamage":
         case "preventDeathByDamage":
         case "regainNp":
-        case "upDropnp":
         case "upDamagedropnp":
         case "attackFunction"://TODO: might be relevant
         case "commandattackFunction":

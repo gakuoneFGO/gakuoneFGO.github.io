@@ -1,5 +1,5 @@
 function modifyTemplate(template) {
-    template.buffs.buffs.forEach(buffSet => buffSet.flatDamage = 0);
+    template.buffs.buffs.forEach(buffSet => buffSet.npGain = 0);
 }
 
 var fs = require("fs");

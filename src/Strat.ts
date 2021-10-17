@@ -1,7 +1,7 @@
-import { BuffSet, Damage, Calculator, CraftEssence } from "./Damage";
+import { BuffSet, Calculator, CraftEssence, NpResult, Range } from "./Damage";
 import { CardType, Servant } from "./Servant";
 import { Enemy } from "./Enemy";
-import update, { Spec } from "immutability-helper";
+import update from "immutability-helper";
 import { Type } from "class-transformer";
 import { TemplateData } from "./Data";
 
@@ -79,9 +79,10 @@ class EnemyNode {
 
 class WaveDamage {
     constructor(
-        public damagePerEnemy: Damage[] = [],
+        public damagePerEnemy: NpResult[] = [],
+        public refund: Range = new Range(0, 0, 0),
         public unclearedEnemies: number = 0,
-        public leftToFacecard: number = 0.0) {}
+        public leftToFacecard: number = 0) {}
 }
 
 class NodeDamage {
@@ -154,23 +155,23 @@ class Strat {
     //TODO: fix this garbage
     public run(node: EnemyNode): NodeDamage {
         const calculator: Calculator = new Calculator();
-        let result = new NodeDamage();
-        let clearers = this.getRealClearers();
+        const result = new NodeDamage();
+        const clearers = this.getRealClearers();
         result.damagePerWave = node.waves.map((wave, wIndex) => {
-            let waveResult = new WaveDamage();
-            let [clearer, _, ce] = clearers[wIndex];
-            waveResult.damagePerEnemy = wave.enemies.map(enemy => {
-                let damage = calculator.calculateNpDamage(clearer, ce, enemy, [ ...this.servants.filter(s => s).map(s => s!.buffs.buffs[wIndex]), this.template.buffs.buffs[wIndex] ], this.npCards[wIndex]);
-                return damage;
-            });
-            waveResult.damagePerEnemy.forEach((damage, eIndex) => {
-                let enemy = wave.enemies[eIndex];
-                if (damage.low < enemy.hitPoints) {
+            const waveResult = new WaveDamage();
+            const [clearer, _, ce] = clearers[wIndex];
+            waveResult.damagePerEnemy = wave.enemies.map(enemy => calculator.calculateNp(
+                clearer, ce, enemy, [ ...this.servants.filter(s => s).map(s => s!.buffs.buffs[wIndex]), this.template.buffs.buffs[wIndex] ], this.npCards[wIndex]
+            ));
+            waveResult.damagePerEnemy.forEach((result, eIndex) => {
+                const enemy = wave.enemies[eIndex];
+                if (result.damage.low < enemy.hitPoints) {
                     waveResult.unclearedEnemies += 1;
-                    waveResult.leftToFacecard += enemy.hitPoints - damage.low;
+                    waveResult.leftToFacecard += enemy.hitPoints - result.damage.low;
                 }
             })
             if (waveResult.unclearedEnemies > 0) result.unclearedWaves += 1;
+            waveResult.refund = Range.sum(waveResult.damagePerEnemy.map(res => res.refund));
             return waveResult;
         });
         return result;
