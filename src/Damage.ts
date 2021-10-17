@@ -167,6 +167,7 @@ class Calculator {
             npGainByCard.get(np.cardType)! *
             (1 + buffs.cardUp) *
             (npGainByEnemyClass.get(enemy.eClass as string as ServantClass) ?? 1) *
+            (enemy.specialNpGainMod ? 1.2 : 1) *
             (1 + buffs.npGain);
         return isOverkill ? roundDown(roundDown(baseGain) * 1.5) : roundDown(baseGain);
     }

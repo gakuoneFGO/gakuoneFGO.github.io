@@ -1,10 +1,10 @@
-import { Box, TextField, Autocomplete, Stack, Grid, Typography, IconButton, Popper, Popover, Card, CardContent, useTheme } from "@mui/material";
+import { Box, TextField, Autocomplete, Stack, Grid, Typography, IconButton, Popper, Popover, Card, CardContent, useTheme, Switch, FormGroup, FormControlLabel, Tooltip } from "@mui/material";
 import { ArrayBuilder, BaseProps, handleChange, IntegerInput, SaveableSelect, SmartSelect, TraitSelect } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
 import { EnemyNode } from "../Strat";
 import React, { useState } from "react";
 import { db } from "../Data";
-import { PersonSearch } from "@mui/icons-material";
+import { Info, PersonSearch } from "@mui/icons-material";
 import { bindPopover, bindToggle, usePopupState } from "material-ui-popup-state/hooks";
 
 function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
@@ -23,11 +23,27 @@ function EnemyBuilder(props: BaseProps<Enemy> & { showHealth?: Boolean }) {
                 options={Object.values(EnemyAttribute)}
                 value={props.value.attribute}
                 renderInput={params => <TextField {...params} label="Enemy Attribute" />}
-                onChange={(e, v) => { if (v) handleChange({ $set: props.value.withAttribute(v) }, props); }} />
+                onChange={(_, v) => { if (v) handleChange({ $set: props.value.withAttribute(v) }, props); }} />
             <TraitSelect
                 label="Enemy Traits"
                 value={props.value.traits}
-                onChange={traits => { handleChange({ $set: props.value.withSpecificTraits(traits) }, props); }} />
+                onChange={traits => handleChange({ $set: props.value.withSpecificTraits(traits) }, props) } />
+            {props.showHealth ?
+                <FormControlLabel
+                    label={
+                        <Box display="flex" alignItems="center">
+                            <Typography>Special NP Gain Mod&nbsp;</Typography>
+                            <Tooltip title="Certain enemies on certain nodes (mainly those with the Undead trait) give 20% more NP when attacked.">
+                                <Info />
+                            </Tooltip>
+                        </Box>
+                    }
+                    control={
+                        <Switch
+                            checked={props.value.specialNpGainMod ?? false}
+                            onChange={e => handleChange({ specialNpGainMod: { $set: e.target.checked } }, props)} />
+                    } />
+            : null}
         </React.Fragment>
     );
 }

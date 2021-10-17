@@ -6,7 +6,8 @@ class Enemy {
         readonly eClass: EnemyClass,
         readonly attribute: EnemyAttribute,
         readonly traits: Trait[],
-        readonly hitPoints: number) {}
+        readonly hitPoints: number,
+        readonly specialNpGainMod?: boolean) {}
     
     public withClass(className: EnemyClass): Enemy {
         const toAdd = [ toTrait("class", className) ].filter(t => classTraits.some(t2 => t == t2));
