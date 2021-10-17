@@ -1,11 +1,11 @@
-import { Checkbox, FormControlLabel, Grid, Stack, Card, CardContent, Box, useTheme, IconButton, Modal, Typography, List, ListItem, CardHeader, ListItemText, ListItemIcon } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, Stack, Card, CardContent, Box, IconButton, Modal, Typography, List, ListItem, CardHeader, ListItemText, ListItemIcon } from "@mui/material";
 import { db } from "../Data";
 import { Template } from "../Strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
 import { BaseProps, handleChange, SaveableSelect } from "./common";
 import { ServantSelector } from "./servant-selector";
 import { CardType } from "../Servant";
-import { Close, Help } from "@mui/icons-material";
+import { Close, Info } from "@mui/icons-material";
 import { useState } from "react";
 
 function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardType[]> }) {
@@ -25,8 +25,8 @@ function TemplateBuilder(props: BaseProps<Template> & { npCards: BaseProps<CardT
                     label="Select Template"
                     saveLabel="Template Name"
                     customButtons={props.value.description ?
-                        <IconButton onClick={() => setOpen(true)}>
-                            <Help />
+                        <IconButton title="Template Info" onClick={() => setOpen(true)}>
+                            <Info />
                         </IconButton>
                     : undefined} />
                 <Modal open={open} onClose={() => setOpen(false)}>
