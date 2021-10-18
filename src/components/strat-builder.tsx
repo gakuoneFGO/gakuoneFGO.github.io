@@ -125,12 +125,6 @@ export function StratBuilder() {
                         }))} />
                 </Box>
                 <TabContext value={selectedOutput}>
-                    <Box flexShrink={0}>
-                        <TabList onChange={(_, v) => setSelectedOutput(v)}>
-                            <Tab label="Basic" value="basic" />
-                            <Tab label="Advanced" value="advanced" />
-                        </TabList>
-                    </Box>
                     <TabPanel value="basic" sx={{ overflowY: "scroll", height: "100%" }}>
                         <Stack spacing={2}>
                             <OutputPanel strat={state.strat} enemy={state.basicEnemy} />
@@ -140,6 +134,12 @@ export function StratBuilder() {
                     <TabPanel value="advanced" sx={{ overflowY: "scroll", height: "100%" }}>
                         <NodeOutputPanel strat={state.strat} node={state.advancedNode} />
                     </TabPanel>
+                    <Box flexShrink={0}>
+                        <TabList onChange={(_, v) => setSelectedOutput(v)}>
+                            <Tab label="Basic" value="basic" />
+                            <Tab label="Advanced" value="advanced" />
+                        </TabList>
+                    </Box>
                 </TabContext>
             </Box>
             <Box display="flex" flexDirection="column" height="100%"  width={lg ? "67%" : md ? "58%" : "100%"}>
