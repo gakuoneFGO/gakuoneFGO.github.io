@@ -272,22 +272,5 @@ export function TraitSelect(props: BaseProps<Trait[]> & { label?: string }) {
     );
 }
 
-const isPressed: any = {};
-let hotkeys: {keys: string[], action: (e: KeyboardEvent) => void}[] = [];
-
-window.addEventListener("keydown", e => {
-    isPressed[e.key] = true;
-    hotkeys.filter(({keys}) => !keys.some(key => !isPressed[key])).forEach(({action}) => action(e));
-}, false);
-
-window.addEventListener("keyup", e => isPressed[e.key] = undefined, false);
-
-export function useHotkey(hotkey: {keys: string[], action: (e: KeyboardEvent) => void}) {
-    useEffect(() => {
-        hotkeys.push(hotkey);
-        return () => {hotkeys = hotkeys.filter(h => h != hotkey)};
-    });
-}
-
 export { BaseComponent, StateWrapper, handleChange, ArrayBuilder };
 export type { BaseProps };

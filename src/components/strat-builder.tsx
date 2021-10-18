@@ -15,14 +15,13 @@ import update from "immutability-helper";
 import { Spec } from "immutability-helper";
 import { BuffType, CardType, Servant } from "../Servant";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { useHotkey } from "./common";
+import { useHotkey, useTracker } from "./undo-redo";
 
 interface StratBuilderState {
     readonly strat: Strat;
     readonly basicEnemy: Enemy;
     readonly advancedNode: EnemyNode;
     readonly selectedTab: string;
-    readonly selectedOutput: "basic" | "advanced";
 }
 
 type StateChange = (state: StratBuilderState) => Spec<Readonly<StratBuilderState>, never>;
@@ -44,13 +43,13 @@ export function StratBuilder() {
             strat: defaultBuffsetHeuristic(strat, 0),
             basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).withClass(getLikelyClassMatchup(servant.data.sClass)),
             advancedNode: db.nodes.get("2019-11 Nursemas Band-aid Farming [LANCERS]"),
-            selectedTab: "servant0",
-            selectedOutput: "basic"
+            selectedTab: "servant0"
         } as StratBuilderState;
-    }
+    };
 
-    const [ state, setState ] = useState(init);
-    const [ history, setHistory ] = useState({ undo: [] as StratBuilderState[], redo: [] as StratBuilderState[] })
+    const tracker = useTracker(init);
+    const state = tracker.tracked.state;
+    const [selectedOutput, setSelectedOutput] = useState("basic");
     const theme = useTheme();
     const [ sm, lg ] = [ useMediaQuery(theme.breakpoints.down("md")), useMediaQuery(theme.breakpoints.up("lg")) ];
     const md = !sm && !lg;
@@ -59,40 +58,12 @@ export function StratBuilder() {
         console.log(change);
         if (change instanceof Function) {
             //fixes stale closure issue on PartyDisplay swap feature. makes me wonder what else is broken this way
-            setState(currentState => update(currentState, (change as StateChange)(currentState)));
+            tracker.handleChange(currentState => update(currentState, (change as StateChange)(currentState)), skipHistory);
         } else {
             const newState = update(state, change);
-            setState(newState);
-        }
-
-        if (!skipHistory) {
-            setHistory(history => update(history, { undo: { $push: [state] }, redo: { $set: [] } }));
+            tracker.handleChanged(newState, skipHistory);
         }
     }
-
-    useHotkey({
-        keys: ["Control", "z"],
-        action: e => {
-            const lastState = history.undo.pop();
-            if (!lastState) return;
-            history.redo.push(update(state, { selectedTab: { $set: lastState.selectedTab } }));
-            setHistory(history);//probably doesn't do anything since we are just mutating
-            setState(update(lastState, { selectedOutput: { $set: state.selectedOutput } }));
-            e.preventDefault();
-        }}
-    );
-
-    useHotkey({
-        keys: ["Control", "y"],
-        action: e => {
-            const nextState = history.redo.pop();
-            if (!nextState) return;
-            history.undo.push(update(state, { selectedTab: { $set: nextState.selectedTab } }));
-            setHistory(history);//probably doesn't do anything since we are just mutating
-            setState(update(nextState, { selectedOutput: { $set: state.selectedOutput } }));
-            e.preventDefault();
-        }}
-    );
 
     const onServantChanged = (servant: Servant, index: number) => {
         if (servant.data.name != state.strat.servants[index]!.servant.data.name) {
@@ -153,9 +124,9 @@ export function StratBuilder() {
                             selectedTab: { $set: fixTabOnSwap(source.toString(), target.toString(), state.selectedTab) }
                         }))} />
                 </Box>
-                <TabContext value={state.selectedOutput}>
+                <TabContext value={selectedOutput}>
                     <Box flexShrink={0}>
-                        <TabList onChange={(_, v) => handleChange({ selectedOutput: { $set: v } }, true)}>
+                        <TabList onChange={(_, v) => setSelectedOutput(v)}>
                             <Tab label="Basic" value="basic" />
                             <Tab label="Advanced" value="advanced" />
                         </TabList>
