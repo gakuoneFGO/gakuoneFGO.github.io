@@ -1,11 +1,11 @@
-import { BuffSet, Calculator, CraftEssence, NpResult, Range } from "./Damage";
+import { BuffSet, Calculator, CraftEssence, NpResult, Range, RefundResult } from "./Damage";
 import { CardType, Servant } from "./Servant";
 import { Enemy } from "./Enemy";
 import update from "immutability-helper";
 import { Type } from "class-transformer";
 import { TemplateData } from "./Data";
 
-class BuffMatrix {
+export class BuffMatrix {
     constructor(buffs: BuffSet[]) {
         this.buffs = buffs;
     }
@@ -32,7 +32,7 @@ class BuffMatrix {
     // }
 }
 
-class Template {
+export class Template {
     constructor(
         readonly name: string,
         readonly buffs: BuffMatrix,
@@ -53,7 +53,7 @@ class Template {
     }
 }
 
-class Wave {
+export class Wave {
     constructor(enemies: Enemy[]) {
         this.enemies = enemies;
     }
@@ -62,7 +62,7 @@ class Wave {
     public enemies: Enemy[];
 }
 
-class EnemyNode {
+export class EnemyNode {
     constructor(readonly name: string, waves: Wave[]) {
         this.waves = waves;
     }
@@ -77,22 +77,21 @@ class EnemyNode {
     }
 }
 
-class WaveDamage {
-    constructor(
-        public damagePerEnemy: NpResult[] = [],
-        public refund: Range = new Range(0, 0, 0),
-        public unclearedEnemies: number = 0,
-        public leftToFacecard: number = 0) {}
+export interface WaveDamage {
+        damagePerEnemy: NpResult[];
+        refund: Range<number>;
+        unclearedEnemies: number;
+        leftToFacecard: number;
 }
 
-class NodeDamage {
+export class NodeDamage {
     constructor(
         public damagePerWave: WaveDamage[] = [],
         public unclearedWaves: number = 0) {}
 }
 
 //need this class since the compiler sucks at recognizing tuples
-class MainServant {
+export class MainServant {
     constructor(servant: Servant, buffs: BuffMatrix) {
         this.servant = servant;
         this.buffs = buffs;
@@ -104,7 +103,7 @@ class MainServant {
     public readonly buffs: BuffMatrix;
 }
 
-class Strat {
+export class Strat {
     constructor(
         readonly servants: (MainServant | undefined)[],
         readonly template: Template,
@@ -158,7 +157,7 @@ class Strat {
         const result = new NodeDamage();
         const clearers = this.getRealClearers();
         result.damagePerWave = node.waves.map((wave, wIndex) => {
-            const waveResult = new WaveDamage();
+            const waveResult = { unclearedEnemies: 0, damagePerEnemy: [] as NpResult[], leftToFacecard: 0 };
             const [clearer, _, ce] = clearers[wIndex];
             waveResult.damagePerEnemy = wave.enemies.map(enemy => calculator.calculateNp(
                 clearer, ce, enemy, [ ...this.servants.filter(s => s).map(s => s!.buffs.buffs[wIndex]), this.template.buffs.buffs[wIndex] ], this.npCards[wIndex]
@@ -171,13 +170,11 @@ class Strat {
                 }
             })
             if (waveResult.unclearedEnemies > 0) result.unclearedWaves += 1;
-            waveResult.refund = Range.sum(waveResult.damagePerEnemy.map(res => res.refund));
-            return waveResult;
+            return {
+                ...waveResult,
+                refund: Range.sum(waveResult.damagePerEnemy.map(res => res.refund), (a, b) => a + b.refunded, 0)
+            };
         });
         return result;
     }
 }
-
-
-
-export { Strat, Template, BuffMatrix, NodeDamage, WaveDamage, EnemyNode, Wave, MainServant };

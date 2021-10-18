@@ -4,7 +4,7 @@ import { EnemyNode, Strat } from "../Strat";
 import NumberFormat from "react-number-format";
 import { Enemy } from "../Enemy";
 import { Box } from "@mui/system";
-import { Range } from "../Damage";
+import { NpResult, Range } from "../Damage";
 import { Warning } from "@mui/icons-material";
 import { ClassIcon } from "./icons";
 
@@ -37,8 +37,7 @@ export const OutputPanel = React.memo((props: OutputPanelProps) => {
                                 <TableCell key={turn} sx={selectedNpLevels[turn] == npIndex + 1 ?
                                     {backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText} : {}}>
                                     <Typography variant="body2" sx={{textAlign: "center"}}>
-                                        <NumberFormat displayType="text" thousandSeparator=","
-                                            value={waveDamage.damagePerEnemy[0].damage.forDisplay()} />
+                                        <IntFormat value={waveDamage.damagePerEnemy[0].damage.low} />
                                     </Typography>
                                 </TableCell>
                             )}
@@ -57,7 +56,7 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
     const result = props.strat.run(props.node);
     const nps = props.strat.getRealClearers().map((clearer, turn) => clearer[0].data.getNP(props.strat.npCards[turn]));
 
-    const getColor = (enemy: Enemy, damage: Range) => {
+    const getColor = (enemy: Enemy, damage: Range<number>) => {
         const remaining = enemy.hitPoints - damage.low;
         if (remaining <= 0) return theme.palette.info;
         if (remaining <= THRESHOLD) return theme.palette.warning;
@@ -85,32 +84,60 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
                             const color = getColor(enemy, enemyResult.damage);
                             return (
                                 <Paper key={eIndex} sx={{ backgroundColor: color.main, color: color.contrastText, flexGrow: 1 }}>
-                                    <Grid container direction="row" alignItems="center" height="100%">
-                                        <Grid item xs={3}>
-                                            <ClassIcon type={props.node.waves[turn].enemies[eIndex].eClass} style={{width: "100%", height: "100%"}} />
+                                    <Tooltip placement="left" arrow title={<EnemyTooltip result={enemyResult} />}>
+                                        <Grid container direction="row" alignItems="center" height="100%">
+                                            <Grid item xs={3}>
+                                                <ClassIcon type={props.node.waves[turn].enemies[eIndex].eClass} style={{width: "100%", height: "100%"}} />
+                                            </Grid>
+                                            <Grid item xs={9} sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                                                <Typography textAlign="center">
+                                                    <IntFormat value={enemyResult.damage.low} />
+                                                </Typography>
+                                                <Divider variant="middle" sx={{ background: color.contrastText }} />
+                                                <Typography textAlign="center">
+                                                    <IntFormat value={enemy.hitPoints} />
+                                                </Typography>
+                                            </Grid>
                                         </Grid>
-                                        <Grid item xs={9} sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
-                                            <Typography textAlign="center">
-                                                <NumberFormat displayType="text" thousandSeparator="," value={enemyResult.damage.forDisplay()} />
-                                            </Typography>
-                                            <Divider variant="middle" sx={{ background: color.contrastText }} />
-                                            <Typography textAlign="center">
-                                                <NumberFormat displayType="text" thousandSeparator="," value={enemy.hitPoints} />
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
+                                    </Tooltip>
                                 </Paper>
                             );
                         })}
                         <Paper sx={{ background: theme.palette.refund.gradient, color: theme.palette.refund.contrastText,
                             visibility: turn == props.node.waves.length - 1 ? "hidden" : "initial" }}>
                             <Typography textAlign="center" style={{ textShadow: "1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000" }}>
-                                <NumberFormat displayType="text" decimalScale={1} fixedDecimalScale suffix="%" value={wave.refund.low} />
+                                <PercentFormat value={wave.refund.low} />
                             </Typography>
                         </Paper>
                     </Box>
                 )}
             </Box>
         </React.Fragment>
+    );
+}
+
+function EnemyTooltip(props: { result: NpResult }) {
+    return (
+        <Box>
+            <Typography>Min Damage: <IntFormat value={props.result.damage.low} /></Typography>
+            <Typography>Average Damage: <IntFormat value={props.result.damage.average} /></Typography>
+            <Typography>Max Damage: <IntFormat value={props.result.damage.high} /></Typography>
+            <Typography>Min Overkill Hits: {props.result.refund.low.getOverkillHitCount()} / {props.result.refund.low.hpOnHit.length}</Typography>
+            {props.result.refund.low.getFacecardThresholds().map(threshold =>
+                <Typography>Do <IntFormat value={threshold.fcDamage} /> damage with facecards to guarantee <PercentFormat value={threshold.extraRefund} /> additional refund.</Typography>
+            )}
+        </Box>
+    );
+}
+
+function IntFormat(props: {value: number}) {
+    return (
+        <NumberFormat displayType="text" thousandSeparator="," decimalScale={0} value={props.value} />
+    )
+}
+
+function PercentFormat(props: {value: number}) {
+    return (
+        <NumberFormat displayType="text" decimalScale={1} fixedDecimalScale suffix="%" value={props.value} />
     );
 }

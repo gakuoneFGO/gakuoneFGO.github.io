@@ -54,14 +54,14 @@ class BuffSet {
     }
 }
 
-export class Range {
+export class Range<T> {
     constructor(
-        readonly low: number,
-        readonly average: number,
-        readonly high: number
+        readonly low: T,
+        readonly average: T,
+        readonly high: T
     ) {}
 
-    public static ofDamage(average: number, flatDamage: number): Range {
+    public static ofDamage(average: number, flatDamage: number): Range<number> {
         return new Range(
             average * 0.9 + flatDamage,
             average + flatDamage,
@@ -69,25 +69,45 @@ export class Range {
         );
     }
 
-    public static sum(ranges: Range[]): Range {
+    public static sum<T, S>(ranges: Range<T>[], add: (a: S, b: T) => S, initialVal: S): Range<S> {
         return new Range(
-            ranges.reduce((val, range) => val + range.low, 0),
-            ranges.reduce((val, range) => val + range.average, 0),
-            ranges.reduce((val, range) => val + range.high, 0)
+            ranges.reduce((val, range) => add(val, range.average), initialVal),
+            ranges.reduce((val, range) => add(val, range.average), initialVal),
+            ranges.reduce((val, range) => add(val, range.average), initialVal)
         );
-    }
-
-    public forDisplay(): number {
-        return Math.round(this.low);
     }
 }
 
 export class NpResult {
     constructor(
-        readonly damage: Range,
-        readonly refund: Range
+        readonly damage: Range<number>,
+        readonly refund: Range<RefundResult>
     ) {}
 }
+
+export class RefundResult {
+    constructor(
+        readonly refunded: number,
+        readonly hpOnHit: number[],
+        readonly overkillDifferential: number
+    ) {}
+
+    getOverkillHitCount(): number {
+        return this.hpOnHit.filter(hp => hp <= 0).length;
+    }
+
+    getNonOverkillHitCount(): number {
+        return this.hpOnHit.filter(hp => hp > 0).length;
+    }
+
+    getFacecardThresholds(): { fcDamage: number, extraRefund: number }[] {
+        return this.hpOnHit
+            .filter(hp => hp > 0)
+            .slice(1)
+            .reverse()
+            .map((hp, i) => ({ fcDamage: hp, extraRefund: (i + 1) * this.overkillDifferential }));
+    }
+};
 
 class Calculator {
     public calculateNp(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[], npCard: CardType): NpResult {
@@ -99,7 +119,7 @@ class Calculator {
         return new NpResult(damage, refund);
     }
 
-    private calculateNpDamage(servant: Servant, np: NoblePhantasm, ce: CraftEssence, enemy: Enemy, combinedBuffs: BuffSet): Range {
+    private calculateNpDamage(servant: Servant, np: NoblePhantasm, ce: CraftEssence, enemy: Enemy, combinedBuffs: BuffSet): Range<number> {
         const
             oc = Math.floor(combinedBuffs.overcharge),
             baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, oc) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
@@ -141,7 +161,7 @@ class Calculator {
         }
     }
 
-    private calculateNpRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, damage: Range): Range {
+    private calculateNpRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, damage: Range<number>): Range<RefundResult> {
         return new Range(
             this.calculateNpRefundScenario(np, buffs, enemy, damage.low),
             this.calculateNpRefundScenario(np, buffs, enemy, damage.average),
@@ -149,19 +169,18 @@ class Calculator {
         );
     }
 
-    private calculateNpRefundScenario(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, damage: number): number {
-        return np.hitDistribution.reduce((cumulative, hit) =>
-            ({
-                hp: cumulative.hp - damage * hit,
-                refund: cumulative.refund + this.calculateSingleHitRefund(np, buffs, enemy, cumulative.hp <= 0)
-            }),
-            {
-                hp: enemy.hitPoints,
-                refund: 0
-            }).refund;
+    private calculateNpRefundScenario(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, damage: number): RefundResult {
+        const singleRefund = this.calculateSingleHitRefund(np, buffs, enemy);
+        const diff = singleRefund.withOK - singleRefund.noOK;
+        const hpOnHit = np.hitDistribution
+            .map(hit => hit * damage)
+            .reduce((cumulative, hit) => cumulative.concat([cumulative[cumulative.length - 1] - hit]), [enemy.hitPoints])
+            .slice(0, np.hitDistribution.length);
+        const refunded = hpOnHit.length * singleRefund.noOK + hpOnHit.filter(hp => hp <= 0).length * diff;
+        return new RefundResult(refunded, hpOnHit, diff);
     }
 
-    private calculateSingleHitRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, isOverkill: boolean): number {
+    private calculateSingleHitRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy): { noOK: number, withOK: number } {
         const baseGain =
             np.refundRate *
             npGainByCard.get(np.cardType)! *
@@ -169,7 +188,7 @@ class Calculator {
             (npGainByEnemyClass.get(enemy.eClass as string as ServantClass) ?? 1) *
             (enemy.specialNpGainMod ? 1.2 : 1) *
             (1 + buffs.npGain);
-        return isOverkill ? roundDown(roundDown(baseGain) * 1.5) : roundDown(baseGain);
+        return { withOK: roundDown(roundDown(baseGain) * 1.5), noOK: roundDown(baseGain) };
     }
 }
 
