@@ -4,7 +4,7 @@ import { Spec } from "immutability-helper";
 import { Autocomplete, Box, Card, CardContent, CardHeader, Chip, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
 import { Add, ContentCopy, Delete, Remove, Save } from "@mui/icons-material";
 import { Named, Persistor } from "../Data";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Trait } from "../Enemy";
 import { bindPopover, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
 
@@ -270,6 +270,23 @@ export function TraitSelect(props: BaseProps<Trait[]> & { label?: string }) {
             renderInput={params => <TextField {...params} label={props.label} />}
             renderTags={(traits, getTagProps) => traits.map((trait, index) => <Chip label={trait} {...getTagProps({ index })} title={trait} />)} />
     );
+}
+
+const isPressed: any = {};
+let hotkeys: {keys: string[], action: (e: KeyboardEvent) => void}[] = [];
+
+window.addEventListener("keydown", e => {
+    isPressed[e.key] = true;
+    hotkeys.filter(({keys}) => !keys.some(key => !isPressed[key])).forEach(({action}) => action(e));
+}, false);
+
+window.addEventListener("keyup", e => isPressed[e.key] = undefined, false);
+
+export function useHotkey(hotkey: {keys: string[], action: (e: KeyboardEvent) => void}) {
+    useEffect(() => {
+        hotkeys.push(hotkey);
+        return () => {hotkeys = hotkeys.filter(h => h != hotkey)};
+    });
 }
 
 export { BaseComponent, StateWrapper, handleChange, ArrayBuilder };

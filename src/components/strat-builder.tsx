@@ -1,5 +1,5 @@
 import { Box, Grid, Stack, Tab, useMediaQuery, useTheme } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BuffSet, CraftEssence, getLikelyClassMatchup } from "../Damage";
 import { db } from "../Data";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
@@ -15,13 +15,14 @@ import update from "immutability-helper";
 import { Spec } from "immutability-helper";
 import { BuffType, CardType, Servant } from "../Servant";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { useHotkey } from "./common";
 
 interface StratBuilderState {
     readonly strat: Strat;
     readonly basicEnemy: Enemy;
     readonly advancedNode: EnemyNode;
     readonly selectedTab: string;
-    readonly selectedOutput: string;
+    readonly selectedOutput: "basic" | "advanced";
 }
 
 type StateChange = (state: StratBuilderState) => Spec<Readonly<StratBuilderState>, never>;
@@ -49,20 +50,49 @@ export function StratBuilder() {
     }
 
     const [ state, setState ] = useState(init);
+    const [ history, setHistory ] = useState({ undo: [] as StratBuilderState[], redo: [] as StratBuilderState[] })
     const theme = useTheme();
     const [ sm, lg ] = [ useMediaQuery(theme.breakpoints.down("md")), useMediaQuery(theme.breakpoints.up("lg")) ];
     const md = !sm && !lg;
 
-    const handleChange = (change: Spec<Readonly<StratBuilderState>, never> | StateChange) => {
-        //console.log(spec);
+    const handleChange = (change: Spec<Readonly<StratBuilderState>, never> | StateChange, skipHistory?: boolean) => {
+        console.log(change);
         if (change instanceof Function) {
             //fixes stale closure issue on PartyDisplay swap feature. makes me wonder what else is broken this way
             setState(currentState => update(currentState, (change as StateChange)(currentState)));
         } else {
-            let newState = update(state, change);
+            const newState = update(state, change);
             setState(newState);
         }
+
+        if (!skipHistory) {
+            setHistory(history => update(history, { undo: { $push: [state] }, redo: { $set: [] } }));
+        }
     }
+
+    useHotkey({
+        keys: ["Control", "z"],
+        action: e => {
+            const lastState = history.undo.pop();
+            if (!lastState) return;
+            history.redo.push(update(state, { selectedTab: { $set: lastState.selectedTab } }));
+            setHistory(history);//probably doesn't do anything since we are just mutating
+            setState(update(lastState, { selectedOutput: { $set: state.selectedOutput } }));
+            e.preventDefault();
+        }}
+    );
+
+    useHotkey({
+        keys: ["Control", "y"],
+        action: e => {
+            const nextState = history.redo.pop();
+            if (!nextState) return;
+            history.undo.push(update(state, { selectedTab: { $set: nextState.selectedTab } }));
+            setHistory(history);//probably doesn't do anything since we are just mutating
+            setState(update(nextState, { selectedOutput: { $set: state.selectedOutput } }));
+            e.preventDefault();
+        }}
+    );
 
     const onServantChanged = (servant: Servant, index: number) => {
         if (servant.data.name != state.strat.servants[index]!.servant.data.name) {
@@ -125,7 +155,7 @@ export function StratBuilder() {
                 </Box>
                 <TabContext value={state.selectedOutput}>
                     <Box flexShrink={0}>
-                        <TabList onChange={(_, v) => handleChange({ selectedOutput: { $set: v } })}>
+                        <TabList onChange={(_, v) => handleChange({ selectedOutput: { $set: v } }, true)}>
                             <Tab label="Basic" value="basic" />
                             <Tab label="Advanced" value="advanced" />
                         </TabList>
@@ -144,7 +174,7 @@ export function StratBuilder() {
             <Box display="flex" flexDirection="column" height="100%"  width={lg ? "67%" : md ? "58%" : "100%"}>
                 <TabContext value={state.selectedTab}>
                     <Box flexShrink={0}>
-                        <TabList variant="scrollable" onChange={(_, v) => handleChange({ selectedTab: { $set: v } })}>
+                        <TabList variant="scrollable" onChange={(_, v) => handleChange({ selectedTab: { $set: v } }, true)}>
                             {state.strat.servants.map((servant, index) => servant ?
                                 <Tab key={index} label={`Servant ${(index + 1)}`} value={`servant${index}`} />
                             : null)}
