@@ -68,6 +68,7 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
         xs: 1 as GridSize,
         display: "flex",
         justifyContent: "center",
+        alignItems: "center",
     };
 
     return (
