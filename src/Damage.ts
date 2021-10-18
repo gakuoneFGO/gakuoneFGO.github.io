@@ -71,9 +71,9 @@ export class Range<T> {
 
     public static sum<T, S>(ranges: Range<T>[], add: (a: S, b: T) => S, initialVal: S): Range<S> {
         return new Range(
+            ranges.reduce((val, range) => add(val, range.low), initialVal),
             ranges.reduce((val, range) => add(val, range.average), initialVal),
-            ranges.reduce((val, range) => add(val, range.average), initialVal),
-            ranges.reduce((val, range) => add(val, range.average), initialVal)
+            ranges.reduce((val, range) => add(val, range.high), initialVal)
         );
     }
 }
