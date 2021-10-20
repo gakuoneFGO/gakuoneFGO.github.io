@@ -5,7 +5,7 @@ import NumberFormat from "react-number-format";
 import { Enemy } from "../Enemy";
 import { Box } from "@mui/system";
 import { NpResult, Range } from "../Damage";
-import { Warning } from "@mui/icons-material";
+import { ResetTvOutlined, Warning } from "@mui/icons-material";
 import { ClassIcon } from "./icons";
 
 interface OutputPanelProps {
@@ -51,7 +51,7 @@ export const OutputPanel = React.memo((props: OutputPanelProps) => {
 
 const THRESHOLD = 25000;
 
-export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
+export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat, tooltipPlacement: "top" | "bottom" | "left" | "right" }) {
     const theme = useTheme();
     const result = props.strat.run(props.node);
     const nps = props.strat.getRealClearers().map((clearer, turn) => clearer[0].data.getNP(props.strat.npCards[turn]));
@@ -84,7 +84,7 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat }) {
                             const color = getColor(enemy, enemyResult.damage);
                             return (
                                 <Paper key={eIndex} sx={{ backgroundColor: color.main, color: color.contrastText, flexGrow: 1 }}>
-                                    <Tooltip placement="left" arrow title={<EnemyTooltip result={enemyResult} />}>
+                                    <Tooltip placement={props.tooltipPlacement} arrow title={<EnemyTooltip result={enemyResult} />}>
                                         <Grid container direction="row" alignItems="center" height="100%">
                                             <Grid item xs={3}>
                                                 <ClassIcon type={props.node.waves[turn].enemies[eIndex].eClass} style={{width: "100%", height: "100%"}} />
@@ -120,12 +120,14 @@ function EnemyTooltip(props: { result: NpResult }) {
     return (
         <Box>
             <Typography>Min Damage: <IntFormat value={props.result.damage.low} /></Typography>
-            <Typography>Average Damage: <IntFormat value={props.result.damage.average} /></Typography>
+            <Typography>Avg Damage: <IntFormat value={props.result.damage.average} /></Typography>
             <Typography>Max Damage: <IntFormat value={props.result.damage.high} /></Typography>
-            <Typography>Min Overkill Hits: {props.result.refund.low.getOverkillHitCount()} / {props.result.refund.low.hpOnHit.length}</Typography>
-            {props.result.refund.low.getFacecardThresholds().map(threshold =>
-                <Typography>Do <IntFormat value={threshold.fcDamage} /> damage with facecards to guarantee <PercentFormat value={threshold.extraRefund} /> additional refund.</Typography>
-            )}
+            {props.result.refund.low.refunded > 0 ? [
+                <Typography key={-1}>Min Overkill Hits: {props.result.refund.low.getOverkillHitCount()} / {props.result.refund.low.hpOnHit.length}</Typography>,
+                ...props.result.refund.low.getFacecardThresholds().map((threshold, index) =>
+                    <Typography key={index}>Do <IntFormat value={threshold.fcDamage} /> damage with facecards to guarantee <PercentFormat value={threshold.extraRefund} /> additional refund.</Typography>
+                )
+            ] : null}
         </Box>
     );
 }

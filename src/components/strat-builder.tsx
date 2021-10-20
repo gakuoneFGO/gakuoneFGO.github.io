@@ -13,7 +13,7 @@ import { ServantSelector } from "./servant-selector";
 import { TemplateBuilder } from "./template-builder";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { BuffType, CardType, Servant } from "../Servant";
+import { Buff, BuffType, CardType, NoblePhantasm, Servant } from "../Servant";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useHotkey, useTracker } from "./undo-redo";
 
@@ -55,7 +55,7 @@ export function StratBuilder() {
     const md = !sm && !lg;
 
     const handleChange = (change: Spec<Readonly<StratBuilderState>, never> | StateChange, skipHistory?: boolean) => {
-        console.log(change);
+        //console.log(change);
         if (change instanceof Function) {
             //fixes stale closure issue on PartyDisplay swap feature. makes me wonder what else is broken this way
             tracker.handleChange(currentState => update(currentState, (change as StateChange)(currentState)), skipHistory);
@@ -132,7 +132,7 @@ export function StratBuilder() {
                         </Stack>
                     </TabPanel>
                     <TabPanel value="advanced" sx={{ overflowY: "scroll", height: "100%" }}>
-                        <NodeOutputPanel strat={state.strat} node={state.advancedNode} />
+                        <NodeOutputPanel strat={state.strat} node={state.advancedNode} tooltipPlacement={sm ? "bottom" : "left"} />
                     </TabPanel>
                     <Box flexShrink={0}>
                         <TabList onChange={(_, v) => setSelectedOutput(v)}>
@@ -206,42 +206,57 @@ export function StratBuilder() {
     );
 }
 
-//TODO: seems to be messed up when servant doesn't NP (frontloads instead of backloading)
+//there are still corner cases not handled but whatever
 function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
     const clearers = strat.getRealClearers().map(clearer => clearer[0]);
-    const isClearerMain = strat.template.clearers.map(c => c == clearerIndex);
+    const isClearerSelf = strat.template.clearers.map(c => c == clearerIndex);
     const servant = strat.servants[clearerIndex]!.servant;
 
-    let getNP = (turn: number) => clearers[turn].data.getNP(strat.npCards[turn]);
+    const getNP = (turn: number) => clearers[turn].data.getNP(strat.npCards[turn]);
 
-    let skillOrder = servant.data.skills.map(skill => {
-        let anySelfBuff = skill.buffs.findIndex(b => b.self) >= 0;
-        let turnsToApplyTo = isClearerMain.flatMap((isMain, index) => isMain == anySelfBuff ? [index] : []);
+    const skillOrder = servant.data.skills.map(skill => {
+        const turnsToApplyTo = isClearerSelf.flatMap((isSelf, turn) => skill.buffs.some(b => canApply(isSelf, b) && isUseful(b, clearers, turn, getNP)) ? [turn] : []);
         if (turnsToApplyTo.length == 0) {
             return { buffs: skill.buffs, turn: 0 };
         }
         const optimizedTurn = turnsToApplyTo.reverse()[0] - Math.min(...skill.buffs.map(b => b.turns)) + 1;
         return { buffs: skill.buffs, turn: Math.max(optimizedTurn, 0) };
-    }).concat(isClearerMain.map((isMain, turn) => {
-        return { buffs: isMain ? getNP(turn).preBuffs : [], turn: turn };
-    })).concat(isClearerMain.map((isMain, turn) => {
-        return { buffs: isMain ? getNP(turn).postBuffs : [], turn: turn + 1 };
+    }).concat(isClearerSelf.map((isSelf, turn) => {
+        return { buffs: isSelf ? getNP(turn).preBuffs : [], turn: turn };
+    })).concat(isClearerSelf.map((isSelf, turn) => {
+        return { buffs: isSelf ? getNP(turn).postBuffs : [], turn: turn + 1 };
     }));
 
-    let servantBuffs = new BuffMatrix(isClearerMain.map((isMain, turn) => {
+    const servantBuffs = new BuffMatrix(isClearerSelf.map((isSelf, turn) => {
         return BuffSet.fromBuffs(skillOrder.flatMap(order => {
             return order.turn <= turn
                 ? order.buffs
-                    .filter(b => (isMain && b.self) || (!isMain && b.team))
+                    .filter(b => canApply(isSelf, b))
                     .filter(b => order.turn + b.turns > turn &&
                         //HACK: all current OC buffs are single use but I don't want to actually model "X times" constraints
                         (b.type != BuffType.Overcharge || isFirstUseOfBuff(turn, order.turn, clearers)))
                 : []
-            }).concat(servant.data.passives.filter(b => (isMain && b.self) || (!isMain && b.team))),
+            }).concat(servant.data.passives.filter(b => canApply(isSelf, b))),
             getNP(turn).cardType)
     }));
 
     return update(strat, { servants: { [clearerIndex]: { buffs: { $set: servantBuffs } } } });
+}
+
+function canApply(isSelf: boolean, buff: Buff): boolean {
+    return (isSelf && buff.self) || (!isSelf && buff.team);
+}
+
+function isUseful(buff: Buff, clearers: Servant[], turn: number, getNP: (turn: number) => NoblePhantasm): boolean {
+    //assumes canApply is already checked
+    switch (buff.type) {
+        case BuffType.CardTypeUp:
+            return getNP(turn).cardType == buff.cardType;
+        case BuffType.NpGain:
+            return getNP(turn).cardType != CardType.Buster && clearers.some((clearer, otherTurn) => otherTurn > turn && clearer == clearers[turn]);
+        default:
+            return true;
+    }
 }
 
 function isFirstUseOfBuff(currentTurn: number, turnApplied: number, clearers: Servant[]): boolean {
