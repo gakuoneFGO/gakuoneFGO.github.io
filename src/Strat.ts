@@ -78,16 +78,12 @@ export class EnemyNode {
 }
 
 export interface WaveDamage {
-        damagePerEnemy: NpResult[];
-        refund: Range<number>;
-        unclearedEnemies: number;
-        leftToFacecard: number;
+    readonly damagePerEnemy: NpResult[];
+    readonly refund: Range<number>;
 }
 
 export class NodeDamage {
-    constructor(
-        public damagePerWave: WaveDamage[] = [],
-        public unclearedWaves: number = 0) {}
+    constructor(public readonly damagePerWave: WaveDamage[]) {}
 }
 
 //need this class since the compiler sucks at recognizing tuples
@@ -151,30 +147,19 @@ export class Strat {
                 this as Strat)
     }
 
-    //TODO: fix this garbage
     public run(node: EnemyNode): NodeDamage {
-        const calculator: Calculator = new Calculator();
-        const result = new NodeDamage();
         const clearers = this.getRealClearers();
-        result.damagePerWave = node.waves.map((wave, wIndex) => {
-            const waveResult = { unclearedEnemies: 0, damagePerEnemy: [] as NpResult[], leftToFacecard: 0 };
+        const damagePerWave = node.waves.map((wave, wIndex) => {
             const [clearer, _, ce] = clearers[wIndex];
-            waveResult.damagePerEnemy = wave.enemies.map(enemy => calculator.calculateNp(
-                clearer, ce, enemy, [ ...this.servants.filter(s => s).map(s => s!.buffs.buffs[wIndex]), this.template.buffs.buffs[wIndex] ], this.npCards[wIndex]
-            ));
-            waveResult.damagePerEnemy.forEach((result, eIndex) => {
-                const enemy = wave.enemies[eIndex];
-                if (result.damage.low < enemy.hitPoints) {
-                    waveResult.unclearedEnemies += 1;
-                    waveResult.leftToFacecard += enemy.hitPoints - result.damage.low;
-                }
-            })
-            if (waveResult.unclearedEnemies > 0) result.unclearedWaves += 1;
+            const  allBuffs = [ ...this.servants.filter(s => s).map(s => s!.buffs.buffs[wIndex]), this.template.buffs.buffs[wIndex] ];
+            const damagePerEnemy = wave.enemies.map(enemy => calculator.calculateNp(clearer, ce, enemy, allBuffs, this.npCards[wIndex]));
             return {
-                ...waveResult,
-                refund: Range.sum(waveResult.damagePerEnemy.map(res => res.refund), (a, b) => a + b.refunded, 0)
+                damagePerEnemy: damagePerEnemy,
+                refund: Range.sum(damagePerEnemy.map(res => res.refund), (a, b) => a + b.refunded, 0)
             };
         });
-        return result;
+        return new NodeDamage(damagePerWave);
     }
 }
+
+const calculator: Calculator = new Calculator();
