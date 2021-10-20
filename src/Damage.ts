@@ -33,7 +33,7 @@ class BuffSet {
     }
 
     public static fromBuffs(buffs: Buff[], npCard: CardType): BuffSet {
-        let powerMod = new PowerMod([Trait.Always], 0);
+        const powerMod = new PowerMod([Trait.Always], 0);
         return new BuffSet(
             buffs.filter(b => b.type == BuffType.AttackUp).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.CardTypeUp && b.cardType == npCard).reduce((v, b) => v + b.val, 0),
@@ -48,8 +48,8 @@ class BuffSet {
     }
 
     public getMultiplier(enemy: Enemy) {
-        let powerMod = this.powerMods.filter(pm => isTriggerActive(enemy.traits.concat(this.applyTraits), pm.trigger)).map(pm => pm.modifier).reduce((a, b) => a + b);
-        let modAndNp = powerMod + this.npUp * (1 + this.npBoost);
+        const powerMod = this.powerMods.filter(pm => isTriggerActive(enemy.traits.concat(this.applyTraits), pm.trigger)).map(pm => pm.modifier).reduce((a, b) => a + b);
+        const modAndNp = powerMod + this.npUp * (1 + this.npBoost);
         return (1 + this.attackUp) * (1 + this.cardUp) * (1 + modAndNp);
     }
 }
@@ -127,11 +127,12 @@ class Calculator {
         if (baseDamage == 0) return Range.ofDamage(0, 0);
         const
             enemyTraits = enemy.traits.concat(combinedBuffs.applyTraits),
-            triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute),
+            triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass, servant) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute),
             extraDamage = np.extraDmgStacks ?
                 1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[oc] :
                 //eresh is the only servant to get a supereffective modifier on NP upgrade I think? so hardcoding this is the simplest fix for now
                 //eventually it may be worth properly modeling NP upgrades since that fixes both this and autofilled buffs
+                //more likely: her upgrade is released in NA and we can just remove this since the workaround is "just do the strengthening quest lol"
                 isTriggerActive(enemyTraits, np.extraTrigger) && (servant.data.name != "Ereshkigal" || servant.config.isNpUpgraded) ? np.extraDamage[oc] : 1.0;
         return Range.ofDamage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage, combinedBuffs.flatDamage);
     }
@@ -141,7 +142,7 @@ class Calculator {
             case CardType.Buster: return 1.5;
             case CardType.Arts: return 1;
             case CardType.Quick: return 0.8;
-            case CardType.Extra: return 1;//TODO
+            case CardType.Extra: return 1;
         }
     }
 
@@ -159,7 +160,7 @@ class Calculator {
             case ServantClass.Assassin:
                 return 0.9;
             default:
-                return 1.0;
+                return 1;
         }
     }
 
@@ -246,7 +247,10 @@ function isAdvantaged<T>(attacker: T, defender: T, advantages: Map<T, T>): boole
     return advantages.get(attacker) == defender;
 }
 
-function getClassTriangleMultiplier(servantClass: ServantClass, enemyClass: EnemyClass): number {
+function getClassTriangleMultiplier(servantClass: ServantClass, enemyClass: EnemyClass, servant: Servant): number {
+    const castEnemyClass = (enemyClass as string) as ServantClass;
+    if (specialClassTriangleAdvantages.has(servant.data.name + "|" + castEnemyClass))
+        return specialClassTriangleAdvantages.get(servant.data.name + "|" + castEnemyClass)!;
     if (servantClass == ServantClass.Shielder || enemyClass == EnemyClass.Shielder) return 1.0;
     if (servantClass == ServantClass.Berserker) return enemyClass == EnemyClass.Foreigner ? 0.5 : 1.5;
     if (enemyClass == EnemyClass.Berserker) return 2.0;
@@ -257,7 +261,6 @@ function getClassTriangleMultiplier(servantClass: ServantClass, enemyClass: Enem
     if (servantClass == ServantClass.AlterEgo && isKnight(enemyClass)) return 0.5;
     if (servantClass == ServantClass.Pretender && isCavalry(enemyClass)) return 0.5;
     if (enemyClass == EnemyClass.Knight || enemyClass == EnemyClass.Cavalry) return 1.0;
-    const castEnemyClass = (enemyClass as string) as ServantClass;
     if (isAdvantaged(servantClass, castEnemyClass, classTriangleAdvantages)) return 2.0;
     if (isAdvantaged(castEnemyClass, servantClass, classTriangleAdvantages)) return 0.5;
     return 1.0
@@ -316,6 +319,11 @@ const classTriangleAdvantages: Map<ServantClass, ServantClass> = new Map([
     [ServantClass.AlterEgo, ServantClass.Foreigner],
     [ServantClass.Foreigner, ServantClass.Pretender],
     [ServantClass.Pretender, ServantClass.AlterEgo],
+]);
+
+const specialClassTriangleAdvantages: Map<string, number> = new Map([
+    ["Sessyoin Kiara|" + ServantClass.Ruler, 1.5],
+    ["Kama|" + ServantClass.AlterEgo, 2],
 ]);
 
 const npGainByCard: Map<CardType, number> = new Map([

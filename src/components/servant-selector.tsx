@@ -43,7 +43,7 @@ function ServantSelector(props: ServantSelectorProps) {
                 } />
             <Popper placement="bottom-end" {...bindPopper(popupState)}>
                 <ClickAwayListener onClickAway={() => popupState.setOpen(false)}>
-                    <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
+                    <Card sx={{ border: 1, borderColor: theme.palette.divider }}>
                         <CardContent>
                             <Stack justifyContent="space-evenly" spacing={2}>
                                 <Autocomplete

@@ -164,8 +164,8 @@ function getDummyServant(name: string): ServantData {
         ServantAttribute.Beast,
         [],
         0,
-        "images/servants/select.png",//TODO: find good icons
-        "",//TODO: find good cards
+        "images/servants/select.png",
+        "",
         "",
         [],
         [],
@@ -261,10 +261,10 @@ async function toBuff(func: any): Promise<Buff[]> {
             }
             return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, func.buffs[0].tvals.map(tval => tval.name)) ];
         case "upDamageIndividualityActiveonly":
-            //hack
+            //hack (this is arjuna alter's power mod, which is just easiest to model as "always". user has ways to work around it)
             return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, [Trait.Always]) ];
         case "buffRate":
-            //TODO: this is coded as "increase effects of this specific buff type" rather than against NP damage specifically
+            //this is coded as "increase effects of this specific buff type" rather than against NP damage specifically, but hopefully they just don't add it for another buff type
             return [ new Buff(self, team, BuffType.NpBoost, getBuffValue(func), getBuffTurns(func)) ];
         case "upChagetd":
             return [ new Buff(self, team, BuffType.Overcharge, getBuffValue(func, 1), getBuffTurns(func, true)) ];
@@ -280,7 +280,7 @@ async function toBuff(func: any): Promise<Buff[]> {
         case "upDropnp":
             return [ new Buff(self, team, BuffType.NpGain, getBuffValue(func), getBuffTurns(func)) ];
         case "overwriteClassRelation":
-            //TODO: I had no idea kiara had this, wtf. well we needed to do this for kama anyway
+            //I hardcoded this for kiara and kama (can't turn kama's off but there's not really a use for that). if they add more servants that screw with the class triangle we can handle it then
         case "upCommandatk": //TODO: handle this if it comes up for any new servants
         case "avoidState":
         case "regainStar":
@@ -344,7 +344,7 @@ async function toBuff(func: any): Promise<Buff[]> {
         case "reduceHp":
         case "deadFunction":
         case "addIndividuality"://TODO: what is this
-        case "fieldIndividuality"://TODO: do you want to go so far as to know who can change field type to proc their own buffs?
+        case "fieldIndividuality"://do you want to go so far as to know who can change field type to proc their own buffs? nope
         case "reflectionFunction":
             return [];
         default:
@@ -359,14 +359,18 @@ async function lookUpSkill(id: number): Promise<any> {
 
 function debuffToBuff(func: any): Buff[] {
     //model debuffs as single turn team buffs for now
-    //this winds up being optimistic about single target buffs, but 90% of the time you are just trying to clear the biggest enemy in the wave anywayh
-    //TODO: need to fix this sooner rather than later so that it shows up correctly when looking at specific nodes
+    //this winds up being optimistic about single target buffs, but 90% of the time you are just trying to clear the biggest enemy in the wave anyway
+    //I have one idea of a UI for this which doesn't just add a debuff control to the enemies tab ("debuff" tab which generates a trait you can apply to enemies)
+    //...and some variations on that idea...
+    //  (e.g. drag and drop the debuff onto the enemy you want to apply it to, instead of generating a trait)
+    //  (e.g. put the debuff control below the buff matrix, which selects an enemy by default but can be changed with a dropdown)
+    //...but there's nothing worth implementing. damage and refund are broken down per enemy already, so nothing I can add would be substantially easier than just "turn the buff on then off while using your eyes and brain"
     switch (func.buffs[0].type) {
         case "downDefence":
             return [ new Buff(true, true, BuffType.AttackUp, getBuffValue(func), 1) ];
         case "downDefencecommandall":
             return [ new Buff(true, true, BuffType.CardTypeUp, getBuffValue(func), 1, getCardType(func.buffs[0].ckOpIndv[0].name)) ];
-        case "addIndividuality"://TODO: actually matters for romulus. fix then use the same approach for summer kama (maybe not paris)
+        case "addIndividuality":
             return [ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, enums.Trait[func.svals[0].Value]) ];
         case "donotAct":
             const relevant = func.buffs[0].vals.map(val => val.name).filter(name => ["buffCharm", "buffMentalEffect"].includes(name));
@@ -379,7 +383,7 @@ function debuffToBuff(func: any): Buff[] {
         case "donotNoble":
         case "avoidState":
         case "invincible":
-        case "reduceHp"://TODO: curse/poison/burn
+        case "reduceHp"://DON'T implement curse/poison/burn
         case "upFuncHpReduce":
         case "downGainHp":
         case "downCriticalpoint":
@@ -415,7 +419,7 @@ function getBuffTurns(func: any, useTurns?: true | undefined): number {
     let count = func.svals[func.svals.length - 1].Count;
     if (turns < 0) return count;
     if (useTurns || count < 0) return turns;
-    return Math.min(turns, count);//TODO: edge case of 1 time, 3 turns. only affects team buffs (morgan) and NP buffs after damage (morgan)
+    return Math.min(turns, count);
 }
 
 function getCardType(name: string): CardType {

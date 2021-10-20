@@ -86,7 +86,7 @@ function NodeBuilder(props: BaseProps<EnemyNode>) {
             <Popover {...bindPopover(popupState)}
                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 transformOrigin={{ vertical: "top", horizontal: "center" }}>
-                <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
+                <Card sx={{ border: 1, borderColor: theme.palette.divider }}>
                     <CardContent>
                         <SmartSelect className="autocompleteWidthFix" provider={db.servantData} filter={s => s.isSpecified() && !s.isPlaceholder()}
                             label="Select Enemy Servant" autoFocus

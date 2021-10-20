@@ -166,7 +166,7 @@ interface SmartSelectProps<T extends { name: string }> {
     className?: string;
 }
 
-//TODO: there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
+//there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
 export function SmartSelect<T extends { name: string }>(props: SmartSelectProps<T>) {
     return (
         <Autocomplete
@@ -241,7 +241,7 @@ export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & 
             <Popover {...bindPopover(popupState)}
                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 transformOrigin={{ vertical: "top", horizontal: "center" }}>
-                <Card sx={{ border: 1, borderColor: theme.palette.divider /* TODO: use same rule as input outlines */ }}>
+                <Card sx={{ border: 1, borderColor: theme.palette.divider }}>
                     <CardContent>
                         <Stack justifyContent="space-evenly" spacing={2} direction="row">
                             <TextField autoFocus label={props.saveLabel} value={state.newName} onChange={e => setState({ newName: e.target.value })}
