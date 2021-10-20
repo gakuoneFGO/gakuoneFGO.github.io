@@ -130,7 +130,9 @@ class Calculator {
             triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute),
             extraDamage = np.extraDmgStacks ?
                 1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[oc] :
-                isTriggerActive(enemyTraits, np.extraTrigger) ? np.extraDamage[oc] : 1.0;
+                //eresh is the only servant to get a supereffective modifier on NP upgrade I think? so hardcoding this is the simplest fix for now
+                //eventually it may be worth properly modeling NP upgrades since that fixes both this and autofilled buffs
+                isTriggerActive(enemyTraits, np.extraTrigger) && (servant.data.name != "Ereshkigal" || servant.config.isNpUpgraded) ? np.extraDamage[oc] : 1.0;
         return Range.ofDamage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage, combinedBuffs.flatDamage);
     }
 
