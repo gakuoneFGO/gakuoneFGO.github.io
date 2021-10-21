@@ -1,5 +1,6 @@
 import { SvgIcon } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import React from "react";
 import { EnemyClass } from "../Enemy";
 import { ServantClass } from "../Servant";
 
@@ -10,11 +11,11 @@ const useStyles = makeStyles({
     }
 });
 
-export function ClassIcon(props: { type: EnemyClass | ServantClass, title?: string, style?: any }) {
+export const ClassIcon = React.memo(function(props: { type: EnemyClass | ServantClass, title?: string, style?: any }) {
     return Object.values(ServantClass).includes(props.type as string as ServantClass) ?
         <img {...props} src={`images/classes/${props.type}.png`} /> :
         <img {...props} src="images/classes/unknown.png" />;
-}
+});
 
 // const icons = new Map([
 //     ["saber", (props: any) => <Saber {...props} />],

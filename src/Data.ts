@@ -2,6 +2,7 @@ import { ServantConfig, Servant, ServantData } from "./Servant";
 import { Template, BuffMatrix, EnemyNode } from "./Strat";
 import { ClassConstructor, deserializeArray, Type } from 'class-transformer';
 import { CraftEssence } from "./Damage";
+import update from "immutability-helper";
 
 class DataProvider {
     constructor(
@@ -124,6 +125,14 @@ export class Persistor<T extends Named> {
 
     isCustom(item: T) {
         return this.isAllCustom || item.name.startsWith("*");
+    }
+
+    getCustomName(item: T) {
+        return this.isCustom(item) ? item.name.substring(2) : "";
+    }
+
+    asCustom(item: T, name: string): T {
+        return update(item as Named, { name: { $set: name } }) as T;
     }
 }
 

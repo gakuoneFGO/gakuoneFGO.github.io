@@ -8,8 +8,9 @@ import { CardType, Servant } from "../Servant";
 import { Close, Info } from "@mui/icons-material";
 import { useCallback, useState } from "react";
 import { Spec } from "immutability-helper";
+import React from "react";
 
-export function TemplateBuilder(props: Props<Template> & { npCards: Props<CardType[]> }) {
+export const TemplateBuilder = React.memo(function(props: Props<Template> & { npCards: Props<CardType[]> }) {
     const [open, setOpen] = useState(false);
 
     const onClearerChanged = useHandler3((command: { turn: number, slot: number }, _: any, value: boolean) =>
@@ -90,6 +91,6 @@ export function TemplateBuilder(props: Props<Template> & { npCards: Props<CardTy
             </Grid>
         </Grid>
     );
-}
+});
 
 const CommandCheckBox = Commandable(Checkbox, "onChange");

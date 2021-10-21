@@ -8,25 +8,12 @@ import { useState, useCallback } from "react";
 import { Trait } from "../Enemy";
 import { bindPopover, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
 
-// export type BaseProps<V> = {
-//     value: V;
-//     onChange: (value: V) => void;
-// }
-
 export type Changeable<V> = { onChange?: (value: V) => void }
 export type Settable<V> = Changeable<{ $set: V }>;
 export type Updateable<V> = Changeable<Spec<V>>;
 export type Valued<V> = { value: V };
 export type Props<V> = Valued<V> & Updateable<V>;
 export type AtomicProps<V> = Valued<V> & Settable<V>;
-
-// export function handleChange<V>(spec: Spec<Readonly<V>, never>, props: BaseProps<V>) {
-//     //console.log(spec);
-//     if (props.onChange) {
-//         let newValue = update(props.value, spec);
-//         props.onChange(newValue);
-//     };
-// }
 
 //variadic type parameters are inadequate. maybe there is some way to combine these using Parameters<F> but I haven't had any luck getting that to do anything useful
 export function useHandler0<P>(handle: () => P, props: Changeable<P>, ...otherDependencies: any): () => void {
@@ -71,7 +58,7 @@ interface NumberInputState {
     displayValue: string;
 }
 
-export function PercentInput(props: NumberInputProps) {
+export const PercentInput = React.memo(function(props: NumberInputProps) {
     const getDisplayValue = (value: number): NumberInputState => {
         if (value == 0) return { value: value, displayValue: "" };
         let displayValue = (value * 100).toFixed(2).replace(/(0|\.00)$/, "");
@@ -104,9 +91,9 @@ export function PercentInput(props: NumberInputProps) {
             }}
             onChange={useHandler(e => onChange(e.target.value), props)} />
     );
-}
+});
 
-export function IntegerInput(props: NumberInputProps) {
+export const IntegerInput = React.memo(function(props: NumberInputProps) {
     const getDisplayValue = (value: number): NumberInputState => {
         return { value: value, displayValue: value == 0 ? "" : value.toString() };
     }
@@ -133,7 +120,7 @@ export function IntegerInput(props: NumberInputProps) {
             placeholder="0"
             onChange={useHandler(e => onChange(e.target.value), props)} />
     );
-}
+});
 
 export interface CommandProps<C> {
     command: C;
@@ -142,17 +129,17 @@ export interface CommandProps<C> {
 
 //hacks the react runtime to assign arbitrary data to a component which can be accessed from a callback without having to inject that data into the actual DOM
 //I pretty much just use this to insert array indices into callback argument lists so each iterated node uses the same callback identity
-export const Commandable = <C, Component extends React.ComponentType<any>>(
+export const Commandable = <Component extends React.ComponentType<any>>(
     component: Component,
     event: keyof React.ComponentProps<Component>
 ) => {
-    return function c<C>(props: CommandProps<C> & React.ComponentProps<Component>) {
+    return React.memo(function<C>(props: CommandProps<C> & React.ComponentProps<Component>) {
         const callback = useCallback((...args) => props.onCommand(props.command, ...args), [props.command, props.onCommand]);
         //TODO: unset the extra args since Button is complaining about them
         //const spec: Spec<CommandProps<C> & React.ComponentProps<Component>, never> = { $unset: ["command", "onCommand"] };
         //const cleansed = update(props, spec);
         return React.createElement(component, { ...props, command: undefined, onCommand: undefined, [event]:  callback}, props.children);
-    }
+    }) as <C>(props: CommandProps<C> & React.ComponentProps<Component>) => JSX.Element;
 }
 
 export const CommandIconButton = Commandable(IconButton, "onClick");
@@ -166,7 +153,7 @@ export interface ArrayBuilderProps<T> {
     customButtons?: (item: T, index: number) => JSX.Element;
 }
 
-export function ArrayBuilder<T>(props: ArrayBuilderProps<T> & Props<T[]>) {
+export const ArrayBuilder: <T>(props: ArrayBuilderProps<T> & Props<T[]>) => JSX.Element = React.memo(function<T>(props: ArrayBuilderProps<T> & Props<T[]>) {
     const createOne = useHandler(_ => ({ $push: [ props.createOne() ] }), props);
     const copy = useHandler((index: number) => ({ $apply: (items: T[]) => items.concat([items[index]])}), props);
     const remove = useHandler((index: number) => ({ $splice: [[ index, 1 ] as [number, number]] }), props);
@@ -193,9 +180,11 @@ export function ArrayBuilder<T>(props: ArrayBuilderProps<T> & Props<T[]>) {
             )}
         </React.Fragment>
     );
-}
+}) as any;
 
-type SmartSelectProps<T extends { name: string }> = Settable<T> & {
+export const CommandArrayBuilder: <T, C>(props: ArrayBuilderProps<T> & Props<T[]> & CommandProps<C>) => JSX.Element = Commandable(ArrayBuilder, "onChange") as (props: any) => JSX.Element;
+
+type SmartSelectProps<T extends Named> = Settable<T> & {
     value?: T;
     provider: Persistor<T>;
     label: string;
@@ -206,7 +195,7 @@ type SmartSelectProps<T extends { name: string }> = Settable<T> & {
 }
 
 //there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
-export function SmartSelect<T extends { name: string }>(props: SmartSelectProps<T>) {
+export const SmartSelect: <T extends Named>(props: SmartSelectProps<T>) => JSX.Element = React.memo(function<T extends Named>(props: SmartSelectProps<T>) {
     return (
         <Autocomplete
             options={props.filter ? props.provider.getAll().filter(props.filter) : props.provider.getAll()}
@@ -224,30 +213,36 @@ export function SmartSelect<T extends { name: string }>(props: SmartSelectProps<
             forcePopupIcon={!props.endAdornment}
             className={props.className} />
     );
-}
+}) as any;
 
-export interface SaveableSelectProps<T extends { name: string }> {
+export type SaveableSelectProps<T extends Named> = {
     provider: Persistor<T>;
     label: string;
     saveLabel: string;
     filter?: (t: T) => boolean;
     customButtons?: JSX.Element;
-}
+} & AtomicProps<T>;
 
-export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & AtomicProps<T>) {
+export const SaveableSelect: <T extends Named>(props: SaveableSelectProps<T>) => JSX.Element =
+React.memo(function<T extends Named>(props: SaveableSelectProps<T>) {
     const theme = useTheme();
     const popupState = usePopupState({ variant: "popover", popupId: "SaveableSelect" });
     //TODO: make this populate correctly again
-    const [ newName, setNewName ] = useState(props.provider.isCustom(props.value) ? props.value.name.substring(2) : "");
+    const [ newName, setNewName ] = useState(props.provider.getCustomName(props.value));
+
+    const onSelect = useHandler((x: { $set: T }) => {
+        setNewName(props.provider.getCustomName(x.$set));
+        return x;
+    }, props);
 
     const doSave = useCallback(() => {
-        if (newName){
-            const newItem = update(props.value as Named, { name: { $set: "* " + newName } }) as T;
+        if (newName) {
+            const newItem = props.provider.asCustom(props.value, newName);
             props.provider.put(newItem);
             if (props.onChange) props.onChange({ $set: newItem });
             popupState.setOpen(false);
         } else console.log(JSON.stringify(props.value));
-    }, [props.onChange, props.value]);
+    }, [props.onChange, props.value, newName]);
 
     const doDelete = useHandler(_ => {
         props.provider.delete(props.value);
@@ -256,11 +251,11 @@ export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & 
             allItems.find(item => item.name.localeCompare(props.value.name) > 0) ??
             allItems[allItems.length - 1];
         return { $set: newSelected };
-    }, props);
+    }, props, props.value);
 
     return (
         <React.Fragment>
-            <SmartSelect {...props} onChange={props.onChange}
+            <SmartSelect {...props} onChange={onSelect}
                 endAdornment={
                     <InputAdornment position="end">
                         {props.customButtons ?? null}
@@ -293,9 +288,9 @@ export function SaveableSelect<T extends Named>(props: SaveableSelectProps<T> & 
             </Popover>
         </React.Fragment>
     );
-}
+}) as any;
 
-export function TraitSelect(props: AtomicProps<Trait[]> & { label?: string }) {
+export const TraitSelect = React.memo(function(props: AtomicProps<Trait[]> & { label?: string }) {
     return (
         <Autocomplete multiple disableClearable={false}
             options={Object.values(Trait)}
@@ -308,7 +303,7 @@ export function TraitSelect(props: AtomicProps<Trait[]> & { label?: string }) {
             renderInput={params => <TextField {...params} label={props.label} />}
             renderTags={(traits, getTagProps) => traits.map((trait, index) => <Chip label={trait} {...getTagProps({ index })} title={trait} />)} />
     );
-}
+});
 
 export const CommandIntInput = Commandable(IntegerInput, "onChange");
 export const CommandPercentInput = Commandable(PercentInput, "onChange");

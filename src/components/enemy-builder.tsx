@@ -1,15 +1,16 @@
-import { Box, TextField, Autocomplete, Stack, Grid, Typography, IconButton, Popper, Popover, Card, CardContent, useTheme, Switch, FormGroup, FormControlLabel, Tooltip } from "@mui/material";
-import { ArrayBuilder, Props, Commandable, IntegerInput, SaveableSelect, SmartSelect, TraitSelect, useHandler, useHandler2, wasteHandler, CommandProps, ArrayBuilderProps } from "./common";
+import { Box, TextField, Autocomplete, Stack, Grid, Typography, IconButton, Popover, Card, CardContent, useTheme, Switch, FormControlLabel, Tooltip } from "@mui/material";
+import { Props, Commandable, IntegerInput, SaveableSelect, SmartSelect, TraitSelect, useHandler, useHandler2, wasteHandler, CommandArrayBuilder } from "./common";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
 import { EnemyNode } from "../Strat";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { db } from "../Data";
 import { Info, PersonSearch } from "@mui/icons-material";
 import { bindPopover, bindToggle, usePopupState } from "material-ui-popup-state/hooks";
 import { Spec } from "immutability-helper";
 import { ServantData } from "../Servant";
 
-function EnemyBuilder(props: Props<Enemy> & { showHealth?: Boolean }) {
+export const EnemyBuilder = React.memo(function(props: Props<Enemy> & { showHealth?: Boolean }) {
+    console.log(props.onChange);
     return (
         <React.Fragment>
             {props.showHealth ?
@@ -48,16 +49,20 @@ function EnemyBuilder(props: Props<Enemy> & { showHealth?: Boolean }) {
             : null}
         </React.Fragment>
     );
-}
+});
 
 const CommandEnemyBuilder = Commandable(EnemyBuilder, "onChange");
-const CommandArrayBuilder: <T, C>(props: ArrayBuilderProps<T> & Props<T[]> & CommandProps<C>) => JSX.Element = Commandable(ArrayBuilder, "onChange") as (props: any) => JSX.Element;
 
-function NodeBuilder(props: Props<EnemyNode>) {
+export const NodeBuilder = React.memo(function(props: Props<EnemyNode>) {
     const theme = useTheme();
     const popupState = usePopupState({ variant: "popover", popupId: "NodeBuilder" });
     const [ state, setState ] = useState({ waveIndex: 0, enemyIndex: 0 });
     const onChange = useHandler2((wave: number, enemies: Spec<Enemy[]>) => ({ waves: { [wave]: { enemies: enemies } } }), props);
+    const createEnemy = useCallback(() => new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0), []);
+    const renderEnemy = useCallback((enemy: Enemy, index: number, onChange: (arg1: number, arg2: Spec<Enemy, never>) => void) => 
+        <Stack spacing={2}>
+            <CommandEnemyBuilder value={enemy} showHealth command={index} onCommand={onChange} />
+        </Stack>, []);
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -69,13 +74,9 @@ function NodeBuilder(props: Props<EnemyNode>) {
                         <CommandArrayBuilder canCopy value={wave.enemies}
                             command={index}
                             onCommand={onChange}
-                            createOne={() => new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0)}
-                            renderOne={(enemy, index, onChange) => 
-                                <Stack spacing={2}>
-                                    <CommandEnemyBuilder value={enemy} showHealth command={index} onCommand={onChange} />
-                                </Stack>
-                            }
-                            renderHeader={(_, eIndex) => <Typography>W{index + 1} E{eIndex + 1}</Typography>}
+                            createOne={createEnemy}
+                            renderOne={renderEnemy}
+                            renderHeader={renderHeader(index)}
                             addLabel={<Typography>Add Wave {index + 1} Enemy</Typography>}
                             customButtons={(enemy, eIndex) => (
                                 <IconButton {...bindToggle(popupState)} title="Fill from Servant"
@@ -106,8 +107,13 @@ function NodeBuilder(props: Props<EnemyNode>) {
             </Popover>
         </Grid>
     );
+});
+
+const headers: Map<number, (_: any, eIndex: number) => React.ReactNode> = new Map([]);
+function renderHeader(turn: number) {
+    if (!headers.has(turn))
+        headers.set(turn, (_, eIndex) => <Typography>W{turn + 1} E{eIndex + 1}</Typography>);
+    return headers.get(turn)!;
 }
 
 const servantFilter = (s: ServantData) => s.isSpecified() && !s.isPlaceholder();
-
-export { EnemyBuilder, NodeBuilder }

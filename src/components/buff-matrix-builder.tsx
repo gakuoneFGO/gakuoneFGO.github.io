@@ -25,7 +25,7 @@ function isBuffSelected(buffs: BuffMatrix, buffType: keyof BuffSet): boolean {
     return buffs.buffs.some(buffset => buffset[buffType] != 0);
 }
 
-export function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
+export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderProps) {
     const theme = useTheme();
     const [ showAll, setShowAll ] = useState(false);
     const popupState = usePopupState({ variant: "popover", popupId: "BuffMatrixBuilder" });
@@ -235,7 +235,7 @@ export function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
             </TransposedTable>
         </Grid>
     );
-}
+});
 
 function useBuffHandler<T>(key: keyof BuffSet, props: Updateable<BuffMatrix>): (turn: number, spec: Spec<T>) => void {
     return useHandler2((turn: number, spec: Spec<T>) => ({ buffs: { [turn]: { [key]: spec } } }), props);

@@ -7,7 +7,7 @@ import { Trait } from "../Enemy";
 import { db } from "../Data";
 import { Spec } from "immutability-helper";
 
-export function BuffSelector(props: Props<Buff>): JSX.Element {
+export const BuffSelector = React.memo(function(props: Props<Buff>): JSX.Element {
     const handleBuffTypeChanged = useHandler2((_: any, type: BuffType) => {
         const cardType = type == BuffType.CardTypeUp ? CardType.Buster : undefined;
         const trig =
@@ -56,7 +56,7 @@ export function BuffSelector(props: Props<Buff>): JSX.Element {
             : null}
         </React.Fragment>
     );
-}
+});
 
 const CommandBuffSelector = Commandable(BuffSelector, "onChange");
 
@@ -64,7 +64,7 @@ interface CEBuilderProps extends Props<CraftEssence> {
     label: string;
 }
 
-export function CEBuilder(props: CEBuilderProps) {
+export const CEBuilder = React.memo(function(props: CEBuilderProps) {
     return (
         <Stack spacing={2}>
             <Card>
@@ -92,4 +92,4 @@ export function CEBuilder(props: CEBuilderProps) {
                 addLabel={<Typography>Add Buff</Typography>} />
         </Stack>
     );
-}
+});

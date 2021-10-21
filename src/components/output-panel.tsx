@@ -51,7 +51,7 @@ export const OutputPanel = React.memo((props: OutputPanelProps) => {
 
 const THRESHOLD = 25000;
 
-export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat, tooltipPlacement: "top" | "bottom" | "left" | "right" }) {
+export const NodeOutputPanel = React.memo(function(props: { node: EnemyNode, strat: Strat, tooltipPlacement: "top" | "bottom" | "left" | "right" }) {
     const theme = useTheme();
     const result = props.strat.run(props.node);
     const nps = props.strat.getRealClearers().map((clearer, turn) => clearer[0].data.getNP(props.strat.npCards[turn]));
@@ -114,7 +114,7 @@ export function NodeOutputPanel(props: { node: EnemyNode, strat: Strat, tooltipP
             </Box>
         </React.Fragment>
     );
-}
+});
 
 function EnemyTooltip(props: { result: NpResult }) {
     return (
@@ -132,14 +132,14 @@ function EnemyTooltip(props: { result: NpResult }) {
     );
 }
 
-function IntFormat(props: {value: number}) {
+const IntFormat = React.memo(function(props: {value: number}) {
     return (
         <NumberFormat displayType="text" thousandSeparator="," decimalScale={0} value={props.value} />
     )
-}
+});
 
-function PercentFormat(props: {value: number}) {
+const PercentFormat = React.memo(function(props: {value: number}) {
     return (
         <NumberFormat displayType="text" decimalScale={1} fixedDecimalScale suffix="%" value={props.value} />
     );
-}
+});

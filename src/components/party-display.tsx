@@ -10,7 +10,7 @@ interface PartyDisplayProps {
     onClick: (slot: number) => void;
 }
 
-function PartyDisplay(props: PartyDisplayProps) {
+export const PartyDisplay = React.memo(function (props: PartyDisplayProps) {
     return (
         <DndProvider backend={HTML5Backend}>
             <ImageList cols={6}>
@@ -18,7 +18,7 @@ function PartyDisplay(props: PartyDisplayProps) {
             </ImageList>
         </DndProvider>
     );
-}
+});
 
 interface PartyMemberProps {
     servant: ServantData;
@@ -29,7 +29,7 @@ interface PartyMemberProps {
 
 type ItemProps = { slot: number, servant: ServantData };
 
-function PartyMember(props: PartyMemberProps) {
+const PartyMember = React.memo(function(props: PartyMemberProps) {
     const [, drag] = useDrag(() => ({
         type: "partyMember",
         accept: "partyMember",
@@ -58,6 +58,4 @@ function PartyMember(props: PartyMemberProps) {
             <img alt={props.servant.name} src={props.servant.iconUrl} onClick={useCallback(() => props.onClick(props.slot), [props.slot, props.onClick])} />
         </ImageListItem>
     );
-}
-
-export { PartyDisplay }
+});

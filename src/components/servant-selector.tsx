@@ -12,7 +12,7 @@ interface ServantSelectorProps extends Props<Servant> {
     allowUnspecified: boolean;
 }
 
-export function ServantSelector(props: ServantSelectorProps) {
+export const ServantSelector = React.memo(function(props: ServantSelectorProps) {
     const popupState = usePopupState({ variant: "popper", popupId: "ServantSelector" });
     const theme = useTheme();
 
@@ -94,7 +94,7 @@ export function ServantSelector(props: ServantSelectorProps) {
             </Popper>
         </React.Fragment>
     );
-}
+});
 
 const renderLevelInput = (params: any) => <TextField {...params} label="Level" />;
 const renderAppendInput = (params: any) => <TextField {...params} label="Append 3 Level" />;
