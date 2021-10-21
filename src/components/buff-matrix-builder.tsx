@@ -3,19 +3,19 @@ import { Clear, Replay, Visibility, VisibilityOff, Warning, Menu, KeyboardArrowD
 import { Tooltip, Box, ButtonGroup, Button, Typography, capitalize, Grid, GridSize, Divider, MenuItem } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Spec } from "immutability-helper";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { BuffSet } from "../Damage";
 import { BuffType, CardType, Servant, PowerMod } from "../Servant";
 import { BuffMatrix } from "../Strat";
-import { BaseProps, handleChange, IntegerInput, PercentInput, TraitSelect } from "./common";
+import { Props, useHandler, useHandler2, Updateable, CommandPercentInput, CommandTraitSelect, CommandIntInput, Commandable, memoized } from "./common";
 import { TransposedTable } from "./transposed-table"
 import { usePopupState, bindMenu, bindHover } from "material-ui-popup-state/hooks";
 import HoverMenu from 'material-ui-popup-state/HoverMenu'
 
-interface BuffMatrixBuilderProps extends BaseProps<BuffMatrix> {
+interface BuffMatrixBuilderProps extends Props<BuffMatrix> {
         readonly servants: Servant[];
         readonly clearers: Servant[];
-        readonly npCards: BaseProps<CardType[]>;
+        readonly npCards: Props<CardType[]>;
         readonly doRefresh: () => void;
         readonly maxPowerMods?: number;
         readonly warnOtherNp?: true | undefined;
@@ -25,24 +25,22 @@ function isBuffSelected(buffs: BuffMatrix, buffType: keyof BuffSet): boolean {
     return buffs.buffs.some(buffset => buffset[buffType] != 0);
 }
 
-function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
+export function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     const theme = useTheme();
-    const [ state, setState ] = useState({ showAll: false });
+    const [ showAll, setShowAll ] = useState(false);
     const popupState = usePopupState({ variant: "popover", popupId: "BuffMatrixBuilder" });
-
-    const handlePowerModChange = (spec: Spec<PowerMod, never>, modIndex: number, buffIndex: number) => {
-        handleChange({ buffs : { [buffIndex]: { powerMods: { [modIndex]: spec } } } }, props);
-    };
     
     const maxPowerMods = props.maxPowerMods ?? 3;
-    const showNpBoost = state.showAll || isBuffSelected(props.value, "npBoost") || props.servants.some(s => s.data.hasBuffInKit(BuffType.NpBoost));
-    const showOc = state.showAll || isBuffSelected(props.value, "overcharge") || props.servants.some(s => s.data.hasBuffInKit(BuffType.Overcharge));
-    const showNpGain = state.showAll || isBuffSelected(props.value, "npGain") || (props.servants.some(s => s.data.hasBuffInKit(BuffType.NpGain)) && props.npCards.value.some(card => card != CardType.Buster));
+    const showNpBoost = showAll || isBuffSelected(props.value, "npBoost") || props.servants.some(s => s.data.hasBuffInKit(BuffType.NpBoost));
+    const showOc = showAll || isBuffSelected(props.value, "overcharge") || props.servants.some(s => s.data.hasBuffInKit(BuffType.Overcharge));
+    const showNpGain = showAll || isBuffSelected(props.value, "npGain") || (props.servants.some(s => s.data.hasBuffInKit(BuffType.NpGain)) && props.npCards.value.some(card => card != CardType.Buster));
 
-    const showCardType = state.showAll || props.servants.some(s => s.data.nps.length > 1);
+    const showCardType = showAll || props.servants.some(s => s.data.nps.length > 1);
     const validCardTypes = props.clearers.map(s => s.data.nps.map(np => np.cardType));
 
     const lastCardType = props.npCards.value[props.npCards.value.length - 1];
+
+    const onCardTypeChanged = useHandler(({ turn, cardType }: { turn: number, cardType: CardType }) => ({ [turn]: { $set: cardType } }), props.npCards);
 
     //this is just a component without the nice syntax, but ButtonGroup doesn't work when I actually make it a component
     const makeButton = (cardType: CardType, color: string, turn: number) => (
@@ -51,11 +49,12 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
             style={{backgroundColor: color}}>
             <Typography variant="button">{cardType[0]}</Typography>
         </Button> :
-        <Button variant={"outlined"} title={capitalize(cardType)}
+        <CommandButton variant={"outlined"} title={capitalize(cardType)}
             disabled={!props.servants.includes(props.clearers[turn]) || !validCardTypes[turn].includes(cardType)}
-            onClick={_ => handleChange({ [turn]: { $set: cardType } }, props.npCards)}>
+            command={memoized({ turn, cardType })}
+            onCommand={onCardTypeChanged}>
             <Typography variant="button">{cardType[0]}</Typography>
-        </Button>
+        </CommandButton>
     );
 
     const gridCellProps = {
@@ -69,6 +68,19 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+    };
+
+    const handlers = {
+        attackUp: useBuffHandler("attackUp", props),
+        cardUp: useBuffHandler("cardUp", props),
+        npUp: useBuffHandler("npUp", props),
+        npGain: useBuffHandler("npGain", props),
+        npBoost: useBuffHandler("npBoost", props),
+        overcharge: useBuffHandler("overcharge", props),
+        flatDamage: useBuffHandler("flatDamage", props),
+        applyTraits: useBuffHandler("applyTraits", props),
+        powerModValue: usePowerModHandler("modifier", props),
+        powerModTrigger: usePowerModHandler("trigger", props),
     };
 
     return (
@@ -88,10 +100,10 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                         <HoverMenu {...bindMenu(popupState)}
                             anchorOrigin={{horizontal: "center", vertical: "bottom"}}
                             transformOrigin={{horizontal: "center", vertical:"top"}}>
-                            <MenuItem title={state.showAll ? "Hide Extra Buffs" : "Show All Buffs" } onClick={() => setState({ showAll: !state.showAll })}>
-                                {state.showAll ? <VisibilityOff /> : < Visibility />}
+                            <MenuItem title={showAll ? "Hide Extra Buffs" : "Show All Buffs" } onClick={useCallback(() => setShowAll(s => !s), [])}>
+                                {showAll ? <VisibilityOff /> : < Visibility />}
                             </MenuItem>
-                            <MenuItem title="Clear All" onClick={() => props.onChange(BuffMatrix.create(props.value.buffs.length))}>
+                            <MenuItem title="Clear All" onClick={useHandler((_: any) => ({ $set: BuffMatrix.create(props.value.buffs.length) }), props)}>
                                 <Clear />
                             </MenuItem>
                             <MenuItem title="Reset" onClick={props.doRefresh}>
@@ -170,11 +182,11 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                         </Tooltip>
                     </Grid>
                 </Box>
-                {props.value.buffs.map((buffSet: BuffSet, index: number) => (
-                    <Box key={index}>
+                {props.value.buffs.map((buffSet: BuffSet, turn: number) => (
+                    <Box key={turn}>
                         <Grid {...gridCellProps} display="flex" alignItems="center" gap={theme.spacing(1)}>
-                            <Typography>T{index + 1}</Typography>
-                            {props.warnOtherNp && !props.servants.includes(props.clearers[index]) ?
+                            <Typography>T{turn + 1}</Typography>
+                            {props.warnOtherNp && !props.servants.includes(props.clearers[turn]) ?
                                 <Tooltip title="Wave is cleared by another servant. Only put team buffs provided by this servant in this column!">
                                     <Warning color="warning" />
                                 </Tooltip>
@@ -183,37 +195,40 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
                         {showCardType ?
                             <Grid {...gridCellProps}>
                                 <ButtonGroup>
-                                    {makeButton(CardType.Buster, theme.palette.buster.main, index)}
-                                    {makeButton(CardType.Arts, theme.palette.arts.main, index)}
-                                    {makeButton(CardType.Quick, theme.palette.quick.main, index)}
+                                    {makeButton(CardType.Buster, theme.palette.buster.main, turn)}
+                                    {makeButton(CardType.Arts, theme.palette.arts.main, turn)}
+                                    {makeButton(CardType.Quick, theme.palette.quick.main, turn)}
                                 </ButtonGroup>
                             </Grid>
                         : null}
-                        <Grid {...gridCellProps}><PercentInput label="Attack Up" value={buffSet.attackUp} onChange={v => { handleChange({ buffs: { [index]: { attackUp: { $set: v } } } }, props); }} /></Grid>
-                        <Grid {...gridCellProps}><PercentInput label="Card Type Up" value={buffSet.cardUp} onChange={ v => { handleChange({ buffs: { [index]: { cardUp: { $set: v } } } }, props); } } /></Grid>
-                        <Grid {...gridCellProps}><PercentInput label="NP Damage Up" value={buffSet.npUp} onChange={ v => { handleChange({ buffs: { [index]: { npUp: { $set: v } } } }, props); }} /></Grid>
-                        {showNpGain ? <Grid {...gridCellProps}><PercentInput label="NP Gain Up" value={buffSet.npGain} onChange={ v => { handleChange({ buffs : { [index]: { npGain: { $set: v } } } }, props); }} /></Grid> : null}
-                        {showNpBoost ? <Grid {...gridCellProps}><PercentInput label="NP Up Boost" value={buffSet.npBoost} onChange={ v => { handleChange({ buffs : { [index]: { npBoost: { $set: v } } } }, props); }} /></Grid> : null}
-                        {showOc ? <Grid {...gridCellProps}><PercentInput label="Overcharge" value={buffSet.overcharge} onChange={ v => { handleChange({ buffs : { [index]: { overcharge: { $set: v } } } }, props); }} /></Grid> : null}
-                        {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [
-                            <Grid {...gridCellProps} key={pIndex * 2}>
-                                <PercentInput label={`Power Mod ${pIndex + 1}`}
-                                    value={buffSet.powerMods[pIndex].modifier}
-                                    onChange={ v => { handlePowerModChange({ modifier: {$set: v} }, pIndex, index); }} />
+                        <Grid {...gridCellProps}><CommandPercentInput label="Attack Up" value={buffSet.attackUp} command={turn} onCommand={handlers.attackUp} /></Grid>
+                        <Grid {...gridCellProps}><CommandPercentInput label="Card Type Up" value={buffSet.cardUp} command={turn} onCommand={handlers.cardUp} /></Grid>
+                        <Grid {...gridCellProps}><CommandPercentInput label="NP Damage Up" value={buffSet.npUp} command={turn} onCommand={handlers.npUp} /></Grid>
+                        {showNpGain ? <Grid {...gridCellProps}><CommandPercentInput label="NP Gain Up" value={buffSet.npGain} command={turn} onCommand={handlers.npGain} /></Grid> : null}
+                        {showNpBoost ? <Grid {...gridCellProps}><CommandPercentInput label="NP Up Boost" value={buffSet.npBoost} command={turn} onCommand={handlers.npBoost} /></Grid> : null}
+                        {showOc ? <Grid {...gridCellProps}><CommandPercentInput label="Overcharge" value={buffSet.overcharge} command={turn} onCommand={handlers.overcharge} /></Grid> : null}
+                        {Array.from(new Array(maxPowerMods)).flatMap((_, index) => [
+                            <Grid {...gridCellProps} key={index * 2}>
+                                <CommandPercentInput label={`Power Mod ${index + 1}`}
+                                    value={buffSet.powerMods[index].modifier}
+                                    command={memoized({ turn, index })}
+                                    onCommand={handlers.powerModValue} />
                             </Grid>,
-                            <Grid {...gridCellProps} key={pIndex * 2 + 1}>
-                                <TraitSelect label={`Trigger ${pIndex + 1}`}
-                                    value={buffSet.powerMods[pIndex].trigger}
-                                    onChange={v => handlePowerModChange({ trigger: {$set: v } }, pIndex, index)} />
+                            <Grid {...gridCellProps} key={index * 2 + 1}>
+                                <CommandTraitSelect label={`Trigger ${index + 1}`}
+                                    value={buffSet.powerMods[index].trigger}
+                                    command={memoized({ turn, index })}
+                                    onCommand={handlers.powerModTrigger} />
                             </Grid>
                         ])}
                         <Grid {...gridCellProps}>
-                            <IntegerInput label="Damage Plus" value={buffSet.flatDamage} onChange={v => handleChange({ buffs: { [index]: { flatDamage: { $set: v } } } }, props)} />
+                            <CommandIntInput label="Damage Plus" value={buffSet.flatDamage} command={turn} onCommand={handlers.flatDamage} />
                         </Grid>
                         <Grid {...gridCellProps}>
-                            <TraitSelect label="Add Enemy Traits"
+                            <CommandTraitSelect label="Add Enemy Traits"
                                 value={buffSet.applyTraits}
-                                onChange={v => handleChange({ buffs: { [index]: { applyTraits: { $set: v } } } }, props)} />
+                                command={turn}
+                                onCommand={handlers.applyTraits} />
                         </Grid>
                     </Box>
                 ))}
@@ -222,4 +237,15 @@ function BuffMatrixBuilder(props: BuffMatrixBuilderProps) {
     );
 }
 
-export { BuffMatrixBuilder }
+function useBuffHandler<T>(key: keyof BuffSet, props: Updateable<BuffMatrix>): (turn: number, spec: Spec<T>) => void {
+    return useHandler2((turn: number, spec: Spec<T>) => ({ buffs: { [turn]: { [key]: spec } } }), props);
+}
+
+type PowerModCommand = { turn: number, index: number };
+function usePowerModHandler<T>(key: keyof PowerMod, props: Updateable<BuffMatrix>): (command: PowerModCommand, spec: Spec<T>) => void {
+    return useHandler2(({ turn, index }, spec) => ({ buffs : { [turn]: { powerMods: { [index]: { [key]: spec } } } } }), props);
+}
+
+const CommandButton = Commandable(Button, "onClick");
+
+export const CommandBuffMatrixBuilder = Commandable(BuffMatrixBuilder, "onChange");

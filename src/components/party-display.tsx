@@ -1,5 +1,5 @@
 import { Box, ImageList, ImageListItem } from "@mui/material";
-import React, { ReactNode, useRef } from "react";
+import React, { ReactNode, useCallback, useRef } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Servant, ServantData } from "../Servant";
@@ -55,7 +55,7 @@ function PartyMember(props: PartyMemberProps) {
 
     return (
         <ImageListItem cols={1} ref={ref}>
-            <img alt={props.servant.name} src={props.servant.iconUrl} onClick={() => props.onClick(props.slot)} />
+            <img alt={props.servant.name} src={props.servant.iconUrl} onClick={useCallback(() => props.onClick(props.slot), [props.slot, props.onClick])} />
         </ImageListItem>
     );
 }

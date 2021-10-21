@@ -1,19 +1,24 @@
 import { Card, CardContent, CardHeader, TextField, Autocomplete, Grid, Typography, Stack } from "@mui/material";
-import React from "react";
+import React, { useCallback } from "react";
 import { CraftEssence } from "../Damage";
 import { Buff, BuffType, CardType } from "../Servant";
-import { BaseProps, PercentInput, ArrayBuilder, handleChange, TraitSelect, SaveableSelect, IntegerInput } from "./common";
+import { PercentInput, ArrayBuilder, TraitSelect, SaveableSelect, IntegerInput, useHandler, useHandler2, Props, Commandable } from "./common";
 import { Trait } from "../Enemy";
 import { db } from "../Data";
+import { Spec } from "immutability-helper";
 
-function BuffSelector(props: BaseProps<Buff>): JSX.Element {
-    const handleBuffTypeChanged = (type: BuffType) => {
+export function BuffSelector(props: Props<Buff>): JSX.Element {
+    const handleBuffTypeChanged = useHandler2((_: any, type: BuffType) => {
         const cardType = type == BuffType.CardTypeUp ? CardType.Buster : undefined;
         const trig =
             type == BuffType.PowerMod ? [Trait.Always] :
             type == BuffType.AddTrait ? [] : undefined;
-        handleChange({ type: {$set: type }, cardType: { $set: cardType }, trig: { $set: trig } }, props);
-    }
+        return { type: {$set: type }, cardType: { $set: cardType }, trig: { $set: trig } };
+    }, props);
+
+    const onValueChanged = useHandler((spec: Spec<number>) => ({ val: spec }), props);
+    const onCardChanged = useHandler2((_: any, v: CardType) => ({ cardType: { $set: v } }), props);
+    const onTrigChanged = useHandler((spec: Spec<Trait[] | undefined>) => ({ trig: spec }), props);
 
     return (
         <React.Fragment>
@@ -21,17 +26,18 @@ function BuffSelector(props: BaseProps<Buff>): JSX.Element {
                 options={Object.values(BuffType)}
                 value={props.value.type}
                 renderInput={params => <TextField label="Buff Type" {...params} />}
-                onChange={(_, v) => handleBuffTypeChanged(v!)} />
+                disableClearable
+                onChange={handleBuffTypeChanged} />
             {props.value.type != BuffType.AddTrait && props.value.type != BuffType.DamagePlus ?
                 <PercentInput
                     value={props.value.val}
-                    onChange={ v => handleChange({ val: { $set: v } }, props)}
+                    onChange={onValueChanged}
                     label="Buff Value" />
             : null}
             {props.value.type == BuffType.DamagePlus ?
                 <IntegerInput
                     value={props.value.val}
-                    onChange={ v => handleChange({ val: { $set: v } }, props)}
+                    onChange={onValueChanged}
                     label="Buff Value" />
             : null}
             {props.value.type == BuffType.CardTypeUp ?
@@ -39,23 +45,26 @@ function BuffSelector(props: BaseProps<Buff>): JSX.Element {
                     options={Object.values(CardType)}
                     value={props.value.cardType ?? CardType.Extra}
                     renderInput={params => <TextField label="Card Type" {...params} />}
-                    onChange={(_, v) => handleChange({ cardType: {$set: v! } }, props)} />
+                    disableClearable
+                    onChange={onCardChanged} />
             : null}
             {props.value.type == BuffType.PowerMod || props.value.type == BuffType.AddTrait ?
                 <TraitSelect
                     label="Buff Trigger"
                     value={props.value.trig ?? []}
-                    onChange={v => handleChange({ trig: {$set: v } }, props)} />
+                    onChange={onTrigChanged} />
             : null}
         </React.Fragment>
     );
 }
 
-interface CEBuilderProps extends BaseProps<CraftEssence> {
+const CommandBuffSelector = Commandable(BuffSelector, "onChange");
+
+interface CEBuilderProps extends Props<CraftEssence> {
     label: string;
 }
 
-function CEBuilder(props: CEBuilderProps) {
+export function CEBuilder(props: CEBuilderProps) {
     return (
         <Stack spacing={2}>
             <Card>
@@ -67,22 +76,20 @@ function CEBuilder(props: CEBuilderProps) {
                         </Grid>
                         <Grid item xs={3} sm={12} md={3}>
                             <IntegerInput label="Attack Stat" value={props.value.attackStat}
-                                onChange={v => { handleChange({ attackStat: { $set: v } }, props)}} />
+                                onChange={useHandler(v => ({ attackStat: v }), props)} />
                         </Grid>
                     </Grid>
                 </CardContent>
             </Card>
             <ArrayBuilder value={props.value.buffs}
-                onChange={buffs => handleChange({ buffs: { $set: buffs } } , props)}
-                createOne={() => new Buff(true, false, BuffType.NpDmgUp, 0, -1)}
-                renderOne={(buff, props) => (
+                onChange={useHandler(buffs => ({ buffs: buffs }), props)}
+                createOne={useCallback(() => new Buff(true, false, BuffType.NpDmgUp, 0, -1), [])}
+                renderOne={useCallback((buff: Buff, index, onChange: (index: number, spec: Spec<Buff>) => void) => (
                     <Stack direction="column" spacing={2}>
-                        <BuffSelector value={buff} {...props} />
+                        <CommandBuffSelector value={buff} command={index} onCommand={onChange} />
                     </Stack>
-                )}
+                ), [])}
                 addLabel={<Typography>Add Buff</Typography>} />
         </Stack>
     );
 }
-
-export { CEBuilder, BuffSelector }

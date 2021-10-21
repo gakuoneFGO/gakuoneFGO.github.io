@@ -1,32 +1,32 @@
 import { Save, Settings, Warning } from "@mui/icons-material";
 import { Checkbox, TextField, Autocomplete, InputAdornment, IconButton, Popper, FormControlLabel, Stack, Card, CardContent, useTheme, Tooltip, ClickAwayListener } from "@mui/material";
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 import { bindToggle, bindPopper, usePopupState } from 'material-ui-popup-state/hooks';
 import { db } from "../Data";
-import { AppendLevel, Servant } from "../Servant";
-import { BaseProps, handleChange, IntegerInput, SmartSelect } from "./common";
+import { AppendLevel, Servant, ServantData } from "../Servant";
+import { Props, useHandler, IntegerInput, SmartSelect, useHandler2, Commandable } from "./common";
 
-interface ServantSelectorProps extends BaseProps<Servant> {
+interface ServantSelectorProps extends Props<Servant> {
     label?: string;
     allowPlaceholder: boolean;
     allowUnspecified: boolean;
 }
 
-function ServantSelector(props: ServantSelectorProps) {
+export function ServantSelector(props: ServantSelectorProps) {
     const popupState = usePopupState({ variant: "popper", popupId: "ServantSelector" });
     const theme = useTheme();
+
+    const onAppendChanged = useHandler2((_, v: AppendLevel) => ({ config: { appendLevel: { $set: v } } }), props);
+    const filter = useCallback((servant: ServantData) => (props.allowPlaceholder || !servant.isPlaceholder()) && (props.allowUnspecified || servant.isSpecified()),
+        [props.allowPlaceholder, props.allowUnspecified]);
 
     return (
         <React.Fragment>
             <SmartSelect provider={db.servantData}
                 value={props.value.data}
-                onChange={v => props.onChange(db.getServantDefaults(v.name))}
+                onChange={useHandler(v => ({ $set: db.getServantDefaults(v.$set.name) }), props)}
                 label="Select Servant"
-                filter={
-                    props.allowPlaceholder && props.allowUnspecified ?
-                        undefined :
-                        servant => (props.allowPlaceholder || !servant.isPlaceholder()) && (props.allowUnspecified || servant.isSpecified())
-                }
+                filter={ props.allowPlaceholder && props.allowUnspecified ? undefined : filter }
                 endAdornment={
                     <InputAdornment position="end">
                         {props.value.hasInvalidNpUpgrade() ?
@@ -48,25 +48,28 @@ function ServantSelector(props: ServantSelectorProps) {
                             <Stack justifyContent="space-evenly" spacing={2}>
                                 <Autocomplete
                                     options={props.value.data.growthCurve.getValidLevels()}
+                                    disableClearable
                                     value={props.value.config.level.toString()}
                                     renderInput={params => <TextField {...params} label="Level" />}
-                                    onChange={(_, v) => { if (v) handleChange({ config: { level: { $set: Number.parseInt(v) } } }, props)}} />
+                                    onChange={useHandler2((_, v: string) => ({ config: { level: { $set: Number.parseInt(v) } } }), props)} />
                                 <Autocomplete
                                     options={["1", "2", "3", "4", "5"]}
+                                    disableClearable
                                     value={props.value.config.npLevel.toString()}
-                                    renderInput={params => <TextField {...params} label="NP Level" />}
-                                    onChange={(_, v) => { if (v) handleChange({ config: { npLevel: { $set: Number.parseInt(v) } } }, props)}} />
+                                    renderInput={renderLevelInput}
+                                    onChange={useHandler2((_, v: string) => v ? { config: { npLevel: { $set: Number.parseInt(v) } } } : { $apply: a => a }, props)} />
                                 <IntegerInput
                                     label="Fous"
                                     value={props.value.config.attackFou}
-                                    onChange={v => { handleChange({ config: { attackFou: { $set: v } } }, props)}} />
+                                    onChange={useHandler(v => ({ config: { attackFou: v } }), props)} />
                                 {props.value.data.appendTarget.length > 0 ?
                                     <Autocomplete
                                         options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as AppendLevel[]}
+                                        disableClearable
                                         getOptionLabel={o => o.toString()}
                                         value={props.value.config.appendLevel}
-                                        renderInput={params => <TextField {...params} label="Append 3 Level" />}
-                                        onChange={(_, v) => { if (v != null) handleChange({ config: { appendLevel: { $set: v } } }, props)}} />
+                                        renderInput={renderAppendInput}
+                                        onChange={onAppendChanged} />
                                 : null}
                                 <Stack direction="row" justifyContent="space-between">
                                     <FormControlLabel
@@ -74,13 +77,13 @@ function ServantSelector(props: ServantSelectorProps) {
                                         labelPlacement="end"
                                         control={
                                             <Checkbox checked={props.value.config.isNpUpgraded}
-                                            onChange={(e, v) => handleChange({ config: { isNpUpgraded: {$set: v } } }, props) } />
+                                                onChange={useHandler2((_, v) => ({ config: { isNpUpgraded: {$set: v } } }), props)} />
                                         } />
                                     <IconButton title="Save as Default"
-                                        onClick={(e) => {
+                                        onClick={useCallback(() => {
                                             db.setServantDefaults(props.value.config);
                                             popupState.setOpen(false);
-                                        }}>
+                                        }, [props.value.config])}>
                                         <Save />
                                     </IconButton>
                                 </Stack>
@@ -93,4 +96,7 @@ function ServantSelector(props: ServantSelectorProps) {
     );
 }
 
-export { ServantSelector }
+const renderLevelInput = (params: any) => <TextField {...params} label="Level" />;
+const renderAppendInput = (params: any) => <TextField {...params} label="Append 3 Level" />;
+
+export const CommandServantSelector = Commandable(ServantSelector, "onChange");
