@@ -161,7 +161,7 @@ export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderPro
                     : null}
                     {Array.from(new Array(maxPowerMods)).flatMap((_, pIndex) => [
                         <Grid {...gridLeftHeaderProps} key={pIndex * 2}>
-                            <Tooltip title="Power mod buffs. This generally includes event damage bonuses and buffs worded as 'apply Special Attack [X]', but not 'deal heavy Special Attack [X]'. Rule of thumb: if it's an NP effect that doesn't specify a certain number of turns/times, then it's NOT a power mod.">
+                            <Tooltip title={`"Power mod"-type buffs. This generally includes event damage bonuses and buffs worded as "apply Special Attack [X]", but not "deal heavy Special Attack [X]". Rule of thumb: if it's an NP effect that doesn't specify a certain number of turns/times, then it's NOT a power mod.`}>
                                 <img src="images/buffs/powerMod.png" />
                             </Tooltip>
                         </Grid>,
