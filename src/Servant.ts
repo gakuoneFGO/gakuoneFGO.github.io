@@ -1,4 +1,5 @@
-import { Type } from "class-transformer";
+import { Transform, Type } from "class-transformer";
+import { s, ScaledInt, transformScaledInt } from "./arithmetic";
 
 export class Servant {
     constructor(readonly config: ServantConfig, readonly data: ServantData) {};
@@ -60,7 +61,7 @@ export class ServantConfig {
         readonly isNpUpgraded: boolean) {}
 }
 
-const appendMod = [ 0, .2, .21, .22, .23, .24, .25, .26, .27, .28, .3 ];
+const appendMod = [ 0, .2, .21, .22, .23, .24, .25, .26, .27, .28, .3 ].map(s);
 export type AppendLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 export class GrowthCurve {
@@ -177,7 +178,13 @@ export class Skill {
 export class PowerMod {
     constructor(
         readonly trigger: Trait[],
-        readonly modifier: number) {}
+        modifier: ScaledInt) {
+            this.modifier = modifier;
+        }
+    
+    @Type(() => ScaledInt)
+    @Transform(transformScaledInt)
+    readonly modifier: ScaledInt;
 }
 
 export type NPTarget = "aoe" | "st" | "none";
@@ -318,6 +325,7 @@ export enum Trait {
     SaberServant = "saberClassServant",
     DemonicBeastServant = "demonicBeastServant",
     Charmed = "buffCharm",
+    MentalDebuff = "buffMentalEffect",
     WeaknessFound = "weakPointsRevealed",
     ShadowServant = "shadowServant",
 }

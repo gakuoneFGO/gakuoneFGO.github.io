@@ -132,7 +132,7 @@ export class Persistor<T extends Named> {
     }
 
     asCustom(item: T, name: string): T {
-        return update(item as Named, { name: { $set: name } }) as T;
+        return update(item as Named, { name: { $set: "* " + name } }) as T;
     }
 }
 

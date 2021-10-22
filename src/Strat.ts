@@ -4,6 +4,7 @@ import { Enemy } from "./Enemy";
 import update from "immutability-helper";
 import { Type } from "class-transformer";
 import { TemplateData } from "./Data";
+import { s, ScaledInt } from "./arithmetic";
 
 export class BuffMatrix {
     constructor(buffs: BuffSet[]) {
@@ -79,7 +80,7 @@ export class EnemyNode {
 
 export interface WaveDamage {
     readonly damagePerEnemy: NpResult[];
-    readonly refund: Range<number>;
+    readonly refund: Range<ScaledInt>;
 }
 
 export class NodeDamage {
@@ -155,7 +156,7 @@ export class Strat {
             const damagePerEnemy = wave.enemies.map(enemy => calculator.calculateNp(clearer, ce, enemy, allBuffs, this.npCards[wIndex]));
             return {
                 damagePerEnemy: damagePerEnemy,
-                refund: Range.sum(damagePerEnemy.map(res => res.refund), (a, b) => a + b.refunded, 0)
+                refund: Range.sum(damagePerEnemy.map(res => res.refund), (a, b) => a.plus(b.refunded), s(0))
             };
         });
         return new NodeDamage(damagePerWave);

@@ -5,8 +5,9 @@ import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, Nob
 import update from "immutability-helper";
 import { Trait } from "../src/Enemy";
 import fetch from "node-fetch";
+import { SCALE } from "../src/arithmetic";
 
-const U_RATIO = 0.001;
+const U_RATIO = 1 / SCALE;
 
 const enums: any = {};
 const enumStream = fs.createReadStream("metadata_update\\enums.json", { encoding: 'utf-8' });

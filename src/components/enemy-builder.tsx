@@ -10,7 +10,6 @@ import { Spec } from "immutability-helper";
 import { ServantData } from "../Servant";
 
 export const EnemyBuilder = React.memo(function(props: Props<Enemy> & { showHealth?: Boolean }) {
-    console.log(props.onChange);
     return (
         <React.Fragment>
             {props.showHealth ?

@@ -106,7 +106,7 @@ export const NodeOutputPanel = React.memo(function(props: { node: EnemyNode, str
                         <Paper sx={{ background: theme.palette.refund.gradient, color: theme.palette.refund.contrastText,
                             visibility: turn == props.node.waves.length - 1 ? "hidden" : "initial" }}>
                             <Typography textAlign="center" style={{ textShadow: "1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000" }}>
-                                <PercentFormat value={wave.refund.low} />
+                                <PercentFormat value={wave.refund.low.value()} />
                             </Typography>
                         </Paper>
                     </Box>
@@ -122,10 +122,10 @@ function EnemyTooltip(props: { result: NpResult }) {
             <Typography>Min Damage: <IntFormat value={props.result.damage.low} /></Typography>
             <Typography>Avg Damage: <IntFormat value={props.result.damage.average} /></Typography>
             <Typography>Max Damage: <IntFormat value={props.result.damage.high} /></Typography>
-            {props.result.refund.low.refunded > 0 ? [
+            {props.result.refund.low.refunded.value() > 0 ? [
                 <Typography key={-1}>Min Overkill Hits: {props.result.refund.low.getOverkillHitCount()} / {props.result.refund.low.hpOnHit.length}</Typography>,
                 ...props.result.refund.low.getFacecardThresholds().map((threshold, index) =>
-                    <Typography key={index}>Do <IntFormat value={threshold.fcDamage} /> damage with facecards to guarantee <PercentFormat value={threshold.extraRefund} /> additional refund.</Typography>
+                    <Typography key={index}>Do <IntFormat value={threshold.fcDamage} /> damage with facecards to guarantee <PercentFormat value={threshold.extraRefund.value()} /> additional refund.</Typography>
                 )
             ] : null}
         </Box>
@@ -140,6 +140,6 @@ const IntFormat = React.memo(function(props: {value: number}) {
 
 const PercentFormat = React.memo(function(props: {value: number}) {
     return (
-        <NumberFormat displayType="text" decimalScale={1} fixedDecimalScale suffix="%" value={props.value} />
+        <NumberFormat displayType="text" decimalScale={2} fixedDecimalScale suffix="%" value={props.value} />
     );
 });

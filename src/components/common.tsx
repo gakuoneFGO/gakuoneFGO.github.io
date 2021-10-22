@@ -7,6 +7,7 @@ import { Named, Persistor } from "../Data";
 import { useState, useCallback } from "react";
 import { Trait } from "../Enemy";
 import { bindPopover, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
+import { s, ScaledInt } from "../arithmetic";
 
 export type Changeable<V> = { onChange?: (value: V) => void }
 export type Settable<V> = Changeable<{ $set: V }>;
@@ -49,33 +50,34 @@ export function wasteHandler() {
     return null;
 }
 
-interface NumberInputProps extends AtomicProps<number> {
-    label?: string;
-}
-
 interface NumberInputState {
     value: number;
     displayValue: string;
 }
 
-export const PercentInput = React.memo(function(props: NumberInputProps) {
-    const getDisplayValue = (value: number): NumberInputState => {
-        if (value == 0) return { value: value, displayValue: "" };
-        let displayValue = (value * 100).toFixed(2).replace(/(0|\.00)$/, "");
+const EPSILON = 0.000005;
+
+export const PercentInput: <V extends number | ScaledInt>(props: AtomicProps<V> & { label: string }) => JSX.Element =
+React.memo(function<V extends number | ScaledInt>(props: AtomicProps<V> & { label: string }) {
+    const getDisplayValue = (raw: V): NumberInputState => {
+        const value = raw instanceof ScaledInt ? raw.value() : raw as number;
+        if (value == 0) return { value: 0, displayValue: "" };
+        const displayValue = (value * 100).toFixed(2).replace(/(0|\.00)$/, "");
         return { value: value, displayValue: displayValue };
     }
 
-    const [ state, setState ] = useState(getDisplayValue(props.value));
+    const [ state, setState ] = useState(() => getDisplayValue(props.value));
 
-    if (Math.abs(state.value - props.value) >= 0.00005) {
+    const value = props.value instanceof ScaledInt ? props.value.value() : props.value as number;
+    if (Math.abs(state.value - value) >= EPSILON) {
         setState(getDisplayValue(props.value));
     }
 
     const onChange = (stringValue: string) => {
-        //TODO: validate input (mostly just prevent excess precision)
-        const value = stringValue == "" ? 0 : Number.parseFloat(stringValue) / 100;
+        const value = stringValue == "" ? 0 : Math.floor(Number.parseFloat(stringValue) * 10 + EPSILON) / 1000;
+        const raw = (props.value instanceof ScaledInt ? s(value) : value) as V;
         setState({ value: value, displayValue: stringValue });
-        return { $set: value };
+        return { $set: raw };
     }
 
     return (
@@ -91,9 +93,9 @@ export const PercentInput = React.memo(function(props: NumberInputProps) {
             }}
             onChange={useHandler(e => onChange(e.target.value), props)} />
     );
-});
+}) as any;
 
-export const IntegerInput = React.memo(function(props: NumberInputProps) {
+export const IntegerInput = React.memo(function(props: AtomicProps<number> & { label?: string; }) {
     const getDisplayValue = (value: number): NumberInputState => {
         return { value: value, displayValue: value == 0 ? "" : value.toString() };
     }
@@ -227,7 +229,6 @@ export const SaveableSelect: <T extends Named>(props: SaveableSelectProps<T>) =>
 React.memo(function<T extends Named>(props: SaveableSelectProps<T>) {
     const theme = useTheme();
     const popupState = usePopupState({ variant: "popover", popupId: "SaveableSelect" });
-    //TODO: make this populate correctly again
     const [ newName, setNewName ] = useState(props.provider.getCustomName(props.value));
 
     const onSelect = useHandler((x: { $set: T }) => {
@@ -297,7 +298,7 @@ export const TraitSelect = React.memo(function(props: AtomicProps<Trait[]> & { l
             value={props.value}
             onChange={useHandler2((_, traits) => ({
                     $set: props.value.length == 1 && props.value[0] == Trait.Always ? traits.filter(trait => trait != Trait.Always) : traits
-                }), props
+                }), props, props.value
             )}
             forcePopupIcon={false}
             renderInput={params => <TextField {...params} label={props.label} />}

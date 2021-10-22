@@ -1,30 +1,57 @@
 import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod, NoblePhantasm } from "./Servant";
 import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./Enemy";
+import { ScaledInt, s, f, SCALE, transformScaledInt } from "./arithmetic";
+import { Transform, Type } from "class-transformer";
 
 class BuffSet {
     public constructor(
-        readonly attackUp: number, //includes def down
-        readonly cardUp: number, //includes resistance down
-        readonly npUp: number,
-        readonly npBoost: number,
-        readonly npGain: number,
-        readonly powerMods: PowerMod[],
+        attackUp: ScaledInt, //includes def down
+        cardUp: ScaledInt, //includes resistance down
+        npUp: ScaledInt,
+        npBoost: ScaledInt,
+        npGain: ScaledInt,
+        powerMods: PowerMod[],
         readonly overcharge: number,
         readonly flatDamage: number,
-        readonly applyTraits: Trait[]) {}
+        readonly applyTraits: Trait[]) {
+            this.attackUp = attackUp;
+            this.cardUp = cardUp;
+            this.npUp = npUp;
+            this.npBoost = npBoost;
+            this.npGain = npGain;
+            this.powerMods = powerMods;
+        }
+
+        @Type(() => ScaledInt)
+        @Transform(transformScaledInt)
+        readonly attackUp: ScaledInt;
+        @Type(() => ScaledInt)
+        @Transform(transformScaledInt)
+        readonly cardUp: ScaledInt;
+        @Type(() => ScaledInt)
+        @Transform(transformScaledInt)
+        readonly npUp: ScaledInt;
+        @Type(() => ScaledInt)
+        @Transform(transformScaledInt)
+        readonly npBoost: ScaledInt;
+        @Type(() => ScaledInt)
+        @Transform(transformScaledInt)
+        readonly npGain: ScaledInt;
+        @Type(() => PowerMod)
+        readonly powerMods: PowerMod[];
 
     public static empty(): BuffSet {
-        const powerMod = new PowerMod([Trait.Always], 0);
-        return new BuffSet(0, 0, 0, 0, 0, [ powerMod, powerMod, powerMod ], 0, 0, []);
+        const powerMod = new PowerMod([Trait.Always], s(0));
+        return new BuffSet(s(0), s(0), s(0), s(0), s(0), [ powerMod, powerMod, powerMod ], 0, 0, []);
     }
 
     public static combine(buffs: BuffSet[], appendMod: PowerMod): BuffSet {
         return new BuffSet (
-            buffs.map(buff => buff.attackUp).reduce((a, b) => a + b),
-            buffs.map(buff => buff.cardUp).reduce((a, b) => a + b),
-            buffs.map(buff => buff.npUp).reduce((a, b) => a + b),
-            Math.max(...buffs.map(buff => buff.npBoost)),
-            buffs.map(buff => buff.npGain).reduce((a, b) => a + b),
+            buffs.map(buff => buff.attackUp).reduce((a, b) => a.plus(b)),
+            buffs.map(buff => buff.cardUp).reduce((a, b) => a.plus(b)),
+            buffs.map(buff => buff.npUp).reduce((a, b) => a.plus(b)),
+            ScaledInt.max(...buffs.map(buff => buff.npBoost)),
+            buffs.map(buff => buff.npGain).reduce((a, b) => a.plus(b)),
             buffs.flatMap(buff => buff.powerMods).concat(appendMod),
             buffs.map(buff => buff.overcharge).reduce((a, b) => a + b),
             buffs.map(buff => buff.flatDamage).reduce((a, b) => a + b),
@@ -33,24 +60,30 @@ class BuffSet {
     }
 
     public static fromBuffs(buffs: Buff[], npCard: CardType): BuffSet {
-        const powerMod = new PowerMod([Trait.Always], 0);
+        const powerMod = new PowerMod([Trait.Always], s(0));
         return new BuffSet(
-            buffs.filter(b => b.type == BuffType.AttackUp).reduce((v, b) => v + b.val, 0),
-            buffs.filter(b => b.type == BuffType.CardTypeUp && b.cardType == npCard).reduce((v, b) => v + b.val, 0),
-            buffs.filter(b => b.type == BuffType.NpDmgUp).reduce((v, b) => v + b.val, 0),
-            Math.max(0, ...buffs.filter(b => b.type == BuffType.NpBoost).map(b => b.val)),
-            buffs.filter(b => b.type == BuffType.NpGain).reduce((v, b) => v + b.val, 0),
-            buffs.filter(b => b.type == BuffType.PowerMod).map(b => new PowerMod(b.trig!, b.val)).concat([ powerMod, powerMod, powerMod ]),
+            buffs.filter(b => b.type == BuffType.AttackUp).reduce((v, b) => v.plus(s(b.val)), s(0)),
+            buffs.filter(b => b.type == BuffType.CardTypeUp && b.cardType == npCard).reduce((v, b) => v.plus(s(b.val)), s(0)),
+            buffs.filter(b => b.type == BuffType.NpDmgUp).reduce((v, b) => v.plus(s(b.val)), s(0)),
+            s(Math.max(0, ...buffs.filter(b => b.type == BuffType.NpBoost).map(b => b.val))),
+            buffs.filter(b => b.type == BuffType.NpGain).reduce((v, b) => v.plus(s(b.val)), s(0)),
+            buffs.filter(b => b.type == BuffType.PowerMod).map(b => new PowerMod(b.trig!, s(b.val))).concat([ powerMod, powerMod, powerMod ]),
             buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.DamagePlus).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.AddTrait).flatMap(b => b.trig!)
         );
     }
 
-    public getMultiplier(enemy: Enemy) {
-        const powerMod = this.powerMods.filter(pm => isTriggerActive(enemy.traits.concat(this.applyTraits), pm.trigger)).map(pm => pm.modifier).reduce((a, b) => a + b);
-        const modAndNp = powerMod + this.npUp * (1 + this.npBoost);
-        return (1 + this.attackUp) * (1 + this.cardUp) * (1 + modAndNp);
+    public getPowerMod(enemy: Enemy) {
+        return this.powerMods
+            .filter(pm => isTriggerActive(enemy.traits.concat(this.applyTraits), pm.trigger))
+            .map(pm => pm.modifier)
+            .reduce((a, b) => a.plus(b));
+    }
+
+    public getAdjustedNpUp() {
+        //there is no documentation yet on exactly how Oberon's "NP Boost" arithmetic works so this is just a guess
+        return this.npUp.times(this.npBoost.asMultiplier());
     }
 }
 
@@ -60,14 +93,6 @@ export class Range<T> {
         readonly average: T,
         readonly high: T
     ) {}
-
-    public static ofDamage(average: number, flatDamage: number): Range<number> {
-        return new Range(
-            average * 0.9 + flatDamage,
-            average + flatDamage,
-            average * 1.1 + flatDamage
-        );
-    }
 
     public static sum<T, S>(ranges: Range<T>[], add: (a: S, b: T) => S, initialVal: S): Range<S> {
         return new Range(
@@ -87,9 +112,9 @@ export class NpResult {
 
 export class RefundResult {
     constructor(
-        readonly refunded: number,
+        readonly refunded: ScaledInt,
         readonly hpOnHit: number[],
-        readonly overkillDifferential: number
+        readonly overkillDifferential: ScaledInt
     ) {}
 
     getOverkillHitCount(): number {
@@ -100,12 +125,12 @@ export class RefundResult {
         return this.hpOnHit.filter(hp => hp > 0).length;
     }
 
-    getFacecardThresholds(): { fcDamage: number, extraRefund: number }[] {
+    getFacecardThresholds(): { fcDamage: number, extraRefund: ScaledInt }[] {
         return this.hpOnHit
             .filter(hp => hp > 0)
             .slice(1)
             .reverse()
-            .map((hp, i) => ({ fcDamage: hp, extraRefund: (i + 1) * this.overkillDifferential }));
+            .map((hp, i) => ({ fcDamage: hp, extraRefund: this.overkillDifferential.times(i + 1) }));
     }
 };
 
@@ -120,48 +145,33 @@ class Calculator {
     }
 
     private calculateNpDamage(servant: Servant, np: NoblePhantasm, ce: CraftEssence, enemy: Enemy, combinedBuffs: BuffSet): Range<number> {
-        const
-            oc = Math.floor(combinedBuffs.overcharge),
-            baseDamage = (servant.getAttackStat() + ce.attackStat) * servant.getNpMultiplier(np, oc) * this.getCardMultiplier(np.cardType) * this.getClassMultiplier(servant.data.sClass) * 0.23;
+        const oc = Math.floor(combinedBuffs.overcharge);
+        const npMultiplier = servant.getNpMultiplier(np, oc);
         //skip damage plus for non-damaging NPs
-        if (baseDamage == 0) return Range.ofDamage(0, 0);
-        const
-            enemyTraits = enemy.traits.concat(combinedBuffs.applyTraits),
-            triangleDamage = getClassTriangleMultiplier(servant.data.sClass, enemy.eClass, servant) * getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute),
-            extraDamage = np.extraDmgStacks ?
-                1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[oc] :
-                //eresh is the only servant to get a supereffective modifier on NP upgrade I think? so hardcoding this is the simplest fix for now
-                //eventually it may be worth properly modeling NP upgrades since that fixes both this and autofilled buffs
-                //more likely: her upgrade is released in NA and we can just remove this since the workaround is "just do the strengthening quest lol"
-                isTriggerActive(enemyTraits, np.extraTrigger) && (servant.data.name != "Ereshkigal" || servant.config.isNpUpgraded) ? np.extraDamage[oc] : 1.0;
-        return Range.ofDamage(baseDamage * combinedBuffs.getMultiplier(enemy) * triangleDamage * extraDamage, combinedBuffs.flatDamage);
-    }
+        if (npMultiplier == 0) return new Range(0, 0, 0);
+        const enemyTraits = enemy.traits.concat(combinedBuffs.applyTraits);
+        const extraDamage = np.extraDmgStacks ?
+            1 + matchTraits(enemyTraits, np.extraTrigger).length * np.extraDamage[oc] :
+            //eresh is the only servant to get a supereffective modifier on NP upgrade I think? so hardcoding this is the simplest fix for now
+            //eventually it may be worth properly modeling NP upgrades since that fixes both this and autofilled buffs
+            //more likely: her upgrade is released in NA and we can just remove this since the workaround is "just do the strengthening quest lol"
+            isTriggerActive(enemyTraits, np.extraTrigger) && (servant.data.name != "Ereshkigal" || servant.config.isNpUpgraded) ? np.extraDamage[oc] : 1.0;
 
-    private getCardMultiplier(cardType:CardType): number {
-        switch (cardType) {
-            case CardType.Buster: return 1.5;
-            case CardType.Arts: return 1;
-            case CardType.Quick: return 0.8;
-            case CardType.Extra: return 1;
-        }
-    }
-
-    private getClassMultiplier(servantClass: ServantClass): number {
-        switch (servantClass) {
-            case ServantClass.Berserker:
-            case ServantClass.Ruler:
-            case ServantClass.Avenger:
-                return 1.1;
-            case ServantClass.Lancer:
-                return 1.05;
-            case ServantClass.Archer:
-                return 0.95;
-            case ServantClass.Caster:
-            case ServantClass.Assassin:
-                return 0.9;
-            default:
-                return 1;
-        }
+        const preRandom = f(servant.getAttackStat() + ce.attackStat)
+            .times(npMultiplier)
+            .times(combinedBuffs.cardUp.asMultiplier().times(getCardMultiplier(np.cardType)))
+            .times(getClassMultiplier(servant.data.sClass))
+            .times(getClassTriangleMultiplier(servant.data.sClass, enemy.eClass, servant))
+            .times(getAttributeTriangleMultiplier(servant.data.attribute, enemy.attribute));
+        const range = [ .9, 1, 1.099 ].map(rand => preRandom
+            .times(rand)
+            .times(.23)
+            .times(combinedBuffs.attackUp.asMultiplier())
+            .times(combinedBuffs.getPowerMod(enemy).plus(combinedBuffs.getAdjustedNpUp()).asMultiplier())
+            .times(extraDamage)
+            .plus(combinedBuffs.flatDamage)
+            .floor()) as [number, number, number];
+        return new Range(...range);
     }
 
     private calculateNpRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, damage: Range<number>): Range<RefundResult> {
@@ -174,29 +184,58 @@ class Calculator {
 
     private calculateNpRefundScenario(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, damage: number): RefundResult {
         const singleRefund = this.calculateSingleHitRefund(np, buffs, enemy);
-        const diff = singleRefund.withOK - singleRefund.noOK;
+        const diff = singleRefund.withOK.minus(singleRefund.noOK);
         const hpOnHit = np.hitDistribution
-            .map(hit => hit * damage)
-            .reduce((cumulative, hit) => cumulative.concat([cumulative[cumulative.length - 1] - hit]), [enemy.hitPoints])
-            .slice(0, np.hitDistribution.length);
-        const refunded = hpOnHit.length * singleRefund.noOK + hpOnHit.filter(hp => hp <= 0).length * diff;
+            .slice(0, np.hitDistribution.length - 1)
+            //no documentation of rounding on hit distribution
+            //so I'm guessing this just floors each hit and puts the remainder on the last hit since that's what my coworkers would do
+            //(it also happens to be the most pessimistic assumption AND easy to code since I don't care about HP after the last hit. win-win-win)
+            .map(hit => f(hit).times(damage).floor())
+            .reduce((cumulative, hit) => cumulative.concat([cumulative[cumulative.length - 1] - hit]), [enemy.hitPoints]);
+        const refunded = singleRefund.noOK.times(hpOnHit.length)
+            .plus(diff.times(hpOnHit.filter(hp => hp <= 0).length));
         return new RefundResult(refunded, hpOnHit, diff);
     }
 
-    private calculateSingleHitRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy): { noOK: number, withOK: number } {
-        const baseGain =
-            np.refundRate *
-            npGainByCard.get(np.cardType)! *
-            (1 + buffs.cardUp) *
-            (npGainByEnemyClass.get(enemy.eClass as string as ServantClass) ?? 1) *
-            (enemy.specialNpGainMod ? 1.2 : 1) *
-            (1 + buffs.npGain);
-        return { withOK: roundDown(roundDown(baseGain) * 1.5), noOK: roundDown(baseGain) };
+    private calculateSingleHitRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy): { noOK: ScaledInt, withOK: ScaledInt } {
+        const serverMod = (npGainByEnemyClass.get(enemy.eClass) ?? 1) * (enemy.specialNpGainMod ? 1.2 : 1);
+        const baseGain = buffs.cardUp.asMultiplier()
+            .times(npGainByCard.get(np.cardType)!)
+            .times(Math.round(np.refundRate * 100))
+            .times(serverMod)
+            .times(buffs.npGain.asMultiplier());
+        const noOK = baseGain.floor();
+        //refundRate is scaled differently than almost everything else for some reason (100 times the percentage value instead of 10 times)
+        //may be more appropriate to just return a regular number divided by 100
+        return { withOK: new ScaledInt(f(noOK).times(1.5).floor() * 10), noOK: new ScaledInt(noOK * 10) };
     }
 }
 
-function roundDown(val: number): number {
-    return Math.floor(val * 10) / 10;
+function getCardMultiplier(cardType:CardType): number {
+    switch (cardType) {
+        case CardType.Buster: return 1.5;
+        case CardType.Arts: return 1;
+        case CardType.Quick: return 0.8;
+        case CardType.Extra: return 1;
+    }
+}
+
+function getClassMultiplier(servantClass: ServantClass): number {
+    switch (servantClass) {
+        case ServantClass.Berserker:
+        case ServantClass.Ruler:
+        case ServantClass.Avenger:
+            return 1.1;
+        case ServantClass.Lancer:
+            return 1.05;
+        case ServantClass.Archer:
+            return 0.95;
+        case ServantClass.Caster:
+        case ServantClass.Assassin:
+            return 0.9;
+        default:
+            return 1;
+    }
 }
 
 function isTriggerActive(traits: Trait[], trigger: Trait[]): boolean {
@@ -334,12 +373,12 @@ const npGainByCard: Map<CardType, number> = new Map([
 ]);
 
 //assume 1 if omitted
-const npGainByEnemyClass: Map<ServantClass, number> = new Map([
-    [ ServantClass.Caster, 1.2 ],
-    [ ServantClass.MoonCancer, 1.2 ],
-    [ ServantClass.Rider, 1.1 ],
-    [ ServantClass.Assassin, 0.9 ],
-    [ ServantClass.Berserker, 0.8 ],
+const npGainByEnemyClass: Map<EnemyClass, number> = new Map([
+    [ EnemyClass.Caster, 1.2 ],
+    [ EnemyClass.MoonCancer, 1.2 ],
+    [ EnemyClass.Rider, 1.1 ],
+    [ EnemyClass.Assassin, 0.9 ],
+    [ EnemyClass.Berserker, 0.8],
     //TODO: not sure what typical Pretender rate is
 ]);
 

@@ -226,7 +226,7 @@ export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderPro
                         </Grid>
                         <Grid {...gridCellProps}>
                             <CommandTraitSelect label="Add Enemy Traits"
-                                value={buffSet.applyTraits}
+                                value={buffSet.applyTraits ?? []}
                                 command={turn}
                                 onCommand={handlers.applyTraits} />
                         </Grid>
