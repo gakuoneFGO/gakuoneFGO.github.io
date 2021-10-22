@@ -123,7 +123,7 @@ function EnemyTooltip(props: { result: NpResult }) {
             <Typography>Avg Damage: <IntFormat value={props.result.damage.average} /></Typography>
             <Typography>Max Damage: <IntFormat value={props.result.damage.high} /></Typography>
             {props.result.refund.low.refunded.value() > 0 ? [
-                <Typography key={-1}>Min Overkill Hits: {props.result.refund.low.getOverkillHitCount()} / {props.result.refund.low.hpOnHit.length}</Typography>,
+                <Typography key={-1}>Min Overkill Hits: {props.result.refund.low.getOverkillHitCount()} / {props.result.refund.low.hpAfterHit.length}</Typography>,
                 ...props.result.refund.low.getFacecardThresholds().map((threshold, index) =>
                     <Typography key={index}>Do <IntFormat value={threshold.fcDamage} /> damage with facecards to guarantee <PercentFormat value={threshold.extraRefund.value()} /> additional refund.</Typography>
                 )

@@ -113,22 +113,21 @@ export class NpResult {
 export class RefundResult {
     constructor(
         readonly refunded: ScaledInt,
-        readonly hpOnHit: number[],
+        readonly hpAfterHit: number[],
         readonly overkillDifferential: ScaledInt
     ) {}
 
     getOverkillHitCount(): number {
-        return this.hpOnHit.filter(hp => hp <= 0).length;
+        return this.hpAfterHit.filter(hp => hp <= 0).length;
     }
 
     getNonOverkillHitCount(): number {
-        return this.hpOnHit.filter(hp => hp > 0).length;
+        return this.hpAfterHit.filter(hp => hp > 0).length;
     }
 
     getFacecardThresholds(): { fcDamage: number, extraRefund: ScaledInt }[] {
-        return this.hpOnHit
+        return this.hpAfterHit
             .filter(hp => hp > 0)
-            .slice(1)
             .reverse()
             .map((hp, i) => ({ fcDamage: hp, extraRefund: this.overkillDifferential.times(i + 1) }));
     }
@@ -185,24 +184,26 @@ class Calculator {
     private calculateNpRefundScenario(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy, damage: number): RefundResult {
         const singleRefund = this.calculateSingleHitRefund(np, buffs, enemy);
         const diff = singleRefund.withOK.minus(singleRefund.noOK);
-        const hpOnHit = np.hitDistribution
-            .slice(0, np.hitDistribution.length - 1)
+        const hpAfterHit = np.hitDistribution
             //no documentation of rounding on hit distribution
             //so I'm guessing this just floors each hit and puts the remainder on the last hit since that's what my coworkers would do
-            //(it also happens to be the most pessimistic assumption AND easy to code since I don't care about HP after the last hit. win-win-win)
+            //(it also happens to be the most pessimistic assumption)
             .map(hit => f(hit).times(damage).floor())
-            .reduce((cumulative, hit) => cumulative.concat([cumulative[cumulative.length - 1] - hit]), [enemy.hitPoints]);
-        const refunded = singleRefund.noOK.times(hpOnHit.length)
-            .plus(diff.times(hpOnHit.filter(hp => hp <= 0).length));
-        return new RefundResult(refunded, hpOnHit, diff);
+            .reduce((cumulative, hit) => cumulative.concat([cumulative[cumulative.length - 1] - hit]), [enemy.hitPoints])
+            .slice(1, np.hitDistribution.length)
+            .concat(enemy.hitPoints - damage);
+        const refunded = singleRefund.noOK.times(hpAfterHit.length)
+            .plus(diff.times(hpAfterHit.filter(hp => hp <= 0).length));
+        return new RefundResult(refunded, hpAfterHit, diff);
     }
 
     private calculateSingleHitRefund(np: NoblePhantasm, buffs: BuffSet, enemy: Enemy): { noOK: ScaledInt, withOK: ScaledInt } {
-        const serverMod = (npGainByEnemyClass.get(enemy.eClass) ?? 1) * (enemy.specialNpGainMod ? 1.2 : 1);
+        //no info on the format of the server mod but it's probably an int like everything else
+        const serverMod = s((npGainByEnemyClass.get(enemy.eClass) ?? 1) * (enemy.specialNpGainMod ? 1.2 : 1));
         const baseGain = buffs.cardUp.asMultiplier()
             .times(npGainByCard.get(np.cardType)!)
             .times(Math.round(np.refundRate * 100))
-            .times(serverMod)
+            .times(serverMod.value())
             .times(buffs.npGain.asMultiplier());
         const noOK = baseGain.floor();
         //refundRate is scaled differently than almost everything else for some reason (100 times the percentage value instead of 10 times)
