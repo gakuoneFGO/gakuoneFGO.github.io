@@ -1,4 +1,4 @@
-import { createTheme, Paper } from "@mui/material";
+import { createTheme, darkScrollbar, Paper } from "@mui/material";
 import { blue, blueGrey, deepOrange, green, grey, lightBlue, orange, purple, red, yellow } from "@mui/material/colors";
 declare module '@mui/material/styles/createPalette' {
     interface PaletteOptions {
@@ -74,23 +74,30 @@ const theme = createTheme({
         },
         //deprecated, but MUI's docs don't provide another mechanism to set this at the theme level (https://mui.com/customization/how-to-customize/#5-global-css-override)
         MuiCssBaseline: {
-            styleOverrides: `
-                *::-webkit-scrollbar {
-                    width: .75em;
-                    height: .75em;
-                }
-                
-                *::-webkit-scrollbar-track {
-                    background-color: #121212;
-                    width: .5em;
-                    height: .5em;
-                    outline: 0px;
-                }
-                
-                *::-webkit-scrollbar-thumb {
-                    background-color: #212121;
-                }
-            `,
+            styleOverrides: {
+                "*::-webkit-scrollbar": {
+                    width: ".75em",
+                    height: ".75em",
+                },
+                "*::-webkit-scrollbar-track": {
+                    backgroundColor: "#121212",
+                    width: ".5em",
+                    height: ".5em",
+                    outline: "0px",
+                },
+                "*::-webkit-scrollbar-thumb": {
+                    backgroundColor: grey[900],
+                },
+                "*::-webkit-scrollbar-thumb:focus": {
+                    backgroundColor: grey[800],
+                },
+                "*::-webkit-scrollbar-thumb:active": {
+                    backgroundColor: grey[800],
+                },
+                "*::-webkit-scrollbar-thumb:hover": {
+                    backgroundColor: grey[800],
+                },
+            },
         },
     },
 });
