@@ -118,18 +118,18 @@ export class RefundResult {
     ) {}
 
     getOverkillHitCount(): number {
-        return this.hpAfterHit.filter(hp => hp <= 0).length;
+        return this.hpAfterHit.filter(hp => hp < 0).length;
     }
 
     getNonOverkillHitCount(): number {
-        return this.hpAfterHit.filter(hp => hp > 0).length;
+        return this.hpAfterHit.filter(hp => hp >= 0).length;
     }
 
     getFacecardThresholds(): { fcDamage: number, extraRefund: ScaledInt }[] {
         return this.hpAfterHit
-            .filter(hp => hp > 0)
+            .filter(hp => hp >= 0)
             .reverse()
-            .map((hp, i) => ({ fcDamage: hp, extraRefund: this.overkillDifferential.times(i + 1) }));
+            .map((hp, i) => ({ fcDamage: hp + 1, extraRefund: this.overkillDifferential.times(i + 1) }));
     }
 };
 
@@ -193,7 +193,7 @@ class Calculator {
             .slice(1, np.hitDistribution.length)
             .concat(enemy.hitPoints - damage);
         const refunded = singleRefund.noOK.times(hpAfterHit.length)
-            .plus(diff.times(hpAfterHit.filter(hp => hp <= 0).length));
+            .plus(diff.times(hpAfterHit.filter(hp => hp < 0).length));
         return new RefundResult(refunded, hpAfterHit, diff);
     }
 
