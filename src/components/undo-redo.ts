@@ -37,6 +37,7 @@ export class Tracker<T> {
             const newState = change(tracked.state);
             if (!skipTracking) {
                 tracked.prev.push({ prev: tracked.state, next: newState });
+                if (tracked.prev.length > 600) tracked.prev = tracked.prev.slice(100);
                 tracked.next = [];
             }
             return { ...tracked, state: newState };
