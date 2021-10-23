@@ -158,7 +158,7 @@ export const ArrayBuilder: <T>(props: ArrayBuilderProps<T> & Props<T[]>) => JSX.
     const remove = useHandler((index: number) => ({ $splice: [[ index, 1 ] as [number, number]] }), props);
     const update = useHandler2((index: number, args: Spec<T>) => ({ [index]: args }), props)
     return (
-        <React.Fragment>
+        <>
             <Card>
                 <CardHeader title={props.addLabel}
                     action={<IconButton title="Add" onClick={createOne}><Add /></IconButton>} />
@@ -177,7 +177,7 @@ export const ArrayBuilder: <T>(props: ArrayBuilderProps<T> & Props<T[]>) => JSX.
                     </CardContent>
                 </Card>
             )}
-        </React.Fragment>
+        </>
     );
 }) as any;
 
@@ -252,7 +252,7 @@ React.memo(function<T extends Named>(props: SaveableSelectProps<T>) {
     }, props, props.value);
 
     return (
-        <React.Fragment>
+        <>
             <SmartSelect {...props} onChange={onSelect}
                 endAdornment={
                     <InputAdornment position="end">
@@ -284,7 +284,7 @@ React.memo(function<T extends Named>(props: SaveableSelectProps<T>) {
                     </CardContent>
                 </Card>
             </Popover>
-        </React.Fragment>
+        </>
     );
 }) as any;
 

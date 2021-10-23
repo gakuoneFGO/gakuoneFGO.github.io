@@ -21,7 +21,7 @@ export const ServantSelector = React.memo(function(props: ServantSelectorProps) 
         [props.allowPlaceholder, props.allowUnspecified]);
 
     return (
-        <React.Fragment>
+        <>
             <SmartSelect provider={db.servantData}
                 value={props.value.data}
                 onChange={useHandler(v => ({ $set: db.getServantDefaults(v.$set.name) }), props)}
@@ -92,7 +92,7 @@ export const ServantSelector = React.memo(function(props: ServantSelectorProps) 
                     </Card>
                 </ClickAwayListener>
             </Popper>
-        </React.Fragment>
+        </>
     );
 });
 

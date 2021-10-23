@@ -21,7 +21,7 @@ export const BuffSelector = React.memo(function(props: Props<Buff>): JSX.Element
     const onTrigChanged = useHandler((spec: Spec<Trait[] | undefined>) => ({ trig: spec }), props);
 
     return (
-        <React.Fragment>
+        <>
             <Autocomplete
                 options={Object.values(BuffType)}
                 value={props.value.type}
@@ -54,7 +54,7 @@ export const BuffSelector = React.memo(function(props: Props<Buff>): JSX.Element
                     value={props.value.trig ?? []}
                     onChange={onTrigChanged} />
             : null}
-        </React.Fragment>
+        </>
     );
 });
 

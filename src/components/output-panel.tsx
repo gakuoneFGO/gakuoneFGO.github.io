@@ -5,7 +5,7 @@ import NumberFormat from "react-number-format";
 import { Enemy } from "../Enemy";
 import { Box } from "@mui/system";
 import { NpResult, Range } from "../Damage";
-import { ResetTvOutlined, Warning } from "@mui/icons-material";
+import { Warning } from "@mui/icons-material";
 import { ClassIcon } from "./icons";
 
 interface OutputPanelProps {
@@ -64,7 +64,7 @@ export const NodeOutputPanel = React.memo(function(props: { node: EnemyNode, str
     };
     
     return (
-        <React.Fragment>
+        <>
             <Grid container>
                 {props.node.waves.map((wave, turn) =>
                     <Grid key={turn} item xs={4} lg={4} textAlign="center">
@@ -112,7 +112,7 @@ export const NodeOutputPanel = React.memo(function(props: { node: EnemyNode, str
                     </Box>
                 )}
             </Box>
-        </React.Fragment>
+        </>
     );
 });
 

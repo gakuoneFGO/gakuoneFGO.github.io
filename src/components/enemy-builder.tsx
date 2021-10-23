@@ -11,7 +11,7 @@ import { ServantData } from "../Servant";
 
 export const EnemyBuilder = React.memo(function(props: Props<Enemy> & { showHealth?: Boolean }) {
     return (
-        <React.Fragment>
+        <>
             {props.showHealth ?
                 <IntegerInput label="Enemy HP" value={props.value.hitPoints}
                     onChange={useHandler(v => ({ hitPoints: v }), props)} />
@@ -46,7 +46,7 @@ export const EnemyBuilder = React.memo(function(props: Props<Enemy> & { showHeal
                             onChange={useHandler(e => ({ specialNpGainMod: { $set: e.target.checked } }), props)} />
                     } />
             : null}
-        </React.Fragment>
+        </>
     );
 });
 
