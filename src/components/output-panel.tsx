@@ -119,15 +119,19 @@ export const NodeOutputPanel = React.memo(function(props: { node: EnemyNode, str
 function EnemyTooltip(props: { result: NpResult }) {
     return (
         <Box>
-            <Typography>Min Damage: <IntFormat value={props.result.damage.low} /></Typography>
-            <Typography>Avg Damage: <IntFormat value={props.result.damage.average} /></Typography>
-            <Typography>Max Damage: <IntFormat value={props.result.damage.high} /></Typography>
+            <Typography>Min: <IntFormat value={props.result.damage.low} /></Typography>
+            <Typography>Avg: <IntFormat value={props.result.damage.average} /></Typography>
+            <Typography>Max: <IntFormat value={props.result.damage.high} /></Typography>
             {props.result.refund.low.refunded.value() > 0 ? [
-                <Typography key={-1}>Min Overkill Hits: {props.result.refund.low.getOverkillHitCount()} / {props.result.refund.low.hpAfterHit.length}</Typography>,
-                ...props.result.refund.low.getFacecardThresholds().map((threshold, index) =>
-                    <Typography key={index}>Do <IntFormat value={threshold.fcDamage} /> damage with facecards to guarantee <PercentFormat value={threshold.extraRefund.value()} /> additional refund.</Typography>
-                )
-            ] : null}
+                <Typography key={0}>Min Refund: <PercentFormat value={props.result.refund.low.refunded.value()} /></Typography>,
+                <Typography key={1}>Min Overkill Hits: {props.result.refund.low.getOverkillHitCount()} / {props.result.refund.low.hpAfterHit.length}</Typography>,
+                <Stack key={3} spacing={1}>
+                    {props.result.refund.low.getFacecardThresholds().flatMap((threshold, index) => [
+                        <Divider key={-index - 1} />,
+                        <Typography key={index}>Do <IntFormat value={threshold.fcDamage} /> damage with facecards to guarantee <PercentFormat value={threshold.extraRefund.value()} /> additional refund.</Typography>
+                    ])}
+                </Stack>
+            ]: null}
         </Box>
     );
 }
