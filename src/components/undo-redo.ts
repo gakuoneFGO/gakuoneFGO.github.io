@@ -44,10 +44,6 @@ export class Tracker<T> {
         });
     }
 
-    handleChanged(changed: T, skipTracking?: boolean) {
-        this.handleChange(() => changed, skipTracking);
-    }
-
     undo() {
         this.replay("prev");
     }
