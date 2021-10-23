@@ -144,7 +144,9 @@ class Calculator {
     }
 
     private calculateNpDamage(servant: Servant, np: NoblePhantasm, ce: CraftEssence, enemy: Enemy, combinedBuffs: BuffSet): Range<number> {
-        const oc = Math.floor(combinedBuffs.overcharge);
+        let oc = Math.floor(combinedBuffs.overcharge);
+        oc = Math.max(oc, 0);
+        oc = Math.min(oc, 4);
         const npMultiplier = servant.getNpMultiplier(np, oc);
         //skip damage plus for non-damaging NPs
         if (npMultiplier == 0) return new Range(0, 0, 0);
