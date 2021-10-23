@@ -324,8 +324,19 @@ export enum Trait {
     EarthOrSky = "skyOrEarth",
     SaberServant = "saberClassServant",
     DemonicBeastServant = "demonicBeastServant",
-    Charmed = "buffCharm",
-    MentalDebuff = "buffMentalEffect",
     WeaknessFound = "weakPointsRevealed",
     ShadowServant = "shadowServant",
+    Debuffed = "buffNegativeEffect",
+    Charmed = "buffCharm",
+    MentalDebuff = "buffMentalEffect",
+    Cursed = "buffCurse",
+    Burning = "buffBurn",
+    Poisoned = "buffPoison",
+}
+
+export function distinct<T>(values: T[]): T[] {
+    const set = new Set<T>(values);
+    return set.size == values.length ?
+        values :
+        values.filter(set.delete, set);
 }

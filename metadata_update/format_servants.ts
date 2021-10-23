@@ -1,7 +1,7 @@
 import * as JSONStream from "JSONStream";
 import * as fs from "fs";
 import "reflect-metadata";
-import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType, NPTarget } from "../src/Servant"
+import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType, NPTarget, distinct } from "../src/Servant"
 import update from "immutability-helper";
 import { Trait } from "../src/Enemy";
 import fetch from "node-fetch";
@@ -95,6 +95,7 @@ const excludedTraits = [
     "genderCaenisServant",
     "atalante",
     "demonBeast",
+    "fairyTaleServant",
 ];
 
 async function mapNp(np: any, unupgraded: any): Promise<NoblePhantasm> {
@@ -256,14 +257,14 @@ async function toBuff(func: any): Promise<Buff[]> {
         case "downNpdamage":
             return [ new Buff(self, team, BuffType.NpDmgUp, getBuffValue(func) * -1, getBuffTurns(func)) ];
         case "upDamage":
+        case "upDamageIndividualityActiveonly":
             if (func.buffs[0].tvals.length == 0) {
                 console.log("Missing power mod trigger", func.buffs[0]);
                 return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, []) ];
+            } else if (func.buffs[0].tvals.some(tval => allowedTraits.includes(tval))) {
+                console.log("Unknown power mod trigger", func.buffs[0]);
             }
             return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, func.buffs[0].tvals.map(tval => tval.name)) ];
-        case "upDamageIndividualityActiveonly":
-            //hack (this is arjuna alter's power mod, which is just easiest to model as "always". user has ways to work around it)
-            return [ new Buff(self, team, BuffType.PowerMod, getBuffValue(func), getBuffTurns(func), undefined, [Trait.Always]) ];
         case "buffRate":
             //this is coded as "increase effects of this specific buff type" rather than against NP damage specifically, but hopefully they just don't add it for another buff type
             return [ new Buff(self, team, BuffType.NpBoost, getBuffValue(func), getBuffTurns(func)) ];
@@ -366,25 +367,26 @@ function debuffToBuff(func: any): Buff[] {
     //  (e.g. drag and drop the debuff onto the enemy you want to apply it to, instead of generating a trait)
     //  (e.g. put the debuff control below the buff matrix, which selects an enemy by default but can be changed with a dropdown)
     //...but there's nothing worth implementing. damage and refund are broken down per enemy already, so nothing I can add would be substantially easier than just "turn the buff on then off while using your eyes and brain"
+    let debuffs: Buff[] = [];
     switch (func.buffs[0].type) {
         case "downDefence":
-            return [ new Buff(true, true, BuffType.AttackUp, getBuffValue(func), 1) ];
+            debuffs = [ new Buff(true, true, BuffType.AttackUp, getBuffValue(func), 1) ];
+            break;
         case "downDefencecommandall":
-            return [ new Buff(true, true, BuffType.CardTypeUp, getBuffValue(func), 1, getCardType(func.buffs[0].ckOpIndv[0].name)) ];
+            debuffs = [ new Buff(true, true, BuffType.CardTypeUp, getBuffValue(func), 1, getCardType(func.buffs[0].ckOpIndv[0].name)) ];
+            break;
         case "addIndividuality":
-            return [ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, enums.Trait[func.svals[0].Value]) ];
-        case "donotAct":
-            const relevant = func.buffs[0].vals.map(val => val.name).filter(name => ["buffCharm", "buffMentalEffect"].includes(name));
-            return relevant.length > 0 ?
-                [ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, relevant) ] :
-                [];
+            debuffs = [ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, enums.Trait[func.svals[0].Value]) ];
+            break;
         case "addSelfdamage":
-            return [ new Buff(true, true, BuffType.DamagePlus, getBuffValue(func) / U_RATIO, 1) ];
+            debuffs = [ new Buff(true, true, BuffType.DamagePlus, getBuffValue(func) / U_RATIO, 1) ];
+            break;
+        case "donotAct":
+        case "reduceHp":
         case "donotSkill":
         case "donotNoble":
         case "avoidState":
         case "invincible":
-        case "reduceHp"://DON'T implement curse/poison/burn
         case "upFuncHpReduce":
         case "downGainHp":
         case "downCriticalpoint":
@@ -400,11 +402,18 @@ function debuffToBuff(func: any): Buff[] {
         case "upHate":
         case "delayFunction":
         case "selfturnendFunction":
-            return [];
+            debuffs = [];
+            break;
         default:
             console.log("Unknown debuff type", func.buffs[0]);
-            return [];
+            debuffs = [];
+            break;
     }
+
+    const statuses = func.buffs[0].vals.map(val => val.name).filter(name => allowedTraits.includes(name));
+    return statuses.length > 0 ?
+        debuffs.concat([ new Buff(true, true, BuffType.AddTrait, canMiss(func) ? 0 : 1, 1, undefined, distinct(statuses)) ]) :
+        debuffs;
 }
 
 function canMiss(func: any): boolean {
@@ -416,8 +425,8 @@ function getBuffValue(func: any, buffRatio?: number): number {
 }
 
 function getBuffTurns(func: any, useTurns?: true | undefined): number {
-    let turns = func.svals[func.svals.length - 1].Turn;
-    let count = func.svals[func.svals.length - 1].Count;
+    const turns = func.svals[func.svals.length - 1].Turn;
+    const count = func.svals[func.svals.length - 1].Count;
     if (turns < 0) return count;
     if (useTurns || count < 0) return turns;
     return Math.min(turns, count);

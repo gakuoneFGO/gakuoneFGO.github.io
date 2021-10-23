@@ -166,6 +166,16 @@
                 "buffs": [
                     {
                         "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
                         "team": false,
                         "type": "cardTypeUp",
                         "val": 0.5,
@@ -430,15 +440,47 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 7,
@@ -664,6 +706,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect"
                         ]
                     },
@@ -674,6 +717,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect"
                         ]
                     },
@@ -683,6 +727,16 @@
                         "type": "attackUp",
                         "val": 0.5,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -692,9 +746,30 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -708,6 +783,16 @@
                         "val": 0.3,
                         "turns": 1,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -1192,6 +1277,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect",
                             "buffCharm"
                         ]
@@ -3900,16 +3986,46 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
             {
                 "cooldown": 6,
                 "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
                     {
                         "self": true,
                         "team": false,
@@ -4137,9 +4253,29 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -4366,6 +4502,16 @@
                         "val": 0.5,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -4378,6 +4524,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -4631,6 +4787,16 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -5246,6 +5412,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -5431,11 +5607,43 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 7,
@@ -6069,7 +6277,7 @@
                         "val": 0.5,
                         "turns": 3,
                         "trig": [
-                            "always"
+                            "buffNegativeEffect"
                         ]
                     }
                 ]
@@ -6119,6 +6327,16 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -6741,6 +6959,16 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "npGain",
                         "val": 0.3,
                         "turns": 3
@@ -6947,9 +7175,62 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffCurse"
+                        ]
                     }
                 ]
             },
@@ -6973,6 +7254,17 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffCurse"
+                        ]
                     }
                 ]
             }
@@ -7590,7 +7882,19 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -9173,7 +9477,28 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -9650,6 +9975,26 @@
                         "val": 0.2,
                         "turns": 3,
                         "cardType": "quick"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -9854,7 +10199,18 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -10513,6 +10869,46 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -11654,7 +12050,38 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -12578,7 +13005,38 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -12636,10 +13094,30 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.1,
                         "turns": 1,
                         "cardType": "quick"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -13009,12 +13487,43 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -13214,15 +13723,76 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.5,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -13233,6 +13803,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -13443,6 +14023,16 @@
                         "type": "attackUp",
                         "val": 0.1,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -14290,12 +14880,33 @@
                         "val": 0.3,
                         "turns": 3,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
                     }
                 ]
             },
             {
                 "cooldown": 6,
                 "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
                     {
                         "self": true,
                         "team": true,
@@ -14506,7 +15117,28 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -15550,9 +16182,30 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffPoison"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -16188,7 +16841,38 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -16865,6 +17549,16 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -17493,7 +18187,18 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -18824,18 +19529,6 @@
         "passives": [],
         "skills": [
             {
-                "cooldown": 5,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": true,
-                        "type": "attackUp",
-                        "val": 0.2,
-                        "turns": 1
-                    }
-                ]
-            },
-            {
                 "cooldown": 7,
                 "buffs": []
             },
@@ -18855,6 +19548,38 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 3
+                    }
+                ]
+            },
+            {
+                "cooldown": 5,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "attackUp",
+                        "val": 0.2,
+                        "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -19119,6 +19844,229 @@
         ]
     },
     {
+        "name": "Elisabeth Báthory (Cinderella)",
+        "id": 326,
+        "rarity": 4,
+        "sClass": "rider",
+        "attribute": "human",
+        "traits": [
+            "genderFemale",
+            "classRider",
+            "attributeHuman",
+            "alignmentChaotic",
+            "alignmentBalanced",
+            "humanoid",
+            "dragon",
+            "weakToEnumaElish",
+            "riding",
+            "hominidaeServant"
+        ],
+        "f2pCopies": 5,
+        "iconUrl": "/images/servants/326.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/404600/404600a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classForeigner"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1527,
+                "2": 1618,
+                "3": 1717,
+                "4": 1809,
+                "5": 1908,
+                "6": 2008,
+                "7": 2099,
+                "8": 2199,
+                "9": 2298,
+                "10": 2390,
+                "11": 2489,
+                "12": 2588,
+                "13": 2680,
+                "14": 2779,
+                "15": 2879,
+                "16": 2970,
+                "17": 3070,
+                "18": 3169,
+                "19": 3261,
+                "20": 3360,
+                "21": 3459,
+                "22": 3551,
+                "23": 3650,
+                "24": 3749,
+                "25": 3841,
+                "26": 3940,
+                "27": 4040,
+                "28": 4131,
+                "29": 4231,
+                "30": 4330,
+                "31": 4422,
+                "32": 4521,
+                "33": 4620,
+                "34": 4712,
+                "35": 4811,
+                "36": 4911,
+                "37": 5002,
+                "38": 5102,
+                "39": 5201,
+                "40": 5293,
+                "41": 5392,
+                "42": 5484,
+                "43": 5583,
+                "44": 5682,
+                "45": 5774,
+                "46": 5873,
+                "47": 5972,
+                "48": 6064,
+                "49": 6163,
+                "50": 6263,
+                "51": 6354,
+                "52": 6454,
+                "53": 6553,
+                "54": 6645,
+                "55": 6744,
+                "56": 6843,
+                "57": 6935,
+                "58": 7034,
+                "59": 7134,
+                "60": 7225,
+                "61": 7325,
+                "62": 7424,
+                "63": 7515,
+                "64": 7615,
+                "65": 7714,
+                "66": 7806,
+                "67": 7905,
+                "68": 8004,
+                "69": 8096,
+                "70": 8195,
+                "71": 8295,
+                "72": 8386,
+                "73": 8486,
+                "74": 8585,
+                "75": 8677,
+                "76": 8776,
+                "77": 8875,
+                "78": 8967,
+                "79": 9066,
+                "80": 9166,
+                "81": 9257,
+                "82": 9356,
+                "83": 9448,
+                "84": 9547,
+                "85": 9647,
+                "86": 9738,
+                "87": 9838,
+                "88": 9937,
+                "89": 10029,
+                "90": 10128,
+                "91": 10227,
+                "92": 10319,
+                "93": 10418,
+                "94": 10518,
+                "95": 10609,
+                "96": 10709,
+                "97": 10808,
+                "98": 10900,
+                "99": 10999,
+                "100": 11098,
+                "101": 11190,
+                "102": 11289,
+                "103": 11388,
+                "104": 11480,
+                "105": 11579,
+                "106": 11679,
+                "107": 11770,
+                "108": 11870,
+                "109": 11969,
+                "110": 12061,
+                "111": 12160,
+                "112": 12259,
+                "113": 12351,
+                "114": 12450,
+                "115": 12550,
+                "116": 12641,
+                "117": 12741,
+                "118": 12840,
+                "119": 12932,
+                "120": 13031
+            }
+        },
+        "passives": [],
+        "skills": [
+            {
+                "cooldown": 5,
+                "buffs": []
+            },
+            {
+                "cooldown": 5,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "cardTypeUp",
+                        "val": 0.3,
+                        "turns": 3,
+                        "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "powerMod",
+                        "val": 0.5,
+                        "turns": 3,
+                        "trig": [
+                            "wildbeast"
+                        ]
+                    }
+                ]
+            },
+            {
+                "cooldown": 4,
+                "buffs": []
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "buster",
+                "target": "st",
+                "multiplier": [
+                    6,
+                    8,
+                    9,
+                    9.5,
+                    10
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "extraTrigger": [],
+                "refundRate": 0.87,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "attackUp",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ],
+                "postBuffs": []
+            }
+        ]
+    },
+    {
         "name": "Elisabeth Báthory (Halloween)",
         "id": 61,
         "rarity": 4,
@@ -19282,12 +20230,34 @@
                         "val": 0.45,
                         "turns": 1,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffBurn"
+                        ]
                     }
                 ]
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -20171,7 +21141,28 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -20212,6 +21203,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -20632,9 +21633,29 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -20868,6 +21889,36 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -21088,6 +22139,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect",
                             "buffCharm"
                         ]
@@ -22172,6 +23224,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -22387,7 +23449,18 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -22594,7 +23667,38 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -22606,9 +23710,39 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -24625,6 +25759,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect",
                             "buffCharm"
                         ]
@@ -25043,11 +26178,33 @@
             },
             {
                 "cooldown": 8,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
                 "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
                     {
                         "self": true,
                         "team": true,
@@ -25059,10 +26216,30 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -25256,7 +26433,18 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -26519,11 +27707,54 @@
         "skills": [
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 4,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffPoison"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -26563,7 +27794,39 @@
                 "hitDistribution": [
                     1
                 ],
-                "preBuffs": [],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffPoison"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 0,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 0,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ],
                 "postBuffs": []
             }
         ]
@@ -27819,7 +29082,28 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -28472,9 +29756,29 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -29165,6 +30469,16 @@
             {
                 "cooldown": 6,
                 "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
                     {
                         "self": true,
                         "team": false,
@@ -30798,7 +32112,18 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -31009,7 +32334,28 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 4,
@@ -31053,6 +32399,248 @@
                         "trig": [
                             "genderFemale"
                         ]
+                    }
+                ],
+                "postBuffs": []
+            }
+        ]
+    },
+    {
+        "name": "Jacques de Molay",
+        "id": 324,
+        "rarity": 5,
+        "sClass": "foreigner",
+        "attribute": "earth",
+        "traits": [
+            "genderFemale",
+            "classForeigner",
+            "attributeEarth",
+            "alignmentNeutral",
+            "alignmentEvil",
+            "threatToHumanity",
+            "divine",
+            "humanoid",
+            "weakToEnumaElish",
+            "skyOrEarth",
+            "skyOrEarthExceptPseudoAndDemi",
+            "hominidaeServant"
+        ],
+        "f2pCopies": 0,
+        "iconUrl": "/images/servants/324.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/2501000/2501000a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classSaber"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1679,
+                "2": 1807,
+                "3": 1936,
+                "4": 2074,
+                "5": 2202,
+                "6": 2331,
+                "7": 2469,
+                "8": 2597,
+                "9": 2726,
+                "10": 2855,
+                "11": 2983,
+                "12": 3112,
+                "13": 3241,
+                "14": 3360,
+                "15": 3489,
+                "16": 3608,
+                "17": 3728,
+                "18": 3847,
+                "19": 3967,
+                "20": 4086,
+                "21": 4196,
+                "22": 4307,
+                "23": 4417,
+                "24": 4527,
+                "25": 4637,
+                "26": 4738,
+                "27": 4840,
+                "28": 4941,
+                "29": 5042,
+                "30": 5134,
+                "31": 5225,
+                "32": 5317,
+                "33": 5400,
+                "34": 5492,
+                "35": 5575,
+                "36": 5648,
+                "37": 5731,
+                "38": 5804,
+                "39": 5869,
+                "40": 5942,
+                "41": 6007,
+                "42": 6071,
+                "43": 6126,
+                "44": 6190,
+                "45": 6245,
+                "46": 6291,
+                "47": 6347,
+                "48": 6411,
+                "49": 6466,
+                "50": 6530,
+                "51": 6595,
+                "52": 6668,
+                "53": 6732,
+                "54": 6806,
+                "55": 6889,
+                "56": 6962,
+                "57": 7045,
+                "58": 7137,
+                "59": 7219,
+                "60": 7311,
+                "61": 7403,
+                "62": 7495,
+                "63": 7596,
+                "64": 7697,
+                "65": 7798,
+                "66": 7899,
+                "67": 8010,
+                "68": 8120,
+                "69": 8230,
+                "70": 8341,
+                "71": 8451,
+                "72": 8570,
+                "73": 8690,
+                "74": 8809,
+                "75": 8929,
+                "76": 9048,
+                "77": 9177,
+                "78": 9296,
+                "79": 9425,
+                "80": 9553,
+                "81": 9682,
+                "82": 9811,
+                "83": 9939,
+                "84": 10068,
+                "85": 10206,
+                "86": 10335,
+                "87": 10463,
+                "88": 10601,
+                "89": 10730,
+                "90": 10868,
+                "91": 10969,
+                "92": 11070,
+                "93": 11171,
+                "94": 11272,
+                "95": 11382,
+                "96": 11483,
+                "97": 11584,
+                "98": 11685,
+                "99": 11796,
+                "100": 11897,
+                "101": 11998,
+                "102": 12099,
+                "103": 12209,
+                "104": 12310,
+                "105": 12411,
+                "106": 12512,
+                "107": 12623,
+                "108": 12724,
+                "109": 12825,
+                "110": 12926,
+                "111": 13027,
+                "112": 13137,
+                "113": 13238,
+                "114": 13339,
+                "115": 13440,
+                "116": 13551,
+                "117": 13652,
+                "118": 13753,
+                "119": 13854,
+                "120": 13964
+            }
+        },
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 175,
+                "turns": -1
+            }
+        ],
+        "skills": [
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "attackUp",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ]
+            },
+            {
+                "cooldown": 6,
+                "buffs": []
+            },
+            {
+                "cooldown": 5,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "cardTypeUp",
+                        "val": 0.2,
+                        "turns": 3,
+                        "cardType": "quick"
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "powerMod",
+                        "val": 0.5,
+                        "turns": 3,
+                        "trig": [
+                            "buffCurse"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "quick",
+                "target": "aoe",
+                "multiplier": [
+                    6,
+                    8,
+                    9,
+                    9.5,
+                    10
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "extraTrigger": [],
+                "refundRate": 0.78,
+                "hitDistribution": [
+                    0.06,
+                    0.13,
+                    0.2,
+                    0.26,
+                    0.35
+                ],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npDamage",
+                        "val": 0.2,
+                        "turns": 3
                     }
                 ],
                 "postBuffs": []
@@ -31516,6 +33104,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -31898,11 +33496,32 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
                 "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
                     {
                         "self": true,
                         "team": true,
@@ -31913,9 +33532,29 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -33059,6 +34698,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -33470,7 +35119,19 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -33711,6 +35372,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect",
                             "buffCharm"
                         ]
@@ -33922,7 +35584,28 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -35759,6 +37442,16 @@
                         "type": "attackUp",
                         "val": 0.24,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -35777,7 +37470,18 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -35975,7 +37679,28 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -35999,6 +37724,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -37557,6 +39292,26 @@
                         "type": "overcharge",
                         "val": 1,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -38229,6 +39984,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -39293,6 +41058,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -39560,6 +41335,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -39930,6 +41715,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -39939,9 +41734,29 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -40135,10 +41950,6 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -40148,6 +41959,10 @@
                         "turns": 1
                     }
                 ]
+            },
+            {
+                "cooldown": 5,
+                "buffs": []
             }
         ],
         "nps": [
@@ -40342,10 +42157,6 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -40355,6 +42166,10 @@
                         "turns": 1
                     }
                 ]
+            },
+            {
+                "cooldown": 5,
+                "buffs": []
             }
         ],
         "nps": [
@@ -40978,7 +42793,18 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -41221,6 +43047,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect",
                             "buffCharm"
                         ]
@@ -41232,6 +43059,16 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "quick"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -41460,6 +43297,16 @@
             {
                 "cooldown": 6,
                 "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
                     {
                         "self": true,
                         "team": false,
@@ -41948,7 +43795,29 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffCurse"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -41959,6 +43828,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -42168,7 +44047,28 @@
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -43325,6 +45225,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -43731,7 +45641,18 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -44394,6 +46315,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -44411,7 +46342,68 @@
             },
             {
                 "cooldown": 7,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -44844,6 +46836,16 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "powerMod",
                         "val": 0.3,
                         "turns": 3,
@@ -45063,9 +47065,29 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -45075,10 +47097,40 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.3,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -45271,7 +47323,18 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -45715,6 +47778,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -49531,10 +51604,31 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.3,
                         "turns": 1,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -51768,6 +53862,16 @@
                         "type": "attackUp",
                         "val": 0.4,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -51989,6 +54093,26 @@
             {
                 "cooldown": 5,
                 "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
                     {
                         "self": true,
                         "team": true,
@@ -52647,7 +54771,28 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -53340,6 +55485,26 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -54622,6 +56787,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -54865,6 +57040,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -55073,6 +57258,16 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -56399,7 +58594,29 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffPoison"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -56851,6 +59068,16 @@
                         "val": 1,
                         "turns": 1,
                         "trig": "roman"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -57085,6 +59312,16 @@
                         "val": 0.4,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -57293,6 +59530,16 @@
                         "val": 0.5,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -57554,6 +59801,16 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -58856,7 +61113,18 @@
                 "hitDistribution": [
                     1
                 ],
-                "preBuffs": [],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ],
                 "postBuffs": []
             }
         ]
@@ -59248,6 +61516,36 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -59462,7 +61760,18 @@
             },
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             }
         ],
         "nps": [
@@ -59510,7 +61819,7 @@
         ]
     },
     {
-        "name": "Sei Shonagon",
+        "name": "Sei Shounagon",
         "id": 276,
         "rarity": 5,
         "sClass": "archer",
@@ -59754,7 +62063,7 @@
         ]
     },
     {
-        "name": "Sei Shonagon (Berserker)",
+        "name": "Sei Shounagon (Berserker)",
         "id": 323,
         "rarity": 4,
         "sClass": "berserker",
@@ -60152,7 +62461,18 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 5,
@@ -60164,10 +62484,31 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffPoison"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.5,
                         "turns": 1,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -60619,10 +62960,30 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.3,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -60635,6 +62996,16 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -60858,9 +63229,41 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffMentalEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     },
                     {
                         "self": true,
@@ -60869,6 +63272,16 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -61087,10 +63500,30 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -61297,6 +63730,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -61518,7 +63961,38 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -61830,6 +64304,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -63413,6 +65897,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect",
                             "buffCharm"
                         ]
@@ -63873,8 +66358,19 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect",
                             "buffCharm"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
                         ]
                     }
                 ]
@@ -64133,6 +66629,17 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffCurse"
+                        ]
                     }
                 ]
             }
@@ -64793,6 +67300,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
+                            "buffNegativeEffect",
                             "buffMentalEffect",
                             "buffCharm"
                         ]
@@ -64803,6 +67311,27 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffCurse"
+                        ]
                     }
                 ]
             },
@@ -65872,7 +68401,28 @@
             },
             {
                 "cooldown": 5,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -66770,10 +69320,30 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "quick"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -67431,6 +70001,16 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "quick"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -67880,6 +70460,26 @@
                         "val": 0.4,
                         "turns": 3,
                         "cardType": "buster"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -68284,7 +70884,18 @@
         "skills": [
             {
                 "cooldown": 6,
-                "buffs": []
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
             },
             {
                 "cooldown": 6,
@@ -68519,10 +71130,50 @@
                     {
                         "self": true,
                         "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
                         "type": "cardTypeUp",
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             }
@@ -68740,6 +71391,37 @@
                         "type": "attackUp",
                         "val": 0.3,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffBurn"
+                        ]
                     }
                 ]
             }
@@ -69394,6 +72076,16 @@
                 "buffs": [
                     {
                         "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
                         "team": false,
                         "type": "npGain",
                         "val": 0.5,
@@ -69842,6 +72534,16 @@
                         "type": "attackUp",
                         "val": 0.2,
                         "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ]
             },
@@ -70330,6 +73032,231 @@
                     0.35
                 ],
                 "preBuffs": [],
+                "postBuffs": []
+            }
+        ]
+    },
+    {
+        "name": "Zenobia",
+        "id": 325,
+        "rarity": 4,
+        "sClass": "archer",
+        "attribute": "human",
+        "traits": [
+            "genderFemale",
+            "classArcher",
+            "attributeHuman",
+            "alignmentLawful",
+            "alignmentGood",
+            "humanoid",
+            "weakToEnumaElish",
+            "riding",
+            "brynhildsBeloved",
+            "king",
+            "hominidaeServant"
+        ],
+        "f2pCopies": 0,
+        "iconUrl": "/images/servants/325.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/204500/204500a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classBerserker"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1638,
+                "2": 1687,
+                "3": 1744,
+                "4": 1801,
+                "5": 1867,
+                "6": 1932,
+                "7": 2006,
+                "8": 2072,
+                "9": 2154,
+                "10": 2227,
+                "11": 2309,
+                "12": 2399,
+                "13": 2481,
+                "14": 2572,
+                "15": 2670,
+                "16": 2768,
+                "17": 2866,
+                "18": 2965,
+                "19": 3071,
+                "20": 3178,
+                "21": 3284,
+                "22": 3399,
+                "23": 3506,
+                "24": 3628,
+                "25": 3743,
+                "26": 3858,
+                "27": 3981,
+                "28": 4104,
+                "29": 4226,
+                "30": 4358,
+                "31": 4480,
+                "32": 4612,
+                "33": 4743,
+                "34": 4866,
+                "35": 4997,
+                "36": 5136,
+                "37": 5267,
+                "38": 5398,
+                "39": 5529,
+                "40": 5660,
+                "41": 5800,
+                "42": 5931,
+                "43": 6062,
+                "44": 6193,
+                "45": 6324,
+                "46": 6463,
+                "47": 6594,
+                "48": 6717,
+                "49": 6848,
+                "50": 6979,
+                "51": 7102,
+                "52": 7233,
+                "53": 7356,
+                "54": 7479,
+                "55": 7602,
+                "56": 7717,
+                "57": 7831,
+                "58": 7954,
+                "59": 8061,
+                "60": 8176,
+                "61": 8282,
+                "62": 8389,
+                "63": 8495,
+                "64": 8593,
+                "65": 8692,
+                "66": 8790,
+                "67": 8888,
+                "68": 8978,
+                "69": 9060,
+                "70": 9150,
+                "71": 9232,
+                "72": 9306,
+                "73": 9388,
+                "74": 9454,
+                "75": 9527,
+                "76": 9593,
+                "77": 9658,
+                "78": 9716,
+                "79": 9773,
+                "80": 9831,
+                "81": 9929,
+                "82": 10035,
+                "83": 10134,
+                "84": 10240,
+                "85": 10347,
+                "86": 10445,
+                "87": 10551,
+                "88": 10658,
+                "89": 10756,
+                "90": 10863,
+                "91": 10969,
+                "92": 11068,
+                "93": 11174,
+                "94": 11281,
+                "95": 11379,
+                "96": 11485,
+                "97": 11592,
+                "98": 11690,
+                "99": 11797,
+                "100": 11903,
+                "101": 12002,
+                "102": 12108,
+                "103": 12215,
+                "104": 12313,
+                "105": 12419,
+                "106": 12526,
+                "107": 12624,
+                "108": 12731,
+                "109": 12837,
+                "110": 12936,
+                "111": 13042,
+                "112": 13149,
+                "113": 13247,
+                "114": 13353,
+                "115": 13460,
+                "116": 13558,
+                "117": 13665,
+                "118": 13771,
+                "119": 13870,
+                "120": 13976
+            }
+        },
+        "passives": [],
+        "skills": [
+            {
+                "cooldown": 7,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "cardTypeUp",
+                        "val": 0.3,
+                        "turns": 3,
+                        "cardType": "arts"
+                    }
+                ]
+            },
+            {
+                "cooldown": 6,
+                "buffs": []
+            },
+            {
+                "cooldown": 5,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "attackUp",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ]
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "arts",
+                "target": "aoe",
+                "multiplier": [
+                    4.5,
+                    6,
+                    6.75,
+                    7.125,
+                    7.5
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1.5,
+                    1.5,
+                    1.5,
+                    1.5,
+                    1.5
+                ],
+                "extraTrigger": [
+                    "king"
+                ],
+                "extraDmgStacks": false,
+                "refundRate": 0.47,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "attackUp",
+                        "val": 0.1,
+                        "turns": 1
+                    }
+                ],
                 "postBuffs": []
             }
         ]

@@ -1,4 +1,4 @@
-import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod, NoblePhantasm } from "./Servant";
+import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod, NoblePhantasm, distinct } from "./Servant";
 import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./Enemy";
 import { ScaledInt, s, f, SCALE, transformScaledInt } from "./arithmetic";
 import { Transform, Type } from "class-transformer";
@@ -70,7 +70,7 @@ class BuffSet {
             buffs.filter(b => b.type == BuffType.PowerMod).map(b => new PowerMod(b.trig!, s(b.val))).concat([ powerMod, powerMod, powerMod ]),
             buffs.filter(b => b.type == BuffType.Overcharge).reduce((v, b) => v + b.val, 0),
             buffs.filter(b => b.type == BuffType.DamagePlus).reduce((v, b) => v + b.val, 0),
-            buffs.filter(b => b.type == BuffType.AddTrait).flatMap(b => b.trig!)
+            distinct(buffs.filter(b => b.type == BuffType.AddTrait).flatMap(b => b.trig!))
         );
     }
 
