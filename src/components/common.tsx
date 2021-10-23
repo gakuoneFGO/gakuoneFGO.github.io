@@ -266,7 +266,7 @@ React.memo(function<T extends Named>(props: SaveableSelectProps<T>) {
                                 <Delete />
                             </IconButton>
                         : null}
-                        <IconButton title="Save" {...bindTrigger(popupState)}>
+                        <IconButton title="Save As..." {...bindTrigger(popupState)}>
                             <Save />
                         </IconButton>
                     </InputAdornment>
