@@ -14,23 +14,17 @@ export class BuffMatrix {
     @Type(() => BuffSet)
     readonly buffs: BuffSet[];
 
+    merge(other: BuffMatrix, maxPowerMods: number): BuffMatrix {
+        return new BuffMatrix(
+            this.buffs.map((buffset, turn) => BuffSet.combine([buffset, other.buffs[turn]]).normalize(maxPowerMods))
+        );
+    }
+
     static create(size: number): BuffMatrix {
-        let buffs = new Array<BuffSet>(size);
+        const buffs = new Array<BuffSet>(size);
         buffs.fill(BuffSet.empty());
         return new BuffMatrix(buffs);
     }
-
-    /**
-     * Keeps npCard in sync on all BuffMatrix objects so that display and calculations are consistent.
-     * (Ideally we would just track that on the Strat level but this simplifies coordination between components by avoiding the need to write extra update hooks.)
-     * @param other BuffMatrix to take values from.
-     * @returns 
-     */
-    // public syncNpCard(other: BuffMatrix): BuffMatrix {
-    //     return this.buffs.some((buffSet, index) => buffSet.npCard != other.buffs[index].npCard) ?
-    //         new BuffMatrix(this.buffs.map((buffSet, index) => update(buffSet, { npCard: { $set: other.buffs[index].npCard } }))) :
-    //         this;
-    // }
 }
 
 export class Template {

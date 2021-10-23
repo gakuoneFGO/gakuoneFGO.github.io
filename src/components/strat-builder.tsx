@@ -1,5 +1,5 @@
 import { Box, Grid, Stack, Tab, useMediaQuery, useTheme } from "@mui/material";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { BuffSet, getLikelyClassMatchup } from "../Damage";
 import { db } from "../Data";
 import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
@@ -17,6 +17,7 @@ import { Buff, BuffType, CardType, NoblePhantasm, Servant } from "../Servant";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useTracker } from "./undo-redo";
 import { useHandler, useHandler0, useHandler2 } from "./common";
+import { useDrag, useDrop } from "react-dnd";
 
 interface StratBuilderState {
     readonly strat: Strat;
@@ -108,6 +109,41 @@ export function StratBuilder() {
         }}), handlest)
     }
     
+    const mergeServant = useCallback((slot: number) => handlest.onChange({ $apply: state => {
+        const toMerge = state.strat.servants[slot]!;
+        return update(state, {
+            strat: {
+                servants: { [slot]: { $set: undefined } },
+                template: {
+                    party: { [slot]: { $set: toMerge.servant } },
+                    buffs: { $set: state.strat.template.buffs.merge(toMerge.buffs, 3) }
+                },
+            },
+            selectedTab: { $set: state.selectedTab == "servant" + slot ? "template" : state.selectedTab }
+        });
+    }}), []);
+
+    const drags = state.strat.servants.map((_, slot) => useDrag(() => ({
+        type: "servantTab",
+        accept: "partyTab",
+        item: () => ({ slot: slot }),
+        end: (dragged, monitor) => {
+            if (dragged && monitor.didDrop()) {
+                mergeServant(dragged.slot);
+            }
+        }
+    }), [mergeServant])[1]);
+
+    const dragRefs = drags.map(drag => {
+        const ref = useRef(null);
+        drag(ref);
+        return ref;
+    });
+
+    const [, drop] = useDrop(() => ({ accept: "servantTab" }), []);
+    const dropRef = useRef(null);
+    drop(dropRef);
+    
     return (
         <Box height={sm ? undefined : "98vh"} width="98vw" display="flex" flexDirection={sm ? "column" : "row-reverse"}>
             <Box display="flex" flexDirection="column" height="100%" width={lg ? "33%" : md ? "42%" : "100%"}>
@@ -143,10 +179,10 @@ export function StratBuilder() {
                 <TabContext value={state.selectedTab}>
                     <Box flexShrink={0}>
                         <TabList variant="scrollable" onChange={useHandler2((_, v) => ({ selectedTab: { $set: v } }), noTrack)}>
-                            {state.strat.servants.map((servant, slot) => servant ?
-                                <Tab key={slot} label={`Servant ${(slot + 1)}`} value={`servant${slot}`} />
-                            : null)}
-                            <Tab label="Party" value="template" />
+                            {state.strat.servants.map((servant, slot) => 
+                                <Tab key={slot} label={`Servant ${slot + 1}`} value={`servant${slot}`} ref={dragRefs[slot]} sx={servant ? {} : { display: "none" }} />
+                            )}
+                            <Tab label="Party" value="template" ref={dropRef} />
                             <Tab label="Craft Essence" value="ce" />
                             <Tab label="Enemies" value="node" />
                         </TabList>

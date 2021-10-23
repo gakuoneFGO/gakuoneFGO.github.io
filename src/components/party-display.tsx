@@ -1,7 +1,6 @@
 import { Box, ImageList, ImageListItem } from "@mui/material";
-import React, { ReactNode, useCallback, useRef } from "react";
-import { DndProvider, useDrag, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import React, { useCallback, useRef } from "react";
+import { useDrag, useDrop } from "react-dnd";
 import { Servant, ServantData } from "../Servant";
 
 interface PartyDisplayProps {
@@ -12,11 +11,9 @@ interface PartyDisplayProps {
 
 export const PartyDisplay = React.memo(function (props: PartyDisplayProps) {
     return (
-        <DndProvider backend={HTML5Backend}>
-            <ImageList cols={6}>
-                {props.party.map((servant, slot) => <PartyMember key={slot + servant.data.name} servant={servant.data} slot={slot} onDrop={props.onDrop} onClick={props.onClick} />)}
-            </ImageList>
-        </DndProvider>
+        <ImageList cols={6}>
+            {props.party.map((servant, slot) => <PartyMember key={slot + servant.data.name} servant={servant.data} slot={slot} onDrop={props.onDrop} onClick={props.onClick} />)}
+        </ImageList>
     );
 });
 

@@ -1,7 +1,8 @@
 import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod, NoblePhantasm, distinct } from "./Servant";
 import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./Enemy";
-import { ScaledInt, s, f, SCALE, transformScaledInt } from "./arithmetic";
+import { ScaledInt, s, f, transformScaledInt } from "./arithmetic";
 import { Transform, Type } from "class-transformer";
+import update from "immutability-helper";
 
 class BuffSet {
     public constructor(
@@ -41,22 +42,37 @@ class BuffSet {
         readonly powerMods: PowerMod[];
 
     public static empty(): BuffSet {
-        const powerMod = new PowerMod([Trait.Always], s(0));
-        return new BuffSet(s(0), s(0), s(0), s(0), s(0), [ powerMod, powerMod, powerMod ], 0, 0, []);
+        const blankMod = new PowerMod([Trait.Always], s(0));
+        return new BuffSet(s(0), s(0), s(0), s(0), s(0), [ blankMod, blankMod, blankMod ], 0, 0, []);
     }
 
-    public static combine(buffs: BuffSet[], appendMod: PowerMod): BuffSet {
+    public static combine(buffs: BuffSet[], appendMod?: PowerMod): BuffSet {
         return new BuffSet (
             buffs.map(buff => buff.attackUp).reduce((a, b) => a.plus(b)),
             buffs.map(buff => buff.cardUp).reduce((a, b) => a.plus(b)),
             buffs.map(buff => buff.npUp).reduce((a, b) => a.plus(b)),
             ScaledInt.max(...buffs.map(buff => buff.npBoost)),
             buffs.map(buff => buff.npGain).reduce((a, b) => a.plus(b)),
-            buffs.flatMap(buff => buff.powerMods).concat(appendMod),
+            buffs.flatMap(buff => buff.powerMods).concat(appendMod ?? []),
             buffs.map(buff => buff.overcharge).reduce((a, b) => a + b),
             buffs.map(buff => buff.flatDamage).reduce((a, b) => a + b),
-            buffs.flatMap(buff => buff.applyTraits)
+            buffs.flatMap(buff => buff.applyTraits ?? [])
         );
+    }
+
+    /**
+     * Combines power mods to make sure there aren't any in the model which aren't rendered.
+     * This will trim off some power mods unless we eventually allow an arbitrary number of power mods in the UI.
+     */
+    normalize(maxPowerMods: number): BuffSet {
+        const filtered = this.powerMods.filter(mod => mod.modifier.value() > 0 && mod.trigger.length > 0);
+        const deduplicated = mapReduce(filtered,
+            m => m.trigger,
+            (trig1, trig2) => trig1.length == trig2.length && !trig1.some(trig => !trig2.includes(trig)),
+            (mods, triggers) => new PowerMod(triggers, mods.reduce((a, b) => a.plus(b.modifier), s(0))));
+        const blankMod = new PowerMod([Trait.Always], s(0));
+        const normalizedMods = deduplicated.concat(new Array(maxPowerMods).fill(blankMod)).slice(0, maxPowerMods);
+        return update(this as BuffSet, { powerMods: { $set: normalizedMods } });
     }
 
     public static fromBuffs(buffs: Buff[], npCard: CardType): BuffSet {
@@ -85,6 +101,25 @@ class BuffSet {
         //there is no documentation yet on exactly how Oberon's "NP Boost" arithmetic works so this is just a guess
         return this.npUp.times(this.npBoost.asMultiplier());
     }
+}
+
+export function mapReduce<TArray, TKey, TOut>(
+    items: TArray[],
+    getKey: (item: TArray) => TKey,
+    areKeysEqual: (key1: TKey, key2: TKey) => boolean,
+    map: (items: TArray[], key: TKey) => TOut
+): TOut[] {
+    const mapped = [] as { key: TKey, items: TArray[] }[];
+    items.forEach(item => {
+        const key = getKey(item);
+        const match = mapped.find(m => areKeysEqual(m.key, key));
+        if (match) {
+            match.items.push(item);
+        } else {
+            mapped.push({ key: key, items: [item] })
+        }
+    });
+    return mapped.map(m => map(m.items, m.key));
 }
 
 export class Range<T> {
