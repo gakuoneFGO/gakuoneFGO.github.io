@@ -29,7 +29,7 @@ class DataProvider {
                 data.name, Math.max(data.f2pCopies, 1),
                 getMaxLevel(data.rarity),
                 1000,
-                data.rarity < 3 ? 9 : 0,
+                0,//data.rarity < 3 ? 9 : 0, //someday we can assume that bronze append skills are unlocked but NA doesn't even have them yet
                 data.nps.some(np => np.multUpgrade > 0.0));
         const servant = new Servant(config, data);
         this.defaultServantCache.set(name, servant);
@@ -140,8 +140,7 @@ async function load<T extends { name: string }>(sources: { type: ClassConstructo
     const staticItems = sources.url ?
         fetch(sources.url).then(resp => resp.text()).then(resp => deserializeArray(sources.type, resp)) :
         Promise.all([]);
-    const items = await staticItems;
-    return new Persistor(sources.type, sources.storageKey, items);
+    return new Persistor(sources.type, sources.storageKey, await staticItems);
 }
 
 function getMaxLevel(rarity: number): number {
