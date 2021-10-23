@@ -9,7 +9,7 @@ import { BuffType, CardType, Servant, PowerMod } from "../Servant";
 import { BuffMatrix } from "../Strat";
 import { Props, useHandler, useHandler2, Updateable, CommandPercentInput, CommandTraitSelect, CommandIntInput, Commandable, memoized } from "./common";
 import { TransposedTable } from "./transposed-table"
-import { usePopupState, bindMenu, bindHover } from "material-ui-popup-state/hooks";
+import { usePopupState, bindMenu, bindHover, bindTrigger } from "material-ui-popup-state/hooks";
 import HoverMenu from 'material-ui-popup-state/HoverMenu'
 
 interface BuffMatrixBuilderProps extends Props<BuffMatrix> {
@@ -93,7 +93,7 @@ export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderPro
                 }>
                 <Box>
                     <Grid {...gridLeftHeaderProps}>
-                        <Button endIcon={<KeyboardArrowDown />} {...bindHover(popupState)}>
+                        <Button endIcon={<KeyboardArrowDown />} {...bindHover(popupState)} {...bindTrigger(popupState)}>
                             <Menu />
                         </Button>
                         {/* Text is omitted from menu items to avoid annoying behavior when mousing over the space between the button and the far end of the menu */}

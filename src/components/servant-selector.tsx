@@ -50,7 +50,7 @@ export const ServantSelector = React.memo(function(props: ServantSelectorProps) 
                                     options={props.value.data.growthCurve.getValidLevels()}
                                     disableClearable
                                     value={props.value.config.level.toString()}
-                                    renderInput={params => <TextField {...params} label="Level" />}
+                                    renderInput={params => <TextField autoFocus {...params} label="Level" />}
                                     onChange={useHandler2((_, v: string) => ({ config: { level: { $set: Number.parseInt(v) } } }), props)} />
                                 <Autocomplete
                                     options={["1", "2", "3", "4", "5"]}
