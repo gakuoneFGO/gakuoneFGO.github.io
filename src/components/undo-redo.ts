@@ -39,7 +39,7 @@ export class Tracker<T> {
                 tracked.prev.push({ prev: tracked.state, next: newState });
                 tracked.next = [];
             }
-            return { ...this.tracked, state: newState };
+            return { ...tracked, state: newState };
         });
     }
 
