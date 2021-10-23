@@ -60,6 +60,8 @@ export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderPro
     const gridCellProps = {
         item: true,
         xs: 3 as GridSize,
+        display: "flex",
+        alignItems: "center",
     };
 
     const gridLeftHeaderProps = {

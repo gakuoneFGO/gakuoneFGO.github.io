@@ -300,7 +300,7 @@ export const TraitSelect = React.memo(function(props: AtomicProps<Trait[]> & { l
                     $set: props.value.length == 1 && props.value[0] == Trait.Always ? traits.filter(trait => trait != Trait.Always) : traits
                 }), props, props.value
             )}
-            forcePopupIcon={false}
+            forcePopupIcon={false} fullWidth
             renderInput={params => <TextField {...params} label={props.label} />}
             renderTags={(traits, getTagProps) => traits.map((trait, index) => <Chip label={trait} {...getTagProps({ index })} title={trait} />)} />
     );
