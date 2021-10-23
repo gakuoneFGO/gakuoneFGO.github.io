@@ -1,6 +1,6 @@
 import { ServantConfig, Servant, ServantData } from "./Servant";
 import { Template, BuffMatrix, EnemyNode } from "./Strat";
-import { ClassConstructor, deserializeArray, Type } from 'class-transformer';
+import { ClassConstructor, deserializeArray, serialize, Type } from 'class-transformer';
 import { CraftEssence } from "./Damage";
 import update from "immutability-helper";
 
@@ -45,7 +45,7 @@ class DataProvider {
     }
 
     getTemplate(name: string): Template {
-        let data = this.templates.get(name);
+        const data = this.templates.get(name);
         return new Template(
             data.name,
             data.buffs,
@@ -57,7 +57,7 @@ class DataProvider {
     }
 
     setTemplate(template: Template) {
-        let data = new TemplateData(
+        const data = new TemplateData(
             template.name,
             template.buffs,
             template.party.map(servant => servant.data.name),
@@ -72,10 +72,10 @@ class DataProvider {
 export interface Named { name: string }
 
 export class Persistor<T extends Named> {
-    constructor(type: ClassConstructor<T>, storageKey: string | undefined, staticItems: T[]) {
+    constructor(private readonly type: ClassConstructor<T>, storageKey: string | undefined, staticItems: T[]) {
         if (storageKey) {
             this.storageKey = storageKey;
-            let storedItems = deserializeArray(type, localStorage.getItem(storageKey!) ?? "[]");
+            const storedItems = deserializeArray(type, localStorage.getItem(storageKey!) ?? "[]");
             this.items = staticItems.concat(storedItems).sort((a, b)=> a.name.localeCompare(b.name));
         } else this.items = staticItems;
 
@@ -118,9 +118,9 @@ export class Persistor<T extends Named> {
             throw new Error("Attempted to save state which was not intended to be saved.")
         }
 
-        const existing = JSON.parse(localStorage.getItem(this.storageKey!) ?? "[]");
+        const existing = deserializeArray(this.type, localStorage.getItem(this.storageKey!) ?? "[]");
         const transformed = transform(existing);
-        localStorage.setItem(this.storageKey, JSON.stringify(transformed));
+        localStorage.setItem(this.storageKey, serialize(transformed));
     }
 
     isCustom(item: T) {
