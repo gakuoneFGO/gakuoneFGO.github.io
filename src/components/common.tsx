@@ -107,7 +107,6 @@ export const IntegerInput = React.memo(function(props: AtomicProps<number> & { l
     }
 
     const onChange = (stringValue: string) => {
-        //TODO: validate input
         let value = stringValue == "" ? 0 : Number.parseInt(stringValue);
         setState({ value: value, displayValue: stringValue });
         return { $set: value };
@@ -137,10 +136,8 @@ export const Commandable = <Component extends React.ComponentType<any>>(
 ) => {
     return React.memo(function<C>(props: CommandProps<C> & React.ComponentProps<Component>) {
         const callback = useCallback((...args) => props.onCommand(props.command, ...args), [props.command, props.onCommand]);
-        //TODO: unset the extra args since Button is complaining about them
-        //const spec: Spec<CommandProps<C> & React.ComponentProps<Component>, never> = { $unset: ["command", "onCommand"] };
-        //const cleansed = update(props, spec);
-        return React.createElement(component, { ...props, command: undefined, onCommand: undefined, [event]:  callback}, props.children);
+        const cleansed = update(props, { $unset: ["command", "onCommand"] } as any);
+        return React.createElement(component, { ...cleansed, [event]: callback}, props.children);
     }) as <C>(props: CommandProps<C> & React.ComponentProps<Component>) => JSX.Element;
 }
 
