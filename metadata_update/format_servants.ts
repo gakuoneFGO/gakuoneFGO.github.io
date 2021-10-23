@@ -1,7 +1,7 @@
 import * as JSONStream from "JSONStream";
 import * as fs from "fs";
 import "reflect-metadata";
-import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType, NPTarget, distinct } from "../src/Servant"
+import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType, NPTarget, distinct, Servant } from "../src/Servant"
 import update from "immutability-helper";
 import { Trait } from "../src/Enemy";
 import fetch from "node-fetch";
@@ -27,23 +27,28 @@ enumStream.on("end", () => {
         }));
     }).on("end", () => {
         Promise.all(allPromises).then(() => {
-            let allServants: ServantData[] = [ getDummyServant("<Placeholder>"), getDummyServant("<Unspecified>") ];
+            const allServants: ServantData[] = [ getDummyServant("<Placeholder>"), getDummyServant("<Unspecified>") ];
             servants.forEach(sArray => {
                 const origServant = sArray.reduce((min, cur) => min.id < cur.id ? min : cur);
-                allServants = allServants.concat(sArray.map(servant => {
-                    if (servant == origServant)
-                        return servant;
-                    if (servant.sClass != origServant.sClass)
-                        //TODO: fold in class name when ends in (Alter)
-                        return update(servant, { name: { $set: servant.name + " (" + toNiceClassName(servant.sClass) + ")" } })
-                    //just BB and Abby will hit this for now
-                    return update(servant, { name: { $set: servant.name + " (Summer)" } });
-                }));
+                allServants.push(...sArray.map(servant => setName(servant, origServant)));
             });
             fs.createWriteStream("src\\servants.json", { encoding: "utf-8" }).write(JSON.stringify(allServants.sort((a, b) => a.name.localeCompare(b.name)), replaceMap, 4));
         });
     });
 });
+
+function setName(servant: ServantData, firstWithName: ServantData): ServantData {
+    if (servant == firstWithName)
+        return servant;
+    if (servant.sClass != firstWithName.sClass) {
+        const name = servant.name.endsWith("(Alter)") ?
+            servant.name.replace("(Alter)", `(${toNiceClassName(servant.sClass)} Alter)`) :
+            `${servant.name} (${toNiceClassName(servant.sClass)})`;
+        return update(servant, { name: { $set: name } });
+    }
+    //just BB and Abby will hit this for now
+    return update(servant, { name: { $set: servant.name + " (Summer)" } });
+}
 
 async function mapServant(data: any): Promise<ServantData> {
     if (data.type == "enemyCollectionDetail") {
