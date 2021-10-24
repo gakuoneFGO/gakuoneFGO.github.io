@@ -69,7 +69,7 @@ export function StratBuilder() {
         const servant = update(state.strat.servants[slot]?.servant!, spec);
         if (servant.data.name != state.strat.servants[slot]!.servant.data.name) {
             let strat = update(state.strat, { servants: { [slot]: { servant: { $set: servant } } } });
-            strat = fixNpCards(strat);
+            strat = fixNpCards(strat, [slot]);
             return update(state, {
                 strat: { $set: defaultBuffsetHeuristic(strat, slot) },
                 basicEnemy: { $set: state.basicEnemy.withClass(getLikelyClassMatchup(servant.data.sClass)) }
@@ -91,7 +91,7 @@ export function StratBuilder() {
 
         //decide which NP
         const clearersFixed = fixClearers(templateUpdated);
-        const npCardsFixed = fixNpCards(clearersFixed);
+        const npCardsFixed = fixNpCards(clearersFixed, template.clearers.filter(c => !template.party[c].isPlaceholder()));
 
         //generate buffs
         const buffsGenerated = updates.filter(upd => upd[0] instanceof Servant).reduce((strat, upd) => defaultBuffsetHeuristic(strat, upd[1] as number), npCardsFixed);
@@ -304,13 +304,12 @@ function fixClearers(strat: Strat): Strat {
     return update(strat, { template: { clearers: { $set: validClearers } } });
 }
 
-function fixNpCards(strat: Strat): Strat {
+function fixNpCards(strat: Strat, slots: number[]): Strat {
+    const turns = strat.template.clearers.flatMap((slot, turn) => slots.includes(slot) ? [turn] : []);
+    if (turns.length == 0) return strat;
     //assumes selected servants are up to date
     const clearers = strat.getRealClearers();
-    if (!clearers.some((clearer, turn) => !clearer[0].data.hasNP(strat.npCards[turn]))) {
-        return strat;
-    }
-    const cards = clearers.map((clearer, turn) => clearer[0].data.hasNP(strat.npCards[turn]) ? strat.npCards[turn] : clearer[0].data.getNP().cardType);
+    const cards = clearers.map((clearer, turn) => turns.includes(turn) ? clearer[0].data.getNP().cardType : strat.npCards[turn]);
     return update(strat, { npCards: { $set: cards } });
 }
 

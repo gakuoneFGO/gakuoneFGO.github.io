@@ -121,10 +121,6 @@ export class ServantData {
         return this.nps.find(np => np.cardType == cardType) ?? this.nps.find(np => np.target == "aoe") ?? this.nps[0];
     }
 
-    public hasNP(cardType: CardType): boolean {
-        return this.nps.some(np => np.cardType == cardType);
-    }
-
     public isPlaceholder(): boolean {
         return this.name == "<Placeholder>";
     }
