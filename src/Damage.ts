@@ -1,4 +1,4 @@
-import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod, NoblePhantasm, distinct } from "./Servant";
+import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod, NoblePhantasm, distinct, reflection } from "./Servant";
 import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./Enemy";
 import { ScaledInt, s, f, transformScaledInt } from "./arithmetic";
 import { Transform, Type } from "class-transformer";
@@ -163,7 +163,7 @@ export class RefundResult {
     getFacecardThresholds(): { fcDamage: number, extraRefund: ScaledInt }[] {
         return this.hpAfterHit
             .filter(hp => hp >= 0)
-            .reverse()
+            .map(reflection)
             .map((hp, i) => ({ fcDamage: hp + 1, extraRefund: this.overkillDifferential.times(i + 1) }));
     }
 };

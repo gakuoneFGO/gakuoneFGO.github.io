@@ -2,6 +2,7 @@ import { ServantConfig, Servant, ServantData } from "./Servant";
 import { Template, BuffMatrix, EnemyNode } from "./Strat";
 import { ClassConstructor, deserializeArray, serialize, Type } from 'class-transformer';
 import { CraftEssence } from "./Damage";
+import { appVersion } from "./versioning"
 import update from "immutability-helper";
 
 class DataProvider {
@@ -138,7 +139,7 @@ export class Persistor<T extends Named> {
 
 async function load<T extends { name: string }>(sources: { type: ClassConstructor<T>, url?: string, storageKey?: string }): Promise<Persistor<T>> {
     const staticItems = sources.url ?
-        fetch(sources.url).then(resp => resp.text()).then(resp => deserializeArray(sources.type, resp)) :
+        fetch(`${sources.url}?v=${appVersion}`).then(resp => resp.text()).then(resp => deserializeArray(sources.type, resp)) :
         Promise.all([]);
     return new Persistor(sources.type, sources.storageKey, await staticItems);
 }

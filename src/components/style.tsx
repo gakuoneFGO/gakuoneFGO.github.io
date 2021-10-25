@@ -1,5 +1,5 @@
-import { createTheme, darkScrollbar, Paper } from "@mui/material";
-import { blue, blueGrey, deepOrange, green, grey, lightBlue, orange, purple, red, yellow } from "@mui/material/colors";
+import { createTheme, Paper } from "@mui/material";
+import { blue, blueGrey, green, grey, red, yellow } from "@mui/material/colors";
 declare module '@mui/material/styles/createPalette' {
     interface PaletteOptions {
         buster?: PaletteColorOptions;

@@ -103,7 +103,7 @@ export const NodeOutputPanel = React.memo(function(props: { node: EnemyNode, str
                                 </Paper>
                             );
                         })}
-                        <Paper sx={{ background: theme.palette.refund.gradient, color: theme.palette.refund.contrastText,
+                        <Paper title="Refund" sx={{ background: theme.palette.refund.gradient, color: theme.palette.refund.contrastText,
                             visibility: turn == props.node.waves.length - 1 ? "hidden" : "initial" }}>
                             <Typography textAlign="center" style={{ textShadow: "1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000" }}>
                                 <PercentFormat value={wave.refund.low.value()} />

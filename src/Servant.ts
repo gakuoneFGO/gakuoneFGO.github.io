@@ -336,3 +336,6 @@ export function distinct<T>(values: T[]): T[] {
         values :
         values.filter(set.delete, set);
 }
+
+//array.map(reflection) is array.reverse() without mutating
+export const reflection = <T>(_: T, index: number, array: T[]) => array[array.length - index - 1];

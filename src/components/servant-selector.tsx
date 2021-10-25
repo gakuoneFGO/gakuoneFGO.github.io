@@ -25,7 +25,7 @@ export const ServantSelector = React.memo(function(props: ServantSelectorProps) 
             <SmartSelect provider={db.servantData}
                 value={props.value.data}
                 onChange={useHandler(v => ({ $set: db.getServantDefaults(v.$set.name) }), props)}
-                label="Select Servant"
+                label={`Select ${props.label ?? "Servant"}`}
                 filter={ props.allowPlaceholder && props.allowUnspecified ? undefined : filter }
                 endAdornment={
                     <InputAdornment position="end">

@@ -168,9 +168,9 @@ export function StratBuilder() {
                         <NodeOutputPanel strat={state.strat} node={state.advancedNode} tooltipPlacement={sm ? "bottom" : "left"} />
                     </TabPanel>
                     <Box flexShrink={0}>
-                        <TabList onChange={(_, v) => setSelectedOutput(v)}>
+                        <TabList onChange={useCallback((_, v) => setSelectedOutput(v), [])}>
                             <Tab label="Basic" value="basic" />
-                            <Tab label="Advanced" value="advanced" />
+                            <Tab label="Detailed" value="advanced" />
                         </TabList>
                     </Box>
                 </TabContext>
@@ -179,10 +179,10 @@ export function StratBuilder() {
                 <TabContext value={state.selectedTab}>
                     <Box flexShrink={0}>
                         <TabList variant="scrollable" onChange={useHandler2((_, v) => ({ selectedTab: { $set: v } }), noTrack)}>
+                            <Tab label="Party" value="template" ref={dropRef} />
                             {state.strat.servants.map((servant, slot) => 
                                 <Tab key={slot} label={`Servant ${slot + 1}`} value={`servant${slot}`} ref={dragRefs[slot]} sx={servant ? {} : { display: "none" }} />
                             )}
-                            <Tab label="Party" value="template" ref={dropRef} />
                             <Tab label="Craft Essence" value="ce" />
                             <Tab label="Enemies" value="node" />
                         </TabList>
@@ -252,7 +252,7 @@ function defaultBuffsetHeuristic(strat: Strat, clearerIndex: number): Strat {
         if (turnsToApplyTo.length == 0) {
             return { buffs: skill.buffs, turn: 0 };
         }
-        const optimizedTurn = turnsToApplyTo.reverse()[0] - Math.min(...skill.buffs.map(b => b.turns)) + 1;
+        const optimizedTurn = turnsToApplyTo[turnsToApplyTo.length - 1] - Math.min(...skill.buffs.map(b => b.turns)) + 1;
         return { buffs: skill.buffs, turn: Math.max(optimizedTurn, 0) };
     }).concat(isClearerSelf.map((isSelf, turn) => {
         return { buffs: isSelf ? getNP(turn).preBuffs : [], turn: turn };
