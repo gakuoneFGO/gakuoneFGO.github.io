@@ -51,9 +51,9 @@ const AppInfo = React.memo(function() {
     return (
         <>
             <Typography>App Version: {appVersion}</Typography>
-            <Link href="https://github.com/gakuoneFGO/fgo3t" target="_blank">Report issues or request features on GitHub</Link>
-            <Typography>This app was made possible by game data provided by <Link href="https://atlasacademy.io/" target="_blank">Atlas Academy</Link>.</Typography>
-            <Typography>Also check out <Link href="https://maketakunai.github.io/" target="_blank">maketakunai.github.io</Link> for one-off calculations.</Typography>
+            <Link href="https://github.com/gakuoneFGO/fgo3t" target="_blank" rel="noopener">Report issues or request features on GitHub</Link>
+            <Typography>This app was made possible by game data provided by <Link href="https://atlasacademy.io/" target="_blank" rel="noopener">Atlas Academy</Link>.</Typography>
+            <Typography>Also check out <Link href="https://maketakunai.github.io/" target="_blank" rel="noopener">maketakunai.github.io</Link> for one-off calculations.</Typography>
             <br />
             <Divider />
             <br />
@@ -179,7 +179,7 @@ const AppHelp = React.memo(function() {
             <Typography variant="h5">Select a commonly used CE from the dropdown, or add a specific CE</Typography>
             <br />
             <Typography>The app only tracks two CEs at a time. "Servant CE" is applied to all "placeholder" servants (i.e. servants that have their own SERVANTS tab). "Support CE" is applied to all servants in the PARTY tab. If you need three different CEs, you can adjust the buffs/Fous for each servant independently to simulate having three CEs.</Typography>
-            <Typography>Enter the attack stat of the CE you are using (check out <Link href="https://www.saberofavalon.com/fgo/cecalc/cecalculator.html" target="_blank">SaberOfAvalon's CE Experience Calculator</Link> if you don't know this offhand).</Typography>
+            <Typography>Enter the attack stat of the CE you are using (check out <Link href="https://www.saberofavalon.com/fgo/cecalc/cecalculator.html" target="_blank" rel="noopener">SaberOfAvalon's CE Experience Calculator</Link> if you don't know this offhand).</Typography>
             <Typography>Add/remove buffs to match the CE you are using.</Typography>
             <Typography>Optional: Save the CE for later.</Typography>
             <br />
