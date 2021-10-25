@@ -11,6 +11,7 @@ import { Props, useHandler, useHandler2, Updateable, CommandPercentInput, Comman
 import { TransposedTable } from "./transposed-table"
 import { usePopupState, bindMenu, bindHover, bindTrigger } from "material-ui-popup-state/hooks";
 import HoverMenu from 'material-ui-popup-state/HoverMenu'
+import { ScaledInt } from "../arithmetic";
 
 interface BuffMatrixBuilderProps extends Props<BuffMatrix> {
         readonly servants: Servant[];
@@ -22,7 +23,7 @@ interface BuffMatrixBuilderProps extends Props<BuffMatrix> {
 }
 
 function isBuffSelected(buffs: BuffMatrix, buffType: keyof BuffSet): boolean {
-    return buffs.buffs.some(buffset => buffset[buffType] != 0);
+    return buffs.buffs.map(buffset => buffset[buffType]).some(buff => buff instanceof ScaledInt ? buff.value() != 0 : buff != 0);
 }
 
 export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderProps) {
