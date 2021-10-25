@@ -9,7 +9,7 @@ import { bindPopover, bindToggle, usePopupState } from "material-ui-popup-state/
 import { Spec } from "immutability-helper";
 import { ServantData } from "../Servant";
 
-export const EnemyBuilder = React.memo(function(props: Props<Enemy> & { showHealth?: Boolean }) {
+export const EnemyBuilder = React.memo(function(props: Props<Enemy> & { showHealth?: Boolean, classAdornment?: JSX.Element, onClassChanged?: () => void }) {
     return (
         <>
             {props.showHealth ?
@@ -19,8 +19,16 @@ export const EnemyBuilder = React.memo(function(props: Props<Enemy> & { showHeal
             <Autocomplete
                 options={Object.values(EnemyClass)}
                 value={props.value.eClass}
-                renderInput={params => <TextField {...params} label="Enemy Class" />}
-                onChange={useHandler2((_, v: EnemyClass | null) => ({ $apply: (enemy: Enemy) => v ? enemy.withClass(v) : enemy }), props)} />
+                forcePopupIcon={!props.classAdornment}
+                renderInput={params => <TextField {...params} label="Enemy Class"
+                InputProps={{
+                    ...params.InputProps,
+                    endAdornment: props.classAdornment ?? params.InputProps.endAdornment
+                }} />}
+                onChange={useHandler2((_, v: EnemyClass | null) => {
+                    if (props.onClassChanged) props.onClassChanged();
+                    return { $apply: (enemy: Enemy) => v ? enemy.withClass(v) : enemy };
+                }, props, props.onClassChanged)} />
             <Autocomplete
                 options={Object.values(EnemyAttribute)}
                 value={props.value.attribute}

@@ -27,6 +27,26 @@ export const ClassIcon = React.memo(function(props: { type: EnemyClass | Servant
 //     ["berserker", (props: any) => <img {...props} src="images/classes/berserker.png" />],
 // ]);
 
+export function Locked() {
+    const classes = useStyles();
+    return (
+        <SvgIcon className={classes.root}>
+            <path fill="currentcolor" strokeLinejoin="round" d="M4 21h16v-11h-16z" />
+            <path strokeWidth="2" d="M17 10v-3a5 5 0 0 0 -10 0v3" />
+        </SvgIcon>
+    );
+}
+
+export function Unlocked() {
+    const classes = useStyles();
+    return (
+        <SvgIcon className={classes.root}>
+            <path fill="currentcolor" strokeLinejoin="round" d="M4 21h16v-11h-16z" />
+            <path strokeWidth="2" d="M17 10v-3a5 5 0 0 0 -10 0" />
+        </SvgIcon>
+    );
+}
+
 //svg is recognizable but takes too long to make and honestly just looks worse than the image icons
 export function Saber(props: any) {
     const classes = useStyles();

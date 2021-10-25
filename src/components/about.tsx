@@ -5,6 +5,7 @@ import React from "react";
 import { useCallback, useState } from "react";
 import { reflection } from "../Servant";
 import { appVersion, changeLog, getVersionNumber } from "../versioning";
+import { Unlocked } from "./icons";
 
 export function About() {
     const [ open, setOpen ] = useState(false);
@@ -234,6 +235,14 @@ const AppHelp = React.memo(function() {
             <br />
             <Typography>Change the enemy details as desired and see the damage reflected in the output grid.</Typography>
             <Typography>This shows the <i>minimum</i> damage, which is 10% lower than the average damage.</Typography>
+            <br />
+            <Typography>Buttons:</Typography>
+            <List>
+                <ListItem>
+                    <ListItemIcon title="Save As..."><Unlocked /></ListItemIcon>
+                    <ListItemText>Lock the current enemy class so that it doesn't change when changing servants (automatically locks if you change the enemy class)</ListItemText>
+                </ListItem>
+            </List>
             {divider}
             <Typography variant="h4">"Detailed" Output</Typography>
             <Typography variant="h5">Damage/refund for a given node</Typography>

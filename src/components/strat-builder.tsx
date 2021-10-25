@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Tab, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, IconButton, Stack, Tab, useMediaQuery, useTheme } from "@mui/material";
 import { useCallback, useRef, useState } from "react";
 import { BuffSet, getLikelyClassMatchup } from "../Damage";
 import { db } from "../Data";
@@ -18,6 +18,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useTracker } from "./undo-redo";
 import { useHandler, useHandler0, useHandler2 } from "./common";
 import { useDrag, useDrop } from "react-dnd";
+import { Locked, Unlocked } from "./icons";
 
 interface StratBuilderState {
     readonly strat: Strat;
@@ -65,6 +66,8 @@ export function StratBuilder() {
         onChange: useCallback((spec: Spec<StratBuilderState>) => tracker.handleChange(s => update(s, spec), true), [])
     };
 
+    const [classLocked, setClassLocked] = useState(false);
+
     const onServantChanged = useHandler2((slot: number, spec: Spec<Servant>) => ({ $apply: (state: StratBuilderState) => {
         const servant = update(state.strat.servants[slot]?.servant!, spec);
         if (servant.data.name != state.strat.servants[slot]!.servant.data.name) {
@@ -72,12 +75,12 @@ export function StratBuilder() {
             strat = fixNpCards(strat, [slot]);
             return update(state, {
                 strat: { $set: defaultBuffsetHeuristic(strat, slot) },
-                basicEnemy: { $set: state.basicEnemy.withClass(getLikelyClassMatchup(servant.data.sClass)) }
+                basicEnemy: classLocked ? _ => _ : { $set: state.basicEnemy.withClass(getLikelyClassMatchup(servant.data.sClass)) }
             });
         } else {
             return update(state, { strat: { servants: { [slot]: { servant: { $set: servant } } } } });
         }
-    }}), handlest);
+    }}), handlest, classLocked);
 
     const onTemplateChanged = useHandler((spec: Spec<Template>) => ({ $apply: state => {
         const template = update(state.strat.template, spec);
@@ -161,7 +164,15 @@ export function StratBuilder() {
                     <TabPanel value="basic" sx={{ overflowY: "scroll", height: "100%" }}>
                         <Stack spacing={2}>
                             <OutputPanel strat={state.strat} enemy={state.basicEnemy} />
-                            <EnemyBuilder value={state.basicEnemy} onChange={useHandler(enemy => ({ basicEnemy: enemy }), handlest)} />
+                            <EnemyBuilder value={state.basicEnemy} onChange={useHandler(enemy => ({ basicEnemy: enemy }), handlest)}
+                                onClassChanged={useCallback(() => setClassLocked(true), [])}
+                                classAdornment={
+                                    <IconButton title={classLocked ? "Unlock Class" : "Lock Class"} onClick={useCallback(() => setClassLocked(locked => !locked), [])}>
+                                        {classLocked ?
+                                            <Locked /> :
+                                            <Unlocked />
+                                        }
+                                    </IconButton>} />
                         </Stack>
                     </TabPanel>
                     <TabPanel value="advanced" sx={{ overflowY: "scroll", height: "100%" }}>
