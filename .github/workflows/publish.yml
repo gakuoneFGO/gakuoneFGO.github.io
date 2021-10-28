@@ -1,0 +1,26 @@
+name: publish
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'src/release-history.json'
+jobs:
+  build-and-publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          git fetch origin gh-pages
+          git checkout -b gh-pages origin/gh-pages --track
+          git reset --hard master
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm build
+      - run: |
+          git config --global user.name 'Automated Release'
+          git config --global user.email 'gakuoneFGO@users.noreply.github.com'
+          git add -f build
+          git commit -m 'publish to gakuoneFGO.github.io'
+          git push -f
