@@ -1,10 +1,10 @@
 import { Checkbox, FormControlLabel, Grid, Stack, Card, CardContent, Box, IconButton, Modal, Typography, List, ListItem, CardHeader, ListItemText, ListItemIcon } from "@mui/material";
-import { db } from "../Data";
-import { Template } from "../Strat";
+import { db } from "../calc/data";
+import { Template } from "../calc/strat";
 import { BuffMatrixBuilder } from "./buff-matrix-builder";
 import { Commandable, memoized, Props, SaveableSelect, useHandler, useHandler0, useHandler2, useHandler3 } from "./common";
 import { CommandServantSelector, ServantSelector } from "./servant-selector";
-import { CardType, Servant } from "../Servant";
+import { CardType, Servant } from "../calc/servant";
 import { Close, Info } from "@mui/icons-material";
 import { useCallback, useState } from "react";
 import { Spec } from "immutability-helper";

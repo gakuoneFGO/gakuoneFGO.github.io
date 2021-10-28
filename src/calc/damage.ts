@@ -1,5 +1,5 @@
-import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod, NoblePhantasm, distinct, reflection } from "./Servant";
-import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./Enemy";
+import { Servant, ServantClass, ServantAttribute, CardType, Buff, BuffType, PowerMod, NoblePhantasm, distinct, reflection } from "./servant";
+import { Enemy, EnemyClass, EnemyAttribute, Trait } from "./enemy";
 import { ScaledInt, s, f, transformScaledInt } from "./arithmetic";
 import { Transform, Type } from "class-transformer";
 import update from "immutability-helper";

@@ -1,11 +1,11 @@
 import * as JSONStream from "JSONStream";
 import * as fs from "fs";
 import "reflect-metadata";
-import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType, NPTarget, distinct, Servant } from "../src/Servant"
+import { ServantData, GrowthCurve, CardType, ServantClass, ServantAttribute, NoblePhantasm, Buff, Skill, BuffType, NPTarget, distinct, Servant } from "../src/calc/servant"
 import update from "immutability-helper";
-import { Trait } from "../src/Enemy";
+import { Trait } from "../src/calc/enemy";
 import fetch from "node-fetch";
-import { SCALE } from "../src/arithmetic";
+import { SCALE } from "../src/calc/arithmetic";
 
 const U_RATIO = 1 / SCALE;
 

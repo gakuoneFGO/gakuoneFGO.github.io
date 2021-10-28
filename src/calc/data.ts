@@ -1,8 +1,8 @@
-import { ServantConfig, Servant, ServantData } from "./Servant";
-import { Template, BuffMatrix, EnemyNode } from "./Strat";
+import { ServantConfig, Servant, ServantData } from "./servant";
+import { Template, BuffMatrix, EnemyNode } from "./strat";
 import { ClassConstructor, deserializeArray, serialize, Type } from 'class-transformer';
-import { CraftEssence } from "./Damage";
-import { appVersion } from "./versioning"
+import { CraftEssence } from "./damage";
+import { appVersion } from "../versioning"
 import update from "immutability-helper";
 
 class DataProvider {

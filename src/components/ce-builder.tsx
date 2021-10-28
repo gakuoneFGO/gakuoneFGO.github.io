@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, TextField, Autocomplete, Grid, Typography, Stack } from "@mui/material";
 import React, { useCallback } from "react";
-import { CraftEssence } from "../Damage";
-import { Buff, BuffType, CardType } from "../Servant";
+import { CraftEssence } from "../calc/damage";
+import { Buff, BuffType, CardType } from "../calc/servant";
 import { PercentInput, ArrayBuilder, TraitSelect, SaveableSelect, IntegerInput, useHandler, useHandler2, Props, Commandable } from "./common";
-import { Trait } from "../Enemy";
-import { db } from "../Data";
+import { Trait } from "../calc/enemy";
+import { db } from "../calc/data";
 import { Spec } from "immutability-helper";
 
 export const BuffSelector = React.memo(function(props: Props<Buff>): JSX.Element {

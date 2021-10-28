@@ -4,14 +4,14 @@ import { Tooltip, Box, ButtonGroup, Button, Typography, capitalize, Grid, GridSi
 import { useTheme } from "@mui/material";
 import { Spec } from "immutability-helper";
 import { useCallback, useState } from "react";
-import { BuffSet } from "../Damage";
-import { BuffType, CardType, Servant, PowerMod } from "../Servant";
-import { BuffMatrix } from "../Strat";
+import { BuffSet } from "../calc/damage";
+import { BuffType, CardType, Servant, PowerMod } from "../calc/servant";
+import { BuffMatrix } from "../calc/strat";
 import { Props, useHandler, useHandler2, Updateable, CommandPercentInput, CommandTraitSelect, CommandIntInput, Commandable, memoized } from "./common";
 import { TransposedTable } from "./transposed-table"
 import { usePopupState, bindMenu, bindHover, bindTrigger } from "material-ui-popup-state/hooks";
 import HoverMenu from 'material-ui-popup-state/HoverMenu'
-import { ScaledInt } from "../arithmetic";
+import { ScaledInt } from "../calc/arithmetic";
 
 interface BuffMatrixBuilderProps extends Props<BuffMatrix> {
         readonly servants: Servant[];

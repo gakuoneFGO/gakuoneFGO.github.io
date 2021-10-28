@@ -2,8 +2,8 @@ import { Save, Settings, Warning } from "@mui/icons-material";
 import { Checkbox, TextField, Autocomplete, InputAdornment, IconButton, Popper, FormControlLabel, Stack, Card, CardContent, useTheme, Tooltip, ClickAwayListener } from "@mui/material";
 import React, { useCallback } from "react";
 import { bindToggle, bindPopper, usePopupState } from 'material-ui-popup-state/hooks';
-import { db } from "../Data";
-import { AppendLevel, Servant, ServantData } from "../Servant";
+import { db } from "../calc/data";
+import { AppendLevel, Servant, ServantData } from "../calc/servant";
 import { Props, useHandler, IntegerInput, SmartSelect, useHandler2, Commandable } from "./common";
 
 interface ServantSelectorProps extends Props<Servant> {

@@ -1,13 +1,13 @@
 import { Box, TextField, Autocomplete, Stack, Grid, Typography, IconButton, Popover, Card, CardContent, useTheme, Switch, FormControlLabel, Tooltip } from "@mui/material";
 import { Props, Commandable, IntegerInput, SaveableSelect, SmartSelect, TraitSelect, useHandler, useHandler2, wasteHandler, CommandArrayBuilder } from "./common";
-import { Enemy, EnemyAttribute, EnemyClass } from "../Enemy";
-import { EnemyNode } from "../Strat";
+import { Enemy, EnemyAttribute, EnemyClass } from "../calc/enemy";
+import { EnemyNode } from "../calc/strat";
 import React, { useCallback, useState } from "react";
-import { db } from "../Data";
+import { db } from "../calc/data";
 import { Info, PersonSearch } from "@mui/icons-material";
 import { bindPopover, bindToggle, usePopupState } from "material-ui-popup-state/hooks";
 import { Spec } from "immutability-helper";
-import { ServantData } from "../Servant";
+import { ServantData } from "../calc/servant";
 
 export const EnemyBuilder = React.memo(function(props: Props<Enemy> & { showHealth?: Boolean, classAdornment?: JSX.Element, onClassChanged?: () => void }) {
     return (

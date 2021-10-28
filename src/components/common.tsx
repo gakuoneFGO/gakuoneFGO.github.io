@@ -3,11 +3,11 @@ import update from "immutability-helper";
 import { Spec } from "immutability-helper";
 import { Autocomplete, Box, Card, CardContent, CardHeader, Chip, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
 import { Add, ContentCopy, Delete, Remove, Save } from "@mui/icons-material";
-import { Named, Persistor } from "../Data";
+import { Named, Persistor } from "../calc/data";
 import { useState, useCallback } from "react";
-import { Trait } from "../Enemy";
+import { Trait } from "../calc/enemy";
 import { bindPopover, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
-import { s, ScaledInt } from "../arithmetic";
+import { s, ScaledInt } from "../calc/arithmetic";
 
 export type Changeable<V> = { onChange?: (value: V) => void }
 export type Settable<V> = Changeable<{ $set: V }>;

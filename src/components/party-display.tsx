@@ -1,7 +1,7 @@
 import { Box, ImageList, ImageListItem } from "@mui/material";
 import React, { useCallback, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import { Servant, ServantData } from "../Servant";
+import { Servant, ServantData } from "../calc/servant";
 
 interface PartyDisplayProps {
     party: Servant[];

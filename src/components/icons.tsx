@@ -1,8 +1,8 @@
 import { SvgIcon } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import { EnemyClass } from "../Enemy";
-import { ServantClass } from "../Servant";
+import { EnemyClass } from "../calc/enemy";
+import { ServantClass } from "../calc/servant";
 
 const useStyles = makeStyles({
     root: {

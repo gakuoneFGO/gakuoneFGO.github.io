@@ -1,5 +1,5 @@
 import update from "immutability-helper";
-import { ServantData, Trait } from "./Servant";
+import { ServantData, Trait } from "./servant";
 
 class Enemy {
     constructor(

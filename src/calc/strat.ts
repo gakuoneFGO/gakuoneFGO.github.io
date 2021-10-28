@@ -1,9 +1,9 @@
-import { BuffSet, Calculator, CraftEssence, NpResult, Range, RefundResult } from "./Damage";
-import { CardType, Servant } from "./Servant";
-import { Enemy } from "./Enemy";
+import { BuffSet, Calculator, CraftEssence, NpResult, Range, RefundResult } from "./damage";
+import { CardType, Servant } from "./servant";
+import { Enemy } from "./enemy";
 import update from "immutability-helper";
 import { Type } from "class-transformer";
-import { TemplateData } from "./Data";
+import { TemplateData } from "./data";
 import { s, ScaledInt } from "./arithmetic";
 
 export class BuffMatrix {
