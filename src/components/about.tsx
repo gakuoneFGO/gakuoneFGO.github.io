@@ -67,7 +67,7 @@ const ChangeLog = React.memo(function() {
     const logs = showAll ? changeLog : changeLog.filter(version => version.miniPatch == 0);
     return (
         <>
-            <Typography>Change log{showAll ? null : <> (<Link href="#" onClick={() => setShowAll(true)}>show all</Link>)</>}:</Typography>
+            <Typography>Change log{showAll ? null : <> (<Link component="button" variant="body1" onClick={() => setShowAll(true)}>show all</Link>)</>}:</Typography>
             <dl>
                 {logs.map(reflection).map(version => {
                     const versionNum = getVersionNumber(version);
