@@ -292,6 +292,9 @@
         "appendTarget": [
             "classBerserker"
         ],
+        "aliases": [
+            "Abby Williams"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1870,
@@ -553,6 +556,9 @@
         "chargeProfile": "",
         "appendTarget": [
             "classAvenger"
+        ],
+        "aliases": [
+            "Abby Williams (Summer)"
         ],
         "growthCurve": {
             "stats": {
@@ -1558,6 +1564,10 @@
         "appendTarget": [
             "classSaber"
         ],
+        "aliases": [
+            "Artoria Caster",
+            "Castoria"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1629,
@@ -1811,6 +1821,9 @@
         "appendTarget": [
             "classRider"
         ],
+        "aliases": [
+            "Artoria Pendragon"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1734,
@@ -2033,6 +2046,9 @@
         "appendTarget": [
             "classRider"
         ],
+        "aliases": [
+            "Artoria Pendragon (Alter)"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1708,
@@ -2249,6 +2265,9 @@
         "chargeProfile": "",
         "appendTarget": [
             "classRider"
+        ],
+        "aliases": [
+            "Artoria Pendragon (Archer)"
         ],
         "growthCurve": {
             "stats": {
@@ -2484,6 +2503,9 @@
         "appendTarget": [
             "classRider"
         ],
+        "aliases": [
+            "Artoria Pendragon (Lancer Alter)"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1661,
@@ -2702,6 +2724,9 @@
         "chargeProfile": "",
         "appendTarget": [
             "classRuler"
+        ],
+        "aliases": [
+            "Artoria Pendragon (Lancer)"
         ],
         "growthCurve": {
             "stats": {
@@ -2940,6 +2965,9 @@
         "appendTarget": [
             "classCaster"
         ],
+        "aliases": [
+            "Artoria Pendragon (Lily)"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1287,
@@ -3160,6 +3188,9 @@
         "chargeProfile": "",
         "appendTarget": [
             "classSaber"
+        ],
+        "aliases": [
+            "Artoria Pendragon (Rider Alter)"
         ],
         "growthCurve": {
             "stats": {
@@ -3397,6 +3428,9 @@
         "chargeProfile": "",
         "appendTarget": [
             "classSaber"
+        ],
+        "aliases": [
+            "Artoria Pendragon (Ruler)"
         ],
         "growthCurve": {
             "stats": {
@@ -3646,6 +3680,9 @@
         "chargeProfile": "",
         "appendTarget": [
             "classSaber"
+        ],
+        "aliases": [
+            "Artoria Pendragon (Santa Alter)"
         ],
         "growthCurve": {
             "stats": {
@@ -5478,6 +5515,11 @@
         "chargeProfile": "",
         "appendTarget": [
             "classCaster"
+        ],
+        "aliases": [
+            "Anra Mainiiu",
+            "Angra Mainju",
+            "Angry Mango"
         ],
         "growthCurve": {
             "stats": {
@@ -18958,6 +19000,9 @@
         "appendTarget": [
             "classRider"
         ],
+        "aliases": [
+            "Blackbeard"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1097,
@@ -19402,6 +19447,9 @@
         "appendTarget": [
             "classAlterEgo"
         ],
+        "aliases": [
+            "Elizabeth Bathory"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1520,
@@ -19644,6 +19692,9 @@
         "appendTarget": [
             "classAvenger"
         ],
+        "aliases": [
+            "Elizabeth Bathory (Brave)"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1649,
@@ -19868,6 +19919,9 @@
         "appendTarget": [
             "classForeigner"
         ],
+        "aliases": [
+            "Elizabeth Bathory (Cinderella)"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1527,
@@ -20089,6 +20143,9 @@
         "chargeProfile": "",
         "appendTarget": [
             "classLancer"
+        ],
+        "aliases": [
+            "Elizabeth Bathory (Halloween)"
         ],
         "growthCurve": {
             "stats": {
@@ -26515,6 +26572,9 @@
         "chargeProfile": "",
         "appendTarget": [
             "classBerserker"
+        ],
+        "aliases": [
+            "Grey"
         ],
         "growthCurve": {
             "stats": {
@@ -37798,6 +37858,9 @@
         "appendTarget": [
             "classArcher"
         ],
+        "aliases": [
+            "Tamamo Vitch"
+        ],
         "growthCurve": {
             "stats": {
                 "1": 1795,
@@ -47410,6 +47473,10 @@
         "chargeProfile": "",
         "appendTarget": [
             "classCaster"
+        ],
+        "aliases": [
+            "Mysterious Alter Ego Lambda",
+            "Meltryllis (Lancer)"
         ],
         "growthCurve": {
             "stats": {
@@ -73285,6 +73352,9 @@
         "chargeProfile": "",
         "appendTarget": [
             "classCaster"
+        ],
+        "aliases": [
+            "Waver Velvet"
         ],
         "growthCurve": {
             "stats": {

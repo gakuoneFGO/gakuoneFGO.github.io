@@ -1,7 +1,7 @@
 import * as React from "react";
 import update from "immutability-helper";
 import { Spec } from "immutability-helper";
-import { Autocomplete, Box, Card, CardContent, CardHeader, Chip, IconButton, InputAdornment, Popover, Stack, TextField, Typography, useTheme } from "@mui/material";
+import { Autocomplete, Box, Card, CardContent, CardHeader, Chip, createFilterOptions, IconButton, InputAdornment, Popover, Stack, TextField, useTheme } from "@mui/material";
 import { Add, ContentCopy, Delete, Remove, Save } from "@mui/icons-material";
 import { Named, Persistor } from "../calc/data";
 import { useState, useCallback } from "react";
@@ -193,6 +193,11 @@ type SmartSelectProps<T extends Named> = Settable<T> & {
     className?: string;
 }
 
+const filterOptions = createFilterOptions({
+    ignoreAccents: true,
+    stringify: <T extends Named>(option: T) => option.aliases ? option.aliases.concat(option.name).join("|") : option.name
+});
+
 //there is nothing smart about this but I can't think of a good name to distinguish it from a regular autocomplete
 export const SmartSelect: <T extends Named>(props: SmartSelectProps<T>) => JSX.Element = React.memo(function<T extends Named>(props: SmartSelectProps<T>) {
     return (
@@ -200,6 +205,7 @@ export const SmartSelect: <T extends Named>(props: SmartSelectProps<T>) => JSX.E
             options={props.filter ? props.provider.getAll().filter(props.filter) : props.provider.getAll()}
             value={props.value}
             isOptionEqualToValue={(a, b) => a.name == b.name}
+            filterOptions={filterOptions}
             getOptionLabel={v => v.name}
             renderInput={params =>
                 <TextField {...params} label={props.label} autoFocus={props.autoFocus}

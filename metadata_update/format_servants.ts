@@ -30,7 +30,10 @@ enumStream.on("end", () => {
             const allServants: ServantData[] = [ getDummyServant("<Placeholder>"), getDummyServant("<Unspecified>") ];
             servants.forEach(sArray => {
                 const origServant = sArray.reduce((min, cur) => min.id < cur.id ? min : cur);
-                allServants.push(...sArray.map(servant => setName(servant, origServant)));
+                allServants.push(...sArray
+                    .map(servant => setName(servant, origServant))
+                    .map(servant => update(servant, { aliases: { $set: getAliases(servant.name) } }))
+                );
             });
             fs.createWriteStream("src\\servants.json", { encoding: "utf-8" }).write(JSON.stringify(allServants.sort((a, b) => a.name.localeCompare(b.name)), replaceMap, 4));
         });
@@ -49,6 +52,29 @@ function setName(servant: ServantData, firstWithName: ServantData): ServantData 
     //just BB and Abby will hit this for now
     return update(servant, { name: { $set: servant.name + " (Summer)" } });
 }
+
+function getAliases(name: string): string[] | undefined {
+    const aliases: string[] = servantAliases
+        .map(replacement => name.replace(...replacement))
+        .filter(replaced => replaced != name);
+    return aliases.length == 0 ? undefined : aliases;
+}
+
+const servantAliases: [string, string][] = [
+    ["Altria", "Artoria"],
+    ["Altria Caster", "Castoria"],
+    ["Zhuge Liang (Lord El-Melloi II)", "Waver Velvet"],
+    ["Koyanskaya of Light", "Tamamo Vitch"],
+    ["Λ", "Lambda"],
+    ["Mysterious Alter Ego Λ", "Meltryllis (Lancer)"],
+    ["Elisabeth Báthory", "Elizabeth Bathory"],
+    ["Aŋra Mainiiu", "Anra Mainiiu"],
+    ["Aŋra Mainiiu", "Angra Mainju"],
+    ["Aŋra Mainiiu", "Angry Mango"],
+    ["Abigail", "Abby"],
+    ["Gray", "Grey"],
+    ["Edward Teach", "Blackbeard"],
+];
 
 async function mapServant(data: any): Promise<ServantData> {
     if (data.type == "enemyCollectionDetail") {

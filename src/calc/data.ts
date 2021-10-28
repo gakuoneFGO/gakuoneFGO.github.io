@@ -70,7 +70,7 @@ class DataProvider {
     }
 }
 
-export interface Named { name: string }
+export interface Named { name: string, aliases?: string[] }
 
 export class Persistor<T extends Named> {
     constructor(private readonly type: ClassConstructor<T>, storageKey: string | undefined, staticItems: T[]) {

@@ -101,7 +101,8 @@ export class ServantData {
         readonly appendTarget: Trait[],
         passives: Buff[],
         skills: Skill[],
-        nps: NoblePhantasm[]) {
+        nps: NoblePhantasm[],
+        readonly aliases?: string[]) {
             this.growthCurve = growthCurve;
             this.passives = passives;
             this.skills = skills;
