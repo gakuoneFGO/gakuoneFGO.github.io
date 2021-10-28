@@ -17,7 +17,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm run-script build
+      - run: |
+          npm install
+          npm run-script build
       - run: |
           git config --global user.name 'Automated Release'
           git config --global user.email 'gakuoneFGO@users.noreply.github.com'
