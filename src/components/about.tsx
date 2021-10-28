@@ -51,7 +51,7 @@ const AppInfo = React.memo(function() {
     return (
         <>
             <Typography>App Version: {appVersion}</Typography>
-            <Link href="https://github.com/gakuoneFGO/fgo3t" target="_blank" rel="noopener">Report issues or request features on GitHub</Link>
+            <Link href="https://github.com/gakuoneFGO/gakuoneFGO.github.io" target="_blank" rel="noopener">Report issues or request features on GitHub</Link>
             <Typography>This app was made possible by game data provided by <Link href="https://atlasacademy.io/" target="_blank" rel="noopener">Atlas Academy</Link>.</Typography>
             <Typography>Also check out <Link href="https://maketakunai.github.io/" target="_blank" rel="noopener">maketakunai.github.io</Link> for one-off calculations.</Typography>
             <br />
@@ -71,10 +71,10 @@ const ChangeLog = React.memo(function() {
             <dl>
                 {logs.map(reflection).map(version => {
                     const versionNum = getVersionNumber(version);
-                    return <>
-                        <dt key={versionNum}>v{versionNum} ({version.releaseDate})</dt>
+                    return <React.Fragment key={versionNum}>
+                        <dt>v{versionNum} ({version.releaseDate})</dt>
                         {version.changes.map(change => <dd key={versionNum + change}>{change}</dd>)}
-                    </>;
+                    </React.Fragment>;
                 })}
             </dl>
         </>
