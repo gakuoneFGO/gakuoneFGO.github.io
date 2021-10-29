@@ -10,12 +10,12 @@ import { SCALE } from "../src/calc/arithmetic";
 const U_RATIO = 1 / SCALE;
 
 const enums: any = {};
-const enumStream = fs.createReadStream("metadata_update\\enums.json", { encoding: 'utf-8' });
+const enumStream = fs.createReadStream("cli-tools\\enums.json", { encoding: 'utf-8' });
 const allPromises = [] as Promise<void>[];
 enumStream.pipe(JSONStream.parse([ { emitKey: true } ])).on("data", data => { enums[data.key] = data.value; });
 enumStream.on("end", () => {
     const servants = new Map<string, ServantData[]>();
-    const stream = fs.createReadStream("metadata_update\\servants_raw.ignored.json", { encoding: 'utf-8' });
+    const stream = fs.createReadStream("cli-tools\\servants_raw.ignored.json", { encoding: 'utf-8' });
     stream.pipe(JSONStream.parse("*")).on("data", data => {
         allPromises.push(mapServant(data).then(servant => {
             if (!servant) return;
@@ -93,7 +93,7 @@ async function mapServant(data: any): Promise<ServantData> {
     const iconPath = `/images/servants/${data.collectionNo}.png`;
     if (!fs.existsSync("src" + iconPath)) {
         console.log("Downloading icon", iconPath);
-        const icon = await fetch(data.extraAssets.faces.ascension["1"]);
+        const icon = await fetch(data.extraAssets.faces.ascension["1"], {});
         icon.body.pipe(fs.createWriteStream("src" + iconPath));
     }
     return new ServantData(

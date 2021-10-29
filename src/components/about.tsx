@@ -3,8 +3,9 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Card, CardContent, CardHeader, Divider, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, Modal, Tab, Typography } from "@mui/material";
 import React from "react";
 import { useCallback, useState } from "react";
+import { appVersion, changeLog } from "../calc/data";
 import { reflection } from "../calc/servant";
-import { appVersion, changeLog, getVersionNumber } from "../versioning";
+import { getVersionNumber } from "../versioning";
 import { Unlocked } from "./icons";
 
 export function About() {

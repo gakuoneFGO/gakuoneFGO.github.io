@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\metadata_update\\template_fix.js",
+            "program": "${workspaceFolder}\\cli-tools\\template-fix.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

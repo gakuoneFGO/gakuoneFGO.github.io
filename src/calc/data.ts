@@ -2,7 +2,7 @@ import { ServantConfig, Servant, ServantData } from "./servant";
 import { Template, BuffMatrix, EnemyNode } from "./strat";
 import { ClassConstructor, deserializeArray, serialize, Type } from 'class-transformer';
 import { CraftEssence } from "./damage";
-import { appVersion } from "../versioning"
+import { getVersionNumber, Version } from "../versioning"
 import update from "immutability-helper";
 
 class DataProvider {
@@ -169,6 +169,9 @@ export class TemplateData {
     @Type(() => BuffMatrix)
     readonly buffs: BuffMatrix;
 }
+
+export const changeLog: Version[] = await fetch("version-history.json", { cache: "no-store" }).then(resp => resp.text()).then(text => JSON.parse(text));
+export const appVersion = getVersionNumber(changeLog[changeLog.length - 1]);
 
 export const db: DataProvider = await Promise.all([
     load({ type: ServantData, url: "servants.json" }),

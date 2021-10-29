@@ -1,0 +1,1 @@
+call bitsadmin.exe /transfer "DownloadServantMetadata" https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json %cd%\cli-tools\servants_raw.ignored.json
