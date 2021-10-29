@@ -1,56 +1,6 @@
 import { Transform, Type } from "class-transformer";
 import { s, ScaledInt, transformScaledInt } from "./arithmetic";
 
-export class Servant {
-    constructor(readonly config: ServantConfig, readonly data: ServantData) {};
-
-    public getAttackStat(): number {
-        return this.data.growthCurve.getAttackStat(this.config.level) + this.config.attackFou;
-    }
-
-    public getNpMultiplier(np: NoblePhantasm, overcharge: number): number {
-        let multiplier = np.multiplier[this.config.npLevel - 1] + (this.config.isNpUpgraded ? this.getNpMultUpgrade(np) : 0.0);
-        if (this.data.name == "Arash") {
-            return multiplier + overcharge * (this.config.isNpUpgraded ?  2.0 : 1.0);
-        } else if (this.data.name == "Chen Gong") {
-            return multiplier + overcharge * 2.25;
-        } else {
-            return multiplier;
-        }
-    }
-
-    private getNpMultUpgrade(np: NoblePhantasm) {
-        if (np.multUpgrade > 0 || np.target == "none") return np.multUpgrade;
-        //user selected to view upgraded NP damage but this servant has no upgrade yet, so add standard multiplier buff
-        const cardMult =
-            np.cardType == CardType.Buster  ?   1   :
-            np.cardType == CardType.Arts    ?   1.5 :
-            np.cardType == CardType.Quick   ?   2   :
-                                                0   ;
-        const targetMult =
-            np.target == "aoe"  ?   1   :
-            np.target == "st"   ?   2   :
-                                    0   ;
-        return cardMult * targetMult;
-    }
-    
-    public getAppendMod(): PowerMod {
-        return new PowerMod(this.data.appendTarget, appendMod[this.config.appendLevel]);
-    }
-
-    public hasInvalidNpUpgrade(): boolean {
-        return this.config.isNpUpgraded && this.data.nps.some(np => np.target != "none" && np.multUpgrade == 0);
-    }
-
-    public isPlaceholder(): boolean {
-        return this.data.isPlaceholder();
-    }
-
-    public isSpecified(): boolean {
-        return this.data.isSpecified();
-    }
-}
-
 export class ServantConfig {
     constructor(
         readonly name: string,
@@ -135,6 +85,64 @@ export class ServantData {
             .concat(this.nps.flatMap(np => np.preBuffs))
             .concat(this.nps.flatMap(np => np.postBuffs))
             .some(b => b.type == buffType);
+    }
+}
+
+export class Servant {
+    constructor(config: ServantConfig, data: ServantData) {
+        this.config = config;
+        this.data = data;
+    };
+
+    @Type(() => ServantConfig)
+    readonly config: ServantConfig;
+    @Type(() => ServantData)
+    readonly data: ServantData;
+
+    public getAttackStat(): number {
+        return this.data.growthCurve.getAttackStat(this.config.level) + this.config.attackFou;
+    }
+
+    public getNpMultiplier(np: NoblePhantasm, overcharge: number): number {
+        let multiplier = np.multiplier[this.config.npLevel - 1] + (this.config.isNpUpgraded ? this.getNpMultUpgrade(np) : 0.0);
+        if (this.data.name == "Arash") {
+            return multiplier + overcharge * (this.config.isNpUpgraded ?  2.0 : 1.0);
+        } else if (this.data.name == "Chen Gong") {
+            return multiplier + overcharge * 2.25;
+        } else {
+            return multiplier;
+        }
+    }
+
+    private getNpMultUpgrade(np: NoblePhantasm) {
+        if (np.multUpgrade > 0 || np.target == "none") return np.multUpgrade;
+        //user selected to view upgraded NP damage but this servant has no upgrade yet, so add standard multiplier buff
+        const cardMult =
+            np.cardType == CardType.Buster  ?   1   :
+            np.cardType == CardType.Arts    ?   1.5 :
+            np.cardType == CardType.Quick   ?   2   :
+                                                0   ;
+        const targetMult =
+            np.target == "aoe"  ?   1   :
+            np.target == "st"   ?   2   :
+                                    0   ;
+        return cardMult * targetMult;
+    }
+    
+    public getAppendMod(): PowerMod {
+        return new PowerMod(this.data.appendTarget, appendMod[this.config.appendLevel]);
+    }
+
+    public hasInvalidNpUpgrade(): boolean {
+        return this.config.isNpUpgraded && this.data.nps.some(np => np.target != "none" && np.multUpgrade == 0);
+    }
+
+    public isPlaceholder(): boolean {
+        return this.data.isPlaceholder();
+    }
+
+    public isSpecified(): boolean {
+        return this.data.isSpecified();
     }
 }
 

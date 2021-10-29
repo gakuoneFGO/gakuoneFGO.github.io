@@ -1,4 +1,4 @@
-import { BuffSet, Calculator, CraftEssence, NpResult, Range, RefundResult } from "./damage";
+import { BuffSet, Calculator, CraftEssence, NpResult, Range } from "./damage";
 import { CardType, Servant } from "./servant";
 import { Enemy } from "./enemy";
 import update from "immutability-helper";
@@ -30,11 +30,20 @@ export class BuffMatrix {
 export class Template {
     constructor(
         readonly name: string,
-        readonly buffs: BuffMatrix,
-        readonly party: Servant[],
+        buffs: BuffMatrix,
+        party: Servant[],
         readonly clearers: number[],
         readonly description: string,
-        readonly instructions: string[]) {}
+        readonly instructions: string[]
+    ) {
+        this.buffs = buffs;
+        this.party = party;
+    }
+    
+    @Type(() => BuffMatrix)
+    readonly buffs: BuffMatrix;
+    @Type(() => Servant)
+    readonly party: Servant[];
     
     public asSaveable(): TemplateData {
         return new TemplateData(
@@ -96,11 +105,26 @@ export class MainServant {
 
 export class Strat {
     constructor(
-        readonly servants: (MainServant | undefined)[],
-        readonly template: Template,
-        readonly servantCe: CraftEssence,
-        readonly supportCe: CraftEssence,
-        readonly npCards: CardType[]) {}
+        servants: (MainServant | undefined)[],
+        template: Template,
+        servantCe: CraftEssence,
+        supportCe: CraftEssence,
+        readonly npCards: CardType[]
+    ) {
+        this.servants = servants;
+        this.template = template;
+        this.servantCe = servantCe;
+        this.supportCe = supportCe;
+    }
+
+    @Type(() => MainServant)
+    readonly servants: (MainServant | undefined)[];
+    @Type(() => Template)
+    readonly template: Template;
+    @Type(() => CraftEssence)
+    readonly servantCe: CraftEssence;
+    @Type(() => CraftEssence)
+    readonly supportCe: CraftEssence;
 
     public getRealParty(): [Servant, BuffMatrix | undefined, CraftEssence][] {
         return this.servants.map((servant, index) => servant ?

@@ -19,19 +19,33 @@ import { useTracker } from "./undo-redo";
 import { useHandler, useHandler0, useHandler2 } from "./common";
 import { useDrag, useDrop } from "react-dnd";
 import { Locked, Unlocked } from "./icons";
+import { deserialize, serialize, Type } from "class-transformer";
 
-interface StratBuilderState {
+class StratBuilderState {
+    constructor(
+        strat: Strat,
+        basicEnemy: Enemy,
+        advancedNode: EnemyNode,
+        readonly selectedTab: string
+    ) {
+        this.strat = strat;
+        this.basicEnemy = basicEnemy;
+        this.advancedNode = advancedNode
+    }
+
+    @Type(() => Strat)    
     readonly strat: Strat;
+    @Type(() => Enemy)
     readonly basicEnemy: Enemy;
+    @Type(() => EnemyNode)
     readonly advancedNode: EnemyNode;
-    readonly selectedTab: string;
 }
-
-type StateChange = (state: StratBuilderState) => Spec<Readonly<StratBuilderState>, never>;
 
 //TODO: decompose this
 export function StratBuilder() {
     const init = () => {
+        const storedState = localStorage.getItem("state");
+        if (storedState) return deserialize(StratBuilderState, storedState);
         const servant = db.getServantDefaults("Iskandar");
         const template = db.getTemplate("[BUSTER] Double Oberon + Castoria (0%)");
         const ce = db.craftEssences.get("<None>");
@@ -43,12 +57,12 @@ export function StratBuilder() {
             new Array(3).fill(CardType.Buster)
         );
 
-        return {
-            strat: defaultBuffsetHeuristic(strat, 0),
-            basicEnemy: new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).withClass(getLikelyClassMatchup(servant.data.sClass)),
-            advancedNode: db.nodes.get("2019-11 Nursemas Band-aid Farming [LANCERS]"),
-            selectedTab: "servant0"
-        } as StratBuilderState;
+        return new StratBuilderState(
+            defaultBuffsetHeuristic(strat, 0),
+            new Enemy(EnemyClass.Neutral, EnemyAttribute.Neutral, [], 0.0).withClass(getLikelyClassMatchup(servant.data.sClass)),
+            db.nodes.get("2019-11 Nursemas Band-aid Farming [LANCERS]"),
+            "servant0"
+        );
     };
 
     const tracker = useTracker(init);
@@ -59,11 +73,11 @@ export function StratBuilder() {
     const md = !sm && !lg;
 
     const handlest = {
-        onChange: useCallback((spec: Spec<StratBuilderState>) => tracker.handleChange(s => update(s, spec)), [])
+        onChange: useCallback((spec: Spec<StratBuilderState>) => tracker.handleChange(s => updateState(s, spec)), [])
     };
 
     const noTrack = {
-        onChange: useCallback((spec: Spec<StratBuilderState>) => tracker.handleChange(s => update(s, spec), true), [])
+        onChange: useCallback((spec: Spec<StratBuilderState>) => tracker.handleChange(s => updateState(s, spec), true), [])
     };
 
     const [classLocked, setClassLocked] = useState(false);
@@ -248,6 +262,12 @@ export function StratBuilder() {
             </Box>
         </Box>
     );
+}
+
+function updateState(state: StratBuilderState, spec: Spec<StratBuilderState>) {
+    const updated = update(state, spec);
+    localStorage.setItem("state", serialize(updated));
+    return updated;
 }
 
 //there are still corner cases not handled but whatever
