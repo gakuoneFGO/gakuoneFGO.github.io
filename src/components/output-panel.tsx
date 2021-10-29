@@ -1,9 +1,8 @@
 import React from "react";
-import { Divider, Grid, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Grid, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography, useTheme } from "@mui/material";
 import { EnemyNode, Strat } from "../calc/strat";
 import NumberFormat from "react-number-format";
 import { Enemy } from "../calc/enemy";
-import { Box } from "@mui/system";
 import { NpResult, Range } from "../calc/damage";
 import { Warning } from "@mui/icons-material";
 import { ClassIcon } from "./icons";

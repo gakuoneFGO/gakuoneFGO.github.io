@@ -148,7 +148,7 @@ const AppHelp = React.memo(function() {
             <Typography variant="h5">Pick your main damage dealer</Typography>
             <br />
             <Typography>Select the servant you want to farm with from the dropdown list. The buff grid will be pre-populated with buffs corresponding to the servant's skills, passives, and on-NP effects.</Typography>
-            <Typography>Note: Skills that have a chance to miss are excluded by default.</Typography>
+            <Typography>Note: Skills that have a chance to miss are excluded by default. Debuffs with a success rate of 100% or more are included by default, but may still miss depending on enemy buff resistance and whether you have Oberon in the frontline.</Typography>
             <Typography>Adjust the buffs as needed based on your servant's skill levels and the node you are trying to clear. Hover the buff icons on the left to see more info about each buff type.</Typography>
             <br />
             <Typography>Buttons:</Typography>

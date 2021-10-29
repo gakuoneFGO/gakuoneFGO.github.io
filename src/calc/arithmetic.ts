@@ -71,7 +71,7 @@ export class Float {
 
 export const f = (v: number) => new Float(v);
 
-//https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/misc.md
+//https://github.com/atlasacademy/fgo-docs/blob/master/deeper/battle/misc.md
 function testArithmetic(perhit: number, cardUp: number, gainUp: number, cardBase: number, critBonus: number) {
     const
         cardBonus = s(cardUp).asMultiplier().times(cardBase).plus(1),
