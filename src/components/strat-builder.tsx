@@ -67,7 +67,11 @@ export function StratBuilder() {
 
     const tracker = useTracker(init);
     const state = tracker.tracked.state;
-    const [selectedOutput, setSelectedOutput] = useState("basic");
+    const [selectedOutput, _setSelectedOutput] = useState(() => localStorage.getItem("selectedOutput") ?? "basic");
+    const setSelectedOutput = useCallback(s => {
+        _setSelectedOutput(s);
+        localStorage.setItem("selectedOutput", s as string);
+    }, []);
     const theme = useTheme();
     const [ sm, lg ] = [ useMediaQuery(theme.breakpoints.down("md")), useMediaQuery(theme.breakpoints.up("lg")) ];
     const md = !sm && !lg;
