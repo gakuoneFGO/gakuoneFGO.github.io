@@ -180,13 +180,14 @@ export function StratBuilder() {
                             <OutputPanel strat={state.strat} enemy={state.basicEnemy} />
                             <EnemyBuilder value={state.basicEnemy} onChange={useHandler(enemy => ({ basicEnemy: enemy }), handlest)}
                                 onClassChanged={useCallback(() => setClassLocked(true), [])}
-                                classAdornment={
+                                classAdornment={useCallback(() =>
                                     <IconButton title={classLocked ? "Unlock Class" : "Lock Class"} onClick={useCallback(() => setClassLocked(locked => !locked), [])}>
                                         {classLocked ?
                                             <Locked /> :
                                             <Unlocked />
                                         }
-                                    </IconButton>} />
+                                    </IconButton>
+                                    , [classLocked])} />
                         </Stack>
                     </TabPanel>
                     <TabPanel value="advanced" sx={{ overflowY: "scroll", height: "100%" }}>

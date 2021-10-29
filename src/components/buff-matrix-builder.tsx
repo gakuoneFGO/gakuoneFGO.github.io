@@ -238,7 +238,15 @@ export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderPro
             </TransposedTable>
         </Grid>
     );
+}, (prevProps, nextProps) => {
+    return !Object.keys(prevProps)
+        .map(key => key as keyof BuffMatrixBuilderProps)
+        .some(key => key == "clearers" ? !shallowCompareArrays(prevProps.clearers, nextProps.clearers) : prevProps[key] !== nextProps[key])
 });
+
+function shallowCompareArrays<T>(a: T[], b: T[]) {
+    return a.length == b.length && !a.some((value, index) => value != b[index]);
+}
 
 function useBuffHandler<T>(key: keyof BuffSet, props: Updateable<BuffMatrix>): (turn: number, spec: Spec<T>) => void {
     return useHandler2((turn: number, spec: Spec<T>) => ({ buffs: { [turn]: { [key]: spec } } }), props);
