@@ -23,6 +23,6 @@ jobs:
       - run: |
           git config --global user.name 'Automated Release'
           git config --global user.email 'gakuoneFGO@users.noreply.github.com'
-          git add -f build
+          git add -f docs
           git commit -m 'publish to gakuoneFGO.github.io'
           git push -f

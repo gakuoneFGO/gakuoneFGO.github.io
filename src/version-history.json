@@ -5,6 +5,8 @@
         "patch": 0,
         "miniPatch": 0,
         "releaseDate": "2021-10-31",
-        "changes": [ "Initial release" ]
+        "changes": [
+            "Initial release"
+        ]
     }
 ]
