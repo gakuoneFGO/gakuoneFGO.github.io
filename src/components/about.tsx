@@ -1,9 +1,9 @@
 import { Add, Clear, Close, ContentCopy, Delete, HelpOutline, Info, PersonSearch, Remove, Replay, Save, Settings, Visibility, Warning } from "@mui/icons-material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { Card, CardContent, CardHeader, Divider, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, Modal, Tab, Typography } from "@mui/material";
-import React from "react";
+import { Box, Button, Card, CardContent, CardHeader, Divider, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, Modal, Stack, Tab, TextField, Typography, useTheme } from "@mui/material";
+import React, { useRef } from "react";
 import { useCallback, useState } from "react";
-import { appVersion, changeLog } from "../calc/data";
+import { appVersion, changeLog, db } from "../calc/data";
 import { reflection } from "../calc/servant";
 import { getVersionNumber } from "../versioning";
 import { Unlocked } from "./icons";
@@ -27,6 +27,7 @@ export function About() {
                                 <TabList onChange={useCallback((_, tab) => setTab(tab), [])}>
                                     <Tab label="Help" value="help" />
                                     <Tab label="About" value="info" />
+                                    <Tab label="Import/Export" value="export" />
                                 </TabList>
                             }
                             action={<IconButton title="close" onClick={toggle}><Close /></IconButton>} />
@@ -38,6 +39,11 @@ export function About() {
                         <TabPanel value="info" sx={{padding: "0px", overflowY: "auto", height: "100%"}}>
                             <CardContent>
                                 <AppInfo />
+                            </CardContent>
+                        </TabPanel>
+                        <TabPanel value="export" sx={{padding: "0px", overflowY: "auto", height: "100%"}}>
+                            <CardContent>
+                                <Export />
                             </CardContent>
                         </TabPanel>
                     </TabContext>
@@ -267,5 +273,21 @@ const AppHelp = React.memo(function() {
                 <li>Since buffs/debuffs are combined into a single "buff" field, there is no support for single target debuffs; all debuffs are treated as AoE. You can work around this by manually adding/removing the debuff and noting the results for each enemy.</li>
             </ul>
         </>
+    );
+});
+
+const Export = React.memo(() => {
+    const theme = useTheme();
+    const ref = useRef<any>(null);
+    return (
+        <Stack spacing={2}>
+            <Box display="flex" alignItems="center" gap={theme.spacing(2)}>
+                <Warning color="warning" />
+                <Typography>Warning: Importing invalid data may make the app unusable. Make sure to back up your current data beforehand, then if the app breaks after import just clear your cache for this site and re-import your previous data.</Typography>
+            </Box>
+            <Typography>Note: You may have to switch tabs to see items that you have imported.</Typography>
+            <Button variant="contained" title="Import" onClick={() => db.import(ref.current.value)}>Import</Button>
+            <TextField inputRef={ref} label="Data" multiline defaultValue={db.export()} />
+        </Stack>
     );
 });

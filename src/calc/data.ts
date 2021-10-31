@@ -1,6 +1,6 @@
 import { ServantConfig, Servant, ServantData } from "./servant";
 import { Template, BuffMatrix, EnemyNode } from "./strat";
-import { ClassConstructor, deserializeArray, serialize, Type } from 'class-transformer';
+import { ClassConstructor, deserialize, deserializeArray, serialize, Type } from 'class-transformer';
 import { CraftEssence } from "./damage";
 import { getVersionNumber, Version } from "../versioning"
 import update from "immutability-helper";
@@ -68,12 +68,31 @@ class DataProvider {
         );
         this.templates.put(data);
     }
+
+    export() {
+        const customData = new ExportData(
+            this.servantConfig.export(),
+            this.templates.export(),
+            this.craftEssences.export(),
+            this.nodes.export()
+        );
+        return serialize(customData);
+    }
+
+    import(rawData: string) {
+        const data = deserialize(ExportData, rawData);
+        this.servantConfig.import(data.servants);
+        this.templates.import(data.templates);
+        this.craftEssences.import(data.craftEssences);
+        this.nodes.import(data.enemyNodes);
+        this.defaultServantCache.clear();
+    }
 }
 
 export interface Named { name: string, aliases?: string[] }
 
 export class Persistor<T extends Named> {
-    constructor(private readonly type: ClassConstructor<T>, storageKey: string | undefined, staticItems: T[]) {
+    constructor(private readonly type: ClassConstructor<T>, storageKey: keyof ExportData | undefined, staticItems: T[]) {
         if (storageKey) {
             this.storageKey = storageKey;
             const storedItems = deserializeArray(type, localStorage.getItem(storageKey!) ?? "[]");
@@ -84,7 +103,7 @@ export class Persistor<T extends Named> {
         this.isAllCustom = staticItems.length == 0;
     }
 
-    private storageKey?: string;
+    private storageKey?: keyof ExportData;
     private items: T[];
     private map: Map<string, T>;
     private isAllCustom: boolean;
@@ -133,11 +152,52 @@ export class Persistor<T extends Named> {
     }
 
     asCustom(item: T, name: string): T {
-        return update(item as Named, { name: { $set: "* " + name } }) as T;
+        return this.isAllCustom ?
+            item :
+            update(item as Named, { name: { $set: name.startsWith("* ") ? name :"* " + name } }) as T;
+    }
+
+    export(): T[] {
+        if (!this.storageKey) {
+            throw new Error("Attempted to export non-custom data.")
+        }
+        
+        const allItems = deserializeArray(this.type, localStorage.getItem(this.storageKey!) ?? "[]");
+        return allItems.filter(item => this.isCustom(item));
+    }
+
+    import(items: T[]) {
+        items = items.map(item => this.asCustom(item, item.name));
+        items.forEach(item => this.map.set(item.name, item));
+        this.items = this.items.filter(e => !items.some(i => i.name == e.name)).concat(items).sort((a, b)=> a.name.localeCompare(b.name));
+        this.save(existing => existing.filter(e => !items.some(i => i.name == e.name)).concat(items));
     }
 }
 
-async function load<T extends { name: string }>(sources: { type: ClassConstructor<T>, url?: string, storageKey?: string }): Promise<Persistor<T>> {
+class ExportData {
+    constructor(
+        servants: ServantConfig[],
+        templates: TemplateData[],
+        craftEssences: CraftEssence[],
+        enemyNodes: EnemyNode[]
+    ) {
+        this.servants = servants;
+        this.templates = templates;
+        this.craftEssences = craftEssences;
+        this.enemyNodes = enemyNodes;
+    }
+
+    @Type(() => ServantConfig)
+    servants: ServantConfig[];
+    @Type(() => TemplateData)
+    templates: TemplateData[];
+    @Type(() => CraftEssence)
+    craftEssences: CraftEssence[];
+    @Type(() => EnemyNode)
+    enemyNodes: EnemyNode[];
+}
+
+async function load<T extends { name: string }>(sources: { type: ClassConstructor<T>, url?: string, storageKey?: keyof ExportData }): Promise<Persistor<T>> {
     const staticItems = sources.url ?
         fetch(`${sources.url}?v=${appVersion}`).then(resp => resp.text()).then(resp => deserializeArray(sources.type, resp)) :
         Promise.all([]);
