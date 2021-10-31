@@ -7,7 +7,7 @@ const { ProvidePlugin } = require("webpack");
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        path: path.join(__dirname, "build"),
+        path: path.join(__dirname, "docs"),
         filename: "[fullhash].js",
         clean: true
     },
