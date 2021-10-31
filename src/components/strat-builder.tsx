@@ -198,7 +198,7 @@ export function StratBuilder() {
                         <NodeOutputPanel strat={state.strat} node={state.advancedNode} tooltipPlacement={sm ? "bottom" : "left"} />
                     </TabPanel>
                     <Box flexShrink={0}>
-                        <TabList onChange={useCallback((_, v) => setSelectedOutput(v), [])}>
+                        <TabList variant="scrollable" onChange={useCallback((_, v) => setSelectedOutput(v), [])}>
                             <Tab label="Basic" value="basic" />
                             <Tab label="Detailed" value="advanced" />
                         </TabList>

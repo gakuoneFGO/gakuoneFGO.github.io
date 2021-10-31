@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Clear, Replay, Visibility, VisibilityOff, Warning, Menu, KeyboardArrowDown } from "@mui/icons-material";
-import { Tooltip, Box, ButtonGroup, Button, Typography, capitalize, Grid, GridSize, Divider, MenuItem } from "@mui/material";
+import { Tooltip, Box, ButtonGroup, Button, Typography, capitalize, Grid, GridSize, Divider, MenuItem, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Spec } from "immutability-helper";
 import { useCallback, useState } from "react";
@@ -28,6 +28,7 @@ function isBuffSelected(buffs: BuffMatrix, buffType: keyof BuffSet): boolean {
 
 export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderProps) {
     const theme = useTheme();
+    const xs = useMediaQuery(theme.breakpoints.only("xs"));
     const [ showAll, setShowAll ] = useState(false);
     const popupState = usePopupState({ variant: "popover", popupId: "BuffMatrixBuilder" });
     
@@ -60,7 +61,8 @@ export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderPro
 
     const gridCellProps = {
         item: true,
-        xs: 3 as GridSize,
+        xs: 9 as GridSize,
+        sm: 3 as GridSize,
         display: "flex",
         alignItems: "center",
     };
@@ -88,7 +90,13 @@ export const BuffMatrixBuilder = React.memo(function(props: BuffMatrixBuilderPro
 
     return (
         <Grid container spacing={2} columns={10}>
-            <TransposedTable createRow={(children, index) =>
+            <TransposedTable createRow={(children, index) => xs ?
+                    <React.Fragment key={index}>
+                        <Grid {...gridLeftHeaderProps}/>{children![1]}
+                        {children![0]}                  {children![2]}
+                        <Grid {...gridLeftHeaderProps}/>{children![3]}
+                        <Grid item xs={10}><Divider /></Grid>
+                    </React.Fragment> :
                     <React.Fragment key={index}>
                         {children}
                         <Grid item xs={10}><Divider /></Grid>

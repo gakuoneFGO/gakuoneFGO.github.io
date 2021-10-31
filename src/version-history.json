@@ -8,5 +8,15 @@
         "changes": [
             "Initial release"
         ]
+    },
+    {
+        "major": 1,
+        "minor": 0,
+        "patch": 1,
+        "miniPatch": 0,
+        "releaseDate": "2021-10-31",
+        "changes": [
+            "Display fixes for mobile devices"
+        ]
     }
 ]

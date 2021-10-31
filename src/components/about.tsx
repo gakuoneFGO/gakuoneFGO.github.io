@@ -24,7 +24,7 @@ export function About() {
                     <TabContext value={tab}>
                         <CardHeader
                             title={
-                                <TabList onChange={useCallback((_, tab) => setTab(tab), [])}>
+                                <TabList variant="scrollable" onChange={useCallback((_, tab) => setTab(tab), [])}>
                                     <Tab label="Help" value="help" />
                                     <Tab label="About" value="info" />
                                     <Tab label="Import/Export" value="export" />

@@ -81,7 +81,6 @@ const WaveBuilder = React.memo((props: Props<Wave> & { turn: number }) => {
                     customButtons={useCallback((enemy, eIndex) => (
                         <IconButton {...bindTrigger(popupState)} title="Fill from Servant"
                             onClick={e => {
-                                console.log(e.currentTarget);
                                 popupState.setAnchorEl(e.currentTarget);
                                 popupState.open();
                                 onPopoverChange = servant => {
