@@ -48,13 +48,13 @@ export const ServantSelector = React.memo(function(props: ServantSelectorProps) 
                             <Stack justifyContent="space-evenly" spacing={2}>
                                 <Autocomplete
                                     options={props.value.data.growthCurve.getValidLevels()}
-                                    disableClearable
+                                    disableClearable autoHighlight autoSelect filterSelectedOptions
                                     value={props.value.config.level.toString()}
                                     renderInput={params => <TextField autoFocus {...params} label="Level" />}
                                     onChange={useHandler2((_, v: string) => ({ config: { level: { $set: Number.parseInt(v) } } }), props)} />
                                 <Autocomplete
                                     options={["1", "2", "3", "4", "5"]}
-                                    disableClearable
+                                    disableClearable autoHighlight autoSelect
                                     value={props.value.config.npLevel.toString()}
                                     renderInput={renderLevelInput}
                                     onChange={useHandler2((_, v: string) => v ? { config: { npLevel: { $set: Number.parseInt(v) } } } : { $apply: a => a }, props)} />
@@ -65,7 +65,7 @@ export const ServantSelector = React.memo(function(props: ServantSelectorProps) 
                                 {props.value.data.appendTarget.length > 0 ?
                                     <Autocomplete
                                         options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as AppendLevel[]}
-                                        disableClearable
+                                        disableClearable autoHighlight autoSelect
                                         getOptionLabel={o => o.toString()}
                                         value={props.value.config.appendLevel}
                                         renderInput={renderAppendInput}
