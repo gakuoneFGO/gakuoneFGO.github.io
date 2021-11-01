@@ -1,4 +1,4 @@
-import { Box, Grid, IconButton, Stack, Tab, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, IconButton, Stack, Tab, Tabs, useMediaQuery, useTheme } from "@mui/material";
 import { useCallback, useRef, useState } from "react";
 import { BuffSet, getLikelyClassMatchup } from "../calc/damage";
 import { db } from "../calc/data";
@@ -205,65 +205,65 @@ export function StratBuilder() {
                     </Box>
                 </TabContext>
             </Box>
-            <Box display="flex" flexDirection="column" height="100%"  width={lg ? "67%" : md ? "58%" : "100%"}>
-                <TabContext value={state.selectedTab}>
-                    <Box flexShrink={0}>
-                        <TabList variant="scrollable" onChange={useHandler2((_, v) => ({ selectedTab: { $set: v } }), noTrack)}>
-                            <Tab label="Party" value="template" ref={dropRef} />
-                            {state.strat.servants.map((servant, slot) => 
-                                <Tab key={slot} label={`Servant ${slot + 1}`} value={`servant${slot}`} ref={dragRefs[slot]} sx={servant ? {} : { display: "none" }} />
-                            )}
-                            <Tab label="Craft Essence" value="ce" />
-                            <Tab label="Enemies" value="node" />
-                        </TabList>
-                    </Box>
-                    {state.strat.servants.map((servant, slot) => servant ?
-                        <TabPanel key={slot} value={`servant${slot}`} sx={{ overflowY: "scroll", height: "100%" }}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <CommandServantSelector value={servant.servant} label="Servant" allowUnspecified={false} allowPlaceholder={false}
-                                        command={slot} onCommand={onServantChanged} />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <CommandBuffMatrixBuilder value={servant.buffs}
-                                        maxPowerMods={2}
-                                        command={slot}
-                                        onCommand={matrixHandlers.onChange}
-                                        servants={[servant.servant]}
-                                        warnOtherNp
-                                        clearers={state.strat.getRealClearers().map(c => c[0])}
-                                        npCards={{ value: state.strat.npCards, onChange: matrixHandlers.onNpCardsChange }}
-                                        doRefresh={matrixHandlers.doRefresh} />
-                                </Grid>
+            <Box display="flex" flexDirection="column" gap={theme.spacing(2)} height="100%" width={lg ? "66%" : md ? "58%" : "100%"}>
+                <Box flexShrink={0}>
+                    <Tabs value={state.selectedTab} variant="scrollable" onChange={useHandler2((_, v) => ({ selectedTab: { $set: v } }), noTrack)}>
+                        <Tab label="Party" value="template" ref={dropRef} />
+                        {state.strat.servants.map((servant, slot) => 
+                            <Tab key={slot} label={`Servant ${slot + 1}`} value={`servant${slot}`} ref={dragRefs[slot]} sx={servant ? {} : { display: "none" }} />
+                        )}
+                        <Tab label="Craft Essence" value="ce" />
+                        <Tab label="Enemies" value="node" />
+                    </Tabs>
+                </Box>
+                {state.strat.servants.map((servant, slot) => servant ?
+                    <Box key={slot} sx={{ overflowY: "scroll", height: "100%", display: state.selectedTab == "servant" + slot ? undefined : "none" }}>
+                        <Grid container spacing={2} width="99%">
+                            <Grid item xs={12}>
+                                <CommandServantSelector value={servant.servant} label="Servant" allowUnspecified={false} allowPlaceholder={false}
+                                    command={slot} onCommand={onServantChanged} />
                             </Grid>
-                        </TabPanel>
-                    : null)}
-                    <TabPanel value="template" sx={{ overflowY: "scroll", height: "100%" }}>
+                            <Grid item xs={12}>
+                                <CommandBuffMatrixBuilder value={servant.buffs}
+                                    maxPowerMods={2}
+                                    command={slot}
+                                    onCommand={matrixHandlers.onChange}
+                                    servants={[servant.servant]}
+                                    warnOtherNp
+                                    clearers={state.strat.getRealClearers().map(c => c[0])}
+                                    npCards={{ value: state.strat.npCards, onChange: matrixHandlers.onNpCardsChange }}
+                                    doRefresh={matrixHandlers.doRefresh} />
+                            </Grid>
+                        </Grid>
+                    </Box>
+                : null)}
+                <Box sx={{ overflowY: "scroll", height: "100%", display: state.selectedTab == "template" ? undefined : "none" }}>
+                    <Box width="99%">
                         <TemplateBuilder
                             value={state.strat.template}
                             onChange={onTemplateChanged}
                             npCards={{ value: state.strat.npCards, onChange: useHandler(v => ({ strat: { npCards: v } }), handlest) }} />
-                    </TabPanel>
-                    <TabPanel value="ce" sx={{ overflowY: "scroll", height: "100%" }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6} md={12} lg={6}>
-                                <CEBuilder label="Servant CE"
-                                    value={state.strat.servantCe}
-                                    onChange={useHandler(ce => ({ strat: { servantCe: ce } }), handlest)} />
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={12} lg={6}>
-                                <CEBuilder label="Support CE"
-                                    value={state.strat.supportCe}
-                                    onChange={useHandler(ce => ({ strat: { supportCe: ce } }), handlest)} />
-                            </Grid>
-                        </Grid>
-                    </TabPanel>
-                    <TabPanel value="node" sx={{ overflowY: "scroll", height: "100%" }}>
-                        <Box>
-                            <NodeBuilder value={state.advancedNode} onChange={useHandler(node => ({ advancedNode: node }), handlest)} />
                         </Box>
-                    </TabPanel>
-                </TabContext>
+                </Box>
+                <Box sx={{ overflowY: "scroll", height: "100%", display: state.selectedTab == "ce" ? undefined : "none" }}>
+                    <Grid container spacing={2} width="99%">
+                        <Grid item xs={12} sm={6} md={12} lg={6}>
+                            <CEBuilder label="Servant CE"
+                                value={state.strat.servantCe}
+                                onChange={useHandler(ce => ({ strat: { servantCe: ce } }), handlest)} />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={12} lg={6}>
+                            <CEBuilder label="Support CE"
+                                value={state.strat.supportCe}
+                                onChange={useHandler(ce => ({ strat: { supportCe: ce } }), handlest)} />
+                        </Grid>
+                    </Grid>
+                </Box>
+                <Box sx={{ overflowY: "scroll", height: "100%", display: state.selectedTab == "node" ? undefined : "none" }}>
+                    <Box width="99%">
+                        <NodeBuilder value={state.advancedNode} onChange={useHandler(node => ({ advancedNode: node }), handlest)} />
+                    </Box>
+                </Box>
             </Box>
         </Box>
     );
