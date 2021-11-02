@@ -172,7 +172,7 @@ class Calculator {
     public calculateNp(servant: Servant, ce: CraftEssence, enemy: Enemy, buffs: BuffSet[], npCard: CardType): NpResult {
         const
             np = servant.data.getNP(npCard),
-            combinedBuffs = BuffSet.combine(buffs.concat([ BuffSet.fromBuffs(ce.buffs, np.cardType) ]), servant.getAppendMod()),
+            combinedBuffs = BuffSet.combine(buffs.concat(BuffSet.fromBuffs(ce.buffs, np.cardType)), servant.getAppendMod()),
             damage = this.calculateNpDamage(servant, np, ce, enemy, combinedBuffs),
             refund = this.calculateNpRefund(np, combinedBuffs, enemy, damage);
         return new NpResult(damage, refund);
@@ -206,7 +206,8 @@ class Calculator {
             .times(combinedBuffs.getPowerMod(enemy).plus(combinedBuffs.getAdjustedNpUp()).asMultiplier())
             .times(extraDamage)
             .plus(combinedBuffs.flatDamage)
-            .floor()) as [number, number, number];
+            .floor()
+        ) as [number, number, number];
         return new Range(...range);
     }
 
@@ -226,7 +227,7 @@ class Calculator {
             //so I'm guessing this just floors each hit and puts the remainder on the last hit since that's what my coworkers would do
             //(it also happens to be the most pessimistic assumption)
             .map(hit => f(hit).times(damage).floor())
-            .reduce((cumulative, hit) => cumulative.concat([cumulative[cumulative.length - 1] - hit]), [enemy.hitPoints])
+            .reduce((cumulative, hit) => cumulative.concat(cumulative[cumulative.length - 1] - hit), [enemy.hitPoints])
             .slice(1, np.hitDistribution.length)
             .concat(enemy.hitPoints - damage);
         const refunded = singleRefund.noOK.times(hpAfterHit.length)

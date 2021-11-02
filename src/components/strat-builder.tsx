@@ -1,4 +1,4 @@
-import { Box, Grid, IconButton, Stack, Tab, Tabs, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, IconButton, Stack, Tab, Tabs, Theme, useMediaQuery, useTheme } from "@mui/material";
 import { useCallback, useRef, useState } from "react";
 import { BuffSet, getLikelyClassMatchup } from "../calc/damage";
 import { db } from "../calc/data";
@@ -20,6 +20,7 @@ import { useHandler, useHandler0, useHandler2 } from "./common";
 import { useDrag, useDrop } from "react-dnd";
 import { Locked, Unlocked } from "./icons";
 import { deserialize, serialize, Type } from "class-transformer";
+import { SxProps } from "@mui/system";
 
 class StratBuilderState {
     constructor(
@@ -164,6 +165,8 @@ export function StratBuilder() {
     const [, drop] = useDrop(() => ({ accept: "servantTab" }), []);
     const dropRef = useRef(null);
     drop(dropRef);
+
+    const tabContentSx = { overflowY: "scroll", height: "100%", padding: theme.spacing(3) } as SxProps<Theme>;
     
     return (
         <Box height={sm ? undefined : "98vh"} width="98vw" display="flex" flexDirection={sm ? "column" : "row-reverse"}>
@@ -205,7 +208,7 @@ export function StratBuilder() {
                     </Box>
                 </TabContext>
             </Box>
-            <Box display="flex" flexDirection="column" gap={theme.spacing(2)} height="100%" width={lg ? "66%" : md ? "58%" : "100%"}>
+            <Box display="flex" flexDirection="column" height="100%" width={lg ? "67%" : md ? "58%" : "100%"}>
                 <Box flexShrink={0}>
                     <Tabs value={state.selectedTab} variant="scrollable" onChange={useHandler2((_, v) => ({ selectedTab: { $set: v } }), noTrack)}>
                         <Tab label="Party" value="template" ref={dropRef} />
@@ -217,7 +220,7 @@ export function StratBuilder() {
                     </Tabs>
                 </Box>
                 {state.strat.servants.map((servant, slot) => servant ?
-                    <Box key={slot} sx={{ overflowY: "scroll", height: "100%", display: state.selectedTab == "servant" + slot ? undefined : "none" }}>
+                    <Box key={slot} sx={{ ...tabContentSx, display: state.selectedTab == "servant" + slot ? undefined : "none" }}>
                         <Grid container spacing={2} width="99%">
                             <Grid item xs={12}>
                                 <CommandServantSelector value={servant.servant} label="Servant" allowUnspecified={false} allowPlaceholder={false}
@@ -237,7 +240,7 @@ export function StratBuilder() {
                         </Grid>
                     </Box>
                 : null)}
-                <Box sx={{ overflowY: "scroll", height: "100%", display: state.selectedTab == "template" ? undefined : "none" }}>
+                <Box sx={{ ...tabContentSx, display: state.selectedTab == "template" ? undefined : "none" }}>
                     <Box width="99%">
                         <TemplateBuilder
                             value={state.strat.template}
@@ -245,7 +248,7 @@ export function StratBuilder() {
                             npCards={{ value: state.strat.npCards, onChange: useHandler(v => ({ strat: { npCards: v } }), handlest) }} />
                         </Box>
                 </Box>
-                <Box sx={{ overflowY: "scroll", height: "100%", display: state.selectedTab == "ce" ? undefined : "none" }}>
+                <Box sx={{ ...tabContentSx, display: state.selectedTab == "ce" ? undefined : "none" }}>
                     <Grid container spacing={2} width="99%">
                         <Grid item xs={12} sm={6} md={12} lg={6}>
                             <CEBuilder label="Servant CE"
@@ -259,7 +262,7 @@ export function StratBuilder() {
                         </Grid>
                     </Grid>
                 </Box>
-                <Box sx={{ overflowY: "scroll", height: "100%", display: state.selectedTab == "node" ? undefined : "none" }}>
+                <Box sx={{ ...tabContentSx, display: state.selectedTab == "node" ? undefined : "none" }}>
                     <Box width="99%">
                         <NodeBuilder value={state.advancedNode} onChange={useHandler(node => ({ advancedNode: node }), handlest)} />
                     </Box>
