@@ -20,4 +20,4 @@ The application therefore makes the most pessimistic assumption possible in most
 # License
 MIT.
 
-Images are property of their respective copywrite holders.
+Images are property of their respective copyright holders.
