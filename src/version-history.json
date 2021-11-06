@@ -29,5 +29,15 @@
             "Improved performance when switching tabs",
             "Minor UX changes"
         ]
+    },
+    {
+        "major": 1,
+        "minor": 0,
+        "patch": 3,
+        "miniPatch": 0,
+        "releaseDate": "2021-11-06",
+        "changes": [
+            "Layout fixes"
+        ]
     }
 ]
