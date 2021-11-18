@@ -6839,7 +6839,6 @@
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
             "greekMythologyMales",
-            "argonaut",
             "hominidaeServant"
         ],
         "f2pCopies": 5,
@@ -8488,7 +8487,6 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
-            "argonaut",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -8709,7 +8707,6 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
-            "argonaut",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -12432,7 +12429,6 @@
             "skyOrEarthExceptPseudoAndDemi",
             "king",
             "feminineLookingServant",
-            "argonaut",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -12665,7 +12661,6 @@
             "skyOrEarthExceptPseudoAndDemi",
             "king",
             "feminineLookingServant",
-            "argonaut",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -15435,7 +15430,6 @@
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
             "greekMythologyMales",
-            "argonaut",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -16078,7 +16072,6 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
-            "argonaut",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -18536,7 +18529,6 @@
             "skyOrEarthExceptPseudoAndDemi",
             "saberClassServant",
             "feminineLookingServant",
-            "argonaut",
             "hominidaeServant",
             "divineSpirit"
         ],
@@ -28758,7 +28750,6 @@
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
             "greekMythologyMales",
-            "argonaut",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -32228,6 +32219,237 @@
         ]
     },
     {
+        "name": "Izumo no Okuni",
+        "id": 327,
+        "rarity": 5,
+        "sClass": "caster",
+        "attribute": "human",
+        "traits": [
+            "genderFemale",
+            "classCaster",
+            "attributeHuman",
+            "alignmentChaotic",
+            "alignmentGood",
+            "humanoid",
+            "weakToEnumaElish",
+            "hominidaeServant"
+        ],
+        "f2pCopies": 0,
+        "iconUrl": "/images/servants/327.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/504900/504900a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classPretender"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1757,
+                "2": 1862,
+                "3": 1968,
+                "4": 2074,
+                "5": 2180,
+                "6": 2295,
+                "7": 2401,
+                "8": 2507,
+                "9": 2612,
+                "10": 2728,
+                "11": 2834,
+                "12": 2939,
+                "13": 3045,
+                "14": 3161,
+                "15": 3266,
+                "16": 3372,
+                "17": 3478,
+                "18": 3593,
+                "19": 3699,
+                "20": 3805,
+                "21": 3911,
+                "22": 4016,
+                "23": 4132,
+                "24": 4238,
+                "25": 4343,
+                "26": 4449,
+                "27": 4565,
+                "28": 4670,
+                "29": 4776,
+                "30": 4882,
+                "31": 4997,
+                "32": 5103,
+                "33": 5209,
+                "34": 5315,
+                "35": 5430,
+                "36": 5536,
+                "37": 5642,
+                "38": 5748,
+                "39": 5853,
+                "40": 5969,
+                "41": 6075,
+                "42": 6180,
+                "43": 6286,
+                "44": 6402,
+                "45": 6507,
+                "46": 6613,
+                "47": 6719,
+                "48": 6834,
+                "49": 6940,
+                "50": 7046,
+                "51": 7152,
+                "52": 7267,
+                "53": 7373,
+                "54": 7479,
+                "55": 7584,
+                "56": 7690,
+                "57": 7806,
+                "58": 7911,
+                "59": 8017,
+                "60": 8123,
+                "61": 8238,
+                "62": 8344,
+                "63": 8450,
+                "64": 8556,
+                "65": 8671,
+                "66": 8777,
+                "67": 8883,
+                "68": 8988,
+                "69": 9104,
+                "70": 9210,
+                "71": 9315,
+                "72": 9421,
+                "73": 9527,
+                "74": 9642,
+                "75": 9748,
+                "76": 9854,
+                "77": 9960,
+                "78": 10075,
+                "79": 10181,
+                "80": 10287,
+                "81": 10393,
+                "82": 10508,
+                "83": 10614,
+                "84": 10720,
+                "85": 10825,
+                "86": 10941,
+                "87": 11047,
+                "88": 11152,
+                "89": 11258,
+                "90": 11374,
+                "91": 11479,
+                "92": 11585,
+                "93": 11691,
+                "94": 11797,
+                "95": 11912,
+                "96": 12018,
+                "97": 12124,
+                "98": 12229,
+                "99": 12345,
+                "100": 12451,
+                "101": 12556,
+                "102": 12662,
+                "103": 12778,
+                "104": 12883,
+                "105": 12989,
+                "106": 13095,
+                "107": 13210,
+                "108": 13316,
+                "109": 13422,
+                "110": 13528,
+                "111": 13633,
+                "112": 13749,
+                "113": 13855,
+                "114": 13960,
+                "115": 14066,
+                "116": 14182,
+                "117": 14287,
+                "118": 14393,
+                "119": 14499,
+                "120": 14614
+            }
+        },
+        "passives": [],
+        "skills": [
+            {
+                "cooldown": 7,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "cardTypeUp",
+                        "val": 0.3,
+                        "turns": 3,
+                        "cardType": "quick"
+                    }
+                ]
+            },
+            {
+                "cooldown": 5,
+                "buffs": []
+            },
+            {
+                "cooldown": 7,
+                "buffs": []
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "quick",
+                "target": "st",
+                "multiplier": [
+                    12,
+                    16,
+                    18,
+                    19,
+                    20
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1.5,
+                    1.625,
+                    1.75,
+                    1.875,
+                    2
+                ],
+                "extraTrigger": [
+                    "demonic"
+                ],
+                "extraDmgStacks": false,
+                "refundRate": 0.8,
+                "hitDistribution": [
+                    0.01,
+                    0.03,
+                    0.05,
+                    0.07,
+                    0.09,
+                    0.1,
+                    0.12,
+                    0.14,
+                    0.16,
+                    0.23
+                ],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "cardTypeUp",
+                        "val": 0.2,
+                        "turns": 1,
+                        "cardType": "quick"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ],
+                "postBuffs": []
+            }
+        ]
+    },
+    {
         "name": "Jack the Ripper",
         "id": 75,
         "rarity": 5,
@@ -33200,7 +33422,6 @@
             "skyOrEarthExceptPseudoAndDemi",
             "saberClassServant",
             "greekMythologyMales",
-            "argonaut",
             "hominidaeServant"
         ],
         "f2pCopies": 5,
@@ -41352,7 +41573,7 @@
                         "val": 1,
                         "turns": 1,
                         "trig": [
-                            "divineOrDaemonOrUndead"
+                            "divineOrDemonOrUndead"
                         ]
                     }
                 ]
@@ -42287,7 +42508,6 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
-            "argonaut",
             "hominidaeServant"
         ],
         "f2pCopies": 5,
@@ -42498,7 +42718,6 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
-            "argonaut",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -48628,6 +48847,236 @@
         ]
     },
     {
+        "name": "Mysterious Ranmaru X",
+        "id": 328,
+        "rarity": 4,
+        "sClass": "avenger",
+        "attribute": "star",
+        "traits": [
+            "genderUnknown",
+            "classAvenger",
+            "attributeStar",
+            "alignmentLawful",
+            "alignmentGood",
+            "humanoid",
+            "feminineLookingServant",
+            "hominidaeServant"
+        ],
+        "f2pCopies": 5,
+        "iconUrl": "/images/servants/328.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/1101200/1101200a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classCaster"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1645,
+                "2": 1801,
+                "3": 1965,
+                "4": 2130,
+                "5": 2294,
+                "6": 2451,
+                "7": 2615,
+                "8": 2772,
+                "9": 2928,
+                "10": 3084,
+                "11": 3232,
+                "12": 3380,
+                "13": 3528,
+                "14": 3677,
+                "15": 3816,
+                "16": 3948,
+                "17": 4088,
+                "18": 4211,
+                "19": 4343,
+                "20": 4458,
+                "21": 4582,
+                "22": 4688,
+                "23": 4795,
+                "24": 4902,
+                "25": 4993,
+                "26": 5092,
+                "27": 5174,
+                "28": 5256,
+                "29": 5330,
+                "30": 5404,
+                "31": 5462,
+                "32": 5519,
+                "33": 5569,
+                "34": 5618,
+                "35": 5659,
+                "36": 5692,
+                "37": 5717,
+                "38": 5733,
+                "39": 5750,
+                "40": 5758,
+                "41": 5766,
+                "42": 5774,
+                "43": 5783,
+                "44": 5791,
+                "45": 5816,
+                "46": 5848,
+                "47": 5890,
+                "48": 5939,
+                "49": 5988,
+                "50": 6046,
+                "51": 6104,
+                "52": 6178,
+                "53": 6252,
+                "54": 6334,
+                "55": 6416,
+                "56": 6515,
+                "57": 6605,
+                "58": 6712,
+                "59": 6819,
+                "60": 6926,
+                "61": 7050,
+                "62": 7165,
+                "63": 7296,
+                "64": 7420,
+                "65": 7560,
+                "66": 7691,
+                "67": 7831,
+                "68": 7979,
+                "69": 8127,
+                "70": 8275,
+                "71": 8424,
+                "72": 8580,
+                "73": 8736,
+                "74": 8892,
+                "75": 9057,
+                "76": 9213,
+                "77": 9378,
+                "78": 9542,
+                "79": 9707,
+                "80": 9872,
+                "81": 9970,
+                "82": 10077,
+                "83": 10176,
+                "84": 10283,
+                "85": 10390,
+                "86": 10489,
+                "87": 10595,
+                "88": 10702,
+                "89": 10801,
+                "90": 10908,
+                "91": 11015,
+                "92": 11114,
+                "93": 11221,
+                "94": 11328,
+                "95": 11426,
+                "96": 11533,
+                "97": 11640,
+                "98": 11739,
+                "99": 11846,
+                "100": 11953,
+                "101": 12052,
+                "102": 12159,
+                "103": 12266,
+                "104": 12364,
+                "105": 12471,
+                "106": 12578,
+                "107": 12677,
+                "108": 12784,
+                "109": 12891,
+                "110": 12990,
+                "111": 13096,
+                "112": 13203,
+                "113": 13302,
+                "114": 13409,
+                "115": 13516,
+                "116": 13615,
+                "117": 13722,
+                "118": 13829,
+                "119": 13927,
+                "120": 14034
+            }
+        },
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "cardTypeUp",
+                "val": 0.03,
+                "turns": -1,
+                "cardType": "arts"
+            }
+        ],
+        "skills": [
+            {
+                "cooldown": 4,
+                "buffs": []
+            },
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "attackUp",
+                        "val": 0.2,
+                        "turns": 1
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
+            },
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "cardTypeUp",
+                        "val": 0.3,
+                        "turns": 3,
+                        "cardType": "arts"
+                    }
+                ]
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "arts",
+                "target": "aoe",
+                "multiplier": [
+                    4.5,
+                    6,
+                    6.75,
+                    7.125,
+                    7.5
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "extraTrigger": [],
+                "refundRate": 0.45,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
+                "preBuffs": [],
+                "postBuffs": []
+            }
+        ]
+    },
+    {
         "name": "Nagao Kagetora",
         "id": 252,
         "rarity": 4,
@@ -49103,7 +49552,6 @@
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
             "greekMythologyMales",
-            "argonaut",
             "hominidaeServant",
             "divineSpirit"
         ],
@@ -54699,7 +55147,6 @@
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
             "greekMythologyMales",
-            "argonaut",
             "hominidaeServant",
             "childServant"
         ],
