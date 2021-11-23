@@ -49,5 +49,15 @@
         "changes": [
             "Servants 327-328"
         ]
+    },
+    {
+        "major": 1,
+        "minor": 0,
+        "patch": 3,
+        "miniPatch": 2,
+        "releaseDate": "2021-11-23",
+        "changes": [
+            "Servant 329, strengthenings"
+        ]
     }
 ]
