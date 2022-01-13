@@ -494,7 +494,7 @@ function getF2PCopies(data: any): number {
         case 2:
         case 3: return 5; //not true but w/e
         case 5: return 0;
-        case 4: return data.ascensionMaterials["3"].items.length <= 1 ? 5 : 0;
+        case 4: return data.ascensionMaterials["3"] && data.ascensionMaterials["3"].items.length <= 1 ? 5 : 0;
     }
 }
 
