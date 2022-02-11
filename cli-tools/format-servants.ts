@@ -92,8 +92,9 @@ async function mapServant(data: any): Promise<ServantData> {
     }
     const iconPath = `/images/servants/${data.collectionNo}.png`;
     if (!fs.existsSync("src" + iconPath)) {
-        console.log("Downloading icon", iconPath);
-        const icon = await fetch(data.extraAssets.faces.ascension["1"], {});
+        const iconUrl = data.extraAssets.faces.ascension["1"];
+        console.log("Downloading icon", iconPath, "from", iconUrl);
+        const icon = await fetch(iconUrl, {});
         icon.body.pipe(fs.createWriteStream("src" + iconPath));
     }
     return new ServantData(

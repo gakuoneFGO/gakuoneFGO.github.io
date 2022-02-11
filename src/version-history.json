@@ -89,5 +89,15 @@
         "changes": [
             "Servant 335, strengthenings"
         ]
+    },
+    {
+        "major": 1,
+        "minor": 0,
+        "patch": 3,
+        "miniPatch": 6,
+        "releaseDate": "2022-02-11",
+        "changes": [
+            "Servant 336"
+        ]
     }
 ]
