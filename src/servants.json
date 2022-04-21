@@ -4994,10 +4994,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -5019,6 +5015,10 @@
                         "turns": 3
                     }
                 ]
+            },
+            {
+                "cooldown": 5,
+                "buffs": []
             }
         ],
         "nps": [
@@ -5219,10 +5219,6 @@
                 ]
             },
             {
-                "cooldown": 6,
-                "buffs": []
-            },
-            {
                 "cooldown": 5,
                 "buffs": [
                     {
@@ -5233,6 +5229,10 @@
                         "turns": 3
                     }
                 ]
+            },
+            {
+                "cooldown": 6,
+                "buffs": []
             }
         ],
         "nps": [
@@ -6156,6 +6156,7 @@
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
             "hominidaeServant",
+            "hasCostume",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -14338,7 +14339,8 @@
             "alignmentEvil",
             "humanoid",
             "weakToEnumaElish",
-            "hominidaeServant"
+            "hominidaeServant",
+            "hasCostume"
         ],
         "f2pCopies": 5,
         "iconUrl": "/images/servants/43.png",
@@ -16731,7 +16733,8 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
-            "hominidaeServant"
+            "hominidaeServant",
+            "hasCostume"
         ],
         "f2pCopies": 0,
         "iconUrl": "/images/servants/98.png",
@@ -19445,231 +19448,6 @@
         ]
     },
     {
-        "name": "Elice Utsumi",
-        "id": 283,
-        "rarity": 4,
-        "sClass": "lancer",
-        "attribute": "human",
-        "traits": [
-            "genderFemale",
-            "classLancer",
-            "attributeHuman",
-            "alignmentLawful",
-            "alignmentBalanced",
-            "divine",
-            "humanoid",
-            "weakToEnumaElish",
-            "riding",
-            "hominidaeServant",
-            "livingHuman",
-            "childServant"
-        ],
-        "f2pCopies": 5,
-        "iconUrl": "/images/servants/283.png",
-        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/304300/304300a@1.png",
-        "chargeProfile": "",
-        "appendTarget": [
-            "classLancer"
-        ],
-        "growthCurve": {
-            "stats": {
-                "1": 1520,
-                "2": 1565,
-                "3": 1618,
-                "4": 1672,
-                "5": 1732,
-                "6": 1793,
-                "7": 1862,
-                "8": 1922,
-                "9": 1998,
-                "10": 2067,
-                "11": 2143,
-                "12": 2226,
-                "13": 2303,
-                "14": 2386,
-                "15": 2477,
-                "16": 2569,
-                "17": 2660,
-                "18": 2751,
-                "19": 2850,
-                "20": 2949,
-                "21": 3048,
-                "22": 3154,
-                "23": 3253,
-                "24": 3367,
-                "25": 3473,
-                "26": 3580,
-                "27": 3694,
-                "28": 3808,
-                "29": 3922,
-                "30": 4043,
-                "31": 4157,
-                "32": 4279,
-                "33": 4401,
-                "34": 4515,
-                "35": 4636,
-                "36": 4766,
-                "37": 4887,
-                "38": 5009,
-                "39": 5130,
-                "40": 5252,
-                "41": 5381,
-                "42": 5503,
-                "43": 5625,
-                "44": 5746,
-                "45": 5868,
-                "46": 5997,
-                "47": 6119,
-                "48": 6233,
-                "49": 6354,
-                "50": 6476,
-                "51": 6590,
-                "52": 6712,
-                "53": 6826,
-                "54": 6940,
-                "55": 7054,
-                "56": 7160,
-                "57": 7267,
-                "58": 7381,
-                "59": 7479,
-                "60": 7586,
-                "61": 7685,
-                "62": 7784,
-                "63": 7882,
-                "64": 7974,
-                "65": 8065,
-                "66": 8156,
-                "67": 8247,
-                "68": 8331,
-                "69": 8407,
-                "70": 8491,
-                "71": 8567,
-                "72": 8635,
-                "73": 8711,
-                "74": 8772,
-                "75": 8840,
-                "76": 8901,
-                "77": 8962,
-                "78": 9015,
-                "79": 9068,
-                "80": 9122,
-                "81": 9213,
-                "82": 9312,
-                "83": 9403,
-                "84": 9502,
-                "85": 9600,
-                "86": 9692,
-                "87": 9790,
-                "88": 9889,
-                "89": 9981,
-                "90": 10079,
-                "91": 10178,
-                "92": 10269,
-                "93": 10368,
-                "94": 10467,
-                "95": 10558,
-                "96": 10657,
-                "97": 10756,
-                "98": 10847,
-                "99": 10946,
-                "100": 11045,
-                "101": 11136,
-                "102": 11235,
-                "103": 11334,
-                "104": 11425,
-                "105": 11524,
-                "106": 11623,
-                "107": 11714,
-                "108": 11813,
-                "109": 11911,
-                "110": 12003,
-                "111": 12101,
-                "112": 12200,
-                "113": 12292,
-                "114": 12390,
-                "115": 12489,
-                "116": 12580,
-                "117": 12679,
-                "118": 12778,
-                "119": 12869,
-                "120": 12968
-            }
-        },
-        "passives": [
-            {
-                "self": true,
-                "team": false,
-                "type": "damagePlus",
-                "val": 100,
-                "turns": -1
-            }
-        ],
-        "skills": [
-            {
-                "cooldown": 6,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "cardTypeUp",
-                        "val": 0.3,
-                        "turns": 3,
-                        "cardType": "arts"
-                    }
-                ]
-            },
-            {
-                "cooldown": 4,
-                "buffs": []
-            },
-            {
-                "cooldown": 6,
-                "buffs": [
-                    {
-                        "self": true,
-                        "team": false,
-                        "type": "powerMod",
-                        "val": 0.3,
-                        "turns": 3,
-                        "trig": [
-                            "basedOnServant"
-                        ]
-                    }
-                ]
-            }
-        ],
-        "nps": [
-            {
-                "cardType": "arts",
-                "target": "aoe",
-                "multiplier": [
-                    4.5,
-                    6,
-                    6.75,
-                    7.125,
-                    7.5
-                ],
-                "multUpgrade": 0,
-                "extraDamage": [
-                    1,
-                    1,
-                    1,
-                    1,
-                    1
-                ],
-                "extraTrigger": [],
-                "refundRate": 0.63,
-                "hitDistribution": [
-                    0.16,
-                    0.33,
-                    0.51
-                ],
-                "preBuffs": [],
-                "postBuffs": []
-            }
-        ]
-    },
-    {
         "name": "Elisabeth Báthory",
         "id": 18,
         "rarity": 4,
@@ -21290,7 +21068,8 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
-            "feminineLookingServant"
+            "feminineLookingServant",
+            "hasCostume"
         ],
         "f2pCopies": 0,
         "iconUrl": "/images/servants/143.png",
@@ -24796,6 +24575,7 @@
             "skyOrEarthExceptPseudoAndDemi",
             "saberClassServant",
             "hominidaeServant",
+            "hasCostume",
             "knightsOfTheRound"
         ],
         "f2pCopies": 0,
@@ -28756,7 +28536,7 @@
                     7.125,
                     7.5
                 ],
-                "multUpgrade": 0,
+                "multUpgrade": 1.5,
                 "extraDamage": [
                     1,
                     1,
@@ -32638,10 +32418,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -32664,6 +32440,31 @@
                         "turns": 1,
                         "trig": [
                             "buffNegativeEffect"
+                        ]
+                    }
+                ]
+            },
+            {
+                "cooldown": 5,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "powerMod",
+                        "val": 0.3,
+                        "turns": 3,
+                        "trig": [
+                            "alignmentLawful"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "powerMod",
+                        "val": 0.3,
+                        "turns": 3,
+                        "trig": [
+                            "alignmentChaotic"
                         ]
                     }
                 ]
@@ -44185,6 +43986,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "hasCostume",
             "divineSpirit"
         ],
         "f2pCopies": 5,
@@ -50816,6 +50618,7 @@
             "skyOrEarthExceptPseudoAndDemi",
             "greekMythologyMales",
             "hominidaeServant",
+            "hasCostume",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -52293,10 +52096,10 @@
                 "cooldown": 5,
                 "buffs": [
                     {
-                        "self": false,
-                        "team": true,
-                        "type": "npGain",
-                        "val": 0.3,
+                        "self": true,
+                        "team": false,
+                        "type": "attackUp",
+                        "val": 0.2,
                         "turns": 3
                     }
                 ]
@@ -52305,10 +52108,10 @@
                 "cooldown": 5,
                 "buffs": [
                     {
-                        "self": true,
-                        "team": false,
-                        "type": "attackUp",
-                        "val": 0.2,
+                        "self": false,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
                         "turns": 3
                     }
                 ]
@@ -53241,7 +53044,8 @@
             "alignmentGood",
             "humanoid",
             "weakToEnumaElish",
-            "hominidaeServant"
+            "hominidaeServant",
+            "hasCostume"
         ],
         "f2pCopies": 5,
         "iconUrl": "/images/servants/294.png",
@@ -53940,7 +53744,8 @@
             "skyOrEarthExceptPseudoAndDemi",
             "king",
             "greekMythologyMales",
-            "hominidaeServant"
+            "hominidaeServant",
+            "hasCostume"
         ],
         "f2pCopies": 0,
         "iconUrl": "/images/servants/277.png",
@@ -56187,7 +55992,8 @@
             "humanoid",
             "weakToEnumaElish",
             "brynhildsBeloved",
-            "hominidaeServant"
+            "hominidaeServant",
+            "hasCostume"
         ],
         "f2pCopies": 5,
         "iconUrl": "/images/servants/79.png",
@@ -60660,7 +60466,7 @@
         ]
     },
     {
-        "name": "Romulus-Quirinus",
+        "name": "Romulus=Quirinus",
         "id": 280,
         "rarity": 5,
         "sClass": "lancer",
@@ -61375,7 +61181,8 @@
             "humanoid",
             "weakToEnumaElish",
             "saberClassServant",
-            "hominidaeServant"
+            "hominidaeServant",
+            "hasCostume"
         ],
         "f2pCopies": 0,
         "iconUrl": "/images/servants/293.png",
@@ -66731,21 +66538,21 @@
                 "buffs": []
             },
             {
-                "cooldown": 7,
+                "cooldown": 5,
+                "buffs": []
+            },
+            {
+                "cooldown": 6,
                 "buffs": [
                     {
                         "self": true,
                         "team": false,
                         "type": "cardTypeUp",
                         "val": 0.5,
-                        "turns": 1,
+                        "turns": 3,
                         "cardType": "buster"
                     }
                 ]
-            },
-            {
-                "cooldown": 5,
-                "buffs": []
             }
         ],
         "nps": [
@@ -68977,6 +68784,270 @@
         ]
     },
     {
+        "name": "Taisui Xingjun",
+        "id": 338,
+        "rarity": 4,
+        "sClass": "alterEgo",
+        "attribute": "earth",
+        "traits": [
+            "genderMale",
+            "classAlterEgo",
+            "attributeEarth",
+            "alignmentNeutral",
+            "alignmentBalanced",
+            "divine",
+            "humanoid",
+            "weakToEnumaElish",
+            "skyOrEarth",
+            "demonic",
+            "skyOrEarthExceptPseudoAndDemi",
+            "childServant"
+        ],
+        "f2pCopies": 5,
+        "iconUrl": "/images/servants/338.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/1001200/1001200a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classAssassin"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1545,
+                "2": 1552,
+                "3": 1568,
+                "4": 1591,
+                "5": 1614,
+                "6": 1653,
+                "7": 1691,
+                "8": 1738,
+                "9": 1784,
+                "10": 1846,
+                "11": 1908,
+                "12": 1969,
+                "13": 2047,
+                "14": 2124,
+                "15": 2209,
+                "16": 2294,
+                "17": 2387,
+                "18": 2487,
+                "19": 2595,
+                "20": 2696,
+                "21": 2812,
+                "22": 2927,
+                "23": 3043,
+                "24": 3167,
+                "25": 3298,
+                "26": 3430,
+                "27": 3561,
+                "28": 3700,
+                "29": 3839,
+                "30": 3978,
+                "31": 4125,
+                "32": 4272,
+                "33": 4419,
+                "34": 4565,
+                "35": 4720,
+                "36": 4867,
+                "37": 5021,
+                "38": 5176,
+                "39": 5330,
+                "40": 5477,
+                "41": 5632,
+                "42": 5786,
+                "43": 5941,
+                "44": 6087,
+                "45": 6242,
+                "46": 6389,
+                "47": 6535,
+                "48": 6682,
+                "49": 6829,
+                "50": 6968,
+                "51": 7107,
+                "52": 7246,
+                "53": 7378,
+                "54": 7509,
+                "55": 7640,
+                "56": 7764,
+                "57": 7880,
+                "58": 7996,
+                "59": 8112,
+                "60": 8212,
+                "61": 8320,
+                "62": 8421,
+                "63": 8513,
+                "64": 8598,
+                "65": 8683,
+                "66": 8761,
+                "67": 8838,
+                "68": 8900,
+                "69": 8961,
+                "70": 9023,
+                "71": 9070,
+                "72": 9116,
+                "73": 9147,
+                "74": 9170,
+                "75": 9193,
+                "76": 9209,
+                "77": 9224,
+                "78": 9240,
+                "79": 9255,
+                "80": 9271,
+                "81": 9363,
+                "82": 9464,
+                "83": 9556,
+                "84": 9657,
+                "85": 9757,
+                "86": 9850,
+                "87": 9950,
+                "88": 10051,
+                "89": 10144,
+                "90": 10244,
+                "91": 10344,
+                "92": 10437,
+                "93": 10538,
+                "94": 10638,
+                "95": 10731,
+                "96": 10831,
+                "97": 10932,
+                "98": 11024,
+                "99": 11125,
+                "100": 11225,
+                "101": 11318,
+                "102": 11418,
+                "103": 11519,
+                "104": 11611,
+                "105": 11712,
+                "106": 11812,
+                "107": 11905,
+                "108": 12006,
+                "109": 12106,
+                "110": 12199,
+                "111": 12299,
+                "112": 12400,
+                "113": 12492,
+                "114": 12593,
+                "115": 12693,
+                "116": 12786,
+                "117": 12886,
+                "118": 12987,
+                "119": 13079,
+                "120": 13180
+            }
+        },
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 195,
+                "turns": -1
+            }
+        ],
+        "skills": [
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "cardTypeUp",
+                        "val": 0.2,
+                        "turns": 3,
+                        "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ]
+            },
+            {
+                "cooldown": 6,
+                "buffs": []
+            },
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "npDamage",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "arts",
+                "target": "aoe",
+                "multiplier": [
+                    4.5,
+                    6,
+                    6.75,
+                    7.125,
+                    7.5
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1.5,
+                    1.625,
+                    1.75,
+                    1.875,
+                    2
+                ],
+                "extraTrigger": [
+                    "attributeHuman"
+                ],
+                "extraDmgStacks": false,
+                "refundRate": 0.47,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect",
+                            "buffCurse"
+                        ]
+                    }
+                ],
+                "postBuffs": []
+            }
+        ]
+    },
+    {
         "name": "Tamamo Cat",
         "id": 58,
         "rarity": 4,
@@ -70041,10 +70112,6 @@
         ],
         "skills": [
             {
-                "cooldown": 10,
-                "buffs": []
-            },
-            {
                 "cooldown": 6,
                 "buffs": [
                     {
@@ -70059,6 +70126,18 @@
             {
                 "cooldown": 5,
                 "buffs": []
+            },
+            {
+                "cooldown": 8,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npDamage",
+                        "val": 0.2,
+                        "turns": 5
+                    }
+                ]
             }
         ],
         "nps": [
@@ -70767,6 +70846,267 @@
         ]
     },
     {
+        "name": "Trưng Sisters",
+        "id": 337,
+        "rarity": 5,
+        "sClass": "saber",
+        "attribute": "human",
+        "traits": [
+            "genderFemale",
+            "classSaber",
+            "attributeHuman",
+            "alignmentLawful",
+            "alignmentGood",
+            "divine",
+            "humanoid",
+            "weakToEnumaElish",
+            "riding",
+            "saberClassServant",
+            "king",
+            "hominidaeServant"
+        ],
+        "f2pCopies": 0,
+        "iconUrl": "/images/servants/337.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/105300/105300a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classAssassin"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1838,
+                "2": 2009,
+                "3": 2190,
+                "4": 2361,
+                "5": 2542,
+                "6": 2713,
+                "7": 2894,
+                "8": 3065,
+                "9": 3236,
+                "10": 3407,
+                "11": 3568,
+                "12": 3739,
+                "13": 3900,
+                "14": 4061,
+                "15": 4222,
+                "16": 4373,
+                "17": 4524,
+                "18": 4674,
+                "19": 4815,
+                "20": 4956,
+                "21": 5097,
+                "22": 5228,
+                "23": 5359,
+                "24": 5479,
+                "25": 5600,
+                "26": 5721,
+                "27": 5831,
+                "28": 5932,
+                "29": 6033,
+                "30": 6133,
+                "31": 6214,
+                "32": 6304,
+                "33": 6385,
+                "34": 6455,
+                "35": 6525,
+                "36": 6586,
+                "37": 6636,
+                "38": 6686,
+                "39": 6727,
+                "40": 6767,
+                "41": 6797,
+                "42": 6827,
+                "43": 6847,
+                "44": 6857,
+                "45": 6868,
+                "46": 6878,
+                "47": 6888,
+                "48": 6898,
+                "49": 6908,
+                "50": 6928,
+                "51": 6958,
+                "52": 6998,
+                "53": 7039,
+                "54": 7089,
+                "55": 7139,
+                "56": 7199,
+                "57": 7270,
+                "58": 7340,
+                "59": 7421,
+                "60": 7511,
+                "61": 7592,
+                "62": 7692,
+                "63": 7793,
+                "64": 7894,
+                "65": 8004,
+                "66": 8125,
+                "67": 8246,
+                "68": 8366,
+                "69": 8497,
+                "70": 8628,
+                "71": 8769,
+                "72": 8910,
+                "73": 9051,
+                "74": 9201,
+                "75": 9352,
+                "76": 9503,
+                "77": 9664,
+                "78": 9825,
+                "79": 9986,
+                "80": 10157,
+                "81": 10318,
+                "82": 10489,
+                "83": 10660,
+                "84": 10831,
+                "85": 11012,
+                "86": 11183,
+                "87": 11364,
+                "88": 11535,
+                "89": 11716,
+                "90": 11898,
+                "91": 12008,
+                "92": 12119,
+                "93": 12229,
+                "94": 12340,
+                "95": 12461,
+                "96": 12572,
+                "97": 12682,
+                "98": 12793,
+                "99": 12914,
+                "100": 13024,
+                "101": 13135,
+                "102": 13246,
+                "103": 13366,
+                "104": 13477,
+                "105": 13588,
+                "106": 13698,
+                "107": 13819,
+                "108": 13930,
+                "109": 14040,
+                "110": 14151,
+                "111": 14262,
+                "112": 14382,
+                "113": 14493,
+                "114": 14604,
+                "115": 14714,
+                "116": 14835,
+                "117": 14946,
+                "118": 15056,
+                "119": 15167,
+                "120": 15288
+            }
+        },
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 150,
+                "turns": -1
+            }
+        ],
+        "skills": [
+            {
+                "cooldown": 5,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "attackUp",
+                        "val": 0.15,
+                        "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "cardTypeUp",
+                        "val": 0.15,
+                        "turns": 3,
+                        "cardType": "arts"
+                    }
+                ]
+            },
+            {
+                "cooldown": 4,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "cardTypeUp",
+                        "val": 0.15,
+                        "turns": 3,
+                        "cardType": "arts"
+                    }
+                ]
+            },
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.2,
+                        "turns": 3
+                    }
+                ]
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "arts",
+                "target": "st",
+                "multiplier": [
+                    9,
+                    12,
+                    13.5,
+                    14.25,
+                    15
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "extraTrigger": [],
+                "refundRate": 0.43,
+                "hitDistribution": [
+                    0.02,
+                    0.04,
+                    0.06,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.15,
+                    0.17,
+                    0.24
+                ],
+                "preBuffs": [],
+                "postBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "cardTypeUp",
+                        "val": 0.1,
+                        "turns": 2,
+                        "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "cardTypeUp",
+                        "val": 0.1,
+                        "turns": 2,
+                        "cardType": "buster"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Ushiwakamaru",
         "id": 27,
         "rarity": 3,
@@ -71204,6 +71544,231 @@
                     0.2,
                     0.26,
                     0.35
+                ],
+                "preBuffs": [],
+                "postBuffs": []
+            }
+        ]
+    },
+    {
+        "name": "Utsumi Erice",
+        "id": 283,
+        "rarity": 4,
+        "sClass": "lancer",
+        "attribute": "human",
+        "traits": [
+            "genderFemale",
+            "classLancer",
+            "attributeHuman",
+            "alignmentLawful",
+            "alignmentBalanced",
+            "divine",
+            "humanoid",
+            "weakToEnumaElish",
+            "riding",
+            "hominidaeServant",
+            "livingHuman",
+            "childServant"
+        ],
+        "f2pCopies": 5,
+        "iconUrl": "/images/servants/283.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/304300/304300a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classLancer"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1520,
+                "2": 1565,
+                "3": 1618,
+                "4": 1672,
+                "5": 1732,
+                "6": 1793,
+                "7": 1862,
+                "8": 1922,
+                "9": 1998,
+                "10": 2067,
+                "11": 2143,
+                "12": 2226,
+                "13": 2303,
+                "14": 2386,
+                "15": 2477,
+                "16": 2569,
+                "17": 2660,
+                "18": 2751,
+                "19": 2850,
+                "20": 2949,
+                "21": 3048,
+                "22": 3154,
+                "23": 3253,
+                "24": 3367,
+                "25": 3473,
+                "26": 3580,
+                "27": 3694,
+                "28": 3808,
+                "29": 3922,
+                "30": 4043,
+                "31": 4157,
+                "32": 4279,
+                "33": 4401,
+                "34": 4515,
+                "35": 4636,
+                "36": 4766,
+                "37": 4887,
+                "38": 5009,
+                "39": 5130,
+                "40": 5252,
+                "41": 5381,
+                "42": 5503,
+                "43": 5625,
+                "44": 5746,
+                "45": 5868,
+                "46": 5997,
+                "47": 6119,
+                "48": 6233,
+                "49": 6354,
+                "50": 6476,
+                "51": 6590,
+                "52": 6712,
+                "53": 6826,
+                "54": 6940,
+                "55": 7054,
+                "56": 7160,
+                "57": 7267,
+                "58": 7381,
+                "59": 7479,
+                "60": 7586,
+                "61": 7685,
+                "62": 7784,
+                "63": 7882,
+                "64": 7974,
+                "65": 8065,
+                "66": 8156,
+                "67": 8247,
+                "68": 8331,
+                "69": 8407,
+                "70": 8491,
+                "71": 8567,
+                "72": 8635,
+                "73": 8711,
+                "74": 8772,
+                "75": 8840,
+                "76": 8901,
+                "77": 8962,
+                "78": 9015,
+                "79": 9068,
+                "80": 9122,
+                "81": 9213,
+                "82": 9312,
+                "83": 9403,
+                "84": 9502,
+                "85": 9600,
+                "86": 9692,
+                "87": 9790,
+                "88": 9889,
+                "89": 9981,
+                "90": 10079,
+                "91": 10178,
+                "92": 10269,
+                "93": 10368,
+                "94": 10467,
+                "95": 10558,
+                "96": 10657,
+                "97": 10756,
+                "98": 10847,
+                "99": 10946,
+                "100": 11045,
+                "101": 11136,
+                "102": 11235,
+                "103": 11334,
+                "104": 11425,
+                "105": 11524,
+                "106": 11623,
+                "107": 11714,
+                "108": 11813,
+                "109": 11911,
+                "110": 12003,
+                "111": 12101,
+                "112": 12200,
+                "113": 12292,
+                "114": 12390,
+                "115": 12489,
+                "116": 12580,
+                "117": 12679,
+                "118": 12778,
+                "119": 12869,
+                "120": 12968
+            }
+        },
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 100,
+                "turns": -1
+            }
+        ],
+        "skills": [
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "cardTypeUp",
+                        "val": 0.3,
+                        "turns": 3,
+                        "cardType": "arts"
+                    }
+                ]
+            },
+            {
+                "cooldown": 4,
+                "buffs": []
+            },
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "powerMod",
+                        "val": 0.3,
+                        "turns": 3,
+                        "trig": [
+                            "basedOnServant"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "arts",
+                "target": "aoe",
+                "multiplier": [
+                    4.5,
+                    6,
+                    6.75,
+                    7.125,
+                    7.5
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "extraTrigger": [],
+                "refundRate": 0.63,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
                 ],
                 "preBuffs": [],
                 "postBuffs": []
@@ -73653,10 +74218,6 @@
         "skills": [
             {
                 "cooldown": 5,
-                "buffs": []
-            },
-            {
-                "cooldown": 5,
                 "buffs": [
                     {
                         "self": true,
@@ -73717,6 +74278,10 @@
                         ]
                     }
                 ]
+            },
+            {
+                "cooldown": 5,
+                "buffs": []
             }
         ],
         "nps": [
