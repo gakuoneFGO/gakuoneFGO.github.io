@@ -95,6 +95,7 @@ const attrTraits = Object.values(Trait).filter(t => t.startsWith("attribute"));
 const compositeTraits: [Trait, (enemy: Enemy) => boolean][] = [
     [ Trait.EarthOrSky, (enemy: Enemy) => [EnemyAttribute.Earth, EnemyAttribute.Sky].includes(enemy.attribute) && enemy.traits.includes(Trait.Servant) ],
     [ Trait.SaberServant, (enemy: Enemy) => enemy.eClass == EnemyClass.Saber && enemy.traits.includes(Trait.Servant) ],
+    [ Trait.DivineOrDemonOrUndead, (enemy: Enemy) => [Trait.Divine, Trait.Demonic, Trait.Undead].some(trait => enemy.traits.includes(trait)) ],
 ];
 
 export { Enemy, EnemyClass, EnemyAttribute, Trait };

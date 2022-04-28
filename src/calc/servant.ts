@@ -337,6 +337,7 @@ export enum Trait {
     Cursed = "buffCurse",
     Burning = "buffBurn",
     Poisoned = "buffPoison",
+    DivineOrDemonOrUndead = "divineOrDemonOrUndead",
 }
 
 export function distinct<T>(values: T[]): T[] {

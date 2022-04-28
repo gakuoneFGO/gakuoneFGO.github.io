@@ -282,6 +282,7 @@
             "humanoid",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "childServant"
         ],
@@ -547,6 +548,7 @@
             "humanoid",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "childServant"
         ],
@@ -853,6 +855,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "greekMythologyMales",
             "hominidaeServant",
             "hasCostume"
@@ -1094,6 +1097,7 @@
             "humanoid",
             "weakToEnumaElish",
             "riding",
+            "divineOrDemonOrUndead",
             "king",
             "greekMythologyMales",
             "hominidaeServant",
@@ -1336,6 +1340,7 @@
             "humanoid",
             "weakToEnumaElish",
             "riding",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "king",
             "hominidaeServant",
@@ -4120,6 +4125,7 @@
             "roman",
             "weakToEnumaElish",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "livingHuman",
             "hasCostume"
@@ -5935,6 +5941,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "hasCostume"
         ],
@@ -6155,6 +6162,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "hasCostume",
             "divineSpirit"
@@ -6842,6 +6850,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "greekMythologyMales",
             "hominidaeServant"
         ],
@@ -7071,7 +7080,8 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "demonic",
-            "skyOrEarthExceptPseudoAndDemi"
+            "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead"
         ],
         "f2pCopies": 0,
         "iconUrl": "/images/servants/297.png",
@@ -8021,6 +8031,7 @@
             "roman",
             "weakToEnumaElish",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "livingHuman"
         ],
@@ -8267,6 +8278,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -8914,6 +8926,7 @@
             "divine",
             "humanoid",
             "riding",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant"
         ],
@@ -10309,6 +10322,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "superGiant",
             "giant",
             "hasCostume",
@@ -11928,6 +11942,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -12184,6 +12199,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -12431,6 +12447,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "feminineLookingServant",
             "divineSpirit"
@@ -12663,6 +12680,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "feminineLookingServant",
             "divineSpirit"
@@ -15434,6 +15452,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "greekMythologyMales",
             "divineSpirit"
         ],
@@ -16305,6 +16324,7 @@
             "divine",
             "humanoid",
             "weakToEnumaElish",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant"
         ],
@@ -16522,6 +16542,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 5,
@@ -16733,6 +16754,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "hasCostume"
         ],
@@ -16993,6 +17015,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 5,
@@ -17212,6 +17235,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 5,
@@ -17411,6 +17435,257 @@
                         "val": 0.2,
                         "turns": 1,
                         "cardType": "quick"
+                    }
+                ],
+                "postBuffs": []
+            }
+        ]
+    },
+    {
+        "name": "Daikokuten",
+        "id": 340,
+        "rarity": 4,
+        "sClass": "caster",
+        "attribute": "sky",
+        "traits": [
+            "genderFemale",
+            "classCaster",
+            "attributeSky",
+            "alignmentNeutral",
+            "alignmentGood",
+            "divine",
+            "humanoid",
+            "wildbeast",
+            "weakToEnumaElish",
+            "skyOrEarth",
+            "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
+            "demonicBeastServant"
+        ],
+        "f2pCopies": 0,
+        "iconUrl": "/images/servants/340.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/504700/504700a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classMoonCancer"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1438,
+                "2": 1524,
+                "3": 1617,
+                "4": 1704,
+                "5": 1797,
+                "6": 1891,
+                "7": 1977,
+                "8": 2070,
+                "9": 2164,
+                "10": 2250,
+                "11": 2344,
+                "12": 2437,
+                "13": 2523,
+                "14": 2617,
+                "15": 2710,
+                "16": 2797,
+                "17": 2890,
+                "18": 2984,
+                "19": 3070,
+                "20": 3163,
+                "21": 3257,
+                "22": 3343,
+                "23": 3437,
+                "24": 3530,
+                "25": 3616,
+                "26": 3710,
+                "27": 3803,
+                "28": 3890,
+                "29": 3983,
+                "30": 4077,
+                "31": 4163,
+                "32": 4256,
+                "33": 4350,
+                "34": 4436,
+                "35": 4530,
+                "36": 4623,
+                "37": 4709,
+                "38": 4803,
+                "39": 4896,
+                "40": 4983,
+                "41": 5076,
+                "42": 5162,
+                "43": 5256,
+                "44": 5349,
+                "45": 5436,
+                "46": 5529,
+                "47": 5623,
+                "48": 5709,
+                "49": 5802,
+                "50": 5896,
+                "51": 5982,
+                "52": 6076,
+                "53": 6169,
+                "54": 6255,
+                "55": 6349,
+                "56": 6442,
+                "57": 6529,
+                "58": 6622,
+                "59": 6716,
+                "60": 6802,
+                "61": 6895,
+                "62": 6989,
+                "63": 7075,
+                "64": 7169,
+                "65": 7262,
+                "66": 7349,
+                "67": 7442,
+                "68": 7535,
+                "69": 7622,
+                "70": 7715,
+                "71": 7809,
+                "72": 7895,
+                "73": 7989,
+                "74": 8082,
+                "75": 8168,
+                "76": 8262,
+                "77": 8355,
+                "78": 8442,
+                "79": 8535,
+                "80": 8629,
+                "81": 8715,
+                "82": 8808,
+                "83": 8895,
+                "84": 8988,
+                "85": 9082,
+                "86": 9168,
+                "87": 9261,
+                "88": 9355,
+                "89": 9441,
+                "90": 9535,
+                "91": 9628,
+                "92": 9714,
+                "93": 9808,
+                "94": 9901,
+                "95": 9988,
+                "96": 10081,
+                "97": 10175,
+                "98": 10261,
+                "99": 10354,
+                "100": 10448,
+                "101": 10534,
+                "102": 10628,
+                "103": 10721,
+                "104": 10807,
+                "105": 10901,
+                "106": 10994,
+                "107": 11081,
+                "108": 11174,
+                "109": 11268,
+                "110": 11354,
+                "111": 11447,
+                "112": 11541,
+                "113": 11627,
+                "114": 11721,
+                "115": 11814,
+                "116": 11900,
+                "117": 11994,
+                "118": 12087,
+                "119": 12174,
+                "120": 12267
+            }
+        },
+        "passives": [
+            {
+                "self": true,
+                "team": false,
+                "type": "damagePlus",
+                "val": 95,
+                "turns": -1
+            }
+        ],
+        "skills": [
+            {
+                "cooldown": 5,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "cardTypeUp",
+                        "val": 0.3,
+                        "turns": 3,
+                        "cardType": "quick"
+                    }
+                ]
+            },
+            {
+                "cooldown": 6,
+                "buffs": []
+            },
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.3,
+                        "turns": 3
+                    }
+                ]
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "quick",
+                "target": "aoe",
+                "multiplier": [
+                    6,
+                    8,
+                    9,
+                    9.5,
+                    10
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1.5,
+                    1.625,
+                    1.75,
+                    1.875,
+                    2
+                ],
+                "extraTrigger": [
+                    "attributeEarth"
+                ],
+                "extraDmgStacks": false,
+                "refundRate": 0.55,
+                "hitDistribution": [
+                    0.02,
+                    0.04,
+                    0.06,
+                    0.08,
+                    0.11,
+                    0.13,
+                    0.15,
+                    0.17,
+                    0.24
+                ],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "cardTypeUp",
+                        "val": 0.2,
+                        "turns": 1,
+                        "cardType": "quick"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
                     }
                 ],
                 "postBuffs": []
@@ -18545,6 +18820,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "feminineLookingServant",
             "hominidaeServant",
@@ -21317,6 +21593,7 @@
             "humanoid",
             "weakToEnumaElish",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant"
         ],
@@ -21801,6 +22078,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "divineSpirit"
         ],
@@ -22063,6 +22341,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hasCostume",
             "divineSpirit"
         ],
@@ -22500,6 +22779,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -23880,6 +24160,7 @@
             "weakToEnumaElish",
             "riding",
             "brynhildsBeloved",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "king",
             "hominidaeServant"
@@ -25212,6 +25493,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant"
         ],
@@ -25433,6 +25715,7 @@
             "humanoid",
             "weakToEnumaElish",
             "brynhildsBeloved",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant",
             "hasCostume"
@@ -25671,6 +25954,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant",
             "childServant"
@@ -29021,6 +29305,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "greekMythologyMales",
             "hominidaeServant"
         ],
@@ -30609,6 +30894,7 @@
             "skyOrEarth",
             "demonic",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "demonicBeastServant",
             "giant",
@@ -31342,6 +31628,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 5,
@@ -31559,6 +31846,7 @@
             "humanoid",
             "weakToEnumaElish",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "livingHuman"
         ],
@@ -31789,6 +32077,7 @@
             "weakToEnumaElish",
             "riding",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "livingHuman"
         ],
@@ -32044,6 +32333,7 @@
             "weakToEnumaElish",
             "riding",
             "brynhildsBeloved",
+            "divineOrDemonOrUndead",
             "king",
             "greekMythologyMales",
             "hominidaeServant"
@@ -32998,6 +33288,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -33239,6 +33530,7 @@
             "wildbeast",
             "weakToEnumaElish",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "livingHuman"
         ],
@@ -35058,6 +35350,7 @@
             "weakToEnumaElish",
             "riding",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "livingHuman"
         ],
@@ -35516,6 +35809,7 @@
             "weakToEnumaElish",
             "riding",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -35773,6 +36067,7 @@
             "riding",
             "skyOrEarth",
             "demonic",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -36012,6 +36307,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "hasCostume"
         ],
@@ -36259,6 +36555,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "hominidaeServant"
         ],
@@ -36703,6 +37000,7 @@
             "divine",
             "humanoid",
             "weakToEnumaElish",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -36928,6 +37226,7 @@
             "divine",
             "humanoid",
             "weakToEnumaElish",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "hominidaeServant"
         ],
@@ -37623,6 +37922,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "superGiant",
             "giant",
             "mechanical"
@@ -38363,6 +38663,7 @@
             "wildbeast",
             "weakToEnumaElish",
             "demonic",
+            "divineOrDemonOrUndead",
             "demonicBeastServant"
         ],
         "f2pCopies": 0,
@@ -38638,6 +38939,7 @@
             "weakToEnumaElish",
             "riding",
             "demonic",
+            "divineOrDemonOrUndead",
             "demonicBeastServant"
         ],
         "f2pCopies": 0,
@@ -38888,6 +39190,7 @@
             "saberface",
             "weakToEnumaElish",
             "riding",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "hominidaeServant"
         ],
@@ -41084,6 +41387,7 @@
             "weakToEnumaElish",
             "riding",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant",
             "livingHuman"
@@ -41985,6 +42289,7 @@
             "humanoid",
             "weakToEnumaElish",
             "riding",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -42686,6 +42991,232 @@
                         ]
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "name": "Mary Anning",
+        "id": 341,
+        "rarity": 1,
+        "sClass": "lancer",
+        "attribute": "human",
+        "traits": [
+            "genderFemale",
+            "classLancer",
+            "attributeHuman",
+            "alignmentNeutral",
+            "alignmentBalanced",
+            "humanoid",
+            "weakToEnumaElish",
+            "hominidaeServant"
+        ],
+        "f2pCopies": 5,
+        "iconUrl": "/images/servants/341.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/304900/304900a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classAlterEgo"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1013,
+                "2": 1022,
+                "3": 1040,
+                "4": 1063,
+                "5": 1090,
+                "6": 1127,
+                "7": 1168,
+                "8": 1213,
+                "9": 1268,
+                "10": 1327,
+                "11": 1391,
+                "12": 1459,
+                "13": 1537,
+                "14": 1615,
+                "15": 1701,
+                "16": 1788,
+                "17": 1884,
+                "18": 1979,
+                "19": 2080,
+                "20": 2185,
+                "21": 2294,
+                "22": 2404,
+                "23": 2518,
+                "24": 2632,
+                "25": 2750,
+                "26": 2869,
+                "27": 2987,
+                "28": 3111,
+                "29": 3229,
+                "30": 3352,
+                "31": 3471,
+                "32": 3594,
+                "33": 3713,
+                "34": 3831,
+                "35": 3950,
+                "36": 4064,
+                "37": 4178,
+                "38": 4287,
+                "39": 4397,
+                "40": 4502,
+                "41": 4602,
+                "42": 4698,
+                "43": 4794,
+                "44": 4880,
+                "45": 4967,
+                "46": 5044,
+                "47": 5122,
+                "48": 5190,
+                "49": 5254,
+                "50": 5314,
+                "51": 5368,
+                "52": 5414,
+                "53": 5455,
+                "54": 5491,
+                "55": 5505,
+                "56": 5519,
+                "57": 5532,
+                "58": 5546,
+                "59": 5560,
+                "60": 5574,
+                "61": 5646,
+                "62": 5724,
+                "63": 5802,
+                "64": 5879,
+                "65": 5957,
+                "66": 6034,
+                "67": 6112,
+                "68": 6189,
+                "69": 6267,
+                "70": 6344,
+                "71": 6422,
+                "72": 6499,
+                "73": 6577,
+                "74": 6654,
+                "75": 6732,
+                "76": 6810,
+                "77": 6887,
+                "78": 6965,
+                "79": 7042,
+                "80": 7115,
+                "81": 7193,
+                "82": 7270,
+                "83": 7348,
+                "84": 7425,
+                "85": 7503,
+                "86": 7580,
+                "87": 7658,
+                "88": 7735,
+                "89": 7813,
+                "90": 7890,
+                "91": 7968,
+                "92": 8046,
+                "93": 8123,
+                "94": 8201,
+                "95": 8278,
+                "96": 8356,
+                "97": 8433,
+                "98": 8511,
+                "99": 8588,
+                "100": 8661,
+                "101": 8739,
+                "102": 8816,
+                "103": 8894,
+                "104": 8971,
+                "105": 9049,
+                "106": 9127,
+                "107": 9204,
+                "108": 9282,
+                "109": 9359,
+                "110": 9437,
+                "111": 9514,
+                "112": 9592,
+                "113": 9669,
+                "114": 9747,
+                "115": 9824,
+                "116": 9902,
+                "117": 9979,
+                "118": 10057,
+                "119": 10135,
+                "120": 10207
+            }
+        },
+        "passives": [],
+        "skills": [
+            {
+                "cooldown": 5,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "attackUp",
+                        "val": 0.15,
+                        "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "cardTypeUp",
+                        "val": 0.15,
+                        "turns": 3,
+                        "cardType": "arts"
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "npGain",
+                        "val": 0.1,
+                        "turns": 3
+                    }
+                ]
+            },
+            {
+                "cooldown": 4,
+                "buffs": []
+            },
+            {
+                "cooldown": 6,
+                "buffs": []
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "arts",
+                "target": "aoe",
+                "multiplier": [
+                    4.5,
+                    6,
+                    6.75,
+                    7.125,
+                    7.5
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "extraTrigger": [],
+                "refundRate": 0.41,
+                "hitDistribution": [
+                    0.1,
+                    0.2,
+                    0.3,
+                    0.4
+                ],
+                "preBuffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "cardTypeUp",
+                        "val": 0.1,
+                        "turns": 1,
+                        "cardType": "arts"
+                    }
+                ],
+                "postBuffs": []
             }
         ]
     },
@@ -43986,6 +44517,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hasCostume",
             "divineSpirit"
         ],
@@ -44224,6 +44756,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "childServant",
             "divineSpirit"
         ],
@@ -44474,6 +45007,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "mechanical"
         ],
         "f2pCopies": 0,
@@ -45469,6 +46003,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "genji"
         ],
@@ -45715,6 +46250,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "genji"
         ],
@@ -46387,6 +46923,7 @@
             "humanoid",
             "weakToEnumaElish",
             "riding",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "hasCostume"
         ],
@@ -48748,6 +49285,7 @@
             "skyOrEarth",
             "demonic",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hasCostume",
             "mechanical"
         ],
@@ -50157,6 +50695,7 @@
             "humanoid",
             "weakToEnumaElish",
             "riding",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "hasCostume"
         ],
@@ -50616,6 +51155,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "greekMythologyMales",
             "hominidaeServant",
             "hasCostume",
@@ -52168,6 +52708,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant",
             "hasCostume",
@@ -52392,6 +52933,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant",
             "divineSpirit"
@@ -55289,6 +55831,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -55526,6 +56069,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -55779,6 +56323,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant"
         ],
@@ -56446,6 +56991,7 @@
             "humanoid",
             "weakToEnumaElish",
             "skyOrEarth",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "livingHuman",
             "hasCostume"
@@ -56677,6 +57223,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "mechanical"
         ],
         "f2pCopies": 0,
@@ -57139,6 +57686,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant",
             "hasCostume"
@@ -59149,6 +59697,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant",
             "divineSpirit"
@@ -59370,6 +59919,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant",
             "hasCostume",
@@ -59597,6 +60147,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "king",
             "hominidaeServant"
@@ -60483,6 +61034,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -61418,6 +61970,7 @@
             "weakToEnumaElish",
             "riding",
             "brynhildsBeloved",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 5,
@@ -61866,6 +62419,7 @@
             "humanoid",
             "weakToEnumaElish",
             "brynhildsBeloved",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "genji",
             "hasCostume"
@@ -62085,6 +62639,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "genji"
         ],
@@ -63162,6 +63717,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "divineSpirit"
         ],
@@ -64134,6 +64690,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "king",
             "hominidaeServant"
         ],
@@ -65396,6 +65953,7 @@
             "skyOrEarth",
             "demonic",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "shuten",
             "hasCostume"
         ],
@@ -65635,6 +66193,7 @@
             "skyOrEarth",
             "demonic",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "shuten"
         ],
         "f2pCopies": 5,
@@ -66388,6 +66947,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "hominidaeServant",
             "hasCostume"
@@ -66835,6 +67395,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "illya",
             "hominidaeServant",
             "childServant"
@@ -67058,6 +67619,7 @@
             "alignmentEvil",
             "divine",
             "humanoid",
+            "divineOrDemonOrUndead",
             "hasCostume",
             "divineSpirit"
         ],
@@ -67574,6 +68136,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -67788,6 +68351,258 @@
         ]
     },
     {
+        "name": "Super Bunyan",
+        "id": 339,
+        "rarity": 5,
+        "sClass": "alterEgo",
+        "attribute": "earth",
+        "traits": [
+            "genderFemale",
+            "classAlterEgo",
+            "attributeEarth",
+            "alignmentNeutral",
+            "alignmentBalanced",
+            "humanoid",
+            "weakToEnumaElish",
+            "skyOrEarth",
+            "skyOrEarthExceptPseudoAndDemi",
+            "hominidaeServant",
+            "giant"
+        ],
+        "f2pCopies": 0,
+        "iconUrl": "/images/servants/339.png",
+        "cardArtUrl": "https://static.atlasacademy.io/JP/CharaGraph/1001300/1001300a@1.png",
+        "chargeProfile": "",
+        "appendTarget": [
+            "classBerserker"
+        ],
+        "growthCurve": {
+            "stats": {
+                "1": 1784,
+                "2": 1832,
+                "3": 1891,
+                "4": 1959,
+                "5": 2018,
+                "6": 2086,
+                "7": 2164,
+                "8": 2233,
+                "9": 2311,
+                "10": 2398,
+                "11": 2477,
+                "12": 2564,
+                "13": 2652,
+                "14": 2740,
+                "15": 2838,
+                "16": 2935,
+                "17": 3033,
+                "18": 3140,
+                "19": 3238,
+                "20": 3345,
+                "21": 3462,
+                "22": 3570,
+                "23": 3687,
+                "24": 3804,
+                "25": 3921,
+                "26": 4038,
+                "27": 4165,
+                "28": 4282,
+                "29": 4409,
+                "30": 4536,
+                "31": 4673,
+                "32": 4800,
+                "33": 4936,
+                "34": 5063,
+                "35": 5200,
+                "36": 5337,
+                "37": 5473,
+                "38": 5610,
+                "39": 5746,
+                "40": 5883,
+                "41": 6030,
+                "42": 6166,
+                "43": 6303,
+                "44": 6449,
+                "45": 6586,
+                "46": 6732,
+                "47": 6869,
+                "48": 7015,
+                "49": 7152,
+                "50": 7289,
+                "51": 7435,
+                "52": 7572,
+                "53": 7708,
+                "54": 7845,
+                "55": 7982,
+                "56": 8118,
+                "57": 8255,
+                "58": 8382,
+                "59": 8519,
+                "60": 8645,
+                "61": 8782,
+                "62": 8909,
+                "63": 9036,
+                "64": 9153,
+                "65": 9280,
+                "66": 9397,
+                "67": 9514,
+                "68": 9631,
+                "69": 9748,
+                "70": 9856,
+                "71": 9973,
+                "72": 10080,
+                "73": 10178,
+                "74": 10285,
+                "75": 10383,
+                "76": 10481,
+                "77": 10578,
+                "78": 10666,
+                "79": 10754,
+                "80": 10842,
+                "81": 10920,
+                "82": 11008,
+                "83": 11086,
+                "84": 11154,
+                "85": 11232,
+                "86": 11300,
+                "87": 11359,
+                "88": 11427,
+                "89": 11486,
+                "90": 11545,
+                "91": 11652,
+                "92": 11759,
+                "93": 11867,
+                "94": 11974,
+                "95": 12091,
+                "96": 12198,
+                "97": 12306,
+                "98": 12413,
+                "99": 12530,
+                "100": 12638,
+                "101": 12745,
+                "102": 12852,
+                "103": 12970,
+                "104": 13077,
+                "105": 13184,
+                "106": 13292,
+                "107": 13409,
+                "108": 13516,
+                "109": 13624,
+                "110": 13731,
+                "111": 13838,
+                "112": 13955,
+                "113": 14063,
+                "114": 14170,
+                "115": 14278,
+                "116": 14395,
+                "117": 14502,
+                "118": 14609,
+                "119": 14717,
+                "120": 14834
+            }
+        },
+        "passives": [],
+        "skills": [
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": false,
+                        "type": "attackUp",
+                        "val": 0.3,
+                        "turns": 3
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "cardTypeUp",
+                        "val": 0.2,
+                        "turns": 3,
+                        "cardType": "buster"
+                    }
+                ]
+            },
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "overcharge",
+                        "val": 1,
+                        "turns": 1
+                    }
+                ]
+            },
+            {
+                "cooldown": 6,
+                "buffs": [
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    },
+                    {
+                        "self": true,
+                        "team": true,
+                        "type": "addTrait",
+                        "val": 1,
+                        "turns": 1,
+                        "trig": [
+                            "buffNegativeEffect"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "nps": [
+            {
+                "cardType": "buster",
+                "target": "st",
+                "multiplier": [
+                    6,
+                    8,
+                    9,
+                    9.5,
+                    10
+                ],
+                "multUpgrade": 0,
+                "extraDamage": [
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05
+                ],
+                "extraTrigger": [],
+                "extraDmgStacks": true,
+                "refundRate": 0.86,
+                "hitDistribution": [
+                    0.16,
+                    0.33,
+                    0.51
+                ],
+                "preBuffs": [],
+                "postBuffs": []
+            }
+        ]
+    },
+    {
         "name": "Super Orion",
         "id": 272,
         "rarity": 5,
@@ -67805,6 +68620,7 @@
             "skyOrEarth",
             "brynhildsBeloved",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "greekMythologyMales",
             "hominidaeServant"
         ],
@@ -68038,6 +68854,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "divineSpirit"
         ],
@@ -68801,6 +69618,7 @@
             "skyOrEarth",
             "demonic",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "childServant"
         ],
         "f2pCopies": 5,
@@ -69269,6 +70087,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "demonicBeastServant",
             "divineSpirit"
         ],
@@ -69498,6 +70317,7 @@
             "riding",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "demonicBeastServant",
             "divineSpirit"
         ],
@@ -70861,6 +71681,7 @@
             "humanoid",
             "weakToEnumaElish",
             "riding",
+            "divineOrDemonOrUndead",
             "saberClassServant",
             "king",
             "hominidaeServant"
@@ -71566,6 +72387,7 @@
             "humanoid",
             "weakToEnumaElish",
             "riding",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "livingHuman",
             "childServant"
@@ -71792,6 +72614,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "divineSpirit"
         ],
         "f2pCopies": 0,
@@ -72017,6 +72840,7 @@
             "weakToEnumaElish",
             "skyOrEarth",
             "skyOrEarthExceptPseudoAndDemi",
+            "divineOrDemonOrUndead",
             "hominidaeServant",
             "childServant"
         ],
@@ -74543,6 +75367,7 @@
             "divine",
             "humanoid",
             "weakToEnumaElish",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
@@ -75240,6 +76065,7 @@
             "divine",
             "humanoid",
             "weakToEnumaElish",
+            "divineOrDemonOrUndead",
             "hominidaeServant"
         ],
         "f2pCopies": 0,
