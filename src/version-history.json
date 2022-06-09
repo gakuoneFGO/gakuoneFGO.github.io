@@ -139,5 +139,15 @@
         "changes": [
             "Servants 343-345"
         ]
+    },
+    {
+        "major": 1,
+        "minor": 0,
+        "patch": 3,
+        "miniPatch": 11,
+        "releaseDate": "2022-06-09",
+        "changes": [
+            "Servants 346-348"
+        ]
     }
 ]
