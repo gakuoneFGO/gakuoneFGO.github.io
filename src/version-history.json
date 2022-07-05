@@ -159,5 +159,15 @@
         "changes": [
             "Servant 349, strengthenings"
         ]
+    },
+    {
+        "major": 1,
+        "minor": 0,
+        "patch": 3,
+        "miniPatch": 13,
+        "releaseDate": "2022-07-05",
+        "changes": [
+            "Servant 350"
+        ]
     }
 ]
